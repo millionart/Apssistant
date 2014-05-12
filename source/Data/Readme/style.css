@@ -1,0 +1,93 @@
+﻿body {
+	width: 290px;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 12px;
+	margin: 0px 0px 200px 0px;
+	padding: 0px;
+	background-color: #d6d6d6;
+	color: #191919;
+}
+a:link {
+	color: #3b3b3b;
+}
+a:visited {
+	color: #a0a0a0;
+}
+p {
+	clear: both;
+}
+h1 {
+	border: 1px;
+	border-color: #494949;
+	border-style: solid;
+	font-size: 1.4em;
+	padding: 3px 3px 3px 10px;
+	margin: 0px;
+}
+h2 {
+	color: #3b3b3b;
+	font-size: 10px;
+	padding: 3px;
+	margin: 0px;
+	margin-bottom: -20px;
+	background-color: #e2e2e2;
+	border-width: 12px 0px 0px 0px;
+	border-color: #4f4f4f;
+	border-style: solid;
+}
+ul#Directory {
+	margin: 20px 0px 10px 20px;
+	padding: 0px;
+}
+ul#Details {
+	margin: 20px 0px 10px 0px;
+	padding: 0px;
+}
+ul#Notice {
+	margin: 20px 0px 10px 20px;
+	padding: 0px;
+}
+
+
+ul#Thanklist {
+	margin: 20px 0px 10px 20px;
+	padding: 0px;
+}
+
+ul#Thanklist {
+	margin: 20px 0px 10px 20px;
+	padding: 0px;
+}
+ul#Thanklist li {
+	margin-left: 10px;
+}
+ul#Directory li {
+	margin-left: 10px;
+}
+#Details ul li {
+	list-style: none;
+}
+ul#Details li > a[name], ul#Details li a[href="#top"] {
+	display: block;
+	background: #C0C0C0;
+	font-weight: bold;
+	line-height: 2em;
+}
+ul#Details li > a[name] {
+	margin: 0px 0px 0px 0px;
+	padding-left: 15px;
+	float: left;
+	width: 245px;
+}
+ul#Details li > a[href="#top"] {
+	float: left;
+	width: 30px;
+	clear: right;
+}
+ul#Details li p {
+	width: 270px;
+	padding-left: 20px;
+}
+#copyleft {
+	margin: 20px 0px 10px 20px;
+}
