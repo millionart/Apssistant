@@ -1,3 +1,0 @@
-Compile_AHK http://www.autohotkey.com/forum/topic22975.html
-SciTE4AutoHotkey http://www.autohotkey.net/~fincs/SciTE4AutoHotkey_2/web/
-SPY++2010 http://www.box.net/shared/28ke3abvav
