@@ -52,4 +52,4 @@ Error=Error
 CannotConnect=Cannot connect to the Internet.
 NewVer=New Version!
 NewVerAvailable =There's a new version v%LatestVer% available.\n\nClikc Yes to Auto Update now!\n\nClick No to go to website.
-NewVerNotAvailable=Updated successfully!\nThe current version is
+NewVerNotAvailable=Updated successfully!

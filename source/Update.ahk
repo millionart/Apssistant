@@ -88,18 +88,17 @@ f_CheckVersion(Quiet=0)
 	{
 		if VerToNum("" . f_CurrentVer . "") < VerToNum("" . LatestVer . "")
 		{
-			If A_IsCompiled=1 ;脚本以编译的形式运行
-				gosub DownloadUpdateStart ;下载升级文件
-			else IfExist %UpdateFileName% ;存在升级文件
-				gosub UpdateStart
-			else	IfNotExist %UpdateFileName% ;丢失升级文件
+			IfNotExist %UpdateFileName% ;丢失升级文件
 				gosub DownloadUpdateStart
+			else
+				gosub UpdateStart
+
 		}
 		else if (pc1=0)
 		{
 			;StringReplace, NewVerNotAvailable, lang_NewVerNotAvailable, `%f_CurrentVer`%, %CurrentVer%
 			;if !Quiet
-			MsgBox, 64, Apssistant, %NewVerNotAvailable% v%f_CurrentVer%, 30
+			MsgBox, 64, Apssistant, %NewVerNotAvailable%, 30
 		}
 		else
 		ExitApp
