@@ -82,7 +82,7 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_P_I, %Lang_P_I%
 ;	Gui, Add, Checkbox, x150 y100 w190 h25 vCheck14 %Checkd14%, %Lang_P_I_DisableShutdown%
 ;===========================
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Other, %Lang_Other%
-	Gui, Add, Checkbox, x150 y40 w190 h25 vCheck15 %Checkd15%, %Lang_Other_3DsMaxSync%
+	Gui, Add, Checkbox, x150 y40 w190 h25 vCheck15 %Checkd15%, %Lang_Other_3dsMaxSync%
 ;===========================
 Gui, Add, GroupBox, x140 y270 w310 h250 vHelpTip, %Lang_HelpTip%
 	Gui, Add, Text, x150 y290 w290 h180 vHelpTipText,%Lang_HelpTip_text%
@@ -172,7 +172,7 @@ gosub SHLayerToggle
 
 gosub AScheck
 
-gosub 3DsMaxSyncCheck
+gosub 3dsMaxSyncCheck
 
 gosub GuiHideGB
 
@@ -226,7 +226,7 @@ AScheck:
 	}
 	Return
 
-3DsMaxSyncCheck:
+3dsMaxSyncCheck:
 	Return
 
 Browse1:
@@ -390,7 +390,7 @@ ConfigSave:
 	IniWrite, %QCLayer%, %A_scriptdir%\Data\Config.ini, Setting, QCLayer
 	IniWrite, %ModifyBrushKey%, %A_scriptdir%\Data\Config.ini, Setting, ModifyBrushRadius
 	IniWrite, %MapAlt%, %A_scriptdir%\Data\Config.ini, Setting, mapalt
-	IniWrite, %Check15%, %A_scriptdir%\Data\Config.ini, Setting, 3DsMaxSync
+	IniWrite, %Check15%, %A_scriptdir%\Data\Config.ini, Setting, 3dsMaxSync
 	;Gui, Cancel
 	;Reload
 	If A_IsCompiled=1

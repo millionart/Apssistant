@@ -51,7 +51,7 @@ UpdateStart:
 			run %A_scriptdir%\Data\Update\Setup.exe, %A_scriptdir%
 			StringReplace, NewVerNotAvailable, lang_NewVerNotAvailable, v`%CurrentVer`%,
 			;if !Quiet
-			MsgBox, 64, Apssistant, %NewVerNotAvailable%
+			MsgBox, 64, Apssistant, %NewVerNotAvailable%, 30
 		}
 		;IfMsgBox No
 		;	Gosub, Website
@@ -97,9 +97,9 @@ f_CheckVersion(Quiet=0)
 		}
 		else if (pc1=0)
 		{
-			StringReplace, NewVerNotAvailable, lang_NewVerNotAvailable, `%CurrentVer`%, %f_CurrentVer%
+			;StringReplace, NewVerNotAvailable, lang_NewVerNotAvailable, `%f_CurrentVer`%, %CurrentVer%
 			;if !Quiet
-			MsgBox, 64, Apssistant, %NewVerNotAvailable%
+			MsgBox, 64, Apssistant, %NewVerNotAvailable% v%f_CurrentVer%, 30
 		}
 		else
 		ExitApp

@@ -1,6 +1,6 @@
 
 
-; ==========================================×Ô„Ó±£´æÅÐ”à
+; ==========================================ï¿½Ô„Ó±ï¿½ï¿½ï¿½ï¿½Ð”ï¿½
 /* 
 #Persistent
 SetTimer,ClsEvthn,1000
@@ -14,7 +14,7 @@ return
  */
 
 
-; ==========================================ÅäÖÃ½çÃæ³õÊ¼»¯
+; ==========================================ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
 
 
 /* 
@@ -55,7 +55,7 @@ CleanUpTempFiles:
 	Return
 
 
-; Ìí¼Ó¿Ø¼þ µÚÁù²½
+; ï¿½ï¿½Ó¿Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ConfigRead:
 	IniRead, HUDCP, %A_scriptdir%\Data\Config.ini, Setting, hudcp, ``
 	IniRead, FCPk, %A_scriptdir%\Data\Config.ini, Setting, fcp, n
@@ -80,7 +80,7 @@ ConfigRead:
 	IniRead, ModifyBrushKey, %A_scriptdir%\Data\Config.ini, Setting, ModifyBrushRadius, F2
 	IniRead, MapAltmode, %A_scriptdir%\Data\Config.ini, Setting, mapalt, 1
 	IniRead, PsPath, %A_scriptdir%\Data\Config.ini, Setting, PsPath, NULL
-	IniRead, Check15, %A_scriptdir%\Data\Config.ini, Setting, 3DsMaxSync, 0
+	IniRead, Check15, %A_scriptdir%\Data\Config.ini, Setting, 3dsMaxSync, 0
 	If PsPath=NULL
 	{
 		PsDir:=RegRead64("HKEY_LOCAL_MACHINE", "SOFTWARE\Adobe\Photoshop\" . Regver . ".0", "ApplicationPath")
@@ -96,13 +96,13 @@ ConfigRead:
 	Return
 /* 
 
-; ×xÈ¡•rÌæ“Q
+; ï¿½xÈ¡ï¿½rï¿½ï¿½Q
 StringReplaceRead:
 	stringreplace, Tiptext, Tiptext, \n, `n, All
 	stringreplace, Tiptext, Tiptext, \r, `r, All
 	Return
 
-; ±£´æ•rÌæ“Q
+; ï¿½ï¿½ï¿½ï¿½rï¿½ï¿½Q
 StringReplaceWrite:
 	stringreplace, Tiptext, Tiptext, `n, \n, All
 	stringreplace, Tiptext, Tiptext, `r, \r, All

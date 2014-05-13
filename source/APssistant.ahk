@@ -328,7 +328,7 @@ $^s::
 		If (Check15=1)
 		{
 		SetControlDelay -1
-		ControlClick, Label1, ahk_class 3DSMAX,,,,
+		ControlClick, Label1, ahk_class 3dsMax,,,,
 		WinActivate, ahk_class Photoshop
 		}
 return
@@ -368,7 +368,7 @@ Autosave:
 		If Check15=1
 		{
 		SetControlDelay -1
-		ControlClick, Label1, ahk_class 3DSMAX,,,,
+		ControlClick, Label1, ahk_class 3dsMax,,,,
 		WinActivate, ahk_class Photoshop
 		}
 	else If WinExist("ahk_class Photoshop") and (Autosavenum=2)
