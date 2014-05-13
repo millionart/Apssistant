@@ -141,7 +141,7 @@ Website:
 
 Blog:
 	; please retain the original links and related notes.
-	run http://done.is.com
+	run http://millionart.deviantart.com
 	return
 
 

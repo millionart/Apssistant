@@ -35,23 +35,40 @@ FileAppend,
 (
 @echo on
 
+
+::====32-bit====
 cd "%Compiler%"
-move mpress.exe mpress_exe
-move upx.exe upx_exe
+copy /y "Unicode 32-bit.bin" AutoHotkeySC.bin
 Ahk2exe.exe /in "%A_ScriptDir%\APssistant.ahk" /icon "%A_ScriptDir%\Data\tray.ico"
 Ahk2exe.exe /in "%A_ScriptDir%\Config.ahk" /out "%A_ScriptDir%\Config.com" /icon "%A_ScriptDir%\inc\Config.ico"
 Ahk2exe.exe /in "%A_ScriptDir%\Update.ahk" /out "%A_ScriptDir%\Update.com" /icon "%A_ScriptDir%\inc\Update.ico"
-move mpress_exe  mpress.exe
-move upx_exe upx.exe
+copy /y "Unicode 64-bit.bin" AutoHotkeySC.bin
 
 cd "%A_ScriptDir%\"
 del Data\Update\APssistant.7z
-del Data\Update\Latest.exe
-del ..\bin\APssistant.7z
-del ..\bin\Latest.exe
-..\tools\7za.exe a -t7z ..\bin\APssistant.7z @listfile.txt -mx=9 -x!Data\Config.ini -xr!*\.SVN\  -xr!*\_SVN\ -xr!*\inc\ -xr!*\Readme\ 
-copy /b ..\tools\APssistant.sfx + bin.txt + ..\bin\APssistant.7z ..\bin\Latest.exe
-move ..\bin\APssistant.7z Data\Update\APssistant.7z
+del Data\Update\Setup.exe
+del ..\bin\x32\APssistant.7z
+del ..\bin\x32\Setup.exe
+del ..\bin\x64\APssistant.7z
+del ..\bin\x64\Setup.exe
+
+..\tools\7za.exe a -t7z ..\bin\x32\APssistant.7z @listfile.txt -mx=9 -x!Data\Config.ini -xr!*\.SVN\  -xr!*\_SVN\ -xr!*\inc\ -xr!*\Readme\ 
+copy /b ..\tools\APssistant.sfx + bin.txt + ..\bin\x32\APssistant.7z ..\bin\x32\Setup.exe
+move ..\bin\x32\APssistant.7z Data\Update\APssistant.7z
+del ..\bin\x32\APssistant.7z
+
+::====64-bit====
+Ahk2exe.exe /in "%A_ScriptDir%\APssistant.ahk" /icon "%A_ScriptDir%\Data\tray.ico"
+Ahk2exe.exe /in "%A_ScriptDir%\Config.ahk" /out "%A_ScriptDir%\Config.com" /icon "%A_ScriptDir%\inc\Config.ico"
+Ahk2exe.exe /in "%A_ScriptDir%\Update.ahk" /out "%A_ScriptDir%\Update.com" /icon "%A_ScriptDir%\inc\Update.ico"
+
+
+..\tools\7za.exe a -t7z ..\bin\x64\APssistant.7z @listfile.txt -mx=9 -x!Data\Config.ini -xr!*\.SVN\  -xr!*\_SVN\ -xr!*\inc\ -xr!*\Readme\ 
+copy /b ..\tools\APssistant.sfx + bin.txt + ..\bin\x64\APssistant.7z ..\bin\x64\Setup.exe
+::move ..\bin\x64\APssistant.7z Data\Update\APssistant.7z
+del ..\bin\x64\APssistant.7z
+
+
 move Update.com Update.exe
 move Config.com Config.exe
 
@@ -63,16 +80,24 @@ FileDelete, %A_ScriptDir%\build.bat
 FileDelete, %A_ScriptDir%\bin.txt
 FileDelete, %A_ScriptDir%\listfile.txt
 
-bin7z=Data\Update\APssistant.7z
-binexe=..\bin\Latest.exe
+;bin7zx32=%A_scriptdir%\..\bin\x32\APssistant.7z
+binexex32=%A_scriptdir%\..\bin\x32\Setup.exe
+binexex64=%A_scriptdir%\..\bin\x64\Setup.exe
 
-bin7zhash=% File_Hash(bin7z, "MD5")
-binexehash=% File_Hash(binexe, "MD5")
+bin7zx32hash=% File_Hash(bin7zx32, "MD5")
+binexex32hash=% File_Hash(binexex32, "MD5")
+bin7zx64hash=% File_Hash(bin7zx32, "MD5")
+binexex64hash=% File_Hash(binexex32, "MD5")
 
-IniWrite, %f_CurrentVer%, %A_scriptdir%\APssistant.ahk.ini, VERSION, File_Version
-IniWrite, %bin7zhash%, %A_scriptdir%\APssistant.ahk.ini, VERSION, MD5
-IniWrite, %f_CurrentVer%, %A_scriptdir%\..\..\wiki\Update.wiki, Win32, Version
-IniWrite, %binexehash%, %A_scriptdir%\..\..\wiki\Update.wiki, Win32, MD5
+;IniWrite, %f_CurrentVer%, %A_scriptdir%\APssistant.ahk.ini, VERSION, File_Version
+;IniWrite, %bin7zx32hash%, %A_scriptdir%\APssistant.ahk.ini, VERSION, MD5
+IniWrite, %f_CurrentVer%, %A_scriptdir%\..\bin\x32\Update.ini, Win32, Version
+IniWrite, %binexex32hash%, %A_scriptdir%\..\bin\x32\Update.ini, Win32, MD5
+IniWrite, %f_CurrentVer%, %A_scriptdir%\..\bin\x64\Update.ini, Win64, Version
+IniWrite, %binexex64hash%, %A_scriptdir%\..\bin\x64\Update.ini, Win64, MD5
+IniWrite, https://github.com/millionart/Apssistant/raw/master/bin/x32/Setup.exe, %A_scriptdir%\..\bin\x32\Update.ini, Win32, Url
+IniWrite, https://github.com/millionart/Apssistant/raw/master/bin/x64/Setup.exe, %A_scriptdir%\..\bin\x64\Update.ini, Win64, Url
+
 
 return
 

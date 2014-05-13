@@ -17,8 +17,9 @@ ExitApp
 
 G_ReadLanguage()
 Downloadtimes=0
+WinBit=Win32
 VerFileName=%A_Temp%\Apssistant_version.tmp
-UpdateFileName = %A_scriptdir%\Data\Update\Latest.exe
+UpdateFileName = %A_scriptdir%\Data\Update\Setup.exe
 
 f_CheckVersion()
 
@@ -29,25 +30,25 @@ DownloadUpdateStart:
 	If Downloadtimes=5
 		ExitApp ; 避免进入下载死循环
 
-	IniRead, DownloadUrlmax, %VerFileName%, Win32, Url0, 1
-	Random, randnum, 1, %DownloadUrlmax% ; 下载地址总数
-	IniRead, UpdateUrl, %VerFileName%, Win32, url%randnum%, about:blank
+	;IniRead, DownloadUrlmax, %VerFileName%, %WinBit%, Url, 1
+	;Random, randnum, 1, %DownloadUrlmax% ; 下载地址总数
+	IniRead, UpdateUrl, %VerFileName%, %WinBit%, Url, about:blank
 	FileDelete, %UpdateFileName%
 	UrlDownloadToFile, %UpdateUrl%, %UpdateFileName%
 	gosub UpdateStart
 	return
 
 UpdateStart:
-	IniRead, UpdatefileMD5, %VerFileName%, Win32, MD5, 0
+	IniRead, UpdatefileMD5, %VerFileName%, %WinBit%, MD5, 0
 	If UpdatefileMD5=% File_Hash(UpdateFileName, "MD5")
 	{
-		IniRead, LatestVer, %VerFileName%, Win32, Version,0
+		IniRead, LatestVer, %VerFileName%, %WinBit%, Version,0
 		StringReplace, NewVerAvailable, lang_NewVerAvailable, `%LatestVer`%, %LatestVer%
 		MsgBox, 36, %lang_NewVer%, %NewVerAvailable%
 		IfMsgBox Yes
 		{
 			Process,Close,Apssistant.exe
-			run %A_scriptdir%\Data\Update\Latest.exe, %A_scriptdir%
+			run %A_scriptdir%\Data\Update\Setup.exe, %A_scriptdir%
 			StringReplace, NewVerNotAvailable, lang_NewVerNotAvailable, v`%CurrentVer`%,
 			;if !Quiet
 			MsgBox, 64, Apssistant, %NewVerNotAvailable%
@@ -69,12 +70,10 @@ f_CheckVersion(Quiet=0)
 	
 	VerFileName=%A_Temp%\Apssistant_version.tmp
 	FileDelete, %VerFileName%
-	;UrlDownloadToFile, http://apssistant.googlecode.com/svn/trunk/bin/APssistant.ini, %VerFileName%
-	UrlDownloadToFile, http://apssistant.googlecode.com/svn/wiki/Update.wiki, %VerFileName%
-	;FileRead, LatestVer, %VerFileName%
 
-	IniRead, LatestVer, %VerFileName%, Win32, Version,CannotConnect
-	;msgbox,%LatestVer%
+	UrlDownloadToFile, https://github.com/millionart/Apssistant/raw/master/bin/x32/Update.ini, %VerFileName%
+	IniRead, LatestVer, %VerFileName%, %WinBit%, Version,CannotConnect
+
 	Process, Exist, Apssistant.exe
 	pc1:=ErrorLevel
 
