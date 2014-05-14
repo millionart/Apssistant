@@ -1,6 +1,5 @@
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ;SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-#InstallKeybdHook
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 FileEncoding , UTF-8
 #SingleInstance, force
@@ -184,8 +183,8 @@ Hotkey, IfWinActive, ahk_group Photoshop
 	If Check6=1
 	Hotkey, %QCLayer%, QCLayer
 
-	If (Check10=1) and (MapAltmode=1)
-	Hotkey, Alt, DisableAltMenu
+;	If (Check10=1) and (MapAltmode=1)
+;	Hotkey, Alt, DisableAltMenu
 
 	If (Regver>=11) and (Check11=1)
 	Hotkey, %ModifyBrushKey%, ModifyBrushKey
@@ -243,6 +242,20 @@ $alt::
 
  */
 #IfWinActive ahk_group Photoshop
+~Alt::
+If (Check10=1) and (MapAltmode=1)
+{
+	SendInput, {Ctrl down}{Alt down}{Ctrl up}
+	KeyWait, Alt
+	SendInput, {Alt up}
+}
+	If (Regver>=12) and (Check8=1) and (MapAltmode=2)
+	{
+		gosub FCPc2
+	}
+	Return
+return
+
 /* 
 $LButton::
 If ((A_PriorHotkey = A_ThisHotkey) and (A_TimeSincePriorHotkey < 200))
@@ -257,23 +270,8 @@ keywait, LButton
 send, {LButton up}
 
 Return 
- */
-~alt::
-	If (Regver>=12) and (Check8=1) and (MapAltmode=2)
-	{
-		gosub FCPc2
-	}
-/* 
-	else
-	{
-		send, {alt down}
-		keywait, alt
-		send, {alt up}
-	}
 
  */
-	Return
-
 /* 
 ; 鎖定輸入法按键
 ;~^Shift::
@@ -387,6 +385,7 @@ ModifyBrushKey:
 	Return
 
 DisableAltMenu:
+msgbox,0
 	SendInput, {Ctrl down}{Alt down}{Ctrl up}
 	KeyWait, Alt
 	SendInput, {Alt up}

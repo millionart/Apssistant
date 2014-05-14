@@ -2,7 +2,7 @@
 V_CurrentVer()
 {
 	Global f_CurrentVer
-	f_CurrentVer = 0.8.0.4
+	f_CurrentVer = 0.8.0.5
 	IniWrite, %f_CurrentVer%, %A_scriptdir%\Data\Config.ini, Setting, Apssistantver
 }
 
