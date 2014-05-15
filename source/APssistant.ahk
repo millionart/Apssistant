@@ -36,7 +36,7 @@ else
 DetectHiddenText, On
 ;DetectHiddenWindows, On
 GroupAdd, Photoshop, ahk_class Photoshop
-GroupAdd, Photoshop, ahk_class OWL.DocumentWindow ;CS5画布
+GroupAdd, Photoshop, ahk_class OWL.DocumentWindow ;CS5+画布
 GroupAdd, Photoshop, ahk_class PSDocC ;CS2画布
 
 SysGet, VirtualWidth, 78
@@ -169,6 +169,7 @@ Hotkey, IfWinActive, ahk_group Photoshop
 	{
 	Hotkey, %FCPk%, FCPc1
 	}
+/* 
 	;兼容模式alt拾色器
 	else If (Check8=1) and (MapAltmode=2)
 	{
@@ -179,7 +180,7 @@ Hotkey, IfWinActive, ahk_group Photoshop
 	{
 	Hotkey, Alt, FCPc12
 	}
-
+ */
 	If Check6=1
 	Hotkey, %QCLayer%, QCLayer
 
@@ -200,6 +201,7 @@ Hotkey, IfWinActive
 Hotkey, IfWinActive, ahk_class PSFloatC, Web
 	If (Check8=1) and (MapAltmode=1)
 	Hotkey, %FCPk%, FCPs
+/* 
 	else If (Check8=1) and (MapAltmode=2)
 	{
 	FCPk=Alt
@@ -209,6 +211,7 @@ Hotkey, IfWinActive, ahk_class PSFloatC, Web
 	{
 	Hotkey, Alt, FCPs12
 	}
+ */
 Hotkey, IfWinActive
 
 If Check14=1
@@ -222,38 +225,37 @@ Return
 ; ==========================================初始化完毕==========================================
 
 ; ==========================================键盘映射==========================================
-
-/* 
 #IfWinActive ahk_class PSFloatC, Web
-$alt::
-	If (Regver>=12) and (Check8=1) and (MapAltmode>1)
+~Alt::
+	If (Check8=1) and (MapAltmode=2)
 	{
-		KeyWait, alt
-		send, {enter}
+		gosub FCPs
 	}
-	else
+	else If (Check8=1) and (MapAltmode=3)
 	{
-		send, {alt down}
-		keywait, alt
-		send, {alt up}
+		gosub FCPs12
+
 	}
-	Return
+return
 #IfWinActive
 
- */
 #IfWinActive ahk_group Photoshop
 ~Alt::
-If (Check10=1) and (MapAltmode=1)
-{
-	SendInput, {Ctrl down}{Alt down}{Ctrl up}
-	KeyWait, Alt
-	SendInput, {Alt up}
-}
-	If (Regver>=12) and (Check8=1) and (MapAltmode=2)
+	If (Check10=1) and (MapAltmode=1)
+	{
+		SendInput, {Ctrl down}{Alt down}{Ctrl up}
+		KeyWait, Alt
+		SendInput, {Alt up}
+	}
+
+	If (Check8=1) and (MapAltmode=2)
 	{
 		gosub FCPc2
 	}
-	Return
+	else If (Check8=1) and (MapAltmode=3)
+	{
+		gosub FCPc12
+	}
 return
 
 /* 
@@ -322,13 +324,13 @@ $^y::
 	return
 
 $^s::
-		PostMessage, 0x111, 30,,,ahk_class Photoshop
-		If (Check15=1)
-		{
-		SetControlDelay -1
-		ControlClick, Label1, ahk_class 3dsMax,,,,
-		WinActivate, ahk_class Photoshop
-		}
+	PostMessage, 0x111, 30,,,ahk_class Photoshop
+	If (Check15=1)
+	{
+	SetControlDelay -1
+	ControlClick, Label1, ahk_class 3dsMax,,,,
+	WinActivate, ahk_class Photoshop
+	}
 return
 /* 
 ;$!^z::send ^y
@@ -384,20 +386,13 @@ ModifyBrushKey:
 	send, {Alt up}{RButton up}
 	Return
 
-DisableAltMenu:
-msgbox,0
-	SendInput, {Ctrl down}{Alt down}{Ctrl up}
-	KeyWait, Alt
-	SendInput, {Alt up}
-	Return
-
 SHlayer:
 	PostMessage, 0x111, 0x45A,,,ahk_class Photoshop
 	Return
 ; ==========================================普通拾色器点击
 FCPc1:
-	If (MapAltmode>1) and (Regver<12)
-	{
+;	If (MapAltmode>1) and (Regver<12)
+;	{
 		ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\brush.png
 		if ErrorLevel=1
 		{
@@ -411,13 +406,13 @@ FCPc1:
 			else if (ErrorLevel=1)
 			return
 		}
-
-	}
+;	}
 	Gosub FCPc2
+	Return
 
 FCPc2:
 	Gosub FCPsearch
-
+	CoordMode, Pixel,Screen
 	if Regver=10
 	{
 		MouseGetPos, cX, cY
@@ -447,11 +442,8 @@ FCPc12:
 		return
 		}
 	}
-
 	send, {%FCPk%}
-
 	gosub FCPs12
-
 	return
 
 FCPs:
@@ -489,6 +481,12 @@ FCPs2:
 	return
  */
 FCPsearch:
+	If (Regver>12)
+	{
+	CoordMode, Pixel, Window
+	PixelGetColor, PSGUIColor, 20, 33,RGB
+	PsCSver=%PsCSver%\%PSGUIColor%
+	}
 	ImageSearch, fbcsX, fbcsY, 0, 295, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\fbcswitch.png
 	if ErrorLevel=1
 	{

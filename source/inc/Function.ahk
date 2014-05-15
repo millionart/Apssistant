@@ -10,7 +10,7 @@ V_Trans()
 {
 	Global Regver, PsCSver, PSCSverList,PsCSverNo,GuiGetPsver,curPsver
 
-	PSCSverList=6|7|CS|CS2|CS3|CS4|CS5
+	PSCSverList=6|7|CS|CS2|CS3|CS4|CS5|CS6|CC
 	;GuiGetPsver=%PsCSver%
 	;curPsver=%Regver%
 	IniRead, PsCSver, %A_scriptdir%\Data\Config.ini, Setting, Psver, CS5
@@ -20,6 +20,8 @@ V_Trans()
 	}
 	else If PsCSver=CS
 	Regver=8
+	else If PsCSver=CC
+	Regver=14
 	else
 	{
 	stringreplace, RegCSver, PsCSver, CS,, All
@@ -36,6 +38,8 @@ V_Trans()
 	}
 	else If GuiGetPsver=CS
 	curPsver=8
+	else If GuiGetPsver=CC
+	curPsver=14
 	else
 	{
 	stringreplace, curPsCSver, GuiGetPsver, CS,, All
