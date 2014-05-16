@@ -17,13 +17,9 @@ FileAppend,
 @echo on
 
 cd "%Compiler%"
-move mpress.exe mpress_exe
-move upx.exe upx_exe
 Ahk2exe.exe /in "%A_ScriptDir%\APssistant.ahk" /icon "%A_ScriptDir%\Data\tray.ico"
 Ahk2exe.exe /in "%A_ScriptDir%\Config.ahk" /out "%A_ScriptDir%\Config.exe" /icon "%A_ScriptDir%\inc\Config.ico"
 Ahk2exe.exe /in "%A_ScriptDir%\Update.ahk" /out "%A_ScriptDir%\Update.exe" /icon "%A_ScriptDir%\inc\Update.ico"
-move mpress_exe  mpress.exe
-move upx_exe upx.exe
 
 ), build.bat
 

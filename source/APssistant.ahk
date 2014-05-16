@@ -44,7 +44,7 @@ SysGet, VirtualHeight, 79
 ;%VirtualWidth%
 ;%VirtualHeight%
 ; 讀取界面配置
-;IniRead, Langlist, %A_scriptdir%\Data\Config.ini, General, langlist, English|繁體中文|简体中文
+IniRead, fontname, %A_scriptdir%\Data\Config.ini, General, fontname, Segoe UI
 
 ;IniRead, G_Language, %A_scriptdir%\Data\Config.ini, Setting, lang, English
 ;IniRead, PsCSver, %A_scriptdir%\Data\Config.ini, Setting, Psver, CS5
@@ -250,6 +250,7 @@ return
 
 	If (Check8=1) and (MapAltmode=2)
 	{
+		FCPk=Alt
 		gosub FCPc2
 	}
 	else If (Check8=1) and (MapAltmode=3)
@@ -485,8 +486,9 @@ FCPsearch:
 	{
 	CoordMode, Pixel, Window
 	PixelGetColor, PSGUIColor, 20, 33,RGB
-	PsCSver=%PsCSver%\%PSGUIColor%
+	ImageSearch, fbcsX, fbcsY, 0, 295, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\%PSGUIColor%\fbcswitch.png
 	}
+	else
 	ImageSearch, fbcsX, fbcsY, 0, 295, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\fbcswitch.png
 	if ErrorLevel=1
 	{
