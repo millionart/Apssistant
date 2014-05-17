@@ -14,9 +14,7 @@ return
  */
 
 
-; ==========================================���ý����ʼ��
-
-
+; ==========================================调试信息
 /* 
 Debug:
 	msgbox,DPI %%VirtualWidth%% %%VirtualHeight%%`n%VirtualWidth% %VirtualHeight% `n fcp %fcX% %fcY% `n MapAltmode=%MapAltmode%
@@ -55,7 +53,7 @@ CleanUpTempFiles:
 	Return
 
 
-; ��ӿؼ� ������
+; 读取配置信息
 ConfigRead:
 	IniRead, HUDCP, %A_scriptdir%\Data\Config.ini, Setting, hudcp, ``
 	IniRead, FCPk, %A_scriptdir%\Data\Config.ini, Setting, fcp, n
@@ -91,48 +89,10 @@ ConfigRead:
 	}
 
 	IniRead, Tiptext, %A_scriptdir%\Data\Config.ini, Setting, tiptext, %Lang_tiptext%
+	IniRead, fontname, %A_scriptdir%\Data\Config.ini, General, fontname, Segoe UI
 	stringreplace, Tiptext, Tiptext, \n, `n, All
 	stringreplace, Tiptext, Tiptext, \r, `r, All
 	Return
-/* 
-
-; �xȡ�r��Q
-StringReplaceRead:
-	stringreplace, Tiptext, Tiptext, \n, `n, All
-	stringreplace, Tiptext, Tiptext, \r, `r, All
-	Return
-
-; ����r��Q
-StringReplaceWrite:
-	stringreplace, Tiptext, Tiptext, `n, \n, All
-	stringreplace, Tiptext, Tiptext, `r, \r, All
-	Return
- */
-/* 
-VerTrans:
-	If GuiGetPsver<8
-	{
-	curPsver=%GuiGetPsver%
-	}
-	else If GuiGetPsver=CS
-	curPsver=8
-	else
-	{
-	stringreplace, curPsCSver, GuiGetPsver, CS,, All
-	curPsver:=curPsCSver+7
-	}
-	Return
- */
-; V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V links V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V
-
-/* 
-Update:
-	IfExist %A_scriptdir%\Update.ahk
-	run Update.ahk
-	else
-	run Update.exe
-	return
- */
 
 Website:
 	; please retain the original links and related notes.

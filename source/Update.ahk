@@ -71,7 +71,12 @@ f_CheckVersion(Quiet=0)
 	VerFileName=%A_Temp%\Apssistant_version.tmp
 	FileDelete, %VerFileName%
 
-	UrlDownloadToFile, https://github.com/millionart/Apssistant/raw/master/bin/x32/Update.ini, %VerFileName%
+	if A_Is64bitOS=1
+	OSbit=64
+	else
+	OSbit=32
+
+	UrlDownloadToFile, https://github.com/millionart/Apssistant/raw/master/bin/x%OSbit%/Update.ini, %VerFileName%
 	IniRead, LatestVer, %VerFileName%, %WinBit%, Version,CannotConnect
 
 	Process, Exist, Apssistant.exe

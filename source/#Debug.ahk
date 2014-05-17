@@ -17,6 +17,7 @@ FileAppend,
 @echo on
 
 cd "%Compiler%"
+copy /y "Unicode 32-bit.bin" AutoHotkeySC.bin
 Ahk2exe.exe /in "%A_ScriptDir%\APssistant.ahk" /icon "%A_ScriptDir%\Data\tray.ico"
 Ahk2exe.exe /in "%A_ScriptDir%\Config.ahk" /out "%A_ScriptDir%\Config.exe" /icon "%A_ScriptDir%\inc\Config.ico"
 Ahk2exe.exe /in "%A_ScriptDir%\Update.ahk" /out "%A_ScriptDir%\Update.exe" /icon "%A_ScriptDir%\inc\Update.ico"

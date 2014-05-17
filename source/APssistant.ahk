@@ -6,7 +6,7 @@ FileEncoding , UTF-8
 Process, Priority, , High
 SetKeyDelay,-1,-1
 /* 
-Visit http://code.google.com/p/apssistant/ for more
+Visit https://github.com/millionart/apssistant for more
 */
 
 ; ===================================================
@@ -226,7 +226,7 @@ Return
 
 ; ==========================================键盘映射==========================================
 #IfWinActive ahk_class PSFloatC, Web
-~Alt::
+~Alt Up::
 	If (Check8=1) and (MapAltmode=2)
 	{
 		gosub FCPs
