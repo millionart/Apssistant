@@ -17,13 +17,12 @@ gosub ConfigRead
 ;Gosub StringReplaceRead
 
 
-
 ; ============================================================================
 ; 添加控件 第一步
 Gui, +LastFound +Toolwindow +AlwaysonTop
 Gui, Font, S%fontsize%, %fontname%
 
-Gui, Add, ListBox, x10 y10 w120 h450 vFChoice Choose1 gFChoicecheck, %Lang_General%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_P_I%|%Lang_Other%
+Gui, Add, ListBox, x10 y10 w120 h450 vFChoice Choose1 +E0x200 gFChoicecheck, %Lang_General%|%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%
 
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_General, %Lang_General%
 	Gui, Add, Text, x150 y40 w200 h25 vGuiText4, %Lang_Your_language%
@@ -40,30 +39,32 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_General, %Lang_General%
 	Gui, Add, Button, x361 y100 w80 h25 vBrowse1 gBrowse1, %Lang_Config_Browse%
 	Gui, Add, Checkbox, x150 y130 w200 h25 vCheck4 %Checkd4% %psexist%, %Lang_P_I_LaunchPs%
 	Gui, Add, Checkbox, x150 y160 w190 h25 vCheck2 %Checkd2%, %Lang_P_I_Hidehelptip%
+;===========================
 
+Gui, Add, GroupBox, x140 y10 w310 h250 vGB_ColorPicker, %Lang_ColorPicker%
+	Gui, Add, CheckBox, x150 y40 w230 h25 vCheck7 %Checkd7% gHUDToggle, %Lang_Set_hotkey_HUD_Color_Picker%
+		Gui, Add, Hotkey, x400 y40 w40 h25 vHUDCP %enableHUDCP%, %HUDCP%
+		Gui, Add, Checkbox, x165 y65 w60 h25 vCheck5 %Checkd5%, %Lang_Set_hotkey_Precise%
+		Gui, Add, Checkbox, x225 y65 w60 h25 vCheck9 %Checkd9%, %Lang_Set_hotkey_Center%
+		Gui, Add, Checkbox, x285 y65 w100 h25 vCheck12 %Checkd12%, %Lang_Set_hotkey_CPT%
+
+	Gui, Add, CheckBox, x150 y100 w150 h25 vCheck8 %Checkd8% gFCPToggle, %Lang_Foreground_color_picker%
+		Gui, Add, DropDownList, x165 y125 w160 vMapAlt Choose%MapAltmode% AltSubmit gChooseMapAltmode, ;%Lang_Set_hotkey_mapalt_1%|%Lang_Set_hotkey_mapalt_2%|%Lang_Set_hotkey_mapalt_3%
+		Gui, Add, Hotkey, x400 y125 w40 h25 vFCPk %enableFCP%, %FCPk%
 ;===========================
 
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Hotkey, %Lang_Hotkey%
-	Gui, Add, CheckBox, x150 y40 w230 h25 vCheck7 %Checkd7% gHUDToggle, %Lang_Set_hotkey_HUD_Color_Picker%
-		Gui, Add, Hotkey, x400 y40 w40 h25 vHUDCP %enableHUDCP%, %HUDCP%
-		Gui, Add, Checkbox, x165 y60 w60 h25 vCheck5 %Checkd5%, %Lang_Set_hotkey_Precise%
-		Gui, Add, Checkbox, x225 y60 w60 h25 vCheck9 %Checkd9%, %Lang_Set_hotkey_Center%
-		Gui, Add, Checkbox, x285 y60 w100 h25 vCheck12 %Checkd12%, %Lang_Set_hotkey_CPT%
+	Gui, Add, Checkbox, x150 y40 w190 h25 vCheck10 %Checkd10%, %Lang_P_I_DisableAltMenu%
+	Gui, Add, Checkbox, x150 y70 w240 h25 vCheck11 %Checkd11% gModifyBrushKeyToggle, %Lang_Set_hotkey_ModifyBrushKey%
+		Gui, Add, Hotkey, x401 y70 w40 h25 vModifyBrushKey %enableModifyBrushKey%, %ModifyBrushKey%
 
-	Gui, Add, CheckBox, x150 y100 w150 h25 vCheck8 %Checkd8% gFCPToggle, %Lang_Foreground_color_picker%
-		Gui, Add, DropDownList, x300 y100 w100 vMapAlt Choose%MapAltmode% AltSubmit gChooseMapAltmode, ;%Lang_Set_hotkey_mapalt_1%|%Lang_Set_hotkey_mapalt_2%|%Lang_Set_hotkey_mapalt_3%
-		Gui, Add, Hotkey, x400 y100 w40 h25 vFCPk %enableFCP%, %FCPk%
+	Gui, Add, Checkbox, x150 y100 w240 h25 vCheck6 %Checkd6% gQCLayerToggle, %Lang_Set_hotkey_QCLayer%
+		Gui, Add, Hotkey, x401 y100 w40 h25 vQCLayer %enableQCLayer%, %QCLayer%
 
-	Gui, Add, Checkbox, x150 y130 w240 h25 vCheck11 %Checkd11% gModifyBrushKeyToggle, %Lang_Set_hotkey_ModifyBrushKey%
-		Gui, Add, Hotkey, x401 y130 w40 h25 vModifyBrushKey %enableModifyBrushKey%, %ModifyBrushKey%
+	Gui, Add, Checkbox, x150 y130 w240 h25 vCheck13 %Checkd13% gSHLayerToggle, %Lang_Set_hotkey_SHLayer%
+		Gui, Add, Hotkey, x401 y130 w40 h25 vSHLayer %enableSHLayer%, %SHLayer%
 
-	Gui, Add, Checkbox, x150 y160 w240 h25 vCheck6 %Checkd6% gQCLayerToggle, %Lang_Set_hotkey_QCLayer%
-		Gui, Add, Hotkey, x401 y160 w40 h25 vQCLayer %enableQCLayer%, %QCLayer%
-
-	Gui, Add, Checkbox, x150 y190 w240 h25 vCheck13 %Checkd13% gSHLayerToggle, %Lang_Set_hotkey_SHLayer%
-		Gui, Add, Hotkey, x401 y190 w40 h25 vSHLayer %enableSHLayer%, %SHLayer%
-
-	Gui, Add, Checkbox, x150 y220 w280 h25 vCheck1 %Checkd1%, %Lang_Set_hotkey_Undo%
+	Gui, Add, Checkbox, x150 y160 w280 h25 vCheck1 %Checkd1%, %Lang_Set_hotkey_Undo%
 
 ;===========================
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Autosave, %Lang_Autosave%
@@ -75,14 +76,14 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Autosave, %Lang_Autosave%
 		Gui, Add, Edit, x271 y70 w160 h40 vTiptext, %Tiptext%
 
 ;===========================
-Gui, Add, GroupBox, x140 y10 w310 h250 vGB_P_I, %Lang_P_I%
-	Gui, Add, Checkbox, x150 y40 w190 h25 vCheck10 %Checkd10%, %Lang_P_I_DisableAltMenu%
-	Gui, Add, Checkbox, x150 y70 w190 h25 vCheck3 %Checkd3%, %Lang_P_I_LockIME%
-	Gui, Add, Checkbox, x150 y100 w280 h25 vCheck14 %Checkd14%, %Lang_C_TempFiles% ;Clean up temporary files
-;	Gui, Add, Checkbox, x150 y100 w190 h25 vCheck14 %Checkd14%, %Lang_P_I_DisableShutdown%
+;Gui, Add, GroupBox, x140 y10 w310 h250 vGB_P_I, %Lang_P_I%
+
+
 ;===========================
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Other, %Lang_Other%
 	Gui, Add, Checkbox, x150 y40 w190 h25 vCheck15 %Checkd15%, %Lang_Other_3dsMaxSync%
+	Gui, Add, Checkbox, x150 y70 w190 h25 vCheck3 %Checkd3%, %Lang_P_I_LockIME%
+	Gui, Add, Checkbox, x150 y100 w280 h25 vCheck14 %Checkd14%, %Lang_C_TempFiles% ;Clean up temporary files
 ;===========================
 Gui, Add, GroupBox, x140 y270 w310 h250 vHelpTip, %Lang_HelpTip%
 	Gui, Add, Text, x150 y290 w290 h180 vHelpTipText,%Lang_HelpTip_text%
@@ -431,7 +432,7 @@ GuiHideGB:
 	GuiControl,Hide,Savesleep
 	GuiControl,Hide,Tiptext
 
-	GuiControl,Hide,GB_P_I
+	GuiControl,Hide,GB_ColorPicker
 	GuiControl,Hide,Check10
 	GuiControl,Hide,Check3
 	GuiControl,Hide,Check14
@@ -469,22 +470,29 @@ FChoicecheck:
 		GuiControl,Show,PsPath
 		GuiControl,Show,Browse1
 	}
-	Else If txt=%Lang_Hotkey%
+	Else If txt=%Lang_ColorPicker%
 	{
-		GuiControl,Show,GB_Hotkey
+		GuiControl,Show,GB_ColorPicker
 		GuiControl,Show,Check7
 		GuiControl,Show,HUDCP
 		GuiControl,Show,Check5
 		GuiControl,Show,Check9
 		GuiControl,Show,Check8
 		GuiControl,Show,Check12
-		GuiControl,Show,Check13
-		GuiControl,Show,SHLayer
+
+
 		GuiControl,Show,MapAlt
 		GuiControl,Show,FCPk
+	}
+	Else If txt=%Lang_Hotkey%
+	{
+		GuiControl,Show,GB_Hotkey
+		GuiControl,Show,Check10
 		GuiControl,Show,Check11
 		GuiControl,Show,ModifyBrushKey
 		GuiControl,Show,Check6
+		GuiControl,Show,Check13
+		GuiControl,Show,SHLayer
 		GuiControl,Show,QCLayer
 		GuiControl,Show,Check1
 	}
@@ -498,17 +506,18 @@ FChoicecheck:
 		GuiControl,Show,GuiText3
 		GuiControl,Show,Tiptext
 	}
+/* 
 	Else If txt=%Lang_P_I%
 	{
 		GuiControl,Show,GB_P_I
-		GuiControl,Show,Check10
-		GuiControl,Show,Check3
-		GuiControl,Show,Check14
 	}
+ */
 	Else If txt=%Lang_Other%
 	{
 		GuiControl,Show,GB_Other
 		GuiControl,Show,Check15
+		GuiControl,Show,Check3
+		GuiControl,Show,Check14
 	}
 Return
 

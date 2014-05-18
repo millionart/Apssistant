@@ -15,6 +15,7 @@ Config_Save=Save
 Config_Browse=Browse...
 HelpTip=Help
 dontsavenow=Hide
+ColorPicker=Color Picker
 Hotkey=Hotkey
 Langtip=Language has been changed now!
 LockIMEtip=Your input method has been locked to English by Photoshop CS5++

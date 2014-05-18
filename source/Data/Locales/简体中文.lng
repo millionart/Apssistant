@@ -17,6 +17,7 @@ Config_Save=保存(&S)
 Config_Browse=浏览(&B)...
 HelpTip=说明
 dontsavenow=隐藏
+ColorPicker=拾色器
 Hotkey=快捷键
 Langtip=语言已改变！
 Msg_Debug=错误：找不到相关位置，请尝试以下解决方法：\n\t- 在本程序中正确设置您当前使用的 Photoshop 版本\n\t- 将系统主题设置为默认\n\t- 有前置窗口影响，需将其关闭\n\t- 检查当前版本文件夹内图片是否符合（参考说明）

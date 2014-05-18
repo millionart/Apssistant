@@ -329,7 +329,7 @@ $^s::
 	If (Check15=1)
 	{
 	SetControlDelay -1
-	ControlClick, Label1, ahk_class 3dsMax,,,,
+	ControlClick, Label1, ahk_class 3dsMax,,,, NA
 	WinActivate, ahk_class Photoshop
 	}
 return
@@ -364,15 +364,17 @@ $+^z::
 
 
 Autosave:
-	If WinExist("ahk_class Photoshop") and (Autosavenum=3)
+	If WinExist("ahk_group Photoshop") and (Autosavenum=3)
+	{
 		PostMessage, 0x111, 30,,,ahk_class Photoshop
 		If Check15=1
 		{
 		SetControlDelay -1
-		ControlClick, Label1, ahk_class 3dsMax,,,,
+		ControlClick, Label1, ahk_class 3dsMax,,,, NA
 		WinActivate, ahk_class Photoshop
 		}
-	else If WinExist("ahk_class Photoshop") and (Autosavenum=2)
+	}
+	else If WinExist("ahk_group Photoshop") and (Autosavenum=2)
 	{
 		text1=%Lang_Savenow%
 		text2=%Lang_dontsavenow%
@@ -743,7 +745,8 @@ SetIME(Locale)
 DllCall("SendMessage", "UInt", (WinActive("ahk_class Photoshop")), "UInt", "80", "UInt", "1", "UInt", (DllCall("LoadKeyboardLayout", "Str", Locale, "UInt", "257")))
 }
 
-; Thanks to maxspeedwind http://ahk.5d6d.com/thread-2795-1-1.html
+; Thanks to maxspeedwind http://ahk8.com/thread-2486.html
+
 NoticePanel(TextInfo,MotionTime,RemainingTime,InMode,OutMode,text1,text2)
 {
 	;G_ReadLanguage()
@@ -756,8 +759,8 @@ NoticePanel(TextInfo,MotionTime,RemainingTime,InMode,OutMode,text1,text2)
 	Gui,88:+alwaysontop -caption +owner
 	Gui,88:color,efefef
 	Gui,88:Margin,15,15
-	Gui,88:add,Button,x15 y15 R2 W125 GSavenow, %text1%
-	Gui,88:add,Button,x145 y15 R2 W45 GCancel, %text2%
+	Gui,88:add,Button,x15 y15 R2 W45 GCancel, %text2%
+	Gui,88:add,Button,x65 y15 R2 W125 GSavenow, %text1%
 	Gui,88:font, S10 c555555, %fontname%
 	Gui,88:add,text,x15 y65,%TextInfo%
 	Gui,88:Show,NA AutoSize Hide,NoticePanel

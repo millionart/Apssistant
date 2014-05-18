@@ -121,6 +121,7 @@ G_ReadLanguageDefault()
 	Lang_Config_Save:="Save"
 	Lang_Msg_Debug:="Error: Missing coordinates, Please try the following solution:`n - Set correctly in the program you are currently using Photoshop version`n - set The system themen to the default`n  - A front window of influence, maybe need to turn it off`n - Check the Photoshop version of the file folder picture is consistently (see note)"
 	Lang_Hotkey:="keyboard shortcut"
+	Lang_ColorPicker:="Color Picker"
 	Lang_P_I_Hidehelptip:="Disable tray notificaion"
 	Lang_P_I_LaunchPs:="Double click tray / Auto launch Photoshop"
 	Lang_P_I_LockIME:="Lock input method to English"
