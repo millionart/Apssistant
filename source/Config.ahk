@@ -4,32 +4,25 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 FileEncoding , UTF-8
 #SingleInstance, force
 #NoTrayIcon
-
-
-;IniRead, PsCSver, %A_scriptdir%\Data\Config.ini, Setting, Psver, CS5
-
 G_ReadLanguage()
-
 V_CurrentVer()
 V_Trans()
 
 gosub ConfigRead
-;Gosub StringReplaceRead
-
 
 ; ============================================================================
 ; 添加控件 第一步
 Gui, +LastFound +Toolwindow +AlwaysonTop
 Gui, Font, S%fontsize%, %fontname%
 
-Gui, Add, ListBox, x10 y10 w120 h450 vFChoice Choose1 +E0x200 gFChoicecheck, %Lang_General%|%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%
+Gui, Add, ListBox, x10 y10 w120 R30 vFChoice Choose1 +E0x200 gFChoicecheck, %Lang_General%|%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%|%Lang_Script%
 
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_General, %Lang_General%
 	Gui, Add, Text, x150 y40 w200 h25 vGuiText4, %Lang_Your_language%
 		gui_Language = %G_Language%||
 		Loop, %A_ScriptDir%\Data\Locales\*.lng
 		{
-			SplitPath, A_LoopFileName, , , , A_LoopFileNameNoExt
+			SplitPath, A_LoopFileName,,,, A_LoopFileNameNoExt
 			gui_Language .= A_LoopFileNameNoExt . "|"
 		}
 	Gui, Add, DropDownList, x361 y40 w80 vG_Language gLangtip, %gui_Language%
@@ -39,8 +32,9 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_General, %Lang_General%
 	Gui, Add, Button, x361 y100 w80 h25 vBrowse1 gBrowse1, %Lang_Config_Browse%
 	Gui, Add, Checkbox, x150 y130 w200 h25 vCheck4 %Checkd4% %psexist%, %Lang_P_I_LaunchPs%
 	Gui, Add, Checkbox, x150 y160 w190 h25 vCheck2 %Checkd2%, %Lang_P_I_Hidehelptip%
+Gui, Add, GroupBox, x140 y270 w310 h250 vHelpTip, %Lang_HelpTip%
+	Gui, Add, Text, x150 y290 w290 h180 vHelpTipText,%Lang_HelpTip_text%
 ;===========================
-
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_ColorPicker, %Lang_ColorPicker%
 	Gui, Add, CheckBox, x150 y40 w230 h25 vCheck7 %Checkd7% gHUDToggle, %Lang_Set_hotkey_HUD_Color_Picker%
 		Gui, Add, Hotkey, x400 y40 w40 h25 vHUDCP %enableHUDCP%, %HUDCP%
@@ -52,7 +46,6 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_ColorPicker, %Lang_ColorPicker%
 		Gui, Add, DropDownList, x165 y125 w160 vMapAlt Choose%MapAltmode% AltSubmit gChooseMapAltmode, ;%Lang_Set_hotkey_mapalt_1%|%Lang_Set_hotkey_mapalt_2%|%Lang_Set_hotkey_mapalt_3%
 		Gui, Add, Hotkey, x400 y125 w40 h25 vFCPk %enableFCP%, %FCPk%
 ;===========================
-
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Hotkey, %Lang_Hotkey%
 	Gui, Add, Checkbox, x150 y40 w190 h25 vCheck10 %Checkd10%, %Lang_P_I_DisableAltMenu%
 	Gui, Add, Checkbox, x150 y70 w240 h25 vCheck11 %Checkd11% gModifyBrushKeyToggle, %Lang_Set_hotkey_ModifyBrushKey%
@@ -65,59 +58,37 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Hotkey, %Lang_Hotkey%
 		Gui, Add, Hotkey, x401 y130 w40 h25 vSHLayer %enableSHLayer%, %SHLayer%
 
 	Gui, Add, Checkbox, x150 y160 w280 h25 vCheck1 %Checkd1%, %Lang_Set_hotkey_Undo%
-
 ;===========================
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Autosave, %Lang_Autosave%
 	Gui, Add, DropDownList, x150 y40 w190 vAutosave Choose%Autosavenum% AltSubmit gAScheck, %Lang_Autosave_no%|%Lang_Autosave_tip%|%Lang_Autosave_yes%
-		;Gui, Add, Text, x310 y40 w40 vGuiText1, %Lang_Autosave_Every%
 		Gui, Add, Edit, x345 y40 w50 h25 vSavesleep, %Savesleep%
 		Gui, Add, Text, x401 y40 w40 h25 vGuiText2, %Lang_Autosave_Min%
 		Gui, Add, Text, x150 y70 w130 h25 vGuiText3, %Lang_Autosave_Optional%
 		Gui, Add, Edit, x271 y70 w160 h40 vTiptext, %Tiptext%
-
-;===========================
-;Gui, Add, GroupBox, x140 y10 w310 h250 vGB_P_I, %Lang_P_I%
-
-
 ;===========================
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Other, %Lang_Other%
 	Gui, Add, Checkbox, x150 y40 w190 h25 vCheck15 %Checkd15%, %Lang_Other_3dsMaxSync%
 	Gui, Add, Checkbox, x150 y70 w190 h25 vCheck3 %Checkd3%, %Lang_P_I_LockIME%
 	Gui, Add, Checkbox, x150 y100 w280 h25 vCheck14 %Checkd14%, %Lang_C_TempFiles% ;Clean up temporary files
 ;===========================
-Gui, Add, GroupBox, x140 y270 w310 h250 vHelpTip, %Lang_HelpTip%
-	Gui, Add, Text, x150 y290 w290 h180 vHelpTipText,%Lang_HelpTip_text%
 
-;=============|||||||||||||||||||||||||||||||||||||||||||||||||========old
-/* 
-If Check2=0
-{
-URL = %A_scriptdir%\Data\Readme\%G_Language%.html
-;Gui, +LastFound -Caption +Resize MinSize MaxSize
-
-COM_AtlAxWinInit() ; 初始化 AtlAxWin
-; 生成IE控件, 获得 Iwebborwser 对象
-pweb:=COM_AtlAxGetControl(pctn:=COM_AtlAxCreateContainer(windowsid:=WinExist(),332,6,311,539,"Shell.Explorer"))
-COM_Invoke(pweb, "Navigate", URL)
-
-Gui, Add, GroupBox, x332 y5 w310 h540,
-}
- */
+Gui, Add, ListView,vScriptList y10 +W310 +R25 +XS+130 +Section +Checked, %Lang_Scrip_Name%|%Lang_Script_Shortcuts%|%Lang_Script_Description%|%Lang_Scrip_From%
+StringReplace, PsDir, PsPath, Photoshop.exe,, A
+Loop, %PsDir%\Presets\Scripts\*.jsx, 0, 1
+		{
+			SplitPath, A_LoopFileName,,,, A_LoopFileNameNoExt
+			jsxName	.= A_LoopFileNameNoExt
+			jsxDescription	.= 1
+			jsxshortcuts	.= 1
+			jsxfrom	.= 1
+			LV_Add("Check", jsxName,jsxshortcuts,jsxDescription,jsxfrom)
+		}
+LV_ModifyCol()
+;===========================
 
 
-;Gui, Add, DropDownList, x239 y10 w80 vGuilang Choose1 gLangtip, %Guilang%|%Langlist%
-
-;Gui, Add, Text, x140 y215 w240 cred vMarktip, %Lang_Config_CS5mark%
-
-;Gui, Add, Text, y220 
-
-;Gui, Add, Button, x221 y460 w100 h50 gConfigSave, %Lang_Config_Save%
 Gui, Add, Button, x460 y10 w100 h50 vCSave gConfigSave, %Lang_Config_Save%
 Gui, Add, Button, x460 y70 w100 h30 vCCancel gGuiClose, %Lang_Config_Cancel%
-;Gui, Font, Cblue Underline,
-;font := "%Fontname%"
-;hFont := Font(h, font)
-;hLink := HLink_Add()
 hGui := WinExist() +0
 hFont := Font("", "s" . Fontsize . " , " . Fontname , 1)
 Link1 := HLink_Add(hGui, 460, 150, 100, 20 , "OnLink", "'" . Lang_Website . "':Website")
@@ -125,19 +96,8 @@ SendMessage, 0x30, %hFont%, 1,, ahk_id %Link1% ;WM_SETFONT = 0x30
 Link2 := HLink_Add(hGui, 460, 180, 100, 20 , "OnLink", "'" . Lang_Blog . "':Blog")
 SendMessage, 0x30, %hFont%, 1,, ahk_id %Link2% ;WM_SETFONT = 0x30
 
-;Gui, Add, Text, x11 y530 w100 Gf_CheckVersionButton, %Lang_Website%
-;Gui, Add, Text, x121 y440 w100 GBlog, %Lang_Blog%
-; Generated using SmartGUI Creator 4.0
 ;=============================================================
 
-
-/*
-Aero style start
-
-DllCall("InvalidateRect", "uint", hGui, "uint", 0, "int", 0)
-
-Aero style end
-*/
 ; 添加控件 第二步
 Loop 15
 {
@@ -173,8 +133,6 @@ gosub SHLayerToggle
 
 gosub AScheck
 
-gosub 3dsMaxSyncCheck
-
 gosub GuiHideGB
 
 gosub VerChoose
@@ -188,9 +146,6 @@ else
 {
 	Gui, Show, AutoSize Center,%ConfigTitle% *** ***%Lang_Config_CS5mark%*** ***
 }
-
-;WinSetTitle, %ConfigTitle%
-
 
 OnMessage(0x200, "WM_MOUSEMOVE")
 Return
@@ -225,9 +180,6 @@ AScheck:
 	  GuiControl,Disable,GuiText3
 	  GuiControl,Disable,Tiptext
 	}
-	Return
-
-3dsMaxSyncCheck:
 	Return
 
 Browse1:
@@ -439,6 +391,11 @@ GuiHideGB:
 
 	GuiControl,Hide,GB_Other
 	GuiControl,Hide,Check15
+
+	GuiControl,Hide,GB_Script
+	GuiControl,Hide,ScriptList
+
+	;GuiControl,Hide,HelpTip
 Return
 
 ; 添加控件 第五步
@@ -454,7 +411,8 @@ FChoicecheck:
 	GuiControl,Hide,GuiText5
 	GuiControl,Hide,PsPath
 	GuiControl,Hide,Browse1
-
+	GuiControl,Hide,HelpTip
+	GuiControl,Hide,HelpTipText
 	gosub GuiHideGB
 
 	;msgbox,%txt%
@@ -469,6 +427,8 @@ FChoicecheck:
 		GuiControl,Show,GuiText5
 		GuiControl,Show,PsPath
 		GuiControl,Show,Browse1
+		GuiControl,Show,HelpTip
+		GuiControl,Show,HelpTipText
 	}
 	Else If txt=%Lang_ColorPicker%
 	{
@@ -479,10 +439,10 @@ FChoicecheck:
 		GuiControl,Show,Check9
 		GuiControl,Show,Check8
 		GuiControl,Show,Check12
-
-
 		GuiControl,Show,MapAlt
 		GuiControl,Show,FCPk
+		GuiControl,Show,HelpTip
+		GuiControl,Show,HelpTipText
 	}
 	Else If txt=%Lang_Hotkey%
 	{
@@ -495,6 +455,8 @@ FChoicecheck:
 		GuiControl,Show,SHLayer
 		GuiControl,Show,QCLayer
 		GuiControl,Show,Check1
+		GuiControl,Show,HelpTip
+		GuiControl,Show,HelpTipText
 	}
 	Else If txt=%Lang_Autosave%
 	{
@@ -505,6 +467,8 @@ FChoicecheck:
 		GuiControl,Show,GuiText2
 		GuiControl,Show,GuiText3
 		GuiControl,Show,Tiptext
+		GuiControl,Show,HelpTip
+		GuiControl,Show,HelpTipText
 	}
 /* 
 	Else If txt=%Lang_P_I%
@@ -518,6 +482,12 @@ FChoicecheck:
 		GuiControl,Show,Check15
 		GuiControl,Show,Check3
 		GuiControl,Show,Check14
+		GuiControl,Show,HelpTip
+		GuiControl,Show,HelpTipText
+	}
+	Else If txt=%Lang_Script%
+	{
+		GuiControl,Show,ScriptList
 	}
 Return
 
@@ -640,3 +610,4 @@ GUI_init() ; 生成窗口，并返回:pctn pweb pwin windowsid
 #include %A_scriptdir%\inc\Font.ahk
 #include %A_scriptdir%\inc\HLink.ahk
 #include %A_scriptdir%\inc\Handle.ahk
+#include %A_scriptdir%\inc\QuickArray.ahk
