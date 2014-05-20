@@ -75,14 +75,14 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Other, %Lang_Other%
 Gui, Add, ListView,vScriptList y10 +W310 +R25 +XS+130 +Section +Checked, %Lang_Scrip_Name%|%Lang_Script_Shortcuts%|%Lang_Script_Description%|%Lang_Scrip_From%
 StringReplace, PsDir, PsPath, Photoshop.exe,, A
 Loop, %PsDir%\Presets\Scripts\*.jsx, 0, 1
-		{
-			SplitPath, A_LoopFileName,,,, A_LoopFileNameNoExt
-			jsxName	.= A_LoopFileNameNoExt
-			jsxDescription	.= 1
-			jsxshortcuts	.= 1
-			jsxfrom	.= 1
-			LV_Add("Check", jsxName,jsxshortcuts,jsxDescription,jsxfrom)
-		}
+	{
+		SplitPath, A_LoopFileName,,,, A_LoopFileNameNoExt
+		jsxName	= %A_LoopFileNameNoExt%
+		jsxDescription	= 1
+		jsxshortcuts	= 1
+		jsxfrom	= Default
+		LV_Add("Check", jsxName,jsxshortcuts,jsxDescription,jsxfrom)
+	}
 LV_ModifyCol()
 ;===========================
 
@@ -493,17 +493,8 @@ Return
 
 VerChoose:
 	GuiControlGet,GuiGetPsver,,PsCSver, Text
-	;gosub VerTrans
+
 	V_Trans()
-/* 
-	While curPsver<12
-	{
-	WinSetTitle, %ConfigTitle% %Lang_Config_CS5mark%
-	sleep 300
-	WinSetTitle, %ConfigTitle%
-	sleep 300
-	}
- */
 
 	If curPsver>=12
 	{
@@ -591,22 +582,6 @@ WM_MOUSEMOVE()
  */
 }
 
-
-/* 
-GUI_init() ; 生成窗口，并返回:pctn pweb pwin windowsid
-{
-	global pctn, pweb, pwin, windowsid
-	GUi, +LastFound +Resize ; 创建 GUI
-	COM_AtlAxWinInit() ; 初始化 AtlAxWin
-	; 生成IE控件, 获得 Iwebborwser 对象
-	pweb:=COM_AtlAxGetControl(pctn:=COM_AtlAxCreateContainer(windowsid:=WinExist(),0,0,555,400,"Shell.Explorer"))
-	; 获得 IHTMLWindow2 对象
-	IID_IHTMLWindow2 := "{332C4427-26CB-11D0-B483-00C04FD90119}" 
-	pwin := COM_QueryService(pweb,IID_IHTMLWindow2,IID_IHTMLWindow2)
-	COM_Invoke(pweb, "Navigate", "about:blank") ; 跳转到 空白页
-	gui,show, w555 h400, %biaoti% ; 显示 GUI
-}
- */
 #include %A_scriptdir%\inc\Font.ahk
 #include %A_scriptdir%\inc\HLink.ahk
 #include %A_scriptdir%\inc\Handle.ahk
