@@ -27,8 +27,7 @@ Debug:
 Browse2:
 	;PsPath=NULL
 	ProgramFilesDir:="A_ProgramFiles"
-	SSF:="Lang_PsDir"
-	Dir := Dlg_Open(hGui, %SSF%, "Photoshop (Photoshop.exe; *.exe; *.lnk)", 1, %ProgramFilesDir%, "", "filemustexist")
+	FileSelectFile, Dir , 1, %ProgramFilesDir%\Photoshop.exe, %Lang_PsDir%, Photoshop (*.exe; *.lnk)
 	StringReplace, Dir, Dir, `n, `r`n, A
 ;	If (PsPath<>NULL) && IfExist "%PsPath%"
 ;	{
@@ -120,4 +119,4 @@ Cancel:
 
 #include %A_scriptdir%\inc\Function.ahk
 #include %A_scriptdir%\inc\reg64.ahk
-#include %A_scriptdir%\inc\Dlg.ahk
+;#include %A_scriptdir%\inc\Dlg.ahk

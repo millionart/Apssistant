@@ -586,17 +586,14 @@ LButtondown1:
 LaunchPs:
 	If not WinExist("ahk_class Photoshop")
 	{
-		;msgbox,%PsPath%
-		If PsPath=NULL
+		If (PsPath=NULL OR FileExist("%PsPath%")=NULL)
 			gosub Browse2
-		else If (PsPath<>NULL) && IfExist "%PsPath%"
-			run "%PsPath%"
 		else
-			gosub Browse2
+			run, "%PsPath%"
 	}
 	else
 	{
-		run "%PsPath%"
+		run, "%PsPath%"
 		WinwaitActive, ahk_class Photoshop
 		gosub Config
 	}
@@ -612,13 +609,10 @@ Config:
 LaunchPsAuto:
 	If not WinExist("ahk_class Photoshop")
 	{
-		;msgbox,%PsPath%
-		If PsPath=NULL
+		If (PsPath=NULL OR FileExist("%PsPath%")=NULL)
 			gosub Browse2
-		else If (PsPath<>NULL) && IfExist "%PsPath%"
-			run "%PsPath%"
 		else
-			gosub Browse2
+			run, "%PsPath%"
 	}
 	return
 

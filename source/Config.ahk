@@ -19,7 +19,7 @@ gosub ConfigRead
 
 ; ============================================================================
 ; 添加控件 第一步
-Gui, +LastFound +Toolwindow +AlwaysonTop
+Gui, +Toolwindow ;+LastFound +AlwaysonTop
 Gui, Font, S%fontsize%, %fontname%
 
 Gui, Add, ListBox, x10 y10 w120 h450 vFChoice Choose1 +E0x200 gFChoicecheck, %Lang_General%|%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%
@@ -235,8 +235,7 @@ Browse1:
 		ProgramFilesDir:="A_ProgramFiles"
 	else
 		ProgramFilesDir:="PsDir"
-	SSF:="Lang_PsDir"
-	Dir := Dlg_Open(hGui, %SSF%, "Photoshop (Photoshop.exe; *.exe; *.lnk)", 1, %ProgramFilesDir%, "", "filemustexist")
+	FileSelectFile, Dir , 1, %ProgramFilesDir%\Photoshop.exe, %Lang_PsDir%, Photoshop (*.exe; *.lnk)
 	StringReplace, Dir, Dir, `n, `r`n, A
 	If dir<>
 		ControlSetText,Edit1,%Dir%

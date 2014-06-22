@@ -20,6 +20,7 @@ dontsavenow=隱藏
 ColorPicker=檢色器
 Hotkey=快速鍵
 Langtip=語言已改變！
+PsDir=請選擇 Photoshop 的位置
 Msg_Debug=錯誤：找不到相關位置，請嘗試以下解決方法：\n - 在本程序中正確設置您當前使用的 Photoshop 版本\n - 將系統主題設置為默認\n - 有前置窗口影響，需將其關閉\n - 最后檢查當前版本文件夾內圖片是否符合（參考說明）
 OpenGLtip=1.此功能需至選項>>性能中啟動 OpenGL 繪圖\n2.按住空格以切換選色區域
 P_I_DisableAltMenu=禁用 Alt 菜單鍵
