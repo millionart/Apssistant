@@ -96,11 +96,10 @@ f_CheckVersion(Quiet=0)
 	{
 		if VerToNum("" . f_CurrentVer . "") < VerToNum("" . LatestVer . "")
 		{
-			If FileExist(UpdateFileName)=true  ;存在升级文件
+			If FileExist(UpdateFileName)  ;存在升级文件
 				gosub UpdateStart
 			else
 				gosub DownloadUpdateStart
-
 		}
 		else if (pc1=0)
 		{
