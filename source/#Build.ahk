@@ -86,8 +86,8 @@ binexex64=%A_scriptdir%\..\bin\x64\Setup.exe
 
 bin7zx32hash=% File_Hash(bin7zx32, "MD5")
 binexex32hash=% File_Hash(binexex32, "MD5")
-bin7zx64hash=% File_Hash(bin7zx32, "MD5")
-binexex64hash=% File_Hash(binexex32, "MD5")
+bin7zx64hash=% File_Hash(bin7zx64, "MD5")
+binexex64hash=% File_Hash(binexex64, "MD5")
 
 ;IniWrite, %f_CurrentVer%, %A_scriptdir%\APssistant.ahk.ini, VERSION, File_Version
 ;IniWrite, %bin7zx32hash%, %A_scriptdir%\APssistant.ahk.ini, VERSION, MD5
