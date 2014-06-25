@@ -34,47 +34,19 @@ else
 
 ; ===================================================
 DetectHiddenText, On
-;DetectHiddenWindows, On
 GroupAdd, Photoshop, ahk_class Photoshop
 GroupAdd, Photoshop, ahk_class OWL.DocumentWindow ;CS5+画布
 GroupAdd, Photoshop, ahk_class PSDocC ;CS2画布
 
 SysGet, VirtualWidth, 78
 SysGet, VirtualHeight, 79
-;%VirtualWidth%
-;%VirtualHeight%
-; 讀取界面配置
+; 读取界面配置
 IniRead, fontname, %A_scriptdir%\Data\Config.ini, General, fontname, Segoe UI
-
-;IniRead, G_Language, %A_scriptdir%\Data\Config.ini, Setting, lang, English
-;IniRead, PsCSver, %A_scriptdir%\Data\Config.ini, Setting, Psver, CS5
-;IniRead, Regver, %A_scriptdir%\Data\Config.ini, General, regver, 12
-;FileRead, readme, Pssistant\%G_Language%.txt
-;G_Language:=%G_Language%
-
 G_ReadLanguage()
-;_jron_locale_=%G_Language%
-;_jron_locale_file_=%A_scriptdir%\Data\Locales\%G_Language%.ini
-
 ; ================版本号转换
-
 V_Trans()
-;GuiGetPsver=%Regver%
-
-; ================读取Photoshop CS4 CS5安装位置
-;msgbox, %PsCSver%
-;PsCSver:=Regver-7
-
 gosub ConfigRead	; 讀取配置文件
-
-;Gosub StringReplaceRead	; 替換特殊符號
-
-;Lang_Set_hotkey_mapalt_1=%Lang_Set_hotkey_mapalt_1%
-;Lang_Set_hotkey_mapalt_2=%Lang_Set_hotkey_mapalt_2%
-;Lang_Set_hotkey_mapalt_3=%Lang_Set_hotkey_mapalt_3%
-;Lang_Set_hotkey_mapalt_4=%Lang_Set_hotkey_mapalt_4%
-
-; 托盤菜單
+; 托盘菜单
 If A_IsCompiled=1
 {
 	Menu, tray, NoStandard
@@ -86,22 +58,12 @@ Menu, tray, add
 Menu, tray, add, %Lang_tray_LaunchPs%, LaunchPs
 Menu, tray, add, %Lang_tray_Config%, Config
 
-/* 
-IfnotExist %PsDir%Photoshop.exe
-{
-	Menu, tray, disable, %Lang_tray_LaunchPs%
-	psexist=disabled
-	Checkd4=
-	;Menu, tray, default, %Lang_tray_Config%
-}
- */
 
 Menu, tray, add, %Lang_tray_Exit%, WinClose
 
 If Check4=0
 	Menu, tray, default, %Lang_tray_Config%
-;else If Check4<>0 and IfExist %PsPath%
-else IfExist %PsPath%
+else If FileExist(PsPath)
 {
 	Menu, tray, default, %Lang_tray_LaunchPs%
 	Menu, tray, Icon, %Lang_tray_LaunchPs%, %PsPath%,, 16
@@ -118,23 +80,6 @@ else
 }
 Gui, Add, Text,,
 
-
-/*
-Aero style start
-
-OnMessage(0xF, "WM_PAINT")
-OnMessage(0x201, "WM_LBUTTONDOWN")
-Gui, +LastFound -Caption +Resize MinSize MaxSize
-hWnd := WinExist()
-Gui, Color, 000000
-
-VarSetCapacity(rect, 16, 0xff) ; This is the same as setting all fields to -1.
-DllCall("dwmapi\DwmExtendFrameIntoClientArea", "uint", hWnd, "uint", &rect)
-
-Aero style end
-*/
-
-
 if Regver=10
 {
 	CoordMode, Mouse,Screen
@@ -150,75 +95,36 @@ Time:= Savesleep*60000
 SetTimer, Autosave, %Time% ; 自动保存计时器
 
 If Check3=1
-SetTimer, LockIME, 2000 ; 2秒锁定一次输入法
-/* 
-; 撤銷快捷鍵修改提示
-If Check1=1
-Gosub Undotip
- */
+	SetTimer, LockIME, 2000 ; 2秒锁定一次输入法
 Gosub Autosave
 
 Hotkey, IfWinActive, ahk_group Photoshop
-
 	If (Regver>=12) and (Check7=1)
-	{
-	Hotkey, %HUDCP%, HUDCP
-	}
+		Hotkey, %HUDCP%, HUDCP
 
 	If (Regver<12) and (Check8=1) and (MapAltmode=1)
-	{
-	Hotkey, %FCPk%, FCPc1
-	}
-/* 
-	;兼容模式alt拾色器
-	else If (Check8=1) and (MapAltmode=2)
-	{
-	Hotkey, Alt, FCPc2
-	}
-	;CS5模式alt拾色器
-	else If (Check8=1) and (MapAltmode=3)
-	{
-	Hotkey, Alt, FCPc12
-	}
- */
-	If Check6=1
-	Hotkey, %QCLayer%, QCLayer
+		Hotkey, %FCPk%, FCPc1
 
-;	If (Check10=1) and (MapAltmode=1)
-;	Hotkey, Alt, DisableAltMenu
+	If Check6=1
+		Hotkey, %QCLayer%, QCLayer
 
 	If (Regver>=11) and (Check11=1)
-	Hotkey, %ModifyBrushKey%, ModifyBrushKey
-/* 
-	If (Regver>=12) and (Check8=1) and (MapAltmode=2)
-	Hotkey, ~alt, FCPc
- */
+		Hotkey, %ModifyBrushKey%, ModifyBrushKey
 
 	If Check13=1
-	Hotkey, %SHLayer%, SHLayer
+		Hotkey, %SHLayer%, SHLayer
 Hotkey, IfWinActive
 
 Hotkey, IfWinActive, ahk_class PSFloatC, Web
 	If (Check8=1) and (MapAltmode=1)
-	Hotkey, %FCPk%, FCPs
-/* 
-	else If (Check8=1) and (MapAltmode=2)
-	{
-	FCPk=Alt
-	Hotkey, %FCPk%, FCPs
-	}
-	else If (Check8=1) and (MapAltmode=3)
-	{
-	Hotkey, Alt, FCPs12
-	}
- */
+		Hotkey, %FCPk%, FCPs
 Hotkey, IfWinActive
 
 If Check14=1
-gosub CleanUpTempFiles
+	gosub CleanUpTempFiles
 
 If Check4=1
-gosub LaunchPsAuto
+	gosub LaunchPsAuto
 Return
 
 
@@ -228,15 +134,10 @@ Return
 #IfWinActive ahk_class PSFloatC, Web
 ~Alt Up::
 	If (Check8=1) and (MapAltmode=2)
-	{
 		gosub FCPs
-	}
 	else If (Check8=1) and (MapAltmode=3)
-	{
 		gosub FCPs12
-
-	}
-return
+	return
 #IfWinActive
 
 #IfWinActive ahk_group Photoshop
@@ -257,109 +158,34 @@ return
 	{
 		gosub FCPc12
 	}
-return
+	return
 
-/* 
-$LButton::
-If ((A_PriorHotkey = A_ThisHotkey) and (A_TimeSincePriorHotkey < 200))
-{
-;msgbox 3 times Alt have been pressed
-    times := 0
-}
-else
-
-send, {LButton down}
-keywait, LButton
-send, {LButton up}
-
-Return 
-
- */
-/* 
-; 鎖定輸入法按键
-;~^Shift::
-$^Space::
-	If (Check3=1)
-	{
-	SetIME("00000409")
-	If Check2=0
-	TrayTip, %Lang_Tiptitle%, %Lang_LockIMEtip%, 1, 1
-	}
-	else
-	{
-	If instr(A_ThisHotkey, "space")
-		send, ^{space}
-	;If instr(A_ThisHotkey, "shift")
-	;	send, ^{shift}
-	}
-	Return
-
- */
 ; 撤銷快捷鍵修改
 ;$^z::send !^z
 $^z::
 	If (Check1=1)
-	{
-		;Gosub Undotip
-		;send !^z
 		PostMessage, 0x111, 0x7A9,,,ahk_class Photoshop
-	}
 	Else
-	{
 		Send,^z
-	}
 	return
 
 ;$^y::send +^z
 $^y::
 	If (Check1=1)
-	{
-		;Gosub Undotip
-		;send +^z
 		PostMessage, 0x111, 0x7AA,,,ahk_class Photoshop
-	}
 	Else
-	{
 		Send,^y
-	}
 	return
 
 $^s::
 	PostMessage, 0x111, 30,,,ahk_class Photoshop
 	If (Check15=1)
 	{
-	SetControlDelay -1
-	ControlClick, Label1, ahk_class 3dsMax,,,, NA
-	WinActivate, ahk_class Photoshop
-	}
-return
-/* 
-;$!^z::send ^y
-$!^z::
-	If (Check1=1)
-	{
-		Gosub Undotip
-		send ^y
-	}
-	Else
-	{
-		Send,!^z
+		SetControlDelay -1
+		ControlClick, Label1, ahk_class 3dsMax,,,, NA
+		WinActivate, ahk_class Photoshop
 	}
 	return
-
-;$+^z::send ^z
-$+^z::
-	If (Check1=1)
-	{
-		Gosub Undotip
-		send ^z
-	}
-	Else
-	{
-		Send,+^z
-	}
-	return
- */
 #IfWInActive
 
 
@@ -369,9 +195,9 @@ Autosave:
 		PostMessage, 0x111, 30,,,ahk_class Photoshop
 		If Check15=1
 		{
-		SetControlDelay -1
-		ControlClick, Label1, ahk_class 3dsMax,,,, NA
-		WinActivate, ahk_class Photoshop
+			SetControlDelay -1
+			ControlClick, Label1, ahk_class 3dsMax,,,, NA
+			WinActivate, ahk_class Photoshop
 		}
 	}
 	else If WinExist("ahk_group Photoshop") and (Autosavenum=2)
@@ -394,22 +220,19 @@ SHlayer:
 	Return
 ; ==========================================普通拾色器点击
 FCPc1:
-;	If (MapAltmode>1) and (Regver<12)
-;	{
-		ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\brush.png
-		if ErrorLevel=1
+	ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\brush.png
+	if ErrorLevel=1
+	{
+		ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\pencil.png
+		if (ErrorLevel=1) and (Regver>=9)
 		{
-			ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\pencil.png
-			if (ErrorLevel=1) and (Regver>=9)
-			{
-				ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\ColorReplacement.png
-				if ErrorLevel=1
-					return
-			}
-			else if (ErrorLevel=1)
-			return
+			ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\ColorReplacement.png
+			if ErrorLevel=1
+				return
 		}
-;	}
+		else if (ErrorLevel=1)
+		return
+	}
 	Gosub FCPc2
 	Return
 
@@ -441,7 +264,6 @@ FCPc12:
 		ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\pencil.png
 		if ErrorLevel=1
 		{
-		;send, {%FCPk%}
 		return
 		}
 	}
@@ -460,29 +282,6 @@ FCPs12:
 	send, {enter}
 	Return
 
-/* 
-FCPs2:
-	KeyWait, alt
-	IfWinActive, ahk_class PSFloatC
-	send, {enter}
-	Return
- */
-/* 
-
-	Gosub FCPsearch
-	;ControlClick, x%fcX% y%fcY%, ahk_class Photoshop
-	MouseGetPos, cX, cY
-	MouseClick, left, %fcX%, %fcY%,,0
-	MouseMove, %cX%, %cY%,0
-	If Check6=1
-	{
-		IfWinActive, ahk_class PSFloatC
-		KeyWait, %FCPk%
-
-		send,{Enter}
-	}
-	return
- */
 FCPsearch:
 	If (Regver>12)
 	{
@@ -514,9 +313,7 @@ HUDCP:
 			centerh:=VirtualHeight/2
 			MouseMove, %centerw%, %centerh%,0
 		}
-		;ControlSend,, {Alt down}, ahk_class Photoshop
-		;ControlSend,, {Shift down}, ahk_class Photoshop
-	;	send, {RButton down}
+
 		If Check12=1
 		{
 			send,{Shift down}{Alt down}{RButton down}
@@ -622,84 +419,7 @@ LockIME:
 		SetIME("00000409")
 	#IfWinActive
 	Return
-/* 
-MAPAlt11c:
-	CoordMode, Mouse,Screen
-	CoordMode, Pixel,Screen
-	WinActivate, ahk_class Photoshop
-	ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\brush.png
-	if ErrorLevel=1
-	{
-		ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\pencil.png
-		if ErrorLevel=1
-		{
-		return
-		}
-	}
-	Gosub FCPsearch
-	MouseGetPos, cX, cY
-	MouseClick, left, %fcX%, %fcY%,,0
-	MouseMove, %cX%, %cY%,0
-	KeyWait, alt
-	IfWinActive, ahk_class PSFloatC
-	send,{Enter}
 
-	return
- */
-/* 
-MAPAlt11:
-
-	if (Regver=10)
-	{
-	CoordMode, Mouse,Screen
-	CoordMode, Pixel,Screen
-	}
-	else
-	{
-	CoordMode, Mouse,Relative
-	CoordMode, Pixel,Relative
-	}
-
-	WinActivate, ahk_class Photoshop
-	ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\brush.png
-	if ErrorLevel=1
-	{
-		ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\pencil.png
-		if ErrorLevel=1
-		{
-		return
-		}
-	}
-	Gosub FCPsearch
-
-	if (Regver=10)
-	{
-	MouseGetPos, cX, cY
-	MouseClick, left, %fcX%, %fcY%,,0
-	MouseMove, %cX%, %cY%,0
-	}
-	else
-	ControlClick, x%fcX% y%fcY%, ahk_class Photoshop
-
-	gosub FCPs2
-	Return
- */
-/* 
-QCLayer:
-	WinActivate, ahk_class Photoshop
-	ImageSearch, Layer1X, Layer1Y, 0, 295, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\Layer1.png
-	if ErrorLevel=1
-	{
-	msgbox, %Lang_Msg_Debug%
-	return
-	}
-	QCLX := Layer1X + 65
-	QCLY := Layer1Y + 5
-
-	MouseGetPos, cX, cY
-	MouseClick, left, %QCLX%, %QCLY%,,0
-	MouseMove, %cX%, %cY%,0
- */
 SetKeyState:
 	SetCapsLockState ,Off
 	;SetNumLockState ,On
@@ -713,10 +433,6 @@ QCLayer:
 	sleep, 100
 	KeyWait, Alt
 	Send, {Alt up}
-/* 
-	send, {Ctrl down}{Alt down}{Shift down}n
-	send, {Ctrl up}{Alt up}{Shift up}
- */
 	Return
 
 ; 立即保存提示按鈕
@@ -724,15 +440,7 @@ Savenow:
 	WinActivate, ahk_class Photoshop
 	PostMessage, 0x111, 30,,,ahk_class Photoshop
 	Gui, Cancel
-/* 
-; 修改撤销快捷键提示
-Undotip:
-	If Check2=0
-	{
-	TrayTip, %Lang_Tiptitle%, %Lang_Undotip% . "`nCtrl+z`t`tAlt+Ctrl+z`nAlt+Ctrl+z`tCtrl+y`nCtrl+y`t`tShift+Ctrl+z`nShift+Ctrl+z`tCtrl+z", 30, 1
-	}
-	Return
- */
+
 ; ==========================================函数==========================================
 SetIME(Locale)
 {
@@ -743,7 +451,6 @@ DllCall("SendMessage", "UInt", (WinActive("ahk_class Photoshop")), "UInt", "80",
 
 NoticePanel(TextInfo,MotionTime,RemainingTime,InMode,OutMode,text1,text2)
 {
-	;G_ReadLanguage()
 	InModeList:="4t60x40001|6t40x40002|8t20x40004|2t80x40008|1t90x40009|9t10x40006|7t30x40005|3t70x4000a|0t10xa0000|5t50x16xxx"
 	OutModeList:="4t60x50001|6t40x50002|8t20x50004|2t80x50008|1t90x50009|9t10x50006|7t30x50005|3t70x5000a|1t00x90000|5t50x10010"
 	InMode:=SubStr(InModeList,InStr(InModeList,InMode)+3,7)
@@ -772,4 +479,3 @@ NoticePanel(TextInfo,MotionTime,RemainingTime,InMode,OutMode,text1,text2)
 }
 
 #include %A_scriptdir%\inc\Handle.ahk
-

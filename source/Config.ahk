@@ -88,56 +88,17 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Other, %Lang_Other%
 Gui, Add, GroupBox, x140 y270 w310 h250 vHelpTip, %Lang_HelpTip%
 	Gui, Add, Text, x150 y290 w290 h180 vHelpTipText,%Lang_HelpTip_text%
 
-;=============|||||||||||||||||||||||||||||||||||||||||||||||||========old
-/* 
-If Check2=0
-{
-URL = %A_scriptdir%\Data\Readme\%G_Language%.html
-;Gui, +LastFound -Caption +Resize MinSize MaxSize
-
-COM_AtlAxWinInit() ; 初始化 AtlAxWin
-; 生成IE控件, 获得 Iwebborwser 对象
-pweb:=COM_AtlAxGetControl(pctn:=COM_AtlAxCreateContainer(windowsid:=WinExist(),332,6,311,539,"Shell.Explorer"))
-COM_Invoke(pweb, "Navigate", URL)
-
-Gui, Add, GroupBox, x332 y5 w310 h540,
-}
- */
-
-
-;Gui, Add, DropDownList, x239 y10 w80 vGuilang Choose1 gLangtip, %Guilang%|%Langlist%
-
-;Gui, Add, Text, x140 y215 w240 cred vMarktip, %Lang_Config_CS5mark%
-
-;Gui, Add, Text, y220 
-
-;Gui, Add, Button, x221 y460 w100 h50 gConfigSave, %Lang_Config_Save%
 Gui, Add, Button, x460 y10 w100 h50 vCSave gConfigSave, %Lang_Config_Save%
 Gui, Add, Button, x460 y70 w100 h30 vCCancel gGuiClose, %Lang_Config_Cancel%
-;Gui, Font, Cblue Underline,
-;font := "%Fontname%"
-;hFont := Font(h, font)
-;hLink := HLink_Add()
 hGui := WinExist() +0
 hFont := Font("", "s" . Fontsize . " , " . Fontname , 1)
 Link1 := HLink_Add(hGui, 460, 150, 100, 20 , "OnLink", "'" . Lang_Website . "':Website")
 SendMessage, 0x30, %hFont%, 1,, ahk_id %Link1% ;WM_SETFONT = 0x30
 Link2 := HLink_Add(hGui, 460, 180, 100, 20 , "OnLink", "'" . Lang_Blog . "':Blog")
 SendMessage, 0x30, %hFont%, 1,, ahk_id %Link2% ;WM_SETFONT = 0x30
-
-;Gui, Add, Text, x11 y530 w100 Gf_CheckVersionButton, %Lang_Website%
-;Gui, Add, Text, x121 y440 w100 GBlog, %Lang_Blog%
-; Generated using SmartGUI Creator 4.0
 ;=============================================================
 
 
-/*
-Aero style start
-
-DllCall("InvalidateRect", "uint", hGui, "uint", 0, "int", 0)
-
-Aero style end
-*/
 ; 添加控件 第二步
 Loop 15
 {
@@ -147,13 +108,10 @@ If (Check%A_Index%=1)
 
 If Regver>=12
 {
-	;GuiControl,hide,Marktip
 	Gosub HUDToggle
 }
 else
 {
-	;GuiControl,show,Marktip
-	;GuiControl,Text,GuiTitle,1
 	GuiControl,Disable,Check5
 	GuiControl,Disable,Check7
 	GuiControl,Disable,Check9
@@ -189,9 +147,6 @@ else
 	Gui, Show, AutoSize Center,%ConfigTitle% *** ***%Lang_Config_CS5mark%*** ***
 }
 
-;WinSetTitle, %ConfigTitle%
-
-
 OnMessage(0x200, "WM_MOUSEMOVE")
 Return
 
@@ -204,7 +159,6 @@ AScheck:
 	If txt=%Lang_Autosave_no%
 	{
 	  GuiControl,Disable,Savesleep
-	  ;GuiControl,Disable,GuiText1
 	  GuiControl,Disable,GuiText2
 	  GuiControl,Disable,GuiText3
 	  GuiControl,Disable,Tiptext
@@ -212,7 +166,6 @@ AScheck:
 	Else If txt=%Lang_Autosave_tip%
 	{
 	  GuiControl,Enable,Savesleep
-	  ;GuiControl,Enable,GuiText1
 	  GuiControl,Enable,GuiText2
 	  GuiControl,Enable,GuiText3
 	  GuiControl,Enable,Tiptext
@@ -220,7 +173,6 @@ AScheck:
 	Else If txt=%Lang_Autosave_yes%
 	{
 	  GuiControl,Enable,Savesleep
-	  ;GuiControl,Enable,GuiText1
 	  GuiControl,Enable,GuiText2
 	  GuiControl,Disable,GuiText3
 	  GuiControl,Disable,Tiptext
@@ -279,22 +231,18 @@ FCPToggle:
 	If Check8=0
 	{
 		GuiControl,Disable,FCPk
-		;GuiControl,Disable,Check6
 		GuiControl,Disable,MapAlt
 	}
 	else If Check8=1
 	{
 		GuiControl,Enable,FCPk
-		;GuiControl,Enable,Check6
 		GuiControl,Enable,MapAlt
-		;gosub ChooseMapAltmode
 	}
 
 	GuiControlGet,txt,,MapAlt, Text
 	If txt=%Lang_Set_hotkey_mapalt_2%
 	{
 		GuiControl,Disable,FCPk
-		;GuiControl,Disable,Check6
 	}
 	Return
 
@@ -322,9 +270,6 @@ Langtip:
 	IniWrite, %Fontsize%, %A_scriptdir%\Data\Config.ini, General, fontsize
 	IniWrite, %Fontname%, %A_scriptdir%\Data\Config.ini, General, fontname
 	IniWrite, %G_Language%, %A_scriptdir%\Data\Config.ini, Setting, lang
-	;IniRead, G_Language, %A_scriptdir%\Data\Config.ini, Setting, lang, English
-	;IniRead, Langtip, %A_scriptdir%\Data\Locales\%G_Language%.ini, %G_Language%, L_Langtip, opps
-	;G_Language=%G_Language%
 	G_ReadLanguage()
 	Process,Close,Apssistant.exe
 	MsgBox, 0,, %Lang_Langtip%
@@ -385,16 +330,12 @@ ConfigSave:
 	IniWrite, %Check12%, %A_scriptdir%\Data\Config.ini, Setting, CPThudcp
 	IniWrite, %Check13%, %A_scriptdir%\Data\Config.ini, Setting, SHLayerToggle
 	IniWrite, %Check14%, %A_scriptdir%\Data\Config.ini, Setting, CleanUpTempFiles
-	;IniWrite, %Check14%, %A_scriptdir%\Data\Config.ini, Setting, DisableShotdown
 	IniWrite, %SHLayer%, %A_scriptdir%\Data\Config.ini, Setting, SHLayer
 	IniWrite, %QCLayer%, %A_scriptdir%\Data\Config.ini, Setting, QCLayer
 	IniWrite, %ModifyBrushKey%, %A_scriptdir%\Data\Config.ini, Setting, ModifyBrushRadius
 	IniWrite, %MapAlt%, %A_scriptdir%\Data\Config.ini, Setting, mapalt
 	IniWrite, %Check15%, %A_scriptdir%\Data\Config.ini, Setting, 3dsMaxSync
-	;Gui, Cancel
-	;Reload
 	If A_IsCompiled=1
-		;Process,Close,Apssistant.exe
 		run %A_scriptdir%\Apssistant.exe
 	else
 		run %A_scriptdir%\Config.ahk
@@ -403,7 +344,6 @@ ConfigSave:
 
 ; 添加控件 第四步
 GuiHideGB:
-	;Groupbox change
 	loop 3
 	{
 	GuiControl,Hide,GuiText%A_Index%
@@ -456,7 +396,6 @@ FChoicecheck:
 
 	gosub GuiHideGB
 
-	;msgbox,%txt%
 	If txt=%Lang_General%
 	{
 		GuiControl,Show,GB_General
@@ -499,18 +438,11 @@ FChoicecheck:
 	{
 		GuiControl,Show,GB_Autosave
 		GuiControl,Show,Autosave
-		;GuiControl,Show,GuiText1
 		GuiControl,Show,Savesleep
 		GuiControl,Show,GuiText2
 		GuiControl,Show,GuiText3
 		GuiControl,Show,Tiptext
 	}
-/* 
-	Else If txt=%Lang_P_I%
-	{
-		GuiControl,Show,GB_P_I
-	}
- */
 	Else If txt=%Lang_Other%
 	{
 		GuiControl,Show,GB_Other
@@ -522,17 +454,7 @@ Return
 
 VerChoose:
 	GuiControlGet,GuiGetPsver,,PsCSver, Text
-	;gosub VerTrans
 	V_Trans()
-/* 
-	While curPsver<12
-	{
-	WinSetTitle, %ConfigTitle% %Lang_Config_CS5mark%
-	sleep 300
-	WinSetTitle, %ConfigTitle%
-	sleep 300
-	}
- */
 
 	If curPsver>=12
 	{
@@ -567,14 +489,12 @@ VerChoose:
 
 		If curPsver=11
 		{
-			;GuiControl,show,Marktip
 			GuiControl,enable,Check4		;enable
 			GuiControl,enable,Check11		;enable
 			GuiControl,enable,ModifyBrushKey	;enable
 		}
 		else
 		{
-			;GuiControl,show,Marktip
 			GuiControl,Disable,Check4		;Disable
 			GuiControl,Disable,Check11		;Disable
 			GuiControl,Disable,ModifyBrushKey	;Disable
@@ -582,9 +502,6 @@ VerChoose:
 	}
 
 	Return
-
-
-; ==========================================函数==========================================
 
 OnLink(hCtrl, Text, Link){
 	if Link = Website
@@ -603,39 +520,15 @@ WM_MOUSEMOVE()
 	{
 		SetTimer, DisplayToolTip, 0
 		PrevControl := CurrControl
-		;GuiControl,,HelpTipText, %Lang_HelpTip_text% ; 关闭之前的 tooltip.
 	}
 	return
 
 	DisplayToolTip:
 	SetTimer, DisplayToolTip, Off
 	GuiControl,,HelpTipText, % Lang_HT_%CurrControl% ; 第一个百分号表示后面是一个表达式
-	;SetTimer, RemoveToolTip, 9999999
 	return
-/* 
-	RemoveToolTip:
-	SetTimer, RemoveToolTip, Off
-	GuiControl,,HelpTipText,
-	return
- */
 }
 
-
-/* 
-GUI_init() ; 生成窗口，并返回:pctn pweb pwin windowsid
-{
-	global pctn, pweb, pwin, windowsid
-	GUi, +LastFound +Resize ; 创建 GUI
-	COM_AtlAxWinInit() ; 初始化 AtlAxWin
-	; 生成IE控件, 获得 Iwebborwser 对象
-	pweb:=COM_AtlAxGetControl(pctn:=COM_AtlAxCreateContainer(windowsid:=WinExist(),0,0,555,400,"Shell.Explorer"))
-	; 获得 IHTMLWindow2 对象
-	IID_IHTMLWindow2 := "{332C4427-26CB-11D0-B483-00C04FD90119}" 
-	pwin := COM_QueryService(pweb,IID_IHTMLWindow2,IID_IHTMLWindow2)
-	COM_Invoke(pweb, "Navigate", "about:blank") ; 跳转到 空白页
-	gui,show, w555 h400, %biaoti% ; 显示 GUI
-}
- */
 #include %A_scriptdir%\inc\Font.ahk
 #include %A_scriptdir%\inc\HLink.ahk
 #include %A_scriptdir%\inc\Handle.ahk

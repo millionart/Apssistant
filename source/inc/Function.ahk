@@ -29,9 +29,6 @@ V_Trans()
 	}
 	PsCSverNo:=Regver-5
 
-	;return
-;===========================================
-
 	If GuiGetPsver<8
 	{
 	curPsver=%GuiGetPsver%
@@ -45,32 +42,7 @@ V_Trans()
 	stringreplace, curPsCSver, GuiGetPsver, CS,, All
 	curPsver:=curPsCSver+7
 	}
-
-;===========================================
-
 }
-
-
-/* 
-; Thanks to jronrun http://www.benayn.com/ahki18n
-i18n(msg_key, p0="-0", p1="-0", p2="-0", p3="-0", p4="-0", p5="-0", p6="-0", p7="-0", p8="-0", p9="-0")
-{
-	global _jron_locale_
-	global _jron_locale_file_
-	IniRead, msg, % _jron_locale_file_, % _jron_locale_, % msg_key, % msg_key
-	If (msg="ERROR" OR msg="")
-		Return % msg_key
-	StringReplace, msg, msg, `\n, `r`n, ALL
-	StringReplace, msg, msg, `\t, % A_Tab, ALL
-	Loop 10
-	{
-	idx := A_Index - 1
-	IfNotEqual, p%idx%, -0
-		msg := RegExReplace(msg, "\{" . idx . "\}", p%idx%)
-	}
-	Return % msg
-}
- */
 
 
 ;Language function thanks to http://www.autohotkey.net/~rexx/FolderMenu/
@@ -82,7 +54,6 @@ G_ReadLanguage()
 	IniRead, Fontname, %A_scriptdir%\Data\Config.ini, General, fontname, Segoe UI
 	IniRead, G_Language, %A_scriptdir%\Data\Config.ini, Setting, lang, English
 	G_ReadLanguageDefault()
-	;msgbox, %G_Language%|%G_Language%
 	LangFile := A_ScriptDir . "\Data\Locales\" . G_Language . ".lng"
 	Loop, Read, %LangFile%
 	{
@@ -105,9 +76,6 @@ G_ReadLanguageDefault()
 {
 	Global
 	Lang_General:="General"
-	Lang_Your_language:="Your language:"
-	Lang_Your_Photoshop_version:="Your Photoshop version:"
-	;Lang_Autosave_Every:="Every"
 	Lang_Autosave_Min:="Min."
 	Lang_Autosave_no:="Disabled"
 	Lang_Autosave_Optional:="Tip text (Optional)"
@@ -115,55 +83,52 @@ G_ReadLanguageDefault()
 	Lang_Autosave_yes:="Autosave. Every:"
 	Lang_Autosave:="Autosave"
 	Lang_Blog:="Author's blog"
-	Lang_Check_Update:="Check Update"
+	Lang_Website:="Website"
 	Lang_Config_Cancel:="Cancel"
 	Lang_Config_CS5mark:="Gray items only used for CS5"
 	Lang_Config_Save:="Save"
-	Lang_Msg_Debug:="Error: Missing coordinates, Please try the following solution:`n - Set correctly in the program you are currently using Photoshop version`n - set The system themen to the default`n  - A front window of influence, maybe need to turn it off`n - Check the Photoshop version of the file folder picture is consistently (see note)"
-	Lang_Hotkey:="keyboard shortcut"
+	Lang_Config_Browse:="Browse..."
+	Lang_HelpTip:="Help"
+	Lang_dontsavenow:="Hide"
 	Lang_ColorPicker:="Color Picker"
+	Lang_Hotkey:="Hotkey"
+	Lang_PsDir:="Browse to the location of Photoshop"
+	Lang_Langtip:="Language has been changed now!"
+	Lang_LockIMEtip:="Your input method has been locked to English by Photoshop CS5++"
+	Lang_Msg_Debug:="Error: Missing coordinates, Please try the following solution:`n - Set correctly in the program you are currently using Photoshop version`n - set The system themen to the default`n  - A front window of influence, maybe need to turn it off`n - Check the Photoshop version of the file folder picture is consistently (see note)"
+	Lang_OpenGLtip:="a.Please enable Preferences>>Enable OpenGL Drawing`nb.Hold on/off space to change hue at the same time"
+	Lang_P_I_DisableAltMenu:="Disable Alt menu"
 	Lang_P_I_Hidehelptip:="Disable tray notificaion"
 	Lang_P_I_LaunchPs:="Double click tray / Auto launch Photoshop"
 	Lang_P_I_LockIME:="Lock input method to English"
-	Lang_P_I:="Interference prevention"
-	Lang_P_I_DisableAltMenu:="Disable Alt menu"
-	Lang_P_I_DisableShutdown:="Disable Shoutdown"
-	Lang_Set_hotkey_HUD_Color_Picker:="Enhanced HUD color picker:"
-	Lang_Set_hotkey_Undo:="Exchange Step Forward / Backward shortcut"
-	Lang_tiptext:="It's time to save!"
-	Lang_tray_LaunchPs:="Launch Photoshop"
-	Lang_tray_Config:="Config"
-	Lang_tray_Exit:="Exit"
+	Lang_P_I:="Anti-disturb"
+	Lang_Other:="Other"
+	Lang_Other_3dsMaxSync:="3ds Max Sync"
+	Lang_C_TempFiles:="Automatically clean up temporary files after exit"
 	Lang_Savenow:="Save now!"
-	Lang_dontsavenow:="Hide"
-	Lang_Langtip:="Language has been changed now!"
-	Lang_Set_hotkey_ModifyBrushKey:="Modify brush radius:"
-	Lang_Set_hotkey_QCLayer:="Creat a new layer:"
-	Lang_Set_hotkey_Precise:="Precise"
 	Lang_Set_hotkey_Center:="Center"
 	Lang_Set_hotkey_CPT:="Compatibility"
+	Lang_Set_hotkey_HUD_Color_Picker:="Enhanced HUD color picker:"
 	Lang_Foreground_color_picker:="Foreground Color Picker:"
-	Lang_Set_hotkey_mapalt_1:="Foreground Color Picker shortcut to"
-	Lang_Set_hotkey_mapalt_2:="Foreground Color Picker map Alt"
-	Lang_Set_hotkey_mapalt_3:="Foreground Color Picker map Alt to"
-	Lang_Set_hotkey_SHLayer:="Show/Hide current layer"
+	Lang_Set_hotkey_mapalt_1:="shortcut to"
+	Lang_Set_hotkey_mapalt_2:="map to Alt"
+	Lang_Set_hotkey_mapalt_3:="map Alt to"
+	Lang_Set_hotkey_ModifyBrushKey:="Modify brush radius:"
+	Lang_Set_hotkey_Precise:="Precise"
+	Lang_Set_hotkey_QCLayer:="Creat a new layer:"
+	Lang_Set_hotkey_Undo:="Exchange Step Forward / Backward shortcuts"
+	Lang_Set_hotkey_SHLayer:="Show/Hide current layer:"
+	Lang_tiptext:="It's time to save!"
 	Lang_Tiptitle:="Tip"
-	Lang_LockIMEtip:="Your input method has been locked to English by Photoshop CS5++"
-	Lang_OpenGLtip:="a.Please enable Preferences>>Enable OpenGL Drawing`nb.Hold on/off space to change hue at the same time"
+	Lang_tray_Config:="Preferences"
+	Lang_tray_Exit:="Exit"
+	Lang_tray_LaunchPs:="Launch Photoshop"
 	Lang_Undotip:="The following LSide hotkeys have been changed to RSide:"
-
-	lang_Error  := "Error"
-	lang_CannotConnect    := "Cannot connect to the Internet."
-	lang_NewVer            := "New Version!"
-	lang_NewVerAvailable   := "There's a new version v%LatestVer% available.`n`nClikc Yes to Auto Update now!`n`nClick No to go to website."
-	lang_NewVerNotAvailable:= "You are using the latest version v%CurrentVer%."
-
-	Lang_PsDir:="Select Photoshop location"
-	Lang_Config_Browse:= "Browse..."
-	Lang_HelpTip:= "Help"
-	;Lang_HelpTip_text:=""
-	;Lang_HT_PsCSver:= "当前PS版本"
-	Lang_HT_G_Language:= "The software interface will change to your language.`n`nLanguage files are located:`n`tData\Locales\language name.lng`nAdd or modify the language files should be sent to millionart@gmail.com"
+	Lang_Error:="Error"
+	Lang_CannotConnect:="Cannot connect to the Internet."
+	Lang_NewVer:="New Version!"
+	Lang_NewVerAvailable :="There's a new version v%LatestVer% available.`n`nClikc Yes to Auto Update now!`n`nClick No to go to website."
+	Lang_NewVerNotAvailable:="Updated successfully!"
 	return
 }
 

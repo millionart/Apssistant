@@ -75,8 +75,6 @@ f_CheckVersion(Quiet=0)
 {
 	Global
 	Local VerFileName, LatestVer
-	
-	VerFileName=%A_Temp%\Apssistant_version.tmp
 	FileDelete, %VerFileName%
 
 	UrlDownloadToFile, https://github.com/millionart/Apssistant/raw/master/bin/x%OSbit%/Update.ini, %VerFileName%
