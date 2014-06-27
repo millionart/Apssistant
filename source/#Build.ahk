@@ -53,7 +53,7 @@ del ..\bin\x64\APssistant.7z
 del ..\bin\x64\Setup.exe
 
 ..\tools\7za.exe a -t7z ..\bin\x32\APssistant.7z @listfile.txt -mx=9 -x!Data\Config.ini -xr!*\.SVN\  -xr!*\_SVN\ -xr!*\inc\ -xr!*\Readme\ 
-copy /b ..\tools\APssistant.sfx + bin.txt + ..\bin\x32\APssistant.7z ..\bin\x32\Setup.exe
+copy /b ..\tools\7zsd_LZMA2.sfx + bin.txt + ..\bin\x32\APssistant.7z ..\bin\x32\Setup.exe
 move ..\bin\x32\APssistant.7z Data\Update\APssistant.7z
 del ..\bin\x32\APssistant.7z
 
@@ -64,8 +64,7 @@ Ahk2exe.exe /in "%A_ScriptDir%\Update.ahk" /out "%A_ScriptDir%\Update.com" /icon
 
 
 ..\tools\7za.exe a -t7z ..\bin\x64\APssistant.7z @listfile.txt -mx=9 -x!Data\Config.ini -xr!*\.SVN\  -xr!*\_SVN\ -xr!*\inc\ -xr!*\Readme\ 
-copy /b ..\tools\APssistant.sfx + bin.txt + ..\bin\x64\APssistant.7z ..\bin\x64\Setup.exe
-::move ..\bin\x64\APssistant.7z Data\Update\APssistant.7z
+copy /b ..\tools\7zsd_LZMA2_x64.sfx + bin.txt + ..\bin\x64\APssistant.7z ..\bin\x64\Setup.exe
 del ..\bin\x64\APssistant.7z
 
 
@@ -75,29 +74,24 @@ move Config.com Config.exe
 ), build.bat
 
 RunWait build.bat
-;msgbox,
 FileDelete, %A_ScriptDir%\build.bat
 FileDelete, %A_ScriptDir%\bin.txt
 FileDelete, %A_ScriptDir%\listfile.txt
 
-;bin7zx32=%A_scriptdir%\..\bin\x32\APssistant.7z
 binexex32=%A_scriptdir%\..\bin\x32\Setup.exe
 binexex64=%A_scriptdir%\..\bin\x64\Setup.exe
 
 bin7zx32hash=% File_Hash(bin7zx32, "MD5")
 binexex32hash=% File_Hash(binexex32, "MD5")
-bin7zx64hash=% File_Hash(bin7zx32, "MD5")
-binexex64hash=% File_Hash(binexex32, "MD5")
+bin7zx64hash=% File_Hash(bin7zx64, "MD5")
+binexex64hash=% File_Hash(binexex64, "MD5")
 
-;IniWrite, %f_CurrentVer%, %A_scriptdir%\APssistant.ahk.ini, VERSION, File_Version
-;IniWrite, %bin7zx32hash%, %A_scriptdir%\APssistant.ahk.ini, VERSION, MD5
 IniWrite, %f_CurrentVer%, %A_scriptdir%\..\bin\x32\Update.ini, Win32, Version
 IniWrite, %binexex32hash%, %A_scriptdir%\..\bin\x32\Update.ini, Win32, MD5
 IniWrite, %f_CurrentVer%, %A_scriptdir%\..\bin\x64\Update.ini, Win64, Version
 IniWrite, %binexex64hash%, %A_scriptdir%\..\bin\x64\Update.ini, Win64, MD5
 IniWrite, https://github.com/millionart/Apssistant/raw/master/bin/x32/Setup.exe, %A_scriptdir%\..\bin\x32\Update.ini, Win32, Url
 IniWrite, https://github.com/millionart/Apssistant/raw/master/bin/x64/Setup.exe, %A_scriptdir%\..\bin\x64\Update.ini, Win64, Url
-
 
 return
 

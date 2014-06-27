@@ -17,7 +17,13 @@ ExitApp
 
 G_ReadLanguage()
 Downloadtimes=0
-WinBit=Win32
+
+if A_Is64bitOS=1
+	OSbit=64
+else
+	OSbit=32
+
+WinBit=Win%OSbit%
 VerFileName=%A_Temp%\Apssistant_version.tmp
 UpdateFileName = %A_scriptdir%\Data\Update\Setup.exe
 
@@ -57,7 +63,9 @@ UpdateStart:
 		;	Gosub, Website
 	}
 	else
+	{
 		gosub DownloadUpdateStart
+	}
 	return
 
 ; ==========================================函数==========================================
@@ -67,14 +75,7 @@ f_CheckVersion(Quiet=0)
 {
 	Global
 	Local VerFileName, LatestVer
-	
-	VerFileName=%A_Temp%\Apssistant_version.tmp
 	FileDelete, %VerFileName%
-
-	if A_Is64bitOS=1
-	OSbit=64
-	else
-	OSbit=32
 
 	UrlDownloadToFile, https://github.com/millionart/Apssistant/raw/master/bin/x%OSbit%/Update.ini, %VerFileName%
 	IniRead, LatestVer, %VerFileName%, %WinBit%, Version,CannotConnect
@@ -85,19 +86,18 @@ f_CheckVersion(Quiet=0)
 	if LatestVer =CannotConnect
 	{
 		if (pc1=0)
-		MsgBox, 16, %lang_Error%, %lang_CannotConnect%
+			MsgBox, 16, %lang_Error%, %lang_CannotConnect%
 		else
-		ExitApp
+			ExitApp
 	}
 	else
 	{
 		if VerToNum("" . f_CurrentVer . "") < VerToNum("" . LatestVer . "")
 		{
-			IfNotExist %UpdateFileName% ;丢失升级文件
-				gosub DownloadUpdateStart
-			else
+			If FileExist(UpdateFileName)  ;存在升级文件
 				gosub UpdateStart
-
+			else
+				gosub DownloadUpdateStart
 		}
 		else if (pc1=0)
 		{

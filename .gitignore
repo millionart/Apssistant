@@ -1,2 +1,4 @@
+source/*.com
 source/*.exe
 source/Data/Config.ini
+source/Data/Update/*
