@@ -101,7 +101,7 @@ Menu, tray, add, %Lang_tray_Exit%, WinClose
 If Check4=0
 	Menu, tray, default, %Lang_tray_Config%
 ;else If Check4<>0 and IfExist %PsPath%
-else IfExist %PsPath%
+If FileExist("%PsPath%")=True
 {
 	Menu, tray, default, %Lang_tray_LaunchPs%
 	Menu, tray, Icon, %Lang_tray_LaunchPs%, %PsPath%,, 16
@@ -584,18 +584,18 @@ LButtondown1:
 	Return
 
 LaunchPs:
-	If not WinExist("ahk_class Photoshop")
+	If WinExist("ahk_class Photoshop")
 	{
-		If (PsPath=NULL OR FileExist("%PsPath%")=NULL)
-			gosub Browse2
-		else
-			run, "%PsPath%"
+		;run, "%PsPath%"
+		WinwaitActive, ahk_class Photoshop
+		gosub Config
 	}
 	else
 	{
-		run, "%PsPath%"
-		WinwaitActive, ahk_class Photoshop
-		gosub Config
+		If (PsPath=NULL OR FileExist("%PsPath%")=false)
+			gosub Browse2
+		else
+			run, "%PsPath%"
 	}
 	return
 
@@ -609,7 +609,7 @@ Config:
 LaunchPsAuto:
 	If not WinExist("ahk_class Photoshop")
 	{
-		If (PsPath=NULL OR FileExist("%PsPath%")=NULL)
+		If (PsPath=NULL OR FileExist("%PsPath%")=false)
 			gosub Browse2
 		else
 			run, "%PsPath%"
