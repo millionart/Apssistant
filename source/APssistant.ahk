@@ -63,7 +63,7 @@ Menu, tray, add, %Lang_tray_Exit%, WinClose
 
 If Check4=0
 	Menu, tray, default, %Lang_tray_Config%
-If FileExist("%PsPath%")=True
+IfExist, "%PsPath%"
 {
 	Menu, tray, default, %Lang_tray_LaunchPs%
 	Menu, tray, Icon, %Lang_tray_LaunchPs%, %PsPath%,, 16
@@ -197,7 +197,7 @@ Autosave:
 		{
 			SetControlDelay -1
 			ControlClick, Label1, ahk_class 3dsMax,,,, NA
-			WinActivate, ahk_class Photoshop
+			;WinActivate, ahk_class Photoshop
 		}
 	}
 	else If WinExist("ahk_group Photoshop") and (Autosavenum=2)
@@ -388,7 +388,7 @@ LaunchPs:
 	}
 	else
 	{
-		If (PsPath=NULL OR FileExist("%PsPath%")=false)
+		If (PsPath=NULL || FileExist("%PsPath%")=NULL)
 			gosub Browse2
 		else
 			run, "%PsPath%"
@@ -405,7 +405,7 @@ Config:
 LaunchPsAuto:
 	If not WinExist("ahk_class Photoshop")
 	{
-		If (PsPath=NULL OR FileExist("%PsPath%")=false)
+		If (PsPath=NULL || FileExist("%PsPath%")=NULL)
 			gosub Browse2
 		else
 			run, "%PsPath%"
@@ -436,7 +436,7 @@ QCLayer:
 
 ; 立即保存提示按鈕
 Savenow:
-	WinActivate, ahk_class Photoshop
+	;WinActivate, ahk_class Photoshop
 	PostMessage, 0x111, 30,,,ahk_class Photoshop
 	Gui, Cancel
 
