@@ -12,13 +12,13 @@ Visit https://github.com/millionart/apssistant for more
 ; ===================================================
 V_CurrentVer()
 
-IfExist %A_scriptdir%\Update.com
+IfExist, %A_scriptdir%\Update.com
 {
 	FileDelete, %A_scriptdir%\Update.exe
 	FileMove, %A_scriptdir%\Update.com, %A_scriptdir%\Update.exe
 }
 
-IfExist %A_scriptdir%\Config.com
+IfExist, %A_scriptdir%\Config.com
 {
 	FileDelete, %A_scriptdir%\Config.exe
 	FileMove, %A_scriptdir%\Config.com, %A_scriptdir%\Config.exe
@@ -26,7 +26,7 @@ IfExist %A_scriptdir%\Config.com
 
 If A_IsCompiled=1
 {
-	IfExist %A_scriptdir%\Update.exe
+	IfExist,%A_scriptdir%\Update.exe
 	Run %A_scriptdir%\Update.exe
 }
 else
@@ -63,11 +63,12 @@ Menu, tray, add, %Lang_tray_Exit%, WinClose
 
 If Check4=0
 	Menu, tray, default, %Lang_tray_Config%
-IfExist, "%PsPath%"
+else IfExist, %PsPath%
 {
 	Menu, tray, default, %Lang_tray_LaunchPs%
 	Menu, tray, Icon, %Lang_tray_LaunchPs%, %PsPath%,, 16
 }
+
 If A_IsCompiled=1
 {
 	Menu, tray, Icon, %Lang_Website%, %A_scriptdir%\APssistant.exe,, 16
@@ -388,7 +389,7 @@ LaunchPs:
 	}
 	else
 	{
-		If (PsPath=NULL || FileExist("%PsPath%")=NULL)
+		If (PsPath= || IfNotExist, "%PsPath%")
 			gosub Browse2
 		else
 			run, "%PsPath%"
@@ -396,19 +397,27 @@ LaunchPs:
 	return
 
 Config:
+	If not WinExist("ahk_class Photoshop")
+		gosub LaunchPs
+	else
+	{
 	If A_IsCompiled=1
 		Run %A_scriptdir%\Config.exe
 	else
 		run %A_scriptdir%\Config.ahk
+	}
 	return
 
 LaunchPsAuto:
 	If not WinExist("ahk_class Photoshop")
 	{
-		If (PsPath=NULL || FileExist("%PsPath%")=NULL)
+		If (PsPath= || IfNotExist, "%PsPath%")
 			gosub Browse2
 		else
+		{
+			Menu, tray, default, %Lang_tray_Config%
 			run, "%PsPath%"
+		}
 	}
 	return
 

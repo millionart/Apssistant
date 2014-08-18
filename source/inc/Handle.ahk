@@ -29,12 +29,13 @@ Browse2:
 	ProgramFilesDir:="A_ProgramFiles"
 	FileSelectFile, Dir , 1, %ProgramFilesDir%\Photoshop.exe, %Lang_PsDir%, Photoshop (*.exe; *.lnk)
 	StringReplace, Dir, Dir, `n, `r`n, A
-;	If (PsPath<>NULL) && IfExist "%PsPath%"
-;	{
+	If Dir=
+		return
+	else
+	{
 		IniWrite, %Dir%, %A_scriptdir%\Data\Config.ini, Setting, PsPath
 		run "%Dir%"
-;	}
-;	else
+	}
 	Return
 
 CleanUpTempFiles:
