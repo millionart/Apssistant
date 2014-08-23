@@ -389,10 +389,10 @@ LaunchPs:
 	}
 	else
 	{
-		If (PsPath= || IfNotExist, "%PsPath%")
-			gosub Browse2
-		else
+		if FileExist(PsPath)
 			run, "%PsPath%"
+		else
+			gosub Browse2
 	}
 	return
 
@@ -411,13 +411,13 @@ Config:
 LaunchPsAuto:
 	If not WinExist("ahk_class Photoshop")
 	{
-		If (PsPath= || IfNotExist, "%PsPath%")
-			gosub Browse2
-		else
+		if FileExist(PsPath)
 		{
 			Menu, tray, default, %Lang_tray_Config%
 			run, "%PsPath%"
 		}
+		else
+			gosub Browse2
 	}
 	return
 
