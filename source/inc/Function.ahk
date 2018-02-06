@@ -2,7 +2,7 @@
 V_CurrentVer()
 {
 	Global f_CurrentVer
-	f_CurrentVer = 0.8.1.0
+	f_CurrentVer = 0.8.3.0
 	IniWrite, %f_CurrentVer%, %A_scriptdir%\Data\Config.ini, Setting, Apssistantver
 }
 
@@ -123,6 +123,8 @@ G_ReadLanguageDefault()
 	Lang_tray_Config:="Preferences"
 	Lang_tray_Exit:="Exit"
 	Lang_tray_LaunchPs:="Launch Photoshop"
+	Lang_tray_LockIMEOn:="English Input Locked"
+	Lang_tray_LockIMEOff:="Lock English Input"
 	Lang_Undotip:="The following LSide hotkeys have been changed to RSide:"
 	Lang_Error:="Error"
 	Lang_CannotConnect:="Cannot connect to the Internet."

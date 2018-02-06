@@ -53,10 +53,28 @@ If A_IsCompiled=1
 	Menu, tray, Tip, Adobe Photoshop assistant
 }
 Menu, Tray, Icon,%A_scriptdir%\Data\tray.ico,, 1
-Menu, tray, add, %Lang_Website%, Website
+
 Menu, tray, add
-Menu, tray, add, %Lang_tray_LaunchPs%, LaunchPs
+If WinExist("ahk_class Photoshop")
+{
+	If (Check3=1)
+	{
+		Menu, tray, add, %Lang_tray_LockIMEOn%, LockIMESwitch
+		Menu, tray, Check, %Lang_tray_LockIMEOn%
+	}
+	else
+	{
+		Menu, tray, add, %Lang_tray_LockIMEOff%, LockIMESwitch
+	}
+}
+else
+{
+	Menu, tray, add, %Lang_tray_LaunchPs%, LaunchPs
+}
+
 Menu, tray, add, %Lang_tray_Config%, Config
+Menu, tray, add
+Menu, tray, add, %Lang_Website%, Website
 
 
 Menu, tray, add, %Lang_tray_Exit%, WinClose
@@ -139,6 +157,17 @@ Return
 	else If (Check8=1) and (MapAltmode=3)
 		gosub FCPs12
 	return
+#IfWinActive
+
+; 添加 Illustrator 下禁用 Alt 菜单
+#IfWinActive ahk_class Illustrator
+~Alt::
+	If (Check10=1)
+	{
+		SendInput, {Ctrl down}{Alt down}{Ctrl up}
+		KeyWait, Alt
+		SendInput, {Alt up}
+	}
 #IfWinActive
 
 #IfWinActive ahk_group Photoshop
@@ -397,7 +426,7 @@ LaunchPs:
 	return
 
 Config:
-	If not WinExist("ahk_class Photoshop")
+	If !WinExist("ahk_class Photoshop")
 		gosub LaunchPs
 	else
 	{
@@ -409,7 +438,7 @@ Config:
 	return
 
 LaunchPsAuto:
-	If not WinExist("ahk_class Photoshop")
+	If !WinExist("ahk_class Photoshop")
 	{
 		if FileExist(PsPath)
 		{
@@ -442,6 +471,15 @@ QCLayer:
 	KeyWait, Alt
 	Send, {Alt up}
 	Return
+
+LockIMESwitch:
+	if Check3=1
+		Check3=0
+	else
+		Check3=1
+	IniWrite, %Check3%, %A_scriptdir%\Data\Config.ini, Setting, lockIME
+	Reload
+	return
 
 ; 立即保存提示按鈕
 Savenow:

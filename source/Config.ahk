@@ -16,13 +16,12 @@ V_Trans()
 gosub ConfigRead
 ;Gosub StringReplaceRead
 
-
 ; ============================================================================
 ; 添加控件 第一步
 Gui, +Toolwindow ;+LastFound +AlwaysonTop
 Gui, Font, S%fontsize%, %fontname%
 
-Gui, Add, ListBox, x10 y10 w120 h450 vFChoice Choose1 +E0x200 gFChoicecheck, %Lang_General%|%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%
+Gui, Add, ListBox, x10 y10 w120 h450 vFChoice Choose1 +E0x200 gFChoicecheck, %Lang_General%|%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%|%Lang_Donate%
 
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_General, %Lang_General%
 	Gui, Add, Text, x150 y40 w200 h25 vGuiText4, %Lang_Your_language%
@@ -85,17 +84,30 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Other, %Lang_Other%
 	Gui, Add, Checkbox, x150 y70 w190 h25 vCheck3 %Checkd3%, %Lang_P_I_LockIME%
 	Gui, Add, Checkbox, x150 y100 w280 h25 vCheck14 %Checkd14%, %Lang_C_TempFiles% ;Clean up temporary files
 ;===========================
+Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Donate, %Lang_Donate%
+
+	Gui Add, Picture, x140 y59 w150 h150 vDonateAlipay,  %A_scriptdir%\Data\alipay.png
+	Gui Add, Picture, x300 y59 w150 h150 vDonateWechat,  %A_scriptdir%\Data\wechat.png
+
+	Gui Add, Picture, x170 y59 w246 h60 vDonatePaypal gDonateNow,  %A_scriptdir%\Data\paypal.png
+	Gui, Add, Text, x150 y290 w290 h180 vDonateText gDonateNow,%Lang_Donate_text%
+
+;===========================
 Gui, Add, GroupBox, x140 y270 w310 h250 vHelpTip, %Lang_HelpTip%
 	Gui, Add, Text, x150 y290 w290 h180 vHelpTipText,%Lang_HelpTip_text%
 
 Gui, Add, Button, x460 y10 w100 h50 vCSave gConfigSave, %Lang_Config_Save%
 Gui, Add, Button, x460 y70 w100 h30 vCCancel gGuiClose, %Lang_Config_Cancel%
-hGui := WinExist() +0
-hFont := Font("", "s" . Fontsize . " , " . Fontname , 1)
-Link1 := HLink_Add(hGui, 460, 150, 100, 20 , "OnLink", "'" . Lang_Website . "':Website")
-SendMessage, 0x30, %hFont%, 1,, ahk_id %Link1% ;WM_SETFONT = 0x30
-Link2 := HLink_Add(hGui, 460, 180, 100, 20 , "OnLink", "'" . Lang_Blog . "':Blog")
-SendMessage, 0x30, %hFont%, 1,, ahk_id %Link2% ;WM_SETFONT = 0x30
+
+Gui Add, Link, x460 y150 w100 h20, <a href="http://www.deviantart.com/deviation/160950828">%Lang_Website%</a>
+Gui Add, Link, x460 y180 w100 h20, <a href="http://millionart.deviantart.com">%Lang_Blog%</a>
+Gui Font
+
+Gui Font, s20 Bold q5 c0x0080FF, %Fontname%
+Gui Add, Button, x150 y160 w290 h60 vDonateButton gDonateNow, %Lang_Donate%
+Gui Font
+
+
 ;=============================================================
 
 
@@ -150,9 +162,6 @@ else
 OnMessage(0x200, "WM_MOUSEMOVE")
 Return
 
-enter::
-	gosub ConfigSave
-	Return
 
 AScheck:
 	GuiControlGet,txt,,Autosave, Text
@@ -336,10 +345,12 @@ ConfigSave:
 	IniWrite, %MapAlt%, %A_scriptdir%\Data\Config.ini, Setting, mapalt
 	IniWrite, %Check15%, %A_scriptdir%\Data\Config.ini, Setting, 3dsMaxSync
 	If A_IsCompiled=1
+	{
 		run %A_scriptdir%\Apssistant.exe
+		ExitApp
+	}
 	else
-		run %A_scriptdir%\Config.ahk
-	ExitApp
+		Reload
 	return
 
 ; 添加控件 第四步
@@ -378,6 +389,15 @@ GuiHideGB:
 
 	GuiControl,Hide,GB_Other
 	GuiControl,Hide,Check15
+
+	GuiControl, Hide, GB_Donate
+	GuiControl, Hide, DonateAlipay
+	GuiControl, Hide, DonateWechat
+	GuiControl, Hide, DonatePaypal
+	GuiControl, Hide, DonateButton
+	GuiControl, Hide, DonateText
+
+	GuiControl, Hide, HelpTipText
 Return
 
 ; 添加控件 第五步
@@ -407,6 +427,8 @@ FChoicecheck:
 		GuiControl,Show,GuiText5
 		GuiControl,Show,PsPath
 		GuiControl,Show,Browse1
+
+		GuiControl, Show, HelpTipText
 	}
 	Else If txt=%Lang_ColorPicker%
 	{
@@ -418,9 +440,10 @@ FChoicecheck:
 		GuiControl,Show,Check8
 		GuiControl,Show,Check12
 
-
 		GuiControl,Show,MapAlt
 		GuiControl,Show,FCPk
+
+		GuiControl, Show, HelpTipText
 	}
 	Else If txt=%Lang_Hotkey%
 	{
@@ -433,6 +456,8 @@ FChoicecheck:
 		GuiControl,Show,SHLayer
 		GuiControl,Show,QCLayer
 		GuiControl,Show,Check1
+
+		GuiControl, Show, HelpTipText
 	}
 	Else If txt=%Lang_Autosave%
 	{
@@ -442,6 +467,8 @@ FChoicecheck:
 		GuiControl,Show,GuiText2
 		GuiControl,Show,GuiText3
 		GuiControl,Show,Tiptext
+
+		GuiControl, Show, HelpTipText
 	}
 	Else If txt=%Lang_Other%
 	{
@@ -449,7 +476,27 @@ FChoicecheck:
 		GuiControl,Show,Check15
 		GuiControl,Show,Check3
 		GuiControl,Show,Check14
+
+		GuiControl, Show, HelpTipText
 	}
+	Else If txt=%Lang_Donate%
+	{
+		GuiControl, Show, GB_Donate
+
+		If (G_Language = "简体中文") || (G_Language = "正體中文") 
+		{
+			GuiControl, Show, DonateAlipay
+			GuiControl, Show, DonateWechat
+		}
+		else
+		{
+			GuiControl, Show, DonatePaypal
+			GuiControl, Show, DonateButton
+		}
+		GuiControl, Show, DonateText
+	}
+
+
 Return
 
 VerChoose:
@@ -503,17 +550,16 @@ VerChoose:
 
 	Return
 
-OnLink(hCtrl, Text, Link){
-	if Link = Website
-		gosub Website
-	else if Link = Blog
-		gosub Blog
-	else return 1
-}
+DonateNow:
+Run, https://www.paypal.me/millionart
+return
 
 ; 当鼠标移动到控件上，显示帮助提示
 WM_MOUSEMOVE()
 {
+	GuiControlGet,txt,,FChoice,
+	If (txt!=%Lang_Donate%)
+	{
 	static Lang_HT_, CurrControl, PrevControl, ; HT means Help Tip
 	CurrControl := A_GuiControl
 	If (CurrControl <> PrevControl and not InStr(CurrControl, " "))
@@ -527,8 +573,8 @@ WM_MOUSEMOVE()
 	SetTimer, DisplayToolTip, Off
 	GuiControl,,HelpTipText, % Lang_HT_%CurrControl% ; 第一个百分号表示后面是一个表达式
 	return
+	}
 }
 
 #include %A_scriptdir%\inc\Font.ahk
-#include %A_scriptdir%\inc\HLink.ahk
 #include %A_scriptdir%\inc\Handle.ahk

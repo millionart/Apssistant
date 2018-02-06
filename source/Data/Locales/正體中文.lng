@@ -30,6 +30,9 @@ P_I_LockIME=鎖定為英文輸入法
 C_TempFiles=退出時自動清理殘留臨時文件
 P_I=防止干擾
 Other=其他
+Donate=打賞作者
+Donate_text=感謝使用 Apssistant！\n此軟體自 2007 年誕生以來，已經為全世界無數的 Photoshop 使用者提供了幫助。\n如果這款軟體曾經對您有幫助，可以請作者喝杯咖啡以表支持。\n金額不限，感謝您的心意。
+
 Other_3DsMaxSync=3ds Max 貼圖同步
 Savenow=立即儲存！
 Set_hotkey_Center=中心
@@ -50,6 +53,8 @@ tray_Config=設定
 tray_Exit=關閉
 tray_LaunchPs=啟動 Photoshop
 LockIMEtip=你的輸入法已經被Photoshop CS5++鎖定為英文
+tray_LockIMEOn=已鎖定為英文輸入法
+tray_LockIMEOff=未鎖定為英文輸入法
 Tiptitle=提示
 Undotip=以下左邊的預設快速鍵已更改為右邊：
 

@@ -1,6 +1,10 @@
 ; Mail to millionart@gmail.com for your translation :)
 ; Translation by YoungLink19 and Google translate XD
+Language=English
+
 General=General
+Your_language=Your language:
+Your_Photoshop_version=Your Photoshop version:
 Autosave_Min=Min.
 Autosave_no=Disabled
 Autosave_Optional=Tip text (Optional)
@@ -13,13 +17,15 @@ Config_Cancel=Cancel
 Config_CS5mark=Gray items only used for CS5
 Config_Save=Save
 Config_Browse=Browse...
-HelpTip=Help
+HelpTip=Tip
 dontsavenow=Hide
 ColorPicker=Color Picker
 Hotkey=Hotkey
 PsDir=Browse to the location of Photoshop
 Langtip=Language has been changed now!
 LockIMEtip=Your input method has been locked to English by Photoshop CS5++
+tray_LockIMEOn=English Input Locked
+tray_LockIMEOff=Lock English Input
 Msg_Debug=Error: Missing coordinates, Please try the following solution:\n - Set correctly in the program you are currently using Photoshop version\n - set The system themen to the default\n  - A front window of influence, maybe need to turn it off\n - Check the Photoshop version of the file folder picture is consistently (see note)
 OpenGLtip=a.Please enable Preferences>>Enable OpenGL Drawing\nb.Hold on/off space to change hue at the same time
 P_I_DisableAltMenu=Disable Alt menu
@@ -29,6 +35,9 @@ P_I_LockIME=Lock input method to English
 P_I=Anti-disturb
 Other=Other
 Other_3dsMaxSync=3ds Max Sync
+Donate=Donate
+Donate_text=Thank you use Apssistant！\nThis software has helped countless Photoshop users around the world since 2007.\nIf this software used to be helpful to you, you can treat me to have a cup of coffee.\nAny amount, thanks for your kindness.\n\n\t\tJack(The Author)
+
 C_TempFiles=Automatically clean up temporary files after exit
 Savenow=Save now!
 Set_hotkey_Center=Center

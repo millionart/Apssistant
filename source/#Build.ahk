@@ -11,7 +11,7 @@ Process,Close,Update.exe
 
 V_CurrentVer()
 
-Compiler=D:\Program Files\AutoHotkey\Compiler\
+Compiler=C:\Program Files\AutoHotkey\Compiler\
 ;source=%~dp0
 
 FileAppend,
@@ -70,6 +70,7 @@ del ..\bin\x64\APssistant.7z
 
 move Update.com Update.exe
 move Config.com Config.exe
+pause
 
 ), build.bat
 

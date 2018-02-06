@@ -94,18 +94,6 @@ ConfigRead:
 	stringreplace, Tiptext, Tiptext, \r, `r, All
 	Return
 
-Website:
-	; please retain the original links and related notes.
-	run http://www.deviantart.com/deviation/160950828
-	return
-
-Blog:
-	; please retain the original links and related notes.
-	run http://millionart.deviantart.com
-	return
-
-
-
 ; A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A links A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A
 
 WinClose:
