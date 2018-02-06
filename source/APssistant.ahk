@@ -67,10 +67,9 @@ If WinExist("ahk_class Photoshop")
 		Menu, tray, add, %Lang_tray_LockIMEOff%, LockIMESwitch
 	}
 }
-else
-{
-	Menu, tray, add, %Lang_tray_LaunchPs%, LaunchPs
-}
+
+Menu, tray, add, %Lang_tray_LaunchPs%, LaunchPsAuto
+
 
 Menu, tray, add, %Lang_tray_Config%, Config
 Menu, tray, add
@@ -79,12 +78,14 @@ Menu, tray, add, %Lang_Website%, Website
 
 Menu, tray, add, %Lang_tray_Exit%, WinClose
 
-If Check4=0
-	Menu, tray, default, %Lang_tray_Config%
-else IfExist, %PsPath%
+If FileExist(PsPath)
 {
 	Menu, tray, default, %Lang_tray_LaunchPs%
 	Menu, tray, Icon, %Lang_tray_LaunchPs%, %PsPath%,, 16
+}
+else If !FileExist(PsPath) && !WinExist("ahk_class Photoshop")
+{
+	Menu, tray, default, %Lang_tray_Config%
 }
 
 If A_IsCompiled=1
@@ -410,43 +411,22 @@ LButtondown1:
 	send,{space down}
 	Return
 
-LaunchPs:
-	If WinExist("ahk_class Photoshop")
-	{
-		WinwaitActive, ahk_class Photoshop
-		gosub Config
-	}
-	else
-	{
-		if FileExist(PsPath)
-			run, "%PsPath%"
-		else
-			gosub Browse2
-	}
-	return
-
 Config:
-	If !WinExist("ahk_class Photoshop")
-		gosub LaunchPs
-	else
-	{
 	If A_IsCompiled=1
 		Run %A_scriptdir%\Config.exe
 	else
-		run %A_scriptdir%\Config.ahk
-	}
+		Run %A_scriptdir%\Config.ahk
 	return
 
 LaunchPsAuto:
-	If !WinExist("ahk_class Photoshop")
+	If !FileExist(PsPath) || WinExist("ahk_class Photoshop")
+		gosub Config
+		
+	If FileExist(PsPath) && !WinExist("ahk_class Photoshop")
 	{
-		if FileExist(PsPath)
-		{
-			Menu, tray, default, %Lang_tray_Config%
-			run, "%PsPath%"
-		}
-		else
-			gosub Browse2
+		Run, "%PsPath%"
+		WinwaitActive, ahk_class Photoshop
+		Reload
 	}
 	return
 

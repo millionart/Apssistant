@@ -81,7 +81,8 @@ ConfigRead:
 	IniRead, Check15, %A_scriptdir%\Data\Config.ini, Setting, 3dsMaxSync, 0
 	If PsPath=NULL
 	{
-		PsDir:=RegRead64("HKEY_LOCAL_MACHINE", "SOFTWARE\Adobe\Photoshop\" . Regver . ".0", "ApplicationPath")
+		RegRead, PsDir, HKLM, SOFTWARE\Adobe\Photoshop\%Regver%.0 , ApplicationPath
+		;PsDir:=RegRead64("HKEY_LOCAL_MACHINE", "SOFTWARE\Adobe\Photoshop\" . Regver . ".0", "ApplicationPath")
 		If ErrorLevel
 			PsPath=NULL
 		else
@@ -110,5 +111,5 @@ Cancel:
 	return
 
 #include %A_scriptdir%\inc\Function.ahk
-#include %A_scriptdir%\inc\reg64.ahk
+;#include %A_scriptdir%\inc\reg64.ahk
 ;#include %A_scriptdir%\inc\Dlg.ahk

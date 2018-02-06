@@ -576,5 +576,5 @@ WM_MOUSEMOVE()
 	}
 }
 
-#include %A_scriptdir%\inc\Font.ahk
+;#include %A_scriptdir%\inc\Font.ahk
 #include %A_scriptdir%\inc\Handle.ahk

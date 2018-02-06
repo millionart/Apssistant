@@ -9,7 +9,6 @@ IfExist %A_scriptdir%\APssistant.com
 FileDelete, %A_scriptdir%\APssistant.exe
 FileMove, %A_scriptdir%\APssistant.com, %A_scriptdir%\APssistant.exe
 }
-;msgbox % VerToNum("" . f_CurrentVer . "") > VerToNum("" . LatestVer . "")
 
 IniRead, f_CurrentVer, %A_scriptdir%\Data\Config.ini, Setting, Apssistantver,1
 if f_CurrentVer=0
@@ -77,6 +76,7 @@ f_CheckVersion(Quiet=0)
 	FileDelete, %VerFileName%
 	UrlDownloadToFile, https://github.com/millionart/Apssistant/raw/master/bin/x%OSbit%/Update.ini, %VerFileName%
 	IniRead, LatestVer, %VerFileName%, %WinBit%, Version,CannotConnect
+	FileDelete, %VerFileName%
 	Process, Exist, Apssistant.exe
 	pc1:=ErrorLevel
 
