@@ -73,13 +73,10 @@ UpdateStart:
 ;Update function thanks to http://www.autohotkey.net/~rexx/FolderMenu/
 f_CheckVersion(Quiet=0)
 {
-	Global
-	Local VerFileName, LatestVer
+	Global VerFileName, LatestVer,WinBit,OSbit
 	FileDelete, %VerFileName%
-
 	UrlDownloadToFile, https://github.com/millionart/Apssistant/raw/master/bin/x%OSbit%/Update.ini, %VerFileName%
 	IniRead, LatestVer, %VerFileName%, %WinBit%, Version,CannotConnect
-
 	Process, Exist, Apssistant.exe
 	pc1:=ErrorLevel
 

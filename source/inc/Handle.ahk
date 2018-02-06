@@ -94,7 +94,10 @@ ConfigRead:
 	stringreplace, Tiptext, Tiptext, \r, `r, All
 	Return
 
-; A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A links A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A
+Website:
+	; please retain the original links and related notes.
+	run http://www.deviantart.com/deviation/160950828
+	return
 
 WinClose:
 	Process, Close, Config.exe

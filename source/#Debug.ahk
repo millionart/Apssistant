@@ -9,7 +9,7 @@ Process,Close,Apssistant.exe
 Process,Close,Config.exe
 Process,Close,Update.exe
 
-Compiler=D:\Program Files\AutoHotkey\Compiler\
+Compiler=C:\Program Files\AutoHotkey\Compiler\
 ;source=%~dp0
 
 FileAppend,
