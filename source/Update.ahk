@@ -1,4 +1,4 @@
-#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 FileEncoding , UTF-8
 #SingleInstance, force
@@ -73,7 +73,7 @@ UpdateStart:
 ;Update function thanks to http://www.autohotkey.net/~rexx/FolderMenu/
 f_CheckVersion(Quiet=0)
 {
-	Global VerFileName, LatestVer,WinBit,OSbit
+	Global VerFileName, LatestVer,WinBit,OSbit,f_CurrentVer
 	FileDelete, %VerFileName%
 	UrlDownloadToFile, https://github.com/millionart/Apssistant/raw/master/bin/x%OSbit%/Update.ini, %VerFileName%
 	IniRead, LatestVer, %VerFileName%, %WinBit%, Version,CannotConnect
