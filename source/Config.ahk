@@ -204,6 +204,7 @@ Browse1:
 
 ModifyBrushKeyToggle:
 	GuiControlGet, Check11
+
 	If Check11=0
 	{
 		GuiControl,Disable,ModifyBrushKey
@@ -292,7 +293,6 @@ QCLayerToggle:
 	If Check6=0
 	{
 		GuiControl,Disable,QCLayer
-		Return
 	}
 	else If Check6=1
 	{
@@ -305,7 +305,6 @@ SHLayerToggle:
 	If Check13=0
 	{
 		GuiControl,Disable,SHLayer
-		Return
 	}
 	else If Check13=1
 	{
@@ -344,13 +343,12 @@ ConfigSave:
 	IniWrite, %ModifyBrushKey%, %A_scriptdir%\Data\Config.ini, Setting, ModifyBrushRadius
 	IniWrite, %MapAlt%, %A_scriptdir%\Data\Config.ini, Setting, mapalt
 	IniWrite, %Check15%, %A_scriptdir%\Data\Config.ini, Setting, 3dsMaxSync
-	If A_IsCompiled=1
+	If A_IsCompiled
 	{
 		run %A_scriptdir%\Apssistant.exe
 		ExitApp
 	}
-	else
-		Reload
+	Reload
 	return
 
 ; 添加控件 第四步
@@ -511,7 +509,10 @@ VerChoose:
 		GuiControl,enable,Check9
 		GuiControl,enable,Check11
 		GuiControl,enable,Check12
-		GuiControl,enable,ModifyBrushKey
+		if check11=1
+		{
+			GuiControl,enable,ModifyBrushKey
+		}
 		GuiControl,enable,HUDCP
 		GuiControl,,MapAlt,|%Lang_Set_hotkey_mapalt_1%|%Lang_Set_hotkey_mapalt_2%|%Lang_Set_hotkey_mapalt_3%|
 		GuiControl, Choose, MapAlt, |%MapAltmode%

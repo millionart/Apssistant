@@ -6,13 +6,13 @@ FileEncoding , UTF-8
 
 IfExist %A_scriptdir%\APssistant.com
 {
-FileDelete, %A_scriptdir%\APssistant.exe
-FileMove, %A_scriptdir%\APssistant.com, %A_scriptdir%\APssistant.exe
+	FileDelete, %A_scriptdir%\APssistant.exe
+	FileMove, %A_scriptdir%\APssistant.com, %A_scriptdir%\APssistant.exe
 }
 
 IniRead, f_CurrentVer, %A_scriptdir%\Data\Config.ini, Setting, Apssistantver,1
 if f_CurrentVer=0
-ExitApp
+	ExitApp
 
 G_ReadLanguage()
 Downloadtimes=0
@@ -70,43 +70,44 @@ UpdateStart:
 ; ==========================================函数==========================================
 
 ;Update function thanks to http://www.autohotkey.net/~rexx/FolderMenu/
-f_CheckVersion(Quiet=0)
+f_CheckVersion()
 {
-	Global VerFileName, LatestVer,WinBit,OSbit,f_CurrentVer
+	Global
 	FileDelete, %VerFileName%
-	UrlDownloadToFile, https://github.com/millionart/Apssistant/raw/master/bin/x%OSbit%/Update.ini, %VerFileName%
-	IniRead, LatestVer, %VerFileName%, %WinBit%, Version,CannotConnect
-	FileDelete, %VerFileName%
-	Process, Exist, Apssistant.exe
-	pc1:=ErrorLevel
 
-	if LatestVer =CannotConnect
+	If (A_IsCompiled)
 	{
-		if (pc1=0)
-			MsgBox, 16, %lang_Error%, %lang_CannotConnect%
-		else
-			ExitApp
+		UrlDownloadToFile, https://github.com/millionart/Apssistant/raw/master/bin/x%OSbit%/Update.ini, %VerFileName%
+		IniRead, LatestVer, %VerFileName%, %WinBit%, Version,CannotConnect
+		FileDelete, %VerFileName%
 	}
 	else
 	{
+		UrlDownloadToFile, https://github.com/millionart/Apssistant/raw/master/bin/test/Update.ini, %VerFileName%
+		IniRead, LatestVer, %VerFileName%, %WinBit%, Version,CannotConnect
+	}
+
+	Process, Exist, Apssistant.exe
+	if (ErrorLevel = 0) ;如果找不到 Apssistant 进程
+	{
+		If (LatestVer = "CannotConnect")
+		{
+			MsgBox, 16, %lang_Error%, %lang_CannotConnect%
+			ExitApp
+		}
+
 		if VerToNum("" . f_CurrentVer . "") < VerToNum("" . LatestVer . "")
 		{
 			If FileExist(UpdateFileName)  ;存在升级文件
 				gosub UpdateStart
 			else
 				gosub DownloadUpdateStart
-		}
-		else if (pc1=0)
-		{
-			;StringReplace, NewVerNotAvailable, lang_NewVerNotAvailable, `%f_CurrentVer`%, %CurrentVer%
-			;if !Quiet
-			MsgBox, 64, Apssistant, %NewVerNotAvailable%, 30
+
+			MsgBox, 64, Apssistant, %lang_UpdateSuccessful%, 30
 		}
 		else
-		ExitApp
-
+		MsgBox, 64, Apssistant, %lang_NewVerNotAvailable%, 30
 	}
-	return
 }
 
 ;Thanks to 彪悍的小玄

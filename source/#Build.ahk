@@ -94,6 +94,8 @@ IniWrite, %binexex64hash%, %A_scriptdir%\..\bin\x64\Update.ini, Win64, MD5
 IniWrite, https://github.com/millionart/Apssistant/raw/master/bin/x32/Setup.exe, %A_scriptdir%\..\bin\x32\Update.ini, Win32, Url
 IniWrite, https://github.com/millionart/Apssistant/raw/master/bin/x64/Setup.exe, %A_scriptdir%\..\bin\x64\Update.ini, Win64, Url
 
+FileCopy, %A_scriptdir%\..\bin\x32\*.*, %A_scriptdir%\..\bin\old\*.* ,1
+
 return
 
 #include %A_scriptdir%\inc\Function.ahk

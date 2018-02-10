@@ -57,10 +57,11 @@ Tiptitle=提示
 Undotip=以下左边默认快捷键已更改为右边：
 
 Error=错误
-CannotConnect =无法连接互联网
+CannotConnect =无法连接更新服务！\n请检查你的网络连接状况
 NewVer=发现新版本！
-NewVerAvailable=当前发布了一个新版本： v%LatestVer%\n\n点击 确定 立即更新！\n\n点击 取消 手动更新。
-NewVerNotAvailable=更新成功！
+NewVerAvailable=当前发布了一个新版本： v%LatestVer%\n\n点击 确定 立即更新！。
+NewVerNotAvailable=暂未发现新版本！
+UpdateSuccessful=更新成功！
 
 HT_FChoice=软件功能分类列表。\n\n注意事项\n* 快捷键修改不支持数位板扩展键。\n* 套索工具状态下使用 HUD 拾色器可能导致假死。\n* 连续快速使用快捷键可能导致 Photoshop 不稳定。\n* 某些软件可能对本软件造成严重的性能损失，请在使用本软件及 Photoshop 时禁用其 进程/服务（如gdipp）。
 HT_GB_General=HT_GB_General
@@ -85,7 +86,7 @@ HT_Check11=仅用于 CS4 及以上版本，将 Alt+右键 合并以达到模拟3
 HT_ModifyBrushKey=为修改笔刷范围功能设置一个快捷键。\n\n切勿留空或与本软件其他快捷键冲突。
 HT_Check6=一键创建新图层（Alt+Shift+Ctrl+N）而无需确认。
 HT_QCLayer=为快速创建新图层功能设置一个快捷键。\n\n切勿留空或与本软件其他快捷键冲突。
-HT_Check1=为方便经常重装并习惯改键的用户设计，将默认的撤销和重做快捷键更换如下： \n功能\t修改前\t修改后\n后退一步\tAlt+Ctrl+z\tCtrl+z\n前进一步\tShift+Ctrl+z\tCtrl+y\n\n强烈不建议常用此功能，推荐 Photoshop 自带改键功能，方法：\n\t键盘快捷键和菜单>快捷键用于（应用程序菜单）>按上文次序更改。
+HT_Check1=为方便经常重装并习惯改键的用户设计，将默认的撤销和重做快捷键更换如下： \n功能\t修改前\t修改后\n后退一步\tAlt+Ctrl+Z\tCtrl+Z\n前进一步\tShift+Ctrl+Z\tCtrl+Y\n\n强烈不建议常用此功能，推荐 Photoshop 自带改键功能，方法：\n\t键盘快捷键和菜单>快捷键用于（应用程序菜单）>按上文次序更改。
 HT_GB_Autosave=HT_GB_Autosave
 HT_Autosave=禁用自动保存：\n关闭此功能。\n\n提示保存，间隔时间：\n定时弹出保存提示信息。\n\n自动保存，间隔时间：\n无提示，定时自动保存。
 HT_Savesleep=间隔时间设置过短（小于2分钟）有可能损坏文件！

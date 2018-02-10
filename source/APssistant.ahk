@@ -68,7 +68,7 @@ If WinExist("ahk_class Photoshop")
 	}
 }
 
-Menu, tray, add, %Lang_tray_LaunchPs%, LaunchPsAuto
+Menu, tray, add, %Lang_tray_LaunchPs%, LaunchPs
 
 
 Menu, tray, add, %Lang_tray_Config%, Config
@@ -78,7 +78,7 @@ Menu, tray, add, %Lang_Website%, Website
 
 Menu, tray, add, %Lang_tray_Exit%, WinClose
 
-If FileExist(PsPath)
+If FileExist("%PsPath%")
 {
 	Menu, tray, default, %Lang_tray_LaunchPs%
 	Menu, tray, Icon, %Lang_tray_LaunchPs%, %PsPath%,, 16
@@ -412,21 +412,33 @@ LButtondown1:
 	Return
 
 Config:
-	If A_IsCompiled=1
+	If A_IsCompiled
 		Run %A_scriptdir%\Config.exe
 	else
 		Run %A_scriptdir%\Config.ahk
 	return
 
+LaunchPs:
+	If FileExist("%PsPath%") && !WinExist("ahk_class Photoshop")
+	{
+		Run, "%PsPath%"
+	}
+
+	WinwaitActive, ahk_class Photoshop
+	Reload
+Return
+
 LaunchPsAuto:
-	If !FileExist(PsPath) || WinExist("ahk_class Photoshop")
-		gosub Config
-		
-	If FileExist(PsPath) && !WinExist("ahk_class Photoshop")
+	If FileExist("%PsPath%") && !WinExist("ahk_class Photoshop")
 	{
 		Run, "%PsPath%"
 		WinwaitActive, ahk_class Photoshop
 		Reload
+	}
+	
+	If FileExist("%PsPath%")=False
+	{
+		gosub Config
 	}
 	return
 
