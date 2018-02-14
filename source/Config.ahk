@@ -142,8 +142,6 @@ gosub QCLayerToggle
 
 gosub SHLayerToggle
 
-gosub AScheck
-
 gosub 3dsMaxSyncCheck
 
 gosub GuiHideGB
@@ -168,24 +166,24 @@ AScheck:
 	GuiControlGet,txt,,Autosave, Text
 	If txt=%Lang_Autosave_no%
 	{
-	  GuiControl,Disable,Savesleep
-	  GuiControl,Disable,GuiText2
-	  GuiControl,Disable,GuiText3
-	  GuiControl,Disable,Tiptext
+	  GuiControl,Hide,Savesleep
+	  GuiControl,Hide,GuiText2
+	  GuiControl,Hide,GuiText3
+	  GuiControl,Hide,Tiptext
 	}
 	Else If txt=%Lang_Autosave_tip%
 	{
-	  GuiControl,Enable,Savesleep
-	  GuiControl,Enable,GuiText2
-	  GuiControl,Enable,GuiText3
-	  GuiControl,Enable,Tiptext
+	  GuiControl,Show,Savesleep
+	  GuiControl,Show,GuiText2
+	  GuiControl,Show,GuiText3
+	  GuiControl,Show,Tiptext
 	}
 	Else If txt=%Lang_Autosave_yes%
 	{
-	  GuiControl,Enable,Savesleep
-	  GuiControl,Enable,GuiText2
-	  GuiControl,Disable,GuiText3
-	  GuiControl,Disable,Tiptext
+	  GuiControl,Show,Savesleep
+	  GuiControl,Show,GuiText2
+	  GuiControl,Hide,GuiText3
+	  GuiControl,Hide,Tiptext
 	}
 	Return
 
@@ -462,10 +460,7 @@ FChoicecheck:
 	{
 		GuiControl,Show,GB_Autosave
 		GuiControl,Show,Autosave
-		GuiControl,Show,Savesleep
-		GuiControl,Show,GuiText2
-		GuiControl,Show,GuiText3
-		GuiControl,Show,Tiptext
+		gosub AScheck
 
 		GuiControl, Show, HelpTipText
 	}
