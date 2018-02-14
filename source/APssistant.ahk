@@ -86,6 +86,7 @@ Menu, tray, add, %Lang_tray_Exit%, WinClose
 If FileExist(PsPath)
 {
 	Menu, tray, default, %Lang_tray_LaunchPs%
+	try
 	Menu, tray, Icon, %Lang_tray_LaunchPs%, %PsPath%,, %trayIconSize%
 }
 else If !FileExist(PsPath) && !WinExist("ahk_class Photoshop")

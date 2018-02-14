@@ -279,7 +279,6 @@ Langtip:
 	IniWrite, %Fontsize%, %A_scriptdir%\Data\Config.ini, General, fontsize
 	IniWrite, %Fontname%, %A_scriptdir%\Data\Config.ini, General, fontname
 	IniWrite, %G_Language%, %A_scriptdir%\Data\Config.ini, Setting, lang
-	G_ReadLanguage()
 	Process,Close,Apssistant.exe
 	;MsgBox, 0,, %Lang_Langtip%
 	If A_IsCompiled=1
