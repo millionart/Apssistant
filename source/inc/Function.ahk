@@ -74,7 +74,7 @@ G_ReadLanguage()
 
 		StringReplace, String, String, \n, `n, All
 		StringReplace, String, String, \t, % "	", All
-
+		Try
         lang_%Name% := String
 
         Row:=++Row
