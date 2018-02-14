@@ -22,16 +22,17 @@ Gui, +Toolwindow ;+LastFound +AlwaysonTop
 Gui, Font, S%fontsize%, %fontname%
 
 Gui, Add, ListBox, x10 y10 w120 h450 vFChoice Choose1 +E0x200 gFChoicecheck, %Lang_General%|%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%|%Lang_Donate%
-
+		stringStartNum=2
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_General, %Lang_General%
 	Gui, Add, Text, x150 y40 w200 h25 vGuiText4, %Lang_Your_language%
-		gui_Language = %G_Language%||
-		Loop, %A_ScriptDir%\Data\Locales\*.lng
+		gui_Language = 
+		loop,%LangTotal%
 		{
-			SplitPath, A_LoopFileName, , , , A_LoopFileNameNoExt
-			gui_Language .= A_LoopFileNameNoExt . "|"
+			LangName:=CSV_ReadCell(CSV_Identifier, 1, stringStartNum)
+			gui_Language .=LangName . "|"
+			stringStartNum:=++stringStartNum
 		}
-	Gui, Add, DropDownList, x361 y40 w80 vG_Language gLangtip, %gui_Language%
+	Gui, Add, DropDownList, x361 y40 w80 vG_Language gLangtip Choose%LangNum%, %gui_Language%
 	Gui, Add, Text, x150 y70 w200 h25 vGuiText5, %Lang_Your_Photoshop_version%
 	Gui, Add, DropDownList, x361 y70 w80 vPsCSver Choose%PsCSverNo% gVerChoose, %PSCSverList%
 	Gui, Add, Edit, x150 y100 w211 h25 vPsPath Readonly, %PsPath%
@@ -196,7 +197,7 @@ Browse1:
 		ProgramFilesDir:="A_ProgramFiles"
 	else
 		ProgramFilesDir:="PsDir"
-	FileSelectFile, Dir , 1, %ProgramFilesDir%\Photoshop.exe, %Lang_PsDir%, Photoshop (*.exe; *.lnk)
+	FileSelectFile, Dir , 1, %ProgramFilesDir%\Photoshop.exe, %Lang_PsDir%, Photoshop (*.exe)
 	StringReplace, Dir, Dir, `n, `r`n, A
 	If dir<>
 		ControlSetText,Edit1,%Dir%
@@ -282,7 +283,7 @@ Langtip:
 	IniWrite, %G_Language%, %A_scriptdir%\Data\Config.ini, Setting, lang
 	G_ReadLanguage()
 	Process,Close,Apssistant.exe
-	MsgBox, 0,, %Lang_Langtip%
+	;MsgBox, 0,, %Lang_Langtip%
 	If A_IsCompiled=1
 		run %A_scriptdir%\Apssistant.exe
 	Reload
@@ -481,7 +482,7 @@ FChoicecheck:
 	{
 		GuiControl, Show, GB_Donate
 
-		If (G_Language = "简体中文") || (G_Language = "正體中文") 
+		If (G_Language = "简体中文") || (G_Language = "繁体中文") 
 		{
 			GuiControl, Show, DonateAlipay
 			GuiControl, Show, DonateWechat

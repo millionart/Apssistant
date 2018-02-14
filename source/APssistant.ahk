@@ -40,6 +40,11 @@ GroupAdd, Photoshop, ahk_class PSDocC ;CS2画布
 
 SysGet, VirtualWidth, 78
 SysGet, VirtualHeight, 79
+
+If (A_ScreenWidth>=2000) || (A_ScreenHeight>1200)
+	trayIconSize=32
+Else
+	trayIconSize=16
 ; 读取界面配置
 IniRead, fontname, %A_scriptdir%\Data\Config.ini, General, fontname, Segoe UI
 G_ReadLanguage()
@@ -78,10 +83,10 @@ Menu, tray, add, %Lang_Website%, Website
 
 Menu, tray, add, %Lang_tray_Exit%, WinClose
 
-If FileExist("%PsPath%")
+If FileExist(PsPath)
 {
 	Menu, tray, default, %Lang_tray_LaunchPs%
-	Menu, tray, Icon, %Lang_tray_LaunchPs%, %PsPath%,, 16
+	Menu, tray, Icon, %Lang_tray_LaunchPs%, %PsPath%,, %trayIconSize%
 }
 else If !FileExist(PsPath) && !WinExist("ahk_class Photoshop")
 {
@@ -90,13 +95,13 @@ else If !FileExist(PsPath) && !WinExist("ahk_class Photoshop")
 
 If A_IsCompiled=1
 {
-	Menu, tray, Icon, %Lang_Website%, %A_scriptdir%\APssistant.exe,, 16
-	Menu, tray, Icon, %Lang_tray_Config%, %A_scriptdir%\Config.exe,, 16
+	Menu, tray, Icon, %Lang_Website%, %A_scriptdir%\APssistant.exe,, %trayIconSize%
+	Menu, tray, Icon, %Lang_tray_Config%, %A_scriptdir%\Config.exe,, %trayIconSize%
 }
 else
 {
-	Menu, tray, Icon, %Lang_Website%, %A_scriptdir%\Data\tray.ico,, 16
-	Menu, tray, Icon, %Lang_tray_Config%, %A_scriptdir%\inc\Config.ico,, 16
+	Menu, tray, Icon, %Lang_Website%, %A_scriptdir%\Data\tray.ico,, %trayIconSize%
+	Menu, tray, Icon, %Lang_tray_Config%, %A_scriptdir%\inc\Config.ico,, %trayIconSize%
 }
 Gui, Add, Text,,
 
@@ -234,7 +239,7 @@ Autosave:
 	else If WinExist("ahk_group Photoshop") and (Autosavenum=2)
 	{
 		text1=%Lang_Savenow%
-		text2=%Lang_dontsavenow%
+		text2=%Lang_Ignore%
 		Text3=%Tiptext%
 		NoticePanel(Text3,500,5000,"2t8","8t2",text1,text2)
 	}

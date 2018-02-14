@@ -1,0 +1,103 @@
+ID,English,简体中文,繁体中文
+General,General,常规,常規
+Your_language,Language:,语言：,語言：
+Your_Photoshop_version,Photoshop version:,Photoshop 版本：,Photoshop 版本：
+Autosave_Min,Min.,分钟,分鐘
+Autosave_no,Disabled,禁用自动保存,禁用自動儲存
+Autosave_Optional,Tip text (Optional),提示文本（选填）,提示文字（選填）
+Autosave_tip,Prompt to save. Every:,提示保存，间隔时间：,提示儲存，間隔時間：
+Autosave_yes,Autosave. Every:,自动保存，间隔时间：,自動儲存，間隔時間：
+Autosave,Autosave,自动保存,自動儲存
+Blog,Author's blog,作者博客,作者網誌
+Website,Website,官方网站,官方網站
+Config_Cancel,&Cancel,取消(&C),取消(&C)
+Config_CS5mark,Gray items are only for CS5 and above,灰色项目仅用于 CS5 及以上版本,灰色項目僅適用於 CS5 及以上版本
+Config_Save,&Save,保存(&S),儲存(&S)
+Config_Browse,&Browse...,浏览(&B)...,瀏覽(&B)…
+HelpTip,Tips,说明,說明
+Ignore,Ignore,忽略,忽略
+ChangeLog,ChangeLog,更新日志,更新日誌
+Update,Update,立即更新,立即更新
+ColorPicker,Color Picker,拾色器,檢色器
+Hotkey,Hotkey,快捷键,快速鍵
+PsDir,Browse to the location of Photoshop,请选择 Photoshop 的位置,請選擇 Photoshop 的位置
+Msg_Debug,Error: Missing coordinates,错误：找不到相关位置，请尝试以下解决方法：\n\t- 在本程序中正确设置您当前使用的 Photoshop 版本\n\t- 将系统主题设置为默认\n\t- 有前置窗口影响，需将其关闭\n\t- 检查当前版本文件夹内图片是否符合（参考说明）,錯誤：找不到相關位置，請嘗試以下解決方法：\n - 在本程序中正確設置您當前使用的 Photoshop 版本\n - 將系統主題設置為默認\n - 有前置窗口影響，需將其關閉\n - 最后檢查當前版本文件夾內圖片是否符合（參考說明）
+P_I_DisableAltMenu,Disable Alt menu,禁用 Alt 菜单键,禁用 Alt 菜單鍵
+P_I_Hidehelptip,Disable tray notificaion,关闭帮助提示,關閉說明提示
+P_I_LaunchPs,Auto launch Photoshop,自动启动 Photoshop,自動啟動 Photoshop
+P_I_LockIME,Lock input method to English,锁定为英文输入法,鎖定為英文輸入法
+C_TempFiles,Automatically clean up temporary files after exit,退出时自动清理残留临时文件,退出時自動清理殘留臨時文件
+P_I,Anti-disturb,防止干扰,防止干擾
+Other,Other,其他,其他
+Donate,Donate,打赏作者,打賞作者
+Donate_text,"Thank you for using Apssistant!\nThis software has helped countless Photoshop users around the world since 2010.\nIf this software used to be helpful to you, you can treat me to have a cup of coffee.\nAny amount, thanks for your kindness.\n\n\t\tJack(The Author)",感谢使用 Apssistant！\n此软件自 2010 年诞生以来，已经为全世界无数的 Photoshop 用户提供了帮助。\n如果这款软件曾经对你有帮助，可以请作者喝杯咖啡以表支持。\n金额不限，感谢你的心意。,感謝使用 Apssistant！\n此軟體自 2010 年誕生以來，已經為全世界無數的 Photoshop 使用者提供了幫助。\n如果這款軟體曾經對您有幫助，可以請作者喝杯咖啡以表支持。\n金額不限，感謝您的心意。
+Other_3DsMaxSync,3ds Max Texture Sync,3ds Max 贴图同步,3ds Max 貼圖同步
+Savenow,Save now!,立刻保存！,立即儲存！
+Set_hotkey_Center,Center,中心,中心
+Set_hotkey_CPT,Compatibility,兼容模式,兼容模式
+Set_hotkey_HUD_Color_Picker,Enhanced HUD color picker:,HUD 拾色器增强：,HUD 檢色器：
+Foreground_color_picker,Foreground Color Picker:,前景拾色器：,前景檢色器：
+Set_hotkey_mapalt_1,shortcut to,快捷键设置为,快速鍵設定為
+Set_hotkey_mapalt_2,map to Alt,映射为 Alt,映射為 Alt
+Set_hotkey_mapalt_3,map Alt to,映射 Alt 为,映射 Alt 為
+Set_hotkey_ModifyBrushKey,Modify brush radius:,修改笔刷范围：,修改筆刷范圍：
+Set_hotkey_Precise,Precise,精确,精確
+Set_hotkey_QCLayer,Creat a new layer:,快速创建新图层：,快速建立新圖層：
+Set_hotkey_Undo,Exchange Step Forward / Backward shortcuts,修改撤销重做快捷键,修改復原/重複的快速鍵
+Set_hotkey_SHLayer,Show/Hide current layer:,显示或隐藏当前图层：,显示或隐藏当前图层：
+tiptext,It's time to save!,现在保存一下吧！,現在儲存一下吧！
+tray_Config,Preferences,设置,設定
+tray_Exit,Exit,退出,關閉
+tray_LaunchPs,Launch Photoshop,启动 Photoshop,啟動 Photoshop
+LockIMEtip,Your input method has been locked to English by Photoshop CS5++,你的输入法已经被锁定为英文,你的輸入法已經被鎖定為英文
+tray_LockIMEOn,English Input Locked,已锁定为英文输入法,已鎖定為英文輸入法
+tray_LockIMEOff,Lock to English Input,未锁定为英文输入法,未鎖定為英文輸入法
+OpenGLtip,a.Please enable Preferences→Enable OpenGL Drawing\nb.Hold on/off space to change hue at the same time,1.此功能需到首选项→性能中启用 OpenGL 绘图\n2.按住空格以切换选色区域,1.此功能需至選項→性能中啟動 OpenGL 繪圖\n2.按住空格以切換選色區域
+Tiptitle,Tips,提示,提示
+Undotip,The following LSide hotkeys have been changed to RSide:,以下左边默认快捷键已更改为右边：,以下左邊的預設快速鍵已更改為右邊：
+Error,Error,错误,錯誤
+CannotConnect,Cannot connect to the update server!\nPlease check your Internet connection.,无法连接更新服务！\n请检查你的网络连接状况,無法連接網際網路
+NewVer,New Version!,发现新版本！,發現新版本！
+NewVerAvailable,There's a new version v%LatestVer% available.\n\nAuto Update now!,当前发布了一个新版本： v%LatestVer%\n\n建议 立即更新！。,當前發布了一個新版本： v%LatestVer%\n\n推薦 立即更新！
+NewVerNotAvailable,You're using Latest version!,暂未发现新版本！,暫未發現新版本！
+UpdateSuccessful,Updated successfully!,更新成功！,更新成功！
+HT_FChoice,,软件功能分类列表。\n\n注意事项\n* 快捷键修改不支持数位板扩展键。\n* 套索工具状态下使用 HUD 拾色器可能导致假死。\n* 连续快速使用快捷键可能导致 Photoshop 不稳定。\n* 某些软件可能对本软件造成严重的性能损失，请在使用本软件及 Photoshop 时禁用其 进程/服务（如Gdipp、MacType）。,軟體功能分類列表。\n\n注意事項\n* 快速鍵修改不支援數位板擴展鍵。\n* 套索工具狀態下使用 HUD 檢色器容易造成假死。\n* 連續快速使用快速鍵可能導致 Photoshop 不穩定。\n* 某些軟體可能對本軟體造成嚴重的性能損失，請在使用本軟體及 Photoshop 時禁用其 進程/服務（如Gdipp、MacType）。
+HT_GB_General,,,
+HT_GuiText4,,,
+HT_G_Language,,将本软件的界面改为你所使用的语种。\n\n语言文件位于：\n\tData\Locales\语种名称.lng\n\n新增或修改语言文件请发送至 millionart@gmail.com,將本軟體的界面改為你所使用的語種。\n\n語言文件位于：\n\tData\Locales\語種名稱.lng\n\n新增或修改語言文件請發送至 millionart@gmail.com
+HT_GuiText5,,,
+HT_PsCSver,,正确选择你正在使用的 Photoshop 版本。\n\n此选项将影响本软件使用效果。,正確選擇你正在使用的 Photoshop 版本。\n\n此選項將影響本軟體使用效果。
+HT_PsPath,,当前 Photoshop 启动文件的位置。\n点击浏览按钮以更改。,當前 Photoshop 啟動文件的位置。\n點擊瀏覽按鈕以更改。
+HT_Browse1,,点击以选择 Photoshop 启动文件的位置。\n也可以是加载器或快捷方式。,點擊以選擇 Photoshop 啟動文件的位置。\n也可以是加載器或快捷方式。
+HT_Check4,,选中后可获得以下功能：\n在本软件运行时自动启动Photoshop。\n双击系统托盘图标以启动Photoshop。,選中后可獲得以下功能：\n在本軟體運行時自動啟動Photoshop。\n雙擊系統托盤圖標以啟動Photoshop。
+HT_Check2,,关闭本软件附带的操作信息托盘提示。,關閉本軟體附帶的操作信息托盤提示。
+HT_GB_Hotkey,,,
+HT_Check7,,选中以启用 HUD 拾色器增强功能，此功能只适用于 CS5 及以上版本，需在 首选项 中启用 OpenGL 支持方可使用。\n在 Photoshop 菜单中启用 OpenGL 的方法： \n\t编辑>首选项>性能>启用 OpenGL 绘图\n部分显卡不支持启用 OpenGL 绘图选项（复选框为灰色），可尝试修改注册表、升级显卡驱动或硬件。,選中以啟用 HUD 檢色器增強功能，此功能只適用于 CS5 及以上版本，需在 選項 中啟用 OpenGL 支持方可使用。\n在 Photoshop 菜單中啟用 OpenGL 的方法： \n\t編輯>選項>性能>啟用 OpenGL 繪圖\n部分顯卡不支持啟用 OpenGL 繪圖選項（復選框為灰色），可嘗試修改注冊表、升級顯卡驅動或硬件。
+HT_HUDCP,,为 HUD 拾色器增强功能设置一个快捷键。\n\n切勿留空或与本软件其他快捷键冲突。,為 HUD 檢色器增強功能設置一個快速鍵。\n\n切勿留空或與本軟體其他快速鍵沖突。
+HT_Check5,,选中后将不需要按住空格键切换选色区域。前景拾色器将自动识别。 \n\n建议启用此选项。,選中后將不需要按住空格鍵切換選色區域。前景檢色器將自動識別。 \n\n建議啟用此選項。
+HT_Check9,,选中后将自动定位到屏幕中心显示 HUD 拾色器。\n\n注意：\n因为数位板使用屏幕绝对定位，所以使用此选项时应抬起数位笔。,選中后將自動定位到屏幕中心顯示 HUD 檢色器。\n\n注意：\n因為數位板使用屏幕絕對定位，所以使用此選項時應抬起數位筆。
+HT_Check12,,兼容模式（默认）：\n最快速，但某些软件可能对本软件造成严重的性能损失，请在使用本软件及 Photoshop 时禁用其 进程/服务（如gdipp）。对硬件配置要求较高。如频繁造成延迟，请使用非兼容模式。\n\n非兼容模式：\n较兼容模式慢0.2秒以提高稳定性，并瞬时锁定鼠标以避免选色偏差，也因此易被安全软件屏蔽。使用此模式如失效，请尝试暂时关闭安全软件或使用兼容模式。,兼容模式（默認）：\n最快速，但某些軟體可能對本軟體造成嚴重的性能損失，請在使用本軟體及 Photoshop 時禁用其 進程/服務（如gdipp）。對硬件配置要求較高。如頻繁造成延遲，請使用非兼容模式。\n\n非兼容模式：\n較兼容模式慢0.2秒以提高穩定性，并瞬時鎖定鼠標以避免選色偏差，也因此易被安全軟體屏蔽。使用此模式如失效，請嘗試暫時關閉安全軟體或使用兼容模式。
+HT_Check8,,选中后启用前景拾色器快捷键功能。\n注意：\n此按键可在选择版本号之后同时可实现打开/保存拾色器，即一键操作。\nCS4 及以前版本（最低至 6）在使用此功能时可能需满足以下条件：\n\t* 前景色处于可点击状态（非全屏模式）\n\t* 使用画笔工具或铅笔工具\n\t* 使用系统默认主题,選中后啟用前景檢色器快速鍵功能。\n注意：\n此按鍵可在選擇版本號之后同時可實現打開/儲存檢色器，即一鍵操作。\nCS4 及以前版本（最低至 6）在使用此功能時可能需滿足以下條件：\n\t* 前景色處于可點擊狀態（非全屏模式）\n\t* 使用畫筆工具或鉛筆工具\n\t* 使用系統默認主題
+HT_MapAlt,,快捷键设置为\nCS5 及以上版本需至以下位置修改键盘快捷键：\n\t键盘快捷键和菜单>快捷键用于（工具）\n\t\t>前景拾色器\n\n映射为 Alt\n将拾色器与 Alt 取色合并，使用 CS5 以前版本的拾色器触发方式。此功能与“禁用 Alt 菜单键”冲突。\n\n映射 Alt 为\n仅 CS5 及以上版本可见，需要输入 CS5 以上版本内设置的拾色器快捷键。此功能与“禁用 Alt 菜单键”冲突。,快速鍵設置為\nCS5 及以上版本需至以下位置修改鍵盤快速鍵：\n\t鍵盤快速鍵和菜單>快速鍵用于（工具）\n\t\t>前景檢色器\n\n映射為 Alt\n將檢色器與 Alt 取色合并，使用 CS5 以前版本的檢色器觸發方式。此功能與“禁用 Alt 菜單鍵”沖突。\n\n映射 Alt 為\n僅 CS5 及以上版本可見，需要輸入 CS5 以上版本內設置的檢色器快速鍵。此功能與“禁用 Alt 菜單鍵”沖突。
+HT_FCPk,,为前景拾色器设置一个快捷键。\nCS5 及以上版本需至以下位置修改键盘快捷键：\n\t键盘快捷键和菜单>快捷键用于（工具）\n\t\t>前景拾色器\n\n切勿留空或与本软件其他快捷键冲突。,為前景檢色器設置一個快速鍵。\nCS5 及以上版本需至以下位置修改鍵盤快速鍵：\n\t鍵盤快速鍵和菜單>快速鍵用于（工具）\n\t\t>前景檢色器\n\n切勿留空或與本軟體其他快速鍵沖突。
+HT_Check11,,仅用于 CS4 及以上版本，将 Alt+右键 合并以达到模拟3D软件相关功能的效果。,僅用于 CS4 及以上版本，將 Alt+右鍵 合并以達到模擬3D軟體相關功能的效果。
+HT_ModifyBrushKey,,为修改笔刷范围功能设置一个快捷键。\n\n切勿留空或与本软件其他快捷键冲突。,為修改筆刷范圍功能設置一個快速鍵。\n\n切勿留空或與本軟體其他快速鍵沖突。
+HT_Check6,,一键创建新图层（Alt+Shift+Ctrl+N）而无需确认。,一鍵創建新圖層（Alt+Shift+Ctrl+N）而無需確認。
+HT_QCLayer,,为快速创建新图层功能设置一个快捷键。\n\n切勿留空或与本软件其他快捷键冲突。,為快速創建新圖層功能設置一個快速鍵。\n\n切勿留空或與本軟體其他快速鍵沖突。
+HT_Check1,,为方便经常重装并习惯改键的用户设计，将默认的撤销和重做快捷键更换如下： \n功能\t修改前\t修改后\n后退一步\tAlt+Ctrl+Z\tCtrl+Z\n前进一步\tShift+Ctrl+Z\tCtrl+Y\n\n强烈不建议常用此功能，推荐 Photoshop 自带改键功能，方法：\n\t键盘快捷键和菜单>快捷键用于（应用程序菜单）>按上文次序更改。,為方便經常重裝并習慣改鍵的用戶設計，將默認的撤銷和重做快速鍵更換如下： \n功能\t修改前\t修改后\n后退一步\tAlt+Ctrl+z\tCtrl+z\n前進一步\tShift+Ctrl+z\tCtrl+y\n\n強烈不建議常用此功能，推薦 Photoshop 自帶改鍵功能，方法：\n\t鍵盤快速鍵和菜單>快速鍵用于（應用程序菜單）>按上文次序更改。
+HT_GB_Autosave,,,
+HT_Autosave,,禁用自动保存：\n关闭此功能。\n\n提示保存，间隔时间：\n定时弹出保存提示信息。\n\n自动保存，间隔时间：\n无提示，定时自动保存。,禁用自動儲存：\n關閉此功能。\n\n提示儲存，間隔時間：\n定時彈出儲存提示信息。\n\n自動儲存，間隔時間：\n無提示，定時自動儲存。
+HT_Savesleep,,间隔时间设置过短（小于2分钟）有可能损坏文件！,設置計時器間隔時間。
+HT_GuiText2,,,
+HT_GuiText3,,,
+HT_Tiptext,,选填，内容将显示于弹出信息内。,選填，內容將顯示于彈出信息內。
+HT_GB_P_I,,,
+HT_Check10,,选中后防止单击 Alt 触发菜单。,選中后防止單擊 Alt 觸發菜單。
+HT_Check3,,防止输入法导致快捷键冲突。 \n\n针对亚洲用户设计。\n使用文字工具时请务必关闭此功能。,防止輸入法導致快速鍵沖突。 \n\n針對亞洲用戶設計。\n使用文字工具時請務必關閉此功能。
+HT_HelpTip,,,
+HT_HelpTipText,,,
+HT_CSave,,保存并退出当前设置窗口。,儲存并關閉當前設置窗口。
+HT_CCancel,,取消保存并退出设置窗口。,取消儲存并關閉設置窗口。
+HT_Check13,,选中以启用一键显示或隐藏当前图层功能,選中以啟用一鍵顯示或隱藏當前圖層功能
+HT_Check14,,选中后可在退出本程序时自动尝试清理因 Photoshop 非法关闭而残留的临时文件。,選中后可在退出本程序時自動嘗試清理因 Photoshop 非法關閉而殘留的臨時文件。
+HT_SHLayer,,为显示或隐藏当前图层功能设置一个快捷键。\n\n切勿留空或与本软件其他快捷键冲突。,為顯示或隱藏當前圖層功能設置一個快速鍵。\n\n切勿留空或與本軟體其他快速鍵沖突。
