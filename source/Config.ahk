@@ -70,10 +70,10 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Hotkey, %Lang_Hotkey%
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Autosave, %Lang_Autosave%
 	Gui, Add, DropDownList, x150 y40 w190 vAutosave Choose%Autosavenum% AltSubmit gAScheck, %Lang_Autosave_no%|%Lang_Autosave_tip%|%Lang_Autosave_yes%
 		;Gui, Add, Text, x310 y40 w40 vGuiText1, %Lang_Autosave_Every%
-		Gui, Add, Edit, x345 y40 w50 h25 vSavesleep, %Savesleep%
+		Gui, Add, Edit, x345 y40 w50 h25 vSavesleep Number Center, %Savesleep%
 		Gui, Add, Text, x401 y40 w40 h25 vGuiText2, %Lang_Autosave_Min%
 		Gui, Add, Text, x150 y70 w130 h25 vGuiText3, %Lang_Autosave_Optional%
-		Gui, Add, Edit, x271 y70 w160 h40 vTiptext, %Tiptext%
+		Gui, Add, Edit, x271 y70 w160 h40 vTiptext Limit28, %Tiptext%
 
 ;===========================
 ;Gui, Add, GroupBox, x140 y10 w310 h250 vGB_P_I, %Lang_P_I%
@@ -95,7 +95,7 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Donate, %Lang_Donate%
 
 ;===========================
 Gui, Add, GroupBox, x140 y270 w310 h250 vHelpTip, %Lang_HelpTip%
-	Gui, Add, Text, x150 y290 w290 h180 vHelpTipText,%Lang_HelpTip_text%
+	Gui, Add, Text, x150 y290 w290 h220 vHelpTipText,%Lang_HelpTip_text%
 
 Gui, Add, Button, x460 y10 w100 h50 vCSave gConfigSave, %Lang_Config_Save%
 Gui, Add, Button, x460 y70 w100 h30 vCCancel gGuiClose, %Lang_Config_Cancel%
@@ -163,29 +163,45 @@ Return
 
 
 AScheck:
+	SetTimer, lockAutosaveMinTime, 50 
 	GuiControlGet,txt,,Autosave, Text
 	If txt=%Lang_Autosave_no%
 	{
-	  GuiControl,Hide,Savesleep
-	  GuiControl,Hide,GuiText2
-	  GuiControl,Hide,GuiText3
-	  GuiControl,Hide,Tiptext
+		SetTimer, lockAutosaveMinTime, off 
+		GuiControl,Hide,Savesleep
+		GuiControl,Hide,GuiText2
+		GuiControl,Hide,GuiText3
+		GuiControl,Hide,Tiptext
 	}
 	Else If txt=%Lang_Autosave_tip%
 	{
-	  GuiControl,Show,Savesleep
-	  GuiControl,Show,GuiText2
-	  GuiControl,Show,GuiText3
-	  GuiControl,Show,Tiptext
+		GuiControl,Show,Savesleep
+		GuiControl,Show,GuiText2
+		GuiControl,Show,GuiText3
+		GuiControl,Show,Tiptext
 	}
 	Else If txt=%Lang_Autosave_yes%
 	{
-	  GuiControl,Show,Savesleep
-	  GuiControl,Show,GuiText2
-	  GuiControl,Hide,GuiText3
-	  GuiControl,Hide,Tiptext
+		GuiControl,Show,Savesleep
+		GuiControl,Show,GuiText2
+		GuiControl,Hide,GuiText3
+		GuiControl,Hide,Tiptext
 	}
 	Return
+
+lockAutosaveMinTime:
+	GuiControlGet,txt,,FChoice,
+	If txt!=%Lang_Autosave%
+ 	   SetTimer, lockAutosaveMinTime, off 
+	Else
+	{
+		GuiControlGet, autoSaveTime,, Savesleep,
+		If (autosavetime<2)
+		{
+			GuiControl,, Savesleep, 2
+		}
+	}
+Return
 
 3dsMaxSyncCheck:
 	Return

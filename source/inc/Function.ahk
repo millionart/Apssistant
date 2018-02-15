@@ -14,7 +14,7 @@ V_Trans()
 	PSCSverList=6|7|CS|CS2|CS3|CS4|CS5|CS6|CC
 	;GuiGetPsver=%PsCSver%
 	;curPsver=%Regver%
-	IniRead, PsCSver, %A_scriptdir%\Data\Config.ini, Setting, Psver, CS5
+	IniRead, PsCSver, %A_scriptdir%\Data\Config.ini, Setting, Psver, CC
 	If PsCSver<8
 	{
 		Regver=%PsCSver%
