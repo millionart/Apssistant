@@ -351,27 +351,7 @@ HUDCP:
 			MouseMove, %centerw%, %centerh%,0
 		}
 
-		If Check12=1
-		{
-			send,{Shift down}{Alt down}{RButton down}
-
-			If check5=1
-			{
-				send,{Shift up}{Alt up}
-				send,{space down}
-				Hotkey, LButton, LButtondown1
-				Hotkey, LButton, on
-				KeyWait, %HUDCP%
-				send,{RButton up}{space up}
-				Hotkey, LButton, off
-			}
-			else
-			{
-				KeyWait, %HUDCP%
-				send,{Shift up}{Alt up}{RButton up}
-			}
-		}
-		else
+		If (hotkeyMode=2)
 		{
 			BlockInput,MouseMove
 			send,{Alt down}{Shift down}{RButton down}
@@ -397,6 +377,26 @@ HUDCP:
 			else
 			{
 				BlockInput,MouseMoveOff
+				KeyWait, %HUDCP%
+				send,{Shift up}{Alt up}{RButton up}
+			}
+		}
+		Else
+		{
+			send,{Shift down}{Alt down}{RButton down}
+
+			If check5=1
+			{
+				send,{Shift up}{Alt up}
+				send,{space down}
+				Hotkey, LButton, LButtondown1
+				Hotkey, LButton, on
+				KeyWait, %HUDCP%
+				send,{RButton up}{space up}
+				Hotkey, LButton, off
+			}
+			else
+			{
 				KeyWait, %HUDCP%
 				send,{Shift up}{Alt up}{RButton up}
 			}

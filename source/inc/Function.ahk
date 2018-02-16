@@ -68,13 +68,16 @@ G_ReadLanguage()
     {
 				;msgbox,%Row%
         Name:=CSV_ReadCell(CSV_Identifier, Row, 1)
-        String:=CSV_ReadCell(CSV_Identifier, Row, StringCol)   
+        String:=CSV_ReadCell(CSV_Identifier, Row, StringCol)
+		
+		StringReplace, String, String, \n, `n, All
+		StringReplace, String, String, \t, % "	", All
+
         Name   = %Name%
 		String = %String%
 
-		StringReplace, String, String, \n, `n, All
-		StringReplace, String, String, \t, % "	", All
-		Try
+		
+		;Try
         lang_%Name% := String
 
         Row:=++Row

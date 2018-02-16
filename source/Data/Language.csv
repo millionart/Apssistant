@@ -7,13 +7,13 @@ HT_PsCSver,,正确选择你正在使用的 Photoshop 版本。\n\n此选项将�
 Autosave,Autosave,自动保存,自動儲存
 Autosave_no,Disabled,禁用自动保存,禁用自動儲存
 Autosave_Optional,Tip text (Optional),提示文本（选填）,提示文字（選填）
-Autosave_tip,Prompt to save. Every:,提示保存，间隔时间：,提示儲存，間隔時間：
-Autosave_yes,Autosave. Every:,自动保存，间隔时间：,自動儲存，間隔時間：
+Autosave_tip,Tip to save. Every:,提示保存，间隔时间：,提示儲存，間隔時間：
+Autosave_yes,Automatically save. Every:,自动保存，间隔时间：,自動儲存，間隔時間：
 Autosave_Min,Min.,分钟,分鐘
 tiptext,It's time to save!,现在保存一下吧！,現在儲存一下吧！
 Savenow,Save now!,立刻保存！,立即儲存！
 HT_Autosave,,禁用自动保存：\n关闭此功能。\n\n提示保存，间隔时间：\n定时弹出保存提示信息。\n\n自动保存，间隔时间：\n无提示，定时自动保存。,禁用自動儲存：\n關閉此功能。\n\n提示儲存，間隔時間：\n定時彈出儲存提示信息。\n\n自動儲存，間隔時間：\n無提示，定時自動儲存。
-HT_Savesleep,,间隔时间设置过短（小于 2 分钟）有可能损坏文件！,間隔時間設置過短（小於 2 分鐘）有可能損壞文件！
+HT_Savesleep,Interval set too short (less than 2 minutes) may damage the file!,间隔时间设置过短（小于 2 分钟）有可能损坏文件！,間隔時間設置過短（小於 2 分鐘）有可能損壞文件！
 Blog,Author's blog,作者博客,作者網誌
 Website,Website,官方网站,官方網站
 Config_Save,Save,保存,儲存
@@ -49,12 +49,18 @@ Donate,Donate,打赏作者,打賞作者
 Donate_text,"Thank you for using Apssistant!\nThis software has helped countless Photoshop users around the world since 2010.\nIf this software used to be helpful to you, you can treat me to have a cup of coffee.\nAny amount, thanks for your kindness.\n\n\t\tJack(The Author)",感谢使用 Apssistant！\n此软件自 2010 年诞生以来，已经为全世界无数的 Photoshop 用户提供了帮助。\n如果这款软件曾经对你有帮助，可以请作者喝杯咖啡以表支持。\n金额不限，感谢你的心意。,感謝使用 Apssistant！\n此軟體自 2010 年誕生以來，已經為全世界無數的 Photoshop 使用者提供了幫助。\n如果這款軟體曾經對您有幫助，可以請作者喝杯咖啡以表支持。\n金額不限，感謝您的心意。
 Other_3DsMaxSync,3ds Max Texture Sync,3ds Max 贴图同步,3ds Max 貼圖同步
 Set_hotkey_Center,Center,中心,中心
-Set_hotkey_CPT,Compatibility,兼容模式,兼容模式
+hotkeyFastMode,Fast,快速模式,快速模式
+hotkeyStableMode,Stable,稳定模式,穩定模式
+HT_hotkeyFastMode,,快速模式（默认）：\n无延迟，对硬件配置要求较高。\n某些软件可能对本软件造成严重的性能损失，请在使用本软件及 Photoshop 时禁用其 进程 / 服务（如 Gdipp / Mactype）。\n\n如频繁造成延迟，请使用稳定模式。,快速模式（默認）：\n無延遲，對硬體配置要求較高。 \n某些軟體可能對本軟體造成嚴重的效能損失，請在使用本軟體及 Photoshop 時禁用其 進程 / 服務（如 Gdipp / Mactype）。 \n\n如頻繁造成延遲，請使用穩定模式。
+HT_hotkeyStableMode,,稳定模式：\n增加 0.2 秒延迟以提高稳定性，并瞬时锁定鼠标以避免选色偏差，也因此易被安全软件屏蔽。\n如果使用此模式失效，请尝试暂时关闭安全软件或使用快速模式。,穩定模式：\n增加 0.2 秒延遲以提高穩定性，並瞬時鎖定滑鼠以避免選色偏差，也因此易被安全軟體屏蔽。 \n如果使用此模式失效，請嘗試暫時關閉安全軟體或使用快速模式。
 Set_hotkey_HUD_Color_Picker,Enhanced HUD color picker:,HUD 拾色器增强：,HUD 檢色器：
 Foreground_color_picker,Foreground Color Picker:,前景拾色器：,前景檢色器：
-Set_hotkey_mapalt_1,shortcut to,快捷键设置为,快速鍵設定為
-Set_hotkey_mapalt_2,map to Alt,映射为 Alt,映射為 Alt
-Set_hotkey_mapalt_3,map Alt to,映射 Alt 为,映射 Alt 為
+hotKeyMapCS5Plus,Hotkey Enhancement,快捷键加强,快速鍵加強
+Set_hotkey_mapalt_1,Hotkey Set to,快捷键设置为,快速鍵設定為
+Set_hotkey_mapalt_2,Merge with Eyedropper to Alt,与滴管工具合并至 Alt,與滴管工具合併至 Alt
+Set_hotkey_mapalt_3,Merge with Eyedropper to Alt (Optimized),与滴管工具合并至 Alt （优化）,與滴管工具合併至 Alt（優化）
+fastColorPickerCS5Tip,Please open the following interface in Photoshop to change hotkey: \nKeyboard Shortcuts and Menus \n\t↳ Shortcuts for (Tools) \n\t\t↳ Foreground Color Picker \n\n Set here For the same hotkey.,请先打开 Photoshop 以下位置修改快捷键：\n键盘快捷键和菜单\n\t↳ 快捷键用于（工具）\n\t\t↳ 前景拾色器\n\n将此处快捷键设置为同一按键即可。,請先打開 Photoshop 以下位置修改快速鍵：\n鍵盤快速鍵和菜單\n\t↳ 快速鍵用於（工具）\n\t\t↳ 前景檢色器\n\n將此處快速鍵設置為同一按鍵即可。
+HT_MapAlt,"Hotkey Enhancement (CS5+) / Hotkey Set to (CS4-) \nCS5 and later can hold to open the color picker panel, release to confirmation color, and close the panel. \n\nMerge with Eyedropper to Alt \nCombine the Color Picker with Alt Coloring, using the color picker triggering of previous versions of CS5. \n* Conflicts with ""Disable Alt menu"". \n\nMerge with Eyedropper to Alt (Optimized) \nVisible only in CS5 and above, you will need to enter the color picker shortcut set in CS5 and above. \n* Conflicts with ""Disable Alt menu"".",快捷键加强（CS5 以上）/ 快捷键设置为（CS4 以下）\nCS5 及以上版本按住可打开拾色器面板，松开确认颜色并关闭拾色器面板。\n\n与滴管工具合并至 Alt\n将拾色器与 Alt 取色合并，使用 CS5 以前版本的拾色器触发方式。\n* 与“禁用 Alt 菜单键”冲突。\n\n与滴管工具合并至 Alt（优化）\n仅 CS5 及以上版本可见，需要输入 CS5 以上版本内设置的拾色器快捷键。\n* 与“禁用 Alt 菜单键”冲突。,快速鍵加強（CS5 以上）/ 快速鍵設置為（CS4 以下）\nCS5 及以上版本按住可打開檢色器面板，鬆開確認顏色並關閉檢色器面板。 \n\n與滴管工具合併至 Alt\n將拾色器與 Alt 取色合併，使用 CS5 以前版本的檢色器觸發方式。 \n* 與“禁用 Alt 菜單鍵”衝突。 \n\n與滴管工具合併至 Alt（優化）\n僅 CS5 及以上版本可見，需要輸入 CS5 以上版本內設置的檢色器快速鍵。 \n* 與“禁用 Alt 菜單鍵”衝突。
 Set_hotkey_ModifyBrushKey,Modify brush radius:,修改笔刷范围：,修改筆刷范圍：
 Set_hotkey_Precise,Precise,精确,精確
 Set_hotkey_QCLayer,Creat a new layer:,快速创建新图层：,快速建立新圖層：
@@ -68,7 +74,7 @@ tray_LockIMEOff,Lock to English Input,未锁定为英文输入法,未鎖定為�
 OpenGLtip,a.Please enable Preferences → Enable OpenGL Drawing\nb.Hold on/off space to change hue at the same time,1.此功能需到首选项 → 性能中启用 OpenGL 绘图\n2.按住空格以切换选色区域,1.此功能需至選項 → 性能中啟動 OpenGL 繪圖\n2.按住空格以切換選色區域
 Tiptitle,Tips,提示,提示
 Undotip,The following LSide hotkeys have been changed to RSide:,以下左边默认快捷键已更改为右边：,以下左邊的預設快速鍵已更改為右邊：
-HT_FChoice,"Function list.\n\nPrecautions\n * Shortcut key does not support the tablet expansion key.\n * Using the HUD Color Picker while in lasso tool state may cause Photoshop crash.\n * Continuous click shortcuts key may cause Photoshop instability.\n * Some of the software may cause serious performance loss (such as Gdipp, MacType). Please close the process / service when using this software and Photoshop.",软件功能分类列表。\n\n注意事项\n* 快捷键修改不支持数位板扩展键。\n* 套索工具状态下使用 HUD 拾色器可能导致假死。\n* 连续快速使用快捷键可能导致 Photoshop 不稳定。\n* 某些软件可能对本软件造成严重的性能损失（如 Gdipp、MacType），请在使用本软件及 Photoshop 时禁用其 进程 / 服务。,軟體功能分類列表。\n\n注意事項\n* 快速鍵修改不支援數位板擴展鍵。\n* 套索工具狀態下使用 HUD 檢色器容易造成假死。\n* 連續快速使用快速鍵可能導致 Photoshop 不穩定。\n* 某些軟體可能對本軟體造成嚴重的性能損失（如 Gdipp、MacType），請在使用本軟體及 Photoshop 時禁用其 進程 / 服務。
+HT_FChoice,"Function list.\n\nNote:\n * Hotkey does not support the tablet expansion key.\n * Using the HUD Color Picker while in lasso tool state may cause Photoshop crash.\n * Continuous click shortcuts key may cause Photoshop instability.\n * Some of the software may cause serious performance loss (such as Gdipp, MacType). Please close the process / service when using this software and Photoshop.",软件功能分类列表。\n\n注意事项\n* 快捷键修改不支持数位板扩展键。\n* 套索工具状态下使用 HUD 拾色器可能导致假死。\n* 连续快速使用快捷键可能导致 Photoshop 不稳定。\n* 某些软件可能对本软件造成严重的性能损失（如 Gdipp、MacType），请在使用本软件及 Photoshop 时禁用其 进程 / 服务。,軟體功能分類列表。\n\n注意事項\n* 快速鍵修改不支援數位板擴展鍵。\n* 套索工具狀態下使用 HUD 檢色器容易造成假死。\n* 連續快速使用快速鍵可能導致 Photoshop 不穩定。\n* 某些軟體可能對本軟體造成嚴重的性能損失（如 Gdipp、MacType），請在使用本軟體及 Photoshop 時禁用其 進程 / 服務。
 HT_GuiText4,,,
 HT_GuiText5,,,
 HT_Check2,,关闭本软件附带的操作信息托盘提示。,關閉本軟體附帶的操作信息托盤提示。
@@ -76,9 +82,7 @@ HT_Check7,,选中以启用 HUD 拾色器增强功能，此功能只适用于 CS5
 HT_HUDCP,,为 HUD 拾色器增强功能设置一个快捷键。\n\n切勿留空或与本软件其他快捷键冲突。,為 HUD 檢色器增強功能設置一個快速鍵。\n\n切勿留空或與本軟體其他快速鍵沖突。
 HT_Check5,,选中后将不需要按住空格键切换选色区域。前景拾色器将自动识别。 \n\n建议启用此选项。,選中后將不需要按住空格鍵切換選色區域。前景檢色器將自動識別。 \n\n建議啟用此選項。
 HT_Check9,,选中后将自动定位到屏幕中心显示 HUD 拾色器。\n\n注意：\n因为数位板使用屏幕绝对定位，所以使用此选项时应抬起数位笔。,選中后將自動定位到屏幕中心顯示 HUD 檢色器。\n\n注意：\n因為數位板使用屏幕絕對定位，所以使用此選項時應抬起數位筆。
-HT_Check12,,兼容模式（默认）：\n最快速，但某些软件可能对本软件造成严重的性能损失，请在使用本软件及 Photoshop 时禁用其 进程/服务（如gdipp）。对硬件配置要求较高。如频繁造成延迟，请使用非兼容模式。\n\n非兼容模式：\n较兼容模式慢0.2秒以提高稳定性，并瞬时锁定鼠标以避免选色偏差，也因此易被安全软件屏蔽。使用此模式如失效，请尝试暂时关闭安全软件或使用兼容模式。,兼容模式（默認）：\n最快速，但某些軟體可能對本軟體造成嚴重的性能損失，請在使用本軟體及 Photoshop 時禁用其 進程/服務（如gdipp）。對硬件配置要求較高。如頻繁造成延遲，請使用非兼容模式。\n\n非兼容模式：\n較兼容模式慢0.2秒以提高穩定性，并瞬時鎖定鼠標以避免選色偏差，也因此易被安全軟體屏蔽。使用此模式如失效，請嘗試暫時關閉安全軟體或使用兼容模式。
 HT_Check8,,选中后启用前景拾色器快捷键功能。\n注意：\n此按键可在选择版本号之后同时可实现打开/保存拾色器，即一键操作。\nCS4 及以前版本（最低至 6）在使用此功能时可能需满足以下条件：\n\t* 前景色处于可点击状态（非全屏模式）\n\t* 使用画笔工具或铅笔工具\n\t* 使用系统默认主题,選中后啟用前景檢色器快速鍵功能。\n注意：\n此按鍵可在選擇版本號之后同時可實現打開/儲存檢色器，即一鍵操作。\nCS4 及以前版本（最低至 6）在使用此功能時可能需滿足以下條件：\n\t* 前景色處于可點擊狀態（非全屏模式）\n\t* 使用畫筆工具或鉛筆工具\n\t* 使用系統默認主題
-HT_MapAlt,,快捷键设置为\nCS5 及以上版本需至以下位置修改键盘快捷键：\n\t键盘快捷键和菜单>快捷键用于（工具）\n\t\t>前景拾色器\n\n映射为 Alt\n将拾色器与 Alt 取色合并，使用 CS5 以前版本的拾色器触发方式。此功能与“禁用 Alt 菜单键”冲突。\n\n映射 Alt 为\n仅 CS5 及以上版本可见，需要输入 CS5 以上版本内设置的拾色器快捷键。此功能与“禁用 Alt 菜单键”冲突。,快速鍵設置為\nCS5 及以上版本需至以下位置修改鍵盤快速鍵：\n\t鍵盤快速鍵和菜單>快速鍵用于（工具）\n\t\t>前景檢色器\n\n映射為 Alt\n將檢色器與 Alt 取色合并，使用 CS5 以前版本的檢色器觸發方式。此功能與“禁用 Alt 菜單鍵”沖突。\n\n映射 Alt 為\n僅 CS5 及以上版本可見，需要輸入 CS5 以上版本內設置的檢色器快速鍵。此功能與“禁用 Alt 菜單鍵”沖突。
 HT_FCPk,,为前景拾色器设置一个快捷键。\nCS5 及以上版本需至以下位置修改键盘快捷键：\n\t键盘快捷键和菜单>快捷键用于（工具）\n\t\t>前景拾色器\n\n切勿留空或与本软件其他快捷键冲突。,為前景檢色器設置一個快速鍵。\nCS5 及以上版本需至以下位置修改鍵盤快速鍵：\n\t鍵盤快速鍵和菜單>快速鍵用于（工具）\n\t\t>前景檢色器\n\n切勿留空或與本軟體其他快速鍵沖突。
 HT_Check11,,仅用于 CS4 及以上版本，将 Alt+右键 合并以达到模拟3D软件相关功能的效果。,僅用于 CS4 及以上版本，將 Alt+右鍵 合并以達到模擬3D軟體相關功能的效果。
 HT_ModifyBrushKey,,为修改笔刷范围功能设置一个快捷键。\n\n切勿留空或与本软件其他快捷键冲突。,為修改筆刷范圍功能設置一個快速鍵。\n\n切勿留空或與本軟體其他快速鍵沖突。

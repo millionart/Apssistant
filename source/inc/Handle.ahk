@@ -70,7 +70,9 @@ ConfigRead:
 	IniRead, Check9, %A_scriptdir%\Data\Config.ini, Setting, Centerhudcp, 0
 	IniRead, Check10, %A_scriptdir%\Data\Config.ini, Setting, DisableAltMenu, 1
 	IniRead, Check11, %A_scriptdir%\Data\Config.ini, Setting, enableModifyBrushRadius, 1
-	IniRead, Check12, %A_scriptdir%\Data\Config.ini, Setting, CPThudcp, 1
+	IniRead, hotkeyMode, %A_scriptdir%\Data\Config.ini, Setting, CPThudcp, 1
+		IniRead, hotkeyMode, %A_scriptdir%\Data\Config.ini, Setting, hotkeyMode, %hotkeyMode%
+		IniDelete, %A_scriptdir%\Data\Config.ini, Setting, CPThudcp
 	IniRead, Check13, %A_scriptdir%\Data\Config.ini, Setting, SHLayerToggle, 1
 	IniRead, Check14, %A_scriptdir%\Data\Config.ini, Setting, CleanUpTempFiles, 1
 	IniRead, SHLayer, %A_scriptdir%\Data\Config.ini, Setting, SHLayer, H

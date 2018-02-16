@@ -46,11 +46,18 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_ColorPicker, %Lang_ColorPicker%
 		Gui, Add, Hotkey, x400 y40 w40 h25 vHUDCP %enableHUDCP%, %HUDCP%
 		Gui, Add, Checkbox, x165 y65 w60 h25 vCheck5 %Checkd5%, %Lang_Set_hotkey_Precise%
 		Gui, Add, Checkbox, x225 y65 w60 h25 vCheck9 %Checkd9%, %Lang_Set_hotkey_Center%
-		Gui, Add, Checkbox, x285 y65 w100 h25 vCheck12 %Checkd12%, %Lang_Set_hotkey_CPT%
+		If (hotkeyMode=2)
+			hotkeyStableMode=Checked
+		Else
+			hotkeyFastMode=Checked
+		Gui, Add, Radio, x295 y65 w70 h25 vhotkeyFastMode %hotkeyFastMode% -Wrap Group, %Lang_hotkeyFastMode%
+		Gui, Add, Radio, x375 y65 w70 h25 vhotkeyStableMode %hotkeyStableMode% -Wrap, %Lang_hotkeyStableMode%
+		;Gui, Add, Checkbox, x285 y65 w100 h25 vCheck12 %Checkd12%, %Lang_hotkeyFastMode%
 
 	Gui, Add, CheckBox, x150 y100 w150 h25 vCheck8 %Checkd8% gFCPToggle, %Lang_Foreground_color_picker%
-		Gui, Add, DropDownList, x165 y125 w160 vMapAlt Choose%MapAltmode% AltSubmit gChooseMapAltmode, ;%Lang_Set_hotkey_mapalt_1%|%Lang_Set_hotkey_mapalt_2%|%Lang_Set_hotkey_mapalt_3%
+		Gui, Add, DropDownList, x165 y125 w230 vMapAlt Choose%MapAltmode% AltSubmit gChooseMapAltmode, ;%Lang_Set_hotkey_mapalt_1%|%Lang_Set_hotkey_mapalt_2%|%Lang_Set_hotkey_mapalt_3%
 		Gui, Add, Hotkey, x400 y125 w40 h25 vFCPk %enableFCP%, %FCPk%
+		Gui, Add, Text, x165 y155 w275 h100 vFastColorPickerCS5Tip, %Lang_fastColorPickerCS5Tip%
 ;===========================
 
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Hotkey, %Lang_Hotkey%
@@ -95,7 +102,7 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Donate, %Lang_Donate%
 
 ;===========================
 Gui, Add, GroupBox, x140 y270 w310 h250 vHelpTip, %Lang_HelpTip%
-	Gui, Add, Text, x150 y290 w290 h220 vHelpTipText,%Lang_HelpTip_text%
+	Gui, Add, Text, x150 y290 w290 h225 vHelpTipText,%Lang_HelpTip_text%
 
 Gui, Add, Button, x460 y10 w100 h50 vCSave gConfigSave, %Lang_Config_Save%
 Gui, Add, Button, x460 y70 w100 h30 vCCancel gGuiClose, %Lang_Config_Cancel%
@@ -128,7 +135,8 @@ else
 	GuiControl,Disable,Check5
 	GuiControl,Disable,Check7
 	GuiControl,Disable,Check9
-	GuiControl,Disable,Check12
+	GuiControl,Disable,hotkeyFastMode
+	GuiControl,Disable,hotkeyStableMode
 	GuiControl,Disable,HUDCP
 }
 
@@ -144,9 +152,9 @@ gosub SHLayerToggle
 
 gosub 3dsMaxSyncCheck
 
-gosub GuiHideGB
-
 gosub VerChoose
+
+gosub GuiHideGB
 
 ConfigTitle=Adobe Photoshop assistant v%f_CurrentVer%
 If Regver>=12
@@ -157,6 +165,11 @@ else
 {
 	Gui, Show, AutoSize Center,%ConfigTitle% *** ***%Lang_Config_CS5mark%*** ***
 }
+
+;hack autohotkey GUI bug start
+GuiControl, Hide, FastColorPickerCS5Tip
+GuiControl, Hide, FCPk
+;hack autohotkey GUI bug end
 
 OnMessage(0x200, "WM_MOUSEMOVE")
 Return
@@ -231,23 +244,32 @@ ModifyBrushKeyToggle:
 	Return
 
 ChooseMapAltmode:
-	GuiControlGet,txt,,MapAlt, Text
-	If txt=%Lang_Set_hotkey_mapalt_1%
+	GuiControlGet,mapAltTxt,,MapAlt, Text
+	If mapAltTxt=%Lang_hotKeyMapCS5Plus%
 	{
-		GuiControl,Enable,FCPk
-		GuiControl,Enable,Check10
-		gosub FCPToggle
+		GuiControl, Show, FCPk
+		GuiControl, Enable, FCPk
+		GuiControl, Enable, Check10
+		GuiControl, Show, FastColorPickerCS5Tip
 	}
-	Else If txt=%Lang_Set_hotkey_mapalt_2%
+	If mapAltTxt=%Lang_Set_hotkey_mapalt_1%
 	{
-		GuiControl,Disable,FCPk
-		GuiControl,Disable,Check10
+		GuiControl, Show, FCPk
+		GuiControl, Enable, FCPk
+		GuiControl, Enable, Check10
 	}
-	Else If txt=%Lang_Set_hotkey_mapalt_3%
+	If mapAltTxt=%Lang_Set_hotkey_mapalt_2%
 	{
-		GuiControl,Enable,FCPk
-		gosub FCPToggle
-		GuiControl,Disable,Check10
+		GuiControl, Hide, FCPk
+		GuiControl, Disable, Check10
+		GuiControl, Hide, FastColorPickerCS5Tip
+	}
+	If mapAltTxt=%Lang_Set_hotkey_mapalt_3%
+	{
+		GuiControl, Show, FCPk
+		GuiControl, Enable, FCPk
+		GuiControl, Disable, Check10
+		GuiControl, Show, FastColorPickerCS5Tip
 	}
 	Return
 
@@ -264,8 +286,8 @@ FCPToggle:
 		GuiControl,Enable,MapAlt
 	}
 
-	GuiControlGet,txt,,MapAlt, Text
-	If txt=%Lang_Set_hotkey_mapalt_2%
+	GuiControlGet,mapAltTxt,,MapAlt, Text
+	If mapAltTxt=%Lang_Set_hotkey_mapalt_2%
 	{
 		GuiControl,Disable,FCPk
 	}
@@ -278,14 +300,16 @@ HUDToggle:
 		GuiControl,Disable,HUDCP
 		GuiControl,Disable,Check5
 		GuiControl,Disable,Check9
-		GuiControl,Disable,Check12
+		GuiControl,Disable,hotkeyFastMode
+		GuiControl,Disable,hotkeyStableMode
 	}
 	else If Check7=1
 	{
 		GuiControl,Enable,HUDCP
 		GuiControl,Enable,Check5
 		GuiControl,Enable,Check9
-		GuiControl,Enable,Check12
+		GuiControl,Enable,hotkeyFastMode
+		GuiControl,Enable,hotkeyStableMode
 	}
 	Return
 
@@ -349,7 +373,11 @@ ConfigSave:
 	IniWrite, %Check9%, %A_scriptdir%\Data\Config.ini, Setting, Centerhudcp
 	IniWrite, %Check10%, %A_scriptdir%\Data\Config.ini, Setting, DisableAltMenu
 	IniWrite, %Check11%, %A_scriptdir%\Data\Config.ini, Setting, enableModifyBrushRadius
-	IniWrite, %Check12%, %A_scriptdir%\Data\Config.ini, Setting, CPThudcp
+	If (hotkeyStableMode=1)
+		hotkeyMode=2
+	Else
+		hotkeyMode=1
+	IniWrite, %hotkeyMode%, %A_scriptdir%\Data\Config.ini, Setting, hotkeyMode
 	IniWrite, %Check13%, %A_scriptdir%\Data\Config.ini, Setting, SHLayerToggle
 	IniWrite, %Check14%, %A_scriptdir%\Data\Config.ini, Setting, CleanUpTempFiles
 	IniWrite, %SHLayer%, %A_scriptdir%\Data\Config.ini, Setting, SHLayer
@@ -377,12 +405,14 @@ GuiHideGB:
 	GuiControl,Hide,HUDCP
 	GuiControl,Hide,Check5
 	GuiControl,Hide,Check9
-	GuiControl,Hide,Check12
+	GuiControl,Hide,hotkeyFastMode
+	GuiControl,Hide,hotkeyStableMode
 	GuiControl,Hide,Check13
 	GuiControl,Hide,SHLayer
 	GuiControl,Hide,Check8
 	GuiControl,Hide,MapAlt
 	GuiControl,Hide,FCPk
+	GuiControl, Hide, FastColorPickerCS5Tip
 	GuiControl,Hide,Check11
 	GuiControl,Hide,ModifyBrushKey
 	GuiControl,Hide,Check6
@@ -414,7 +444,7 @@ Return
 
 ; 添加控件 第五步
 FChoicecheck:
-	GuiControlGet,txt,,FChoice,
+	GuiControlGet,leftTag,,FChoice,
 
 	GuiControl,Hide,GB_General
 	GuiControl,Hide,PsCSver
@@ -428,7 +458,7 @@ FChoicecheck:
 
 	gosub GuiHideGB
 
-	If txt=%Lang_General%
+	If leftTag=%Lang_General%
 	{
 		GuiControl,Show,GB_General
 		GuiControl,Show,PsCSver
@@ -442,7 +472,7 @@ FChoicecheck:
 
 		GuiControl, Show, HelpTipText
 	}
-	Else If txt=%Lang_ColorPicker%
+	Else If leftTag=%Lang_ColorPicker%
 	{
 		GuiControl,Show,GB_ColorPicker
 		GuiControl,Show,Check7
@@ -450,14 +480,16 @@ FChoicecheck:
 		GuiControl,Show,Check5
 		GuiControl,Show,Check9
 		GuiControl,Show,Check8
-		GuiControl,Show,Check12
+		GuiControl,Show,hotkeyFastMode
+		GuiControl,Show,hotkeyStableMode
 
 		GuiControl,Show,MapAlt
 		GuiControl,Show,FCPk
+		Gosub, ChooseMapAltmode
 
 		GuiControl, Show, HelpTipText
 	}
-	Else If txt=%Lang_Hotkey%
+	Else If leftTag=%Lang_Hotkey%
 	{
 		GuiControl,Show,GB_Hotkey
 		GuiControl,Show,Check10
@@ -471,7 +503,7 @@ FChoicecheck:
 
 		GuiControl, Show, HelpTipText
 	}
-	Else If txt=%Lang_Autosave%
+	Else If leftTag=%Lang_Autosave%
 	{
 		GuiControl,Show,GB_Autosave
 		GuiControl,Show,Autosave
@@ -479,7 +511,7 @@ FChoicecheck:
 
 		GuiControl, Show, HelpTipText
 	}
-	Else If txt=%Lang_Other%
+	Else If leftTag=%Lang_Other%
 	{
 		GuiControl,Show,GB_Other
 		GuiControl,Show,Check15
@@ -488,7 +520,7 @@ FChoicecheck:
 
 		GuiControl, Show, HelpTipText
 	}
-	Else If txt=%Lang_Donate%
+	Else If leftTag=%Lang_Donate%
 	{
 		GuiControl, Show, GB_Donate
 
@@ -519,15 +551,16 @@ VerChoose:
 		GuiControl,enable,Check7
 		GuiControl,enable,Check9
 		GuiControl,enable,Check11
-		GuiControl,enable,Check12
+		GuiControl,enable,hotkeyFastMode
+		GuiControl,enable,hotkeyStableMode
 		if check11=1
 		{
 			GuiControl,enable,ModifyBrushKey
 		}
 		GuiControl,enable,HUDCP
-		GuiControl,,MapAlt,|%Lang_Set_hotkey_mapalt_1%|%Lang_Set_hotkey_mapalt_2%|%Lang_Set_hotkey_mapalt_3%|
+		GuiControl,,MapAlt,|%Lang_hotKeyMapCS5Plus%|%Lang_Set_hotkey_mapalt_2%|%Lang_Set_hotkey_mapalt_3%|
 		GuiControl, Choose, MapAlt, |%MapAltmode%
-
+		GuiControl,Hide,FastColorPickerCS5Tip
 		WinSetTitle, %ConfigTitle%
 	}
 	else
@@ -535,7 +568,8 @@ VerChoose:
 		GuiControl,Disable,Check5
 		GuiControl,Disable,Check7
 		GuiControl,Disable,Check9
-		GuiControl,Disable,Check12
+		GuiControl,Disable,hotkeyFastMode
+		GuiControl,Disable,hotkeyStableMode
 
 		GuiControl,Disable,HUDCP
 		GuiControl,,MapAlt,|%Lang_Set_hotkey_mapalt_1%|%Lang_Set_hotkey_mapalt_2%|
