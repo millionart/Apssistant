@@ -11,9 +11,21 @@ FileEncoding , UTF-8
 G_ReadLanguage()
 
 V_CurrentVer()
+ConfigTitle=Adobe Photoshop assistant v%f_CurrentVer%
+
 V_Trans()
 
 gosub ConfigRead
+
+stringStartNum=2
+gui_Language = 
+loop,%LangTotal%
+{
+	LangName:=CSV_ReadCell(CSV_Identifier, 1, stringStartNum)
+	gui_Language .=LangName . "|"
+	stringStartNum:=++stringStartNum
+}
+
 ;Gosub StringReplaceRead
 
 ; ============================================================================
@@ -21,17 +33,10 @@ gosub ConfigRead
 Gui, +Toolwindow ;+LastFound +AlwaysonTop
 Gui, Font, S%fontsize%, %fontname%
 
-Gui, Add, ListBox, x10 y10 w120 h450 vFChoice Choose1 +E0x200 gFChoicecheck, %Lang_General%|%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%|%Lang_Donate%
-		stringStartNum=2
+Gui, Add, ListBox, x10 y10 w120 h450 vFChoice gFChoicecheck, %Lang_General%|%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%|%Lang_Donate%
+
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_General, %Lang_General%
 	Gui, Add, Text, x150 y40 w200 h25 vGuiText4, %Lang_Your_language%
-		gui_Language = 
-		loop,%LangTotal%
-		{
-			LangName:=CSV_ReadCell(CSV_Identifier, 1, stringStartNum)
-			gui_Language .=LangName . "|"
-			stringStartNum:=++stringStartNum
-		}
 	Gui, Add, DropDownList, x361 y40 w80 vG_Language gLangtip Choose%LangNum%, %gui_Language%
 	Gui, Add, Text, x150 y70 w200 h25 vGuiText5, %Lang_Your_Photoshop_version%
 	Gui, Add, DropDownList, x361 y70 w80 vPsCSver Choose%PsCSverNo% gVerChoose, %PSCSverList%
@@ -46,12 +51,8 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_ColorPicker, %Lang_ColorPicker%
 		Gui, Add, Hotkey, x400 y40 w40 h25 vHUDCP %enableHUDCP%, %HUDCP%
 		Gui, Add, Checkbox, x165 y65 w60 h25 vCheck5 %Checkd5%, %Lang_Set_hotkey_Precise%
 		Gui, Add, Checkbox, x225 y65 w60 h25 vCheck9 %Checkd9%, %Lang_Set_hotkey_Center%
-		If (hotkeyMode=2)
-			hotkeyStableMode=Checked
-		Else
-			hotkeyFastMode=Checked
-		Gui, Add, Radio, x295 y65 w70 h25 vhotkeyFastMode %hotkeyFastMode% -Wrap Group, %Lang_hotkeyFastMode%
-		Gui, Add, Radio, x375 y65 w70 h25 vhotkeyStableMode %hotkeyStableMode% -Wrap, %Lang_hotkeyStableMode%
+		Gui, Add, Radio, x295 y65 w70 h25 vhotkeyFastMode -Wrap Group, %Lang_hotkeyFastMode%
+		Gui, Add, Radio, x375 y65 w70 h25 vhotkeyStableMode -Wrap, %Lang_hotkeyStableMode%
 		;Gui, Add, Checkbox, x285 y65 w100 h25 vCheck12 %Checkd12%, %Lang_hotkeyFastMode%
 
 	Gui, Add, CheckBox, x150 y100 w150 h25 vCheck8 %Checkd8% gFCPToggle, %Lang_Foreground_color_picker%
@@ -62,14 +63,14 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_ColorPicker, %Lang_ColorPicker%
 
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Hotkey, %Lang_Hotkey%
 	Gui, Add, Checkbox, x150 y40 w190 h25 vCheck10 %Checkd10%, %Lang_P_I_DisableAltMenu%
-	Gui, Add, Checkbox, x150 y70 w240 h25 vCheck11 %Checkd11% gModifyBrushKeyToggle, %Lang_Set_hotkey_ModifyBrushKey%
-		Gui, Add, Hotkey, x401 y70 w40 h25 vModifyBrushKey %enableModifyBrushKey%, %ModifyBrushKey%
+	Gui, Add, Checkbox, x150 y70 w200 h25 vCheck11 %Checkd11% gModifyBrushKeyToggle, %Lang_Set_hotkey_ModifyBrushKey%
+		Gui, Add, Hotkey, x361 y70 w80 h25 vModifyBrushKey %enableModifyBrushKey%, %ModifyBrushKey%
 
-	Gui, Add, Checkbox, x150 y100 w240 h25 vCheck6 %Checkd6% gQCLayerToggle, %Lang_Set_hotkey_QCLayer%
-		Gui, Add, Hotkey, x401 y100 w40 h25 vQCLayer %enableQCLayer%, %QCLayer%
+	Gui, Add, Checkbox, x150 y100 w200 h25 vCheck6 %Checkd6% gQCLayerToggle, %Lang_Set_hotkey_QCLayer%
+		Gui, Add, Hotkey, x361 y100 w80 h25 vQCLayer %enableQCLayer%, %QCLayer%
 
-	Gui, Add, Checkbox, x150 y130 w240 h25 vCheck13 %Checkd13% gSHLayerToggle, %Lang_Set_hotkey_SHLayer%
-		Gui, Add, Hotkey, x401 y130 w40 h25 vSHLayer %enableSHLayer%, %SHLayer%
+	Gui, Add, Checkbox, x150 y130 w200 h25 vCheck13 %Checkd13% gSHLayerToggle, %Lang_Set_hotkey_SHLayer%
+		Gui, Add, Hotkey, x361 y130 w80 h25 vSHLayer %enableSHLayer%, %SHLayer%
 
 	Gui, Add, Checkbox, x150 y160 w280 h25 vCheck1 %Checkd1%, %Lang_Set_hotkey_Undo%
 
@@ -117,30 +118,18 @@ Gui Font
 
 
 ;=============================================================
-
-
 ; 添加控件 第二步
+
+If (hotkeyMode=2)
+	GuiControl,,hotkeyStableMode,1
+Else
+	GuiControl,,hotkeyFastMode,1
+
 Loop 15
 {
 If (Check%A_Index%=1)
 	GuiControl,,Check%A_Index%,1
 }
-
-If Regver>=12
-{
-	Gosub HUDToggle
-}
-else
-{
-	GuiControl,Disable,Check5
-	GuiControl,Disable,Check7
-	GuiControl,Disable,Check9
-	GuiControl,Disable,hotkeyFastMode
-	GuiControl,Disable,hotkeyStableMode
-	GuiControl,Disable,HUDCP
-}
-
-
 
 gosub FCPToggle
 
@@ -156,29 +145,32 @@ gosub VerChoose
 
 gosub GuiHideGB
 
-ConfigTitle=Adobe Photoshop assistant v%f_CurrentVer%
 If Regver>=12
 {
+	Gosub HUDToggle
 	Gui, Show, AutoSize Center,%ConfigTitle%
 }
 else
 {
+	GuiControl,Disable,Check5
+	GuiControl,Disable,Check7
+	GuiControl,Disable,Check9
+	GuiControl,Disable,hotkeyFastMode
+	GuiControl,Disable,hotkeyStableMode
+	GuiControl,Disable,HUDCP
 	Gui, Show, AutoSize Center,%ConfigTitle% *** ***%Lang_Config_CS5mark%*** ***
 }
 
-;hack autohotkey GUI bug start
-GuiControl, Hide, FastColorPickerCS5Tip
-GuiControl, Hide, FCPk
-;hack autohotkey GUI bug end
-
 OnMessage(0x200, "WM_MOUSEMOVE")
+
+GuiControl, Choose, FChoice, 1
 Return
 
 
 AScheck:
 	SetTimer, lockAutosaveMinTime, 50 
 	GuiControlGet,txt,,Autosave, Text
-	If txt=%Lang_Autosave_no%
+	If (txt=Lang_Autosave_no)
 	{
 		SetTimer, lockAutosaveMinTime, off 
 		GuiControl,Hide,Savesleep
@@ -186,14 +178,14 @@ AScheck:
 		GuiControl,Hide,GuiText3
 		GuiControl,Hide,Tiptext
 	}
-	Else If txt=%Lang_Autosave_tip%
+	Else If (txt=Lang_Autosave_tip)
 	{
 		GuiControl,Show,Savesleep
 		GuiControl,Show,GuiText2
 		GuiControl,Show,GuiText3
 		GuiControl,Show,Tiptext
 	}
-	Else If txt=%Lang_Autosave_yes%
+	Else If (txt=Lang_Autosave_yes)
 	{
 		GuiControl,Show,Savesleep
 		GuiControl,Show,GuiText2
@@ -204,7 +196,7 @@ AScheck:
 
 lockAutosaveMinTime:
 	GuiControlGet,txt,,FChoice,
-	If txt!=%Lang_Autosave%
+	If (txt!=Lang_Autosave)
  	   SetTimer, lockAutosaveMinTime, off 
 	Else
 	{
@@ -245,26 +237,28 @@ ModifyBrushKeyToggle:
 
 ChooseMapAltmode:
 	GuiControlGet,mapAltTxt,,MapAlt, Text
-	If mapAltTxt=%Lang_hotKeyMapCS5Plus%
+	GuiControlGet,leftTag,,FChoice,
+
+	If (mapAltTxt=Lang_hotKeyMapCS5Plus) & (leftTag=Lang_ColorPicker)
 	{
 		GuiControl, Show, FCPk
 		GuiControl, Enable, FCPk
 		GuiControl, Enable, Check10
 		GuiControl, Show, FastColorPickerCS5Tip
 	}
-	If mapAltTxt=%Lang_Set_hotkey_mapalt_1%
+	If (mapAltTxt=Lang_Set_hotkey_mapalt_1) & (leftTag=Lang_ColorPicker)
 	{
 		GuiControl, Show, FCPk
 		GuiControl, Enable, FCPk
 		GuiControl, Enable, Check10
 	}
-	If mapAltTxt=%Lang_Set_hotkey_mapalt_2%
+	If (mapAltTxt=Lang_Set_hotkey_mapalt_2)
 	{
 		GuiControl, Hide, FCPk
 		GuiControl, Disable, Check10
 		GuiControl, Hide, FastColorPickerCS5Tip
 	}
-	If mapAltTxt=%Lang_Set_hotkey_mapalt_3%
+	If (mapAltTxt=Lang_Set_hotkey_mapalt_3) & (leftTag=Lang_ColorPicker)
 	{
 		GuiControl, Show, FCPk
 		GuiControl, Enable, FCPk
@@ -287,7 +281,7 @@ FCPToggle:
 	}
 
 	GuiControlGet,mapAltTxt,,MapAlt, Text
-	If mapAltTxt=%Lang_Set_hotkey_mapalt_2%
+	If (mapAltTxt=Lang_Set_hotkey_mapalt_2)
 	{
 		GuiControl,Disable,FCPk
 	}
@@ -458,7 +452,7 @@ FChoicecheck:
 
 	gosub GuiHideGB
 
-	If leftTag=%Lang_General%
+	If (leftTag=Lang_General)
 	{
 		GuiControl,Show,GB_General
 		GuiControl,Show,PsCSver
@@ -472,7 +466,7 @@ FChoicecheck:
 
 		GuiControl, Show, HelpTipText
 	}
-	Else If leftTag=%Lang_ColorPicker%
+	Else If (leftTag=Lang_ColorPicker)
 	{
 		GuiControl,Show,GB_ColorPicker
 		GuiControl,Show,Check7
@@ -489,7 +483,7 @@ FChoicecheck:
 
 		GuiControl, Show, HelpTipText
 	}
-	Else If leftTag=%Lang_Hotkey%
+	Else If (leftTag=Lang_Hotkey)
 	{
 		GuiControl,Show,GB_Hotkey
 		GuiControl,Show,Check10
@@ -503,7 +497,7 @@ FChoicecheck:
 
 		GuiControl, Show, HelpTipText
 	}
-	Else If leftTag=%Lang_Autosave%
+	Else If (leftTag=Lang_Autosave)
 	{
 		GuiControl,Show,GB_Autosave
 		GuiControl,Show,Autosave
@@ -511,7 +505,7 @@ FChoicecheck:
 
 		GuiControl, Show, HelpTipText
 	}
-	Else If leftTag=%Lang_Other%
+	Else If (leftTag=Lang_Other)
 	{
 		GuiControl,Show,GB_Other
 		GuiControl,Show,Check15
@@ -520,7 +514,7 @@ FChoicecheck:
 
 		GuiControl, Show, HelpTipText
 	}
-	Else If leftTag=%Lang_Donate%
+	Else If (leftTag=Lang_Donate)
 	{
 		GuiControl, Show, GB_Donate
 
@@ -604,7 +598,7 @@ return
 WM_MOUSEMOVE()
 {
 	GuiControlGet,txt,,FChoice,
-	If (txt!=%Lang_Donate%)
+	If (txt!=Lang_Donate)
 	{
 	static Lang_HT_, CurrControl, PrevControl, ; HT means Help Tip
 	CurrControl := A_GuiControl

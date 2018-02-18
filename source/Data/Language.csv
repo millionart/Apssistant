@@ -33,7 +33,7 @@ NewVerAvailable,There's a new version v%LatestVer% available.\n\nAuto Update now
 NewVerNotAvailable,You're up-to-date!,你正在使用最新版！, 你正在運行最新版！
 UpdateSuccessful,Updated successfully!,更新成功！,更新成功！
 ColorPicker,Color Picker,拾色器,檢色器
-Hotkey,Hotkey,快捷键,快速鍵
+Hotkey,Hotkeys,快捷键,快速鍵
 PsDir,Browse to the location of Photoshop,请选择 Photoshop 的位置,請選擇 Photoshop 的位置
 Msg_Debug,Error: Missing coordinates,错误：找不到相关位置，请尝试以下解决方法：\n\t- 在本程序中正确设置您当前使用的 Photoshop 版本\n\t- 将系统主题设置为默认\n\t- 有前置窗口影响，需将其关闭\n\t- 检查当前版本文件夹内图片是否符合（参考说明）,錯誤：找不到相關位置，請嘗試以下解決方法：\n - 在本程序中正確設置您當前使用的 Photoshop 版本\n - 將系統主題設置為默認\n - 有前置窗口影響，需將其關閉\n - 最后檢查當前版本文件夾內圖片是否符合（參考說明）
 P_I_DisableAltMenu,Disable Alt menu,禁用 Alt 菜单键,禁用 Alt 菜單鍵
@@ -42,6 +42,10 @@ P_I_LaunchPs,Auto launch Photoshop,自动启动 Photoshop,自動啟動 Photoshop
 HT_Check4,,选中后可获得以下功能：\n* 运行本软件时自动启动 Photoshop。\n* 双击系统托盘图标启动 Photoshop。,選中后可獲得以下功能：\n* 運行本軟體時自動啟動 Photoshop。\n* 雙擊系統托盤圖標啟動 Photoshop。
 tray_LaunchPs,Launch Photoshop,启动 Photoshop,啟動 Photoshop
 P_I_LockIME,Lock input method to English,锁定为英文输入法,鎖定為英文輸入法
+LockIMEtip,Your input method has been locked to English by Photoshop CS5++,你的输入法已经被锁定为英文,你的輸入法已經被鎖定為英文
+tray_LockIMEOn,English Input Locked,已锁定为英文输入法,已鎖定為英文輸入法
+tray_LockIMEOff,Lock to English Input,未锁定为英文输入法,未鎖定為英文輸入法
+HT_Check3,,防止输入法导致快捷键冲突。 \n\n针对亚洲用户设计，可在托盘菜单处开启、关闭。\n使用文字工具时请务必关闭此功能。,防止輸入法導致快速鍵沖突。 \n\n針對亞洲用戶設計，可托盤菜單處開啟、關閉。\n使用文字工具時請務必關閉此功能。
 C_TempFiles,Automatically clean up temporary files after exit,退出时自动清理残留临时文件,退出時自動清理殘留臨時文件
 P_I,Anti-disturb,防止干扰,防止干擾
 Other,Other,其他,其他
@@ -60,17 +64,15 @@ Set_hotkey_mapalt_1,Hotkey Set to,快捷键设置为,快速鍵設定為
 Set_hotkey_mapalt_2,Merge with Eyedropper to Alt,与滴管工具合并至 Alt,與滴管工具合併至 Alt
 Set_hotkey_mapalt_3,Merge with Eyedropper to Alt (Optimized),与滴管工具合并至 Alt （优化）,與滴管工具合併至 Alt（優化）
 fastColorPickerCS5Tip,Please open the following interface in Photoshop to change hotkey: \nKeyboard Shortcuts and Menus \n\t↳ Shortcuts for (Tools) \n\t\t↳ Foreground Color Picker \n\n Set here For the same hotkey.,请先打开 Photoshop 以下位置修改快捷键：\n键盘快捷键和菜单\n\t↳ 快捷键用于（工具）\n\t\t↳ 前景拾色器\n\n将此处快捷键设置为同一按键即可。,請先打開 Photoshop 以下位置修改快速鍵：\n鍵盤快速鍵和菜單\n\t↳ 快速鍵用於（工具）\n\t\t↳ 前景檢色器\n\n將此處快速鍵設置為同一按鍵即可。
-HT_MapAlt,"Hotkey Enhancement (CS5+) / Hotkey Set to (CS4-) \nCS5 and later can hold to open the color picker panel, release to confirmation color, and close the panel. \n\nMerge with Eyedropper to Alt \nCombine the Color Picker with Alt Coloring, using the color picker triggering of previous versions of CS5. \n* Conflicts with ""Disable Alt menu"". \n\nMerge with Eyedropper to Alt (Optimized) \nVisible only in CS5 and above, you will need to enter the color picker shortcut set in CS5 and above. \n* Conflicts with ""Disable Alt menu"".",快捷键加强（CS5 以上）/ 快捷键设置为（CS4 以下）\nCS5 及以上版本按住可打开拾色器面板，松开确认颜色并关闭拾色器面板。\n\n与滴管工具合并至 Alt\n将拾色器与 Alt 取色合并，使用 CS5 以前版本的拾色器触发方式。\n* 与“禁用 Alt 菜单键”冲突。\n\n与滴管工具合并至 Alt（优化）\n仅 CS5 及以上版本可见，需要输入 CS5 以上版本内设置的拾色器快捷键。\n* 与“禁用 Alt 菜单键”冲突。,快速鍵加強（CS5 以上）/ 快速鍵設置為（CS4 以下）\nCS5 及以上版本按住可打開檢色器面板，鬆開確認顏色並關閉檢色器面板。 \n\n與滴管工具合併至 Alt\n將拾色器與 Alt 取色合併，使用 CS5 以前版本的檢色器觸發方式。 \n* 與“禁用 Alt 菜單鍵”衝突。 \n\n與滴管工具合併至 Alt（優化）\n僅 CS5 及以上版本可見，需要輸入 CS5 以上版本內設置的檢色器快速鍵。 \n* 與“禁用 Alt 菜單鍵”衝突。
+HT_MapAlt,"Hotkey Enhancement (CS5+) / Hotkey Set to (CS4-) \nCS5 and later can  further strengthen the shortcut keys:\nHold to open the color picker panel, release to confirmation color, and close the panel. \n\nMerge with Eyedropper to Alt \nCombine the Color Picker with Alt Coloring, using the color picker triggering of previous versions of CS5. \n* Conflicts with ""Disable Alt menu"". \n\nMerge with Eyedropper to Alt (Optimized) \nVisible only in CS5 and above, you will need to enter the color picker shortcut set in CS5 and above. \n* Conflicts with ""Disable Alt menu"".",快捷键加强（CS5 以上）/ 快捷键设置为（CS4 以下）\nCS5 及以上版本可进一步强化快捷键：\n按住可打开拾色器面板，松开确认颜色并关闭面板。\n\n与滴管工具合并至 Alt\n将拾色器与 Alt 取色合并，使用 CS5 以前版本的拾色器触发方式。\n* 与“禁用 Alt 菜单键”冲突。\n\n与滴管工具合并至 Alt（优化）\n仅 CS5 及以上版本可见，需要输入 CS5 以上版本内设置的拾色器快捷键。\n* 与“禁用 Alt 菜单键”冲突。,快速鍵加強（CS5 以上）/ 快速鍵設置為（CS4 以下）\nCS5 及以上版本可進一步強化快速鍵：\n按住可打開檢色器面板，鬆開確認顏色並關閉面板。 \n\n與滴管工具合併至 Alt\n將拾色器與 Alt 取色合併，使用 CS5 以前版本的檢色器觸發方式。 \n* 與“禁用 Alt 菜單鍵”衝突。 \n\n與滴管工具合併至 Alt（優化）\n僅 CS5 及以上版本可見，需要輸入 CS5 以上版本內設置的檢色器快速鍵。 \n* 與“禁用 Alt 菜單鍵”衝突。
 Set_hotkey_ModifyBrushKey,Modify brush radius:,修改笔刷范围：,修改筆刷范圍：
 Set_hotkey_Precise,Precise,精确,精確
 Set_hotkey_QCLayer,Creat a new layer:,快速创建新图层：,快速建立新圖層：
-Set_hotkey_Undo,Exchange Step Forward / Backward shortcuts,修改撤销重做快捷键,修改復原/重複的快速鍵
+Set_hotkey_Undo,Exchange Step Forward / Backward shortcuts,修改撤销（后退一步）恢复（前进一步）快捷键,修改復原/重複的快速鍵
+HT_Check1,,此功能将撤销、恢复快捷键改为系统常用的 Ctrl+Z/Y\nPhotoshop 默认的4个快捷键将被循环更换如下：\n功能\t\t修改前\t\t修改后\n后退一步\t\tAlt+Ctrl+Z\tCtrl+Z\n还原/重做\tCtrl+Z\t\tShift+Ctrl+Z\n前进一步\t\tShift+Ctrl+Z\tCtrl+Y\n校样颜色\t\tCtrl+Y\t\tAlt+Ctrl+Z\n\n建议常用设备使用 Photoshop 自带改键功能，方法：\n键盘快捷键和菜单\n\t↳ 快捷键用于（应用程序菜单）\n\t\t↳ 按上文次序更改。,為方便經常重裝并習慣改鍵的用戶設計，將默認的撤銷和重做快速鍵更換如下： \n功能\t修改前\t修改后\n后退一步\tAlt+Ctrl+z\tCtrl+z\n前進一步\tShift+Ctrl+z\tCtrl+y\n\n強烈不建議常用此功能，推薦 Photoshop 自帶改鍵功能，方法：\n\t鍵盤快速鍵和菜單>快速鍵用于（應用程序菜單）>按上文次序更改。
 Set_hotkey_SHLayer,Show / Hide current layer:,显示或隐藏当前图层：,显示或隐藏当前图层：
 tray_Config,Preferences,设置,設定
 tray_Exit,Exit,退出,關閉
-LockIMEtip,Your input method has been locked to English by Photoshop CS5++,你的输入法已经被锁定为英文,你的輸入法已經被鎖定為英文
-tray_LockIMEOn,English Input Locked,已锁定为英文输入法,已鎖定為英文輸入法
-tray_LockIMEOff,Lock to English Input,未锁定为英文输入法,未鎖定為英文輸入法
 OpenGLtip,a.Please enable Preferences → Enable OpenGL Drawing\nb.Hold on/off space to change hue at the same time,1.此功能需到首选项 → 性能中启用 OpenGL 绘图\n2.按住空格以切换选色区域,1.此功能需至選項 → 性能中啟動 OpenGL 繪圖\n2.按住空格以切換選色區域
 Tiptitle,Tips,提示,提示
 Undotip,The following LSide hotkeys have been changed to RSide:,以下左边默认快捷键已更改为右边：,以下左邊的預設快速鍵已更改為右邊：
@@ -88,12 +90,10 @@ HT_Check11,,仅用于 CS4 及以上版本，将 Alt+右键 合并以达到模拟
 HT_ModifyBrushKey,,为修改笔刷范围功能设置一个快捷键。\n\n切勿留空或与本软件其他快捷键冲突。,為修改筆刷范圍功能設置一個快速鍵。\n\n切勿留空或與本軟體其他快速鍵沖突。
 HT_Check6,,一键创建新图层（Alt+Shift+Ctrl+N）而无需确认。,一鍵創建新圖層（Alt+Shift+Ctrl+N）而無需確認。
 HT_QCLayer,,为快速创建新图层功能设置一个快捷键。\n\n切勿留空或与本软件其他快捷键冲突。,為快速創建新圖層功能設置一個快速鍵。\n\n切勿留空或與本軟體其他快速鍵沖突。
-HT_Check1,,为方便经常重装并习惯改键的用户设计，将默认的撤销和重做快捷键更换如下： \n功能\t修改前\t修改后\n后退一步\tAlt+Ctrl+Z\tCtrl+Z\n前进一步\tShift+Ctrl+Z\tCtrl+Y\n\n强烈不建议常用此功能，推荐 Photoshop 自带改键功能，方法：\n\t键盘快捷键和菜单>快捷键用于（应用程序菜单）>按上文次序更改。,為方便經常重裝并習慣改鍵的用戶設計，將默認的撤銷和重做快速鍵更換如下： \n功能\t修改前\t修改后\n后退一步\tAlt+Ctrl+z\tCtrl+z\n前進一步\tShift+Ctrl+z\tCtrl+y\n\n強烈不建議常用此功能，推薦 Photoshop 自帶改鍵功能，方法：\n\t鍵盤快速鍵和菜單>快速鍵用于（應用程序菜單）>按上文次序更改。
 HT_GuiText2,,,
 HT_GuiText3,,,
 HT_Tiptext,,选填，内容将显示于弹出信息内。,選填，內容將顯示于彈出信息內。
 HT_Check10,,选中后防止单击 Alt 触发菜单。,選中后防止單擊 Alt 觸發菜單。
-HT_Check3,,防止输入法导致快捷键冲突。 \n\n针对亚洲用户设计。\n使用文字工具时请务必关闭此功能。,防止輸入法導致快速鍵沖突。 \n\n針對亞洲用戶設計。\n使用文字工具時請務必關閉此功能。
 HT_HelpTip,,,
 HT_HelpTipText,,,
 HT_CSave,,保存并退出设置界面。,儲存并關閉設置窗口。
