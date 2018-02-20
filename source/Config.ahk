@@ -438,8 +438,6 @@ GuiHideGB:
 	GuiControl, Hide, DonateButton
 	GuiControl, Hide, DonateText
 
-	GuiControl, Hide, HelpTipText
-
 	GuiControl, Hide, ShareWeibo
 	GuiControl, Hide, ShareTwitter
 	GuiControl, Hide, ShareFacebook
@@ -526,6 +524,7 @@ FChoicecheck:
 	}
 	Else If (leftTag=Lang_Donate)
 	{
+		GuiControl, Hide, HelpTipText
 		GuiControl, Show, GB_Donate
 
 		If (G_Language = "简体中文") || (G_Language = "繁体中文") 
