@@ -45,7 +45,7 @@ IniRead, UpdatefileMD5, %VerFileName%, %WinBit%, MD5, 0
 If UpdatefileMD5=% File_Hash(UpdateFileName, "MD5")
 {
 	IniRead, LatestVer, %VerFileName%, %WinBit%, Version,0
-	StringReplace, NewVerAvailable, lang_NewVerAvailable, `%LatestVer`%, %LatestVer%
+	NewVerAvailable:=StrReplace(lang_NewVerAvailable, "`%LatestVer`%", "%LatestVer%")
 	
 	OnMessage(0x44, "OnMsgBox")
 	MsgBox 0x184, %lang_NewVer%, %NewVerAvailable%
@@ -55,9 +55,7 @@ If UpdatefileMD5=% File_Hash(UpdateFileName, "MD5")
 	{
 		Process,Close,Apssistant.exe
 		run %A_scriptdir%\Data\Update\Setup.exe, %A_scriptdir%
-		StringReplace, NewVerNotAvailable, lang_NewVerNotAvailable, v`%CurrentVer`%,
-			;if !Quiet
-		;MsgBox, 64, Apssistant, %NewVerNotAvailable%, 30
+		NewVerNotAvailable:=StrReplace(lang_NewVerNotAvailable, "v`%CurrentVer`%", "")
 	}
 	Else IfMsgBox Yes
 	{
@@ -89,8 +87,6 @@ OnMsgBox() {
 f_CheckVersion()
 {
 	Global
-
-	
 	If (A_IsCompiled)
 	{
 		FileDelete, %VerFileName%

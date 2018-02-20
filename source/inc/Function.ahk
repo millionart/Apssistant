@@ -25,7 +25,7 @@ V_Trans()
 		Regver=14
 	else
 	{
-		stringreplace, RegCSver, PsCSver, CS,, All
+		RegCSver:=StrReplace(RegCSver, "CS", "")
 		Regver:=RegCSver+7
 	}
 	PsCSverNo:=Regver-5
@@ -40,7 +40,7 @@ V_Trans()
 		curPsver=14
 	else
 	{
-		stringreplace, curPsCSver, GuiGetPsver, CS,, All
+		curPsCSver:=StrReplace(GuiGetPsver, "CS", "")
 		curPsver:=curPsCSver+7
 	}
 }
@@ -70,8 +70,8 @@ G_ReadLanguage()
         Name:=CSV_ReadCell(CSV_Identifier, Row, 1)
         String:=CSV_ReadCell(CSV_Identifier, Row, StringCol)
 		
-		StringReplace, String, String, \n, `n, All
-		StringReplace, String, String, \t, % "	", All
+		String:=StrReplace(String, "\n", "`n")
+		String:=StrReplace(String, "\t", "	")
 
         Name   = %Name%
 		String = %String%

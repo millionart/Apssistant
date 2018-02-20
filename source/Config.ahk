@@ -25,8 +25,8 @@ loop,%LangTotal%
 	gui_Language .=LangName . "|"
 	stringStartNum:=++stringStartNum
 }
-
-;Gosub StringReplaceRead
+Github:="https://github.com/millionart/Apssistant"
+DeviantArt:="https://www.deviantart.com/deviation/160950828"
 
 ; ============================================================================
 ; 添加控件 第一步
@@ -55,10 +55,11 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_ColorPicker, %Lang_ColorPicker%
 		Gui, Add, Radio, x375 y65 w70 h25 vhotkeyStableMode -Wrap, %Lang_hotkeyStableMode%
 		;Gui, Add, Checkbox, x285 y65 w100 h25 vCheck12 %Checkd12%, %Lang_hotkeyFastMode%
 
-	Gui, Add, CheckBox, x150 y100 w150 h25 vCheck8 %Checkd8% gFCPToggle, %Lang_Foreground_color_picker%
-		Gui, Add, DropDownList, x165 y125 w230 vMapAlt Choose%MapAltmode% AltSubmit gChooseMapAltmode, ;%Lang_Set_hotkey_mapalt_1%|%Lang_Set_hotkey_mapalt_2%|%Lang_Set_hotkey_mapalt_3%
-		Gui, Add, Hotkey, x400 y125 w40 h25 vFCPk %enableFCP%, %FCPk%
-		Gui, Add, Text, x165 y155 w275 h100 vFastColorPickerCS5Tip, %Lang_fastColorPickerCS5Tip%
+	Gui, Add, CheckBox, x150 y100 w15 h25 vCheck8 %Checkd8% gChooseMapAltmode,
+		Gui, Add, DropDownList, x165 y103 w275 vMapAlt Choose%MapAltmode% AltSubmit gChooseMapAltmode,
+		Gui, Add, Text, x165 y125 w235 h100 vFastColorPickerCS5Tip, %Lang_fastColorPickerCS5Tip%
+		Gui, Add, Text, x165 y225 w235 h25 vFastColorPickerCS5Tip2, %Lang_fastColorPickerCS5Tip2%
+		Gui, Add, Hotkey, x400 y225 w40 h25 vFCPk %enableFCP%, %FCPk%
 ;===========================
 
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Hotkey, %Lang_Hotkey%
@@ -95,11 +96,11 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Other, %Lang_Other%
 ;===========================
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Donate, %Lang_Donate%
 
-	Gui Add, Picture, x140 y59 w150 h150 vDonateAlipay,  %A_scriptdir%\Data\alipay.png
-	Gui Add, Picture, x300 y59 w150 h150 vDonateWechat,  %A_scriptdir%\Data\wechat.png
+	Gui, Add, Picture, x140 y59 w150 h-1 vDonateAlipay, %A_scriptdir%\Data\Images\alipay.png
+	Gui, Add, Picture, x300 y59 w150 h-1 vDonateWechat, %A_scriptdir%\Data\Images\wechat.png
 
-	Gui Add, Picture, x170 y59 w246 h60 vDonatePaypal gDonateNow,  %A_scriptdir%\Data\paypal.png
-	Gui, Add, Text, x150 y290 w290 h180 vDonateText gDonateNow,%Lang_Donate_text%
+	Gui, Add, Picture, x170 y59 w246 h-1 vDonatePaypal gDonateNow, %A_scriptdir%\Data\Images\paypal.png
+	Gui, Add, Text, x150 y290 w290 h180 vDonateText, %Lang_Donate_text%
 
 ;===========================
 Gui, Add, GroupBox, x140 y270 w310 h250 vHelpTip, %Lang_HelpTip%
@@ -108,13 +109,19 @@ Gui, Add, GroupBox, x140 y270 w310 h250 vHelpTip, %Lang_HelpTip%
 Gui, Add, Button, x460 y10 w100 h50 vCSave gConfigSave, %Lang_Config_Save%
 Gui, Add, Button, x460 y70 w100 h30 vCCancel gGuiClose, %Lang_Config_Cancel%
 
-Gui Add, Link, x460 y150 w100 h20, <a href="http://www.deviantart.com/deviation/160950828">%Lang_Website%</a>
-Gui Add, Link, x460 y180 w100 h20, <a href="http://millionart.deviantart.com">%Lang_Blog%</a>
+Gui Add, Link, x10 y470 w100 h20, <a href="%Github%">Github</a>
+Gui Add, Link, x10 y495 w100 h20, <a href="%DeviantArt%">DeviantArt</a>
 Gui Font
 
 Gui Font, s20 Bold q5 c0x0080FF, %Fontname%
 Gui Add, Button, x150 y160 w290 h60 vDonateButton gDonateNow, %Lang_Donate%
 Gui Font
+
+Gui Add, Picture, x460 y275 w100 h-1 vShareTwitter gShareTwitter,  %A_scriptdir%\Data\Images\Twitter.png
+Gui Add, Picture, x460 y315 w100 h-1 vShareFacebook gShareFacebook,  %A_scriptdir%\Data\Images\Facebook.png
+Gui Add, Picture, x460 y355 w100 h-1 vShareReddit gShareReddit,  %A_scriptdir%\Data\Images\Reddit.png
+
+Gui Add, Picture, x460 y275 w100 h-1 vShareWeibo gShareWeibo,  %A_scriptdir%\Data\Images\Weibo.png
 
 
 ;=============================================================
@@ -130,8 +137,6 @@ Loop 15
 If (Check%A_Index%=1)
 	GuiControl,,Check%A_Index%,1
 }
-
-gosub FCPToggle
 
 gosub ModifyBrushKeyToggle
 
@@ -217,7 +222,7 @@ Browse1:
 	else
 		ProgramFilesDir:="PsDir"
 	FileSelectFile, Dir , 1, %ProgramFilesDir%\Photoshop.exe, %Lang_PsDir%, Photoshop (*.exe)
-	StringReplace, Dir, Dir, `n, `r`n, A
+	Dir:=StrReplace(Dir, "`n", "`r`n")
 	If dir<>
 		ControlSetText,Edit1,%Dir%
 	Return
@@ -236,54 +241,53 @@ ModifyBrushKeyToggle:
 	Return
 
 ChooseMapAltmode:
-	GuiControlGet,mapAltTxt,,MapAlt, Text
-	GuiControlGet,leftTag,,FChoice,
+	GuiControlGet, leftTag, , FChoice,
+	GuiControlGet, Check8
+	GuiControlGet, mapAltTxt, , MapAlt, Text
 
-	If (mapAltTxt=Lang_hotKeyMapCS5Plus) & (leftTag=Lang_ColorPicker)
+	If (Check8=1)
 	{
-		GuiControl, Show, FCPk
-		GuiControl, Enable, FCPk
-		GuiControl, Enable, Check10
-		GuiControl, Show, FastColorPickerCS5Tip
+		GuiControl, Enable, MapAlt
+
+		If (leftTag=Lang_ColorPicker)
+		{
+			GuiControl, Show, FCPk
+			If (mapAltTxt=Lang_hotKeyMapCS5Plus)
+			{
+				GuiControl, Enable, Check10
+				GuiControl, Show, FastColorPickerCS5Tip
+				GuiControl, Show, FastColorPickerCS5Tip2
+			}
+
+			If (mapAltTxt=Lang_Set_hotkey_mapalt_1)
+			{
+				GuiControl, Enable, Check10
+				GuiControl, Move, MapAlt, x165 y103 w230
+			}
+
+			If (mapAltTxt=Lang_Set_hotkey_mapalt_3)
+			{
+				GuiControl, Disable, Check10
+				GuiControl, Show, FastColorPickerCS5Tip
+				GuiControl, Show, FastColorPickerCS5Tip2
+			}
+		}
 	}
-	If (mapAltTxt=Lang_Set_hotkey_mapalt_1) & (leftTag=Lang_ColorPicker)
+	Else
 	{
-		GuiControl, Show, FCPk
-		GuiControl, Enable, FCPk
-		GuiControl, Enable, Check10
+		GuiControl, Hide, FCPk
+		GuiControl, Disable, MapAlt
+		GuiControl, Hide, FastColorPickerCS5Tip
+		GuiControl, Hide, FastColorPickerCS5Tip2
 	}
+
 	If (mapAltTxt=Lang_Set_hotkey_mapalt_2)
 	{
 		GuiControl, Hide, FCPk
 		GuiControl, Disable, Check10
 		GuiControl, Hide, FastColorPickerCS5Tip
-	}
-	If (mapAltTxt=Lang_Set_hotkey_mapalt_3) & (leftTag=Lang_ColorPicker)
-	{
-		GuiControl, Show, FCPk
-		GuiControl, Enable, FCPk
-		GuiControl, Disable, Check10
-		GuiControl, Show, FastColorPickerCS5Tip
-	}
-	Return
-
-FCPToggle:
-	GuiControlGet, Check8
-	If Check8=0
-	{
-		GuiControl,Disable,FCPk
-		GuiControl,Disable,MapAlt
-	}
-	else If Check8=1
-	{
-		GuiControl,Enable,FCPk
-		GuiControl,Enable,MapAlt
-	}
-
-	GuiControlGet,mapAltTxt,,MapAlt, Text
-	If (mapAltTxt=Lang_Set_hotkey_mapalt_2)
-	{
-		GuiControl,Disable,FCPk
+		GuiControl, Hide, FastColorPickerCS5Tip2
+		GuiControl, Move, MapAlt, x165 y103 w275
 	}
 	Return
 
@@ -347,8 +351,8 @@ SHLayerToggle:
 ; 添加控件 第三步
 ConfigSave:
 	Gui, Submit
-	stringreplace, Tiptext, Tiptext, `n, \n, All
-	stringreplace, Tiptext, Tiptext, `r, \r, All
+	Tiptext:=StrReplace(Tiptext, "`r", "\r")
+	Tiptext:=StrReplace(Tiptext, "`n", "\n")
 	IniWrite, %PsPath%, %A_scriptdir%\Data\Config.ini, Setting, PsPath
 	IniWrite, %PsCSver%, %A_scriptdir%\Data\Config.ini, Setting, Psver
 	IniWrite, %HUDCP%, %A_scriptdir%\Data\Config.ini, Setting, hudcp
@@ -405,8 +409,9 @@ GuiHideGB:
 	GuiControl,Hide,SHLayer
 	GuiControl,Hide,Check8
 	GuiControl,Hide,MapAlt
-	GuiControl,Hide,FCPk
+	GuiControl, Hide, FCPk
 	GuiControl, Hide, FastColorPickerCS5Tip
+	GuiControl, Hide, FastColorPickerCS5Tip2
 	GuiControl,Hide,Check11
 	GuiControl,Hide,ModifyBrushKey
 	GuiControl,Hide,Check6
@@ -434,6 +439,11 @@ GuiHideGB:
 	GuiControl, Hide, DonateText
 
 	GuiControl, Hide, HelpTipText
+
+	GuiControl, Hide, ShareWeibo
+	GuiControl, Hide, ShareTwitter
+	GuiControl, Hide, ShareFacebook
+	GuiControl, Hide, ShareReddit
 Return
 
 ; 添加控件 第五步
@@ -522,11 +532,17 @@ FChoicecheck:
 		{
 			GuiControl, Show, DonateAlipay
 			GuiControl, Show, DonateWechat
+
+			GuiControl, Show, ShareWeibo
 		}
 		else
 		{
 			GuiControl, Show, DonatePaypal
 			GuiControl, Show, DonateButton
+
+			GuiControl, Show, ShareTwitter
+			GuiControl, Show, ShareFacebook
+			GuiControl, Show, ShareReddit
 		}
 		GuiControl, Show, DonateText
 	}
@@ -552,9 +568,13 @@ VerChoose:
 			GuiControl,enable,ModifyBrushKey
 		}
 		GuiControl,enable,HUDCP
+
+		GuiControl, Move, MapAlt, x165 y103 w275
+		GuiControl, Move, FCPk, x400 y225 w40 h25
 		GuiControl,,MapAlt,|%Lang_hotKeyMapCS5Plus%|%Lang_Set_hotkey_mapalt_2%|%Lang_Set_hotkey_mapalt_3%|
 		GuiControl, Choose, MapAlt, |%MapAltmode%
 		GuiControl,Hide,FastColorPickerCS5Tip
+		GuiControl,Hide,FastColorPickerCS5Tip2
 		WinSetTitle, %ConfigTitle%
 	}
 	else
@@ -566,6 +586,9 @@ VerChoose:
 		GuiControl,Disable,hotkeyStableMode
 
 		GuiControl,Disable,HUDCP
+
+		GuiControl, Move, MapAlt, x165 y103 w230
+		GuiControl, Move, FCPk, x400 y103 w40 h25
 		GuiControl,,MapAlt,|%Lang_Set_hotkey_mapalt_1%|%Lang_Set_hotkey_mapalt_2%|
 		if MapAltmode=1
 			GuiControl, Choose, MapAlt, |1
@@ -587,11 +610,34 @@ VerChoose:
 			GuiControl,Disable,ModifyBrushKey	;Disable
 		}
 	}
-
 	Return
 
 DonateNow:
-Run, https://www.paypal.me/millionart
+	Run, https://www.paypal.me/millionart
+return
+
+ShareTwitter:
+	Run, https://twitter.com/intent/tweet?text=%Lang_shareText%&url=%DeviantArt%&hashtags=Photoshop
+return
+
+ShareFacebook:
+	Run, https://www.facebook.com/sharer/sharer.php?u=%DeviantArt%
+return
+
+ShareReddit:
+	Run, https://www.reddit.com/submit?url=%DeviantArt%&title=%Lang_shareText%&text=%Lang_shareText%
+return
+
+ShareWeibo:
+url=%Github%/releases
+Lang_shareText:=StrReplace(Lang_shareText, "#", "%23")
+
+If (G_Language = "简体中文")
+	langTag=zh_cn
+Else If (G_Language = "繁体中文") 
+	langTag=zh_tw
+
+	Run, https://service.weibo.com/share/share.php?url=%url%&language=%langTag%&title=%Lang_shareText%
 return
 
 ; 当鼠标移动到控件上，显示帮助提示
@@ -600,20 +646,22 @@ WM_MOUSEMOVE()
 	GuiControlGet,txt,,FChoice,
 	If (txt!=Lang_Donate)
 	{
-	static Lang_HT_, CurrControl, PrevControl, ; HT means Help Tip
-	CurrControl := A_GuiControl
-	If (CurrControl <> PrevControl and not InStr(CurrControl, " "))
-	{
-		SetTimer, DisplayToolTip, 0
-		PrevControl := CurrControl
+		static Lang_HT_, CurrControl, PrevControl, ; HT means Help Tip
+		CurrControl := A_GuiControl
+		If (CurrControl <> PrevControl and not InStr(CurrControl, " "))
+		{
+			SetTimer, DisplayToolTip, 0
+			PrevControl := CurrControl
+		}
 	}
 	return
 
 	DisplayToolTip:
 	SetTimer, DisplayToolTip, Off
-	GuiControl,,HelpTipText, % Lang_HT_%CurrControl% ; 第一个百分号表示后面是一个表达式
+	Try
+		GuiControl,,HelpTipText, % Lang_HT_%CurrControl% ; 第一个百分号表示后面是一个表达式
 	return
-	}
+
 }
 
 ;#include %A_scriptdir%\inc\Font.ahk
