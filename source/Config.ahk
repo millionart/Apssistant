@@ -5,9 +5,6 @@ FileEncoding , UTF-8
 #SingleInstance, force
 #NoTrayIcon
 
-
-;IniRead, PsCSver, %A_scriptdir%\Data\Config.ini, Setting, Psver, CS5
-
 G_ReadLanguage()
 
 V_CurrentVer()
@@ -33,7 +30,10 @@ DeviantArt:="https://www.deviantart.com/deviation/160950828"
 Gui, +Toolwindow ;+LastFound +AlwaysonTop
 Gui, Font, S%fontsize%, %fontname%
 
-Gui, Add, ListBox, x10 y10 w120 h450 vFChoice gFChoicecheck, %Lang_General%|%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%|%Lang_Donate%
+If (Regver>=14)
+	Gui, Add, ListBox, x10 y10 w120 h450 vFChoice gFChoicecheck, %Lang_General%|%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%|%Lang_PSUserConfig%|%Lang_Donate%
+Else
+	Gui, Add, ListBox, x10 y10 w120 h450 vFChoice gFChoicecheck, %Lang_General%|%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%|%Lang_Donate%
 
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_General, %Lang_General%
 	Gui, Add, Text, x150 y40 w200 h25 vGuiText4, %Lang_Your_language%
@@ -41,58 +41,67 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_General, %Lang_General%
 	Gui, Add, Text, x150 y70 w200 h25 vGuiText5, %Lang_Your_Photoshop_version%
 	Gui, Add, DropDownList, x361 y70 w80 vPsCSver Choose%PsCSverNo% gVerChoose, %PSCSverList%
 	Gui, Add, Edit, x150 y100 w211 h25 vPsPath Readonly, %PsPath%
-	Gui, Add, Button, x361 y100 w80 h25 vBrowse1 gBrowse1, %Lang_Config_Browse%
-	Gui, Add, Checkbox, x150 y130 w200 h25 vCheck4 %Checkd4% %psexist%, %Lang_P_I_LaunchPs%
-	Gui, Add, Checkbox, x150 y160 w190 h25 vCheck2 %Checkd2%, %Lang_P_I_Hidehelptip%
+	Gui, Add, Button, x361 y100 w80 h25 vBrowse1 gBrowse1, %Lang_Browse%
+	Gui, Add, Checkbox, x150 y130 w200 h25 vCheck4, %Lang_P_I_LaunchPs%
+	Gui, Add, Checkbox, x150 y160 w190 h25 vCheck2, %Lang_P_I_Hidehelptip%
 ;===========================
 
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_ColorPicker, %Lang_ColorPicker%
-	Gui, Add, CheckBox, x150 y40 w230 h25 vCheck7 %Checkd7% gHUDToggle, %Lang_Set_hotkey_HUD_Color_Picker%
-		Gui, Add, Hotkey, x400 y40 w40 h25 vHUDCP %enableHUDCP%, %HUDCP%
-		Gui, Add, Checkbox, x165 y65 w60 h25 vCheck5 %Checkd5%, %Lang_Set_hotkey_Precise%
-		Gui, Add, Checkbox, x225 y65 w60 h25 vCheck9 %Checkd9%, %Lang_Set_hotkey_Center%
+	Gui, Add, CheckBox, x150 y40 w230 h25 vCheck7 gHUDToggle, %Lang_Set_hotkey_HUD_Color_Picker%
+		Gui, Add, Hotkey, x400 y40 w40 h25 vHUDCP, %HUDCP%
+		Gui, Add, Checkbox, x165 y65 w60 h25 vCheck5, %Lang_Set_hotkey_Precise%
+		Gui, Add, Checkbox, x225 y65 w60 h25 vCheck9, %Lang_Set_hotkey_Center%
 		Gui, Add, Radio, x295 y65 w70 h25 vhotkeyFastMode -Wrap Group, %Lang_hotkeyFastMode%
 		Gui, Add, Radio, x375 y65 w70 h25 vhotkeyStableMode -Wrap, %Lang_hotkeyStableMode%
-		;Gui, Add, Checkbox, x285 y65 w100 h25 vCheck12 %Checkd12%, %Lang_hotkeyFastMode%
 
-	Gui, Add, CheckBox, x150 y100 w15 h25 vCheck8 %Checkd8% gChooseMapAltmode,
+	Gui, Add, CheckBox, x150 y100 w15 h25 vCheck8 gChooseMapAltmode,
 		Gui, Add, DropDownList, x165 y103 w275 vMapAlt Choose%MapAltmode% AltSubmit gChooseMapAltmode,
 		Gui, Add, Text, x165 y125 w235 h100 vFastColorPickerCS5Tip, %Lang_fastColorPickerCS5Tip%
 		Gui, Add, Text, x165 y225 w235 h25 vFastColorPickerCS5Tip2, %Lang_fastColorPickerCS5Tip2%
-		Gui, Add, Hotkey, x400 y225 w40 h25 vFCPk %enableFCP%, %FCPk%
+		Gui, Add, Hotkey, x400 y225 w40 h25 vFCPk, %FCPk%
 ;===========================
 
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Hotkey, %Lang_Hotkey%
-	Gui, Add, Checkbox, x150 y40 w190 h25 vCheck10 %Checkd10%, %Lang_P_I_DisableAltMenu%
-	Gui, Add, Checkbox, x150 y70 w200 h25 vCheck11 %Checkd11% gModifyBrushKeyToggle, %Lang_Set_hotkey_ModifyBrushKey%
-		Gui, Add, Hotkey, x361 y70 w80 h25 vModifyBrushKey %enableModifyBrushKey%, %ModifyBrushKey%
+	Gui, Add, Checkbox, x150 y40 w190 h25 vCheck10, %Lang_P_I_DisableAltMenu%
+	Gui, Add, Checkbox, x150 y70 w200 h25 vCheck11 gModifyBrushKeyToggle, %Lang_Set_hotkey_ModifyBrushKey%
+		Gui, Add, Hotkey, x361 y70 w80 h25 vModifyBrushKey, %ModifyBrushKey%
 
-	Gui, Add, Checkbox, x150 y100 w200 h25 vCheck6 %Checkd6% gQCLayerToggle, %Lang_Set_hotkey_QCLayer%
-		Gui, Add, Hotkey, x361 y100 w80 h25 vQCLayer %enableQCLayer%, %QCLayer%
+	Gui, Add, Checkbox, x150 y100 w200 h25 vCheck6 gQCLayerToggle, %Lang_Set_hotkey_QCLayer%
+		Gui, Add, Hotkey, x361 y100 w80 h25 vQCLayer, %QCLayer%
 
-	Gui, Add, Checkbox, x150 y130 w200 h25 vCheck13 %Checkd13% gSHLayerToggle, %Lang_Set_hotkey_SHLayer%
-		Gui, Add, Hotkey, x361 y130 w80 h25 vSHLayer %enableSHLayer%, %SHLayer%
+	Gui, Add, Checkbox, x150 y130 w200 h25 vCheck13 gSHLayerToggle, %Lang_Set_hotkey_SHLayer%
+		Gui, Add, Hotkey, x361 y130 w80 h25 vSHLayer, %SHLayer%
 
-	Gui, Add, Checkbox, x150 y160 w280 h25 vCheck1 %Checkd1%, %Lang_Set_hotkey_Undo%
+	Gui, Add, Checkbox, x150 y160 w280 h25 vCheck1, %Lang_Set_hotkey_Undo%
 
 ;===========================
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Autosave, %Lang_Autosave%
 	Gui, Add, DropDownList, x150 y40 w190 vAutosave Choose%Autosavenum% AltSubmit gAScheck, %Lang_Autosave_no%|%Lang_Autosave_tip%|%Lang_Autosave_yes%
-		;Gui, Add, Text, x310 y40 w40 vGuiText1, %Lang_Autosave_Every%
 		Gui, Add, Edit, x345 y40 w50 h25 vSavesleep Number Center, %Savesleep%
 		Gui, Add, Text, x401 y40 w40 h25 vGuiText2, %Lang_Autosave_Min%
 		Gui, Add, Text, x150 y70 w130 h25 vGuiText3, %Lang_Autosave_Optional%
 		Gui, Add, Edit, x271 y70 w160 h40 vTiptext Limit28, %Tiptext%
 
 ;===========================
-;Gui, Add, GroupBox, x140 y10 w310 h250 vGB_P_I, %Lang_P_I%
-
-
-;===========================
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Other, %Lang_Other%
-	Gui, Add, Checkbox, x150 y40 w190 h25 vCheck15 %Checkd15%, %Lang_Other_3dsMaxSync%
-	Gui, Add, Checkbox, x150 y70 w190 h25 vCheck3 %Checkd3%, %Lang_P_I_LockIME%
-	Gui, Add, Checkbox, x150 y100 w280 h25 vCheck14 %Checkd14%, %Lang_C_TempFiles% ;Clean up temporary files
+	Gui, Add, Checkbox, x150 y40 w190 h25 vCheck15, %Lang_Other_3dsMaxSync%
+	Gui, Add, Checkbox, x150 y70 w190 h25 vCheck3, %Lang_P_I_LockIME%
+	Gui, Add, Checkbox, x150 y100 w280 h25 vCheck14, %Lang_C_TempFiles% ;Clean up temporary files
+;===========================
+Gui, Add, GroupBox, x140 y10 w310 h300 vGB_PSUserConfig, %Lang_PSUserConfig%
+	Gui, Add, Checkbox, xp+10 yp+20 w235 h25 vAllowAsyncIO, %Lang_AllowAsyncIO%
+	Gui, Add, Checkbox, xp+0 y+5 wp hp vReduceUXFriction, %Lang_ReduceUXFriction%
+	Gui, Add, Checkbox, xp+0 y+5 wp hp vVMCompressPages, %Lang_VMCompressPages%
+	Gui, Add, Checkbox, xp+0 y+5 wp hp vLegacyHealingBrush161, %Lang_LegacyHealingBrush161%
+	Gui, Add, Checkbox, xp+0 y+5 wp hp vUseSystemStylus, %Lang_UseSystemStylus%
+	Gui, Add, Checkbox, xp+0 y+5 wp hp vuRTS, %Lang_uRTS%
+	Gui, Add, Checkbox, xp+0 y+5 w200 hp vOverscrollAlways gOverscrollAlwaysCheck, %Lang_OverscrollAlways%
+		Gui, Add, Edit, xp+240 yp+0 w50 hp vOverscrollAlwaysEdit Number Center, %OverscrollAlways%
+	Gui, Add, Checkbox, xp-240 y+5 w200 hp vRecentFilesSlowTimeout gRecentFilesSlowTimeoutCheck, %Lang_RecentFilesSlowTimeout%
+		Gui, Add, Edit, xp+240 yp+0 w50 hp vRecentFilesSlowTimeoutEdit Number Center, %RecentFilesSlowTimeout%
+	Gui, Add, Checkbox, xp-240 y+5 w200 hp vFullPreviewMaxSize gFullPreviewMaxSizeCheck, %Lang_FullPreviewMaxSize%
+		Gui, Add, Edit, xp+240 yp+0 w50 hp vFullPreviewMaxSizeEdit Number Center, %FullPreviewMaxSize%
+
 ;===========================
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Donate, %Lang_Donate%
 
@@ -106,8 +115,10 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Donate, %Lang_Donate%
 Gui, Add, GroupBox, x140 y270 w310 h250 vHelpTip, %Lang_HelpTip%
 	Gui, Add, Text, x150 y290 w290 h225 vHelpTipText,%Lang_HelpTip_text%
 
-Gui, Add, Button, x460 y10 w100 h50 vCSave gConfigSave, %Lang_Config_Save%
-Gui, Add, Button, x460 y70 w100 h30 vCCancel gGuiClose, %Lang_Config_Cancel%
+Gui, Add, Button, x460 y10 w100 h50 vSave gConfigSave, %Lang_Save%
+Gui, Add, Button, xp yp wp hp vApply, %Lang_Apply%
+Gui, Add, Button, xp y+10 wp h30 vCancel gGuiClose, %Lang_Cancel%
+Gui, Add, Button, xp yp wp hp vReset, %Lang_Reset%
 
 Gui Add, Link, x10 y470 w100 h20, <a href="%Github%">Github</a>
 Gui Add, Link, x10 y495 w100 h20, <a href="%DeviantArt%">DeviantArt</a>
@@ -138,21 +149,21 @@ If (Check%A_Index%=1)
 	GuiControl,,Check%A_Index%,1
 }
 
-gosub ModifyBrushKeyToggle
+Gosub, ModifyBrushKeyToggle
 
-gosub QCLayerToggle
+Gosub, QCLayerToggle
 
-gosub SHLayerToggle
+Gosub, SHLayerToggle
 
-gosub 3dsMaxSyncCheck
+Gosub, 3dsMaxSyncCheck
 
-gosub VerChoose
+Gosub, VerChoose
 
-gosub GuiHideGB
+Gosub, GuiHideGB
 
-If Regver>=12
+If curPsver>=12
 {
-	Gosub HUDToggle
+	Gosub, HUDToggle
 	Gui, Show, AutoSize Center,%ConfigTitle%
 }
 else
@@ -166,11 +177,107 @@ else
 	Gui, Show, AutoSize Center,%ConfigTitle% *** ***%Lang_Config_CS5mark%*** ***
 }
 
+If curPsver>=14
+	PSUserConfig=%A_AppData%\Adobe\Adobe Photoshop %GuiGetPsver%\Adobe Photoshop %GuiGetPsver% Settings\PSUserConfig.txt
+
+ReadPSUserConfig()
+
+Gosub, AdvanceCheck
+/*
+	MsgBox, AllowAsyncIO %AllowAsyncIO%
+	MsgBox, ReduceUXFriction %ReduceUXFriction%
+	MsgBox, VMCompressPages %VMCompressPages%
+	MsgBox, LegacyHealingBrush161 %LegacyHealingBrush161%
+	MsgBox, UseSystemStylus %UseSystemStylus%
+	MsgBox, uRTS %uRTS%
+	MsgBox, OverscrollAlways %OverscrollAlways%
+	MsgBox, RecentFilesSlowTimeout %RecentFilesSlowTimeout%
+	MsgBox, FullPreviewMaxSize %FullPreviewMaxSize%
+*/
 OnMessage(0x200, "WM_MOUSEMOVE")
 
 GuiControl, Choose, FChoice, 1
+
+Gosub, FChoicecheck
 Return
 
+OverscrollAlwaysCheck:
+	GuiControlGet, OverscrollAlways
+
+	If (OverscrollAlways=0)
+		GuiControl, Hide, OverscrollAlwaysEdit
+	Else
+		GuiControl, Show, OverscrollAlwaysEdit
+	Return
+
+RecentFilesSlowTimeoutCheck:
+	GuiControlGet, RecentFilesSlowTimeout
+
+	If (RecentFilesSlowTimeout=0)
+		GuiControl, Hide, RecentFilesSlowTimeoutEdit
+	Else
+		GuiControl, Show, RecentFilesSlowTimeoutEdit
+	Return
+
+FullPreviewMaxSizeCheck:
+	GuiControlGet, FullPreviewMaxSize
+
+	If (FullPreviewMaxSize=0)
+		GuiControl, Hide, FullPreviewMaxSizeEdit
+	Else
+		GuiControl, Show, FullPreviewMaxSizeEdit
+	Return
+
+AdvanceCheckTransform:
+	AllowAsyncIO:=AllowAsyncIO=1?0:1
+	ReduceUXFriction:=ReduceUXFriction=1?0:1
+	VMCompressPages:=VMCompressPages=1?0:1
+	;LegacyHealingBrush161:=LegacyHealingBrush161=1?0:1
+	UseSystemStylus:=UseSystemStylus=1?0:1
+	;uRTS:=uRTS=1?0:1
+	;OverscrollAlways:=OverscrollAlways=1?0:1
+	;RecentFilesSlowTimeout:=RecentFilesSlowTimeout=1?0:1
+	;FullPreviewMaxSize:=FullPreviewMaxSize=1?0:1
+Return
+
+AdvanceCheck:
+	Gosub, AdvanceCheckTransform
+	
+	GuiControl,,AllowAsyncIO,%AllowAsyncIO%
+	GuiControl,,ReduceUXFriction,%ReduceUXFriction%
+	GuiControl,,VMCompressPages,%VMCompressPages%
+	GuiControl,,LegacyHealingBrush161,%LegacyHealingBrush161%
+	GuiControl,,UseSystemStylus,%UseSystemStylus%
+	GuiControl,,uRTS,%uRTS%
+
+	If (OverscrollAlways>0)
+	{
+		GuiControl,,OverscrollAlwaysEdit,%OverscrollAlways%
+		OverscrollAlways=1
+		GuiControl, Enable, OverscrollAlwaysEdit
+	}
+	GuiControl,,OverscrollAlways,%OverscrollAlways%
+
+	If (RecentFilesSlowTimeout>0)
+	{
+		GuiControl,,RecentFilesSlowTimeoutEdit,%RecentFilesSlowTimeout%
+		RecentFilesSlowTimeout=1
+		GuiControl, Enable, OverscrollAlwaysEdit
+	}
+	GuiControl,,RecentFilesSlowTimeout,%RecentFilesSlowTimeout%
+
+	If (FullPreviewMaxSize>0)
+	{
+		GuiControl,,FullPreviewMaxSizeEdit,%FullPreviewMaxSize%
+		FullPreviewMaxSize=1
+		GuiControl, Enable, FullPreviewMaxSizeEdit
+	}
+	GuiControl,,FullPreviewMaxSize,%FullPreviewMaxSize%
+
+	Gosub, OverscrollAlwaysCheck
+	Gosub, RecentFilesSlowTimeoutCheck
+	Gosub, FullPreviewMaxSizeCheck
+Return
 
 AScheck:
 	SetTimer, lockAutosaveMinTime, 50 
@@ -347,49 +454,6 @@ SHLayerToggle:
 		GuiControl,Enable,SHLayer
 	}
 	Return
-; 保存配置
-; 添加控件 第三步
-ConfigSave:
-	Gui, Submit
-	Tiptext:=StrReplace(Tiptext, "`r", "\r")
-	Tiptext:=StrReplace(Tiptext, "`n", "\n")
-	IniWrite, %PsPath%, %A_scriptdir%\Data\Config.ini, Setting, PsPath
-	IniWrite, %PsCSver%, %A_scriptdir%\Data\Config.ini, Setting, Psver
-	IniWrite, %HUDCP%, %A_scriptdir%\Data\Config.ini, Setting, hudcp
-	IniWrite, %FCPk%, %A_scriptdir%\Data\Config.ini, Setting, fcp
-	IniWrite, %Check1%, %A_scriptdir%\Data\Config.ini, Setting, undo
-	IniWrite, %Autosave%, %A_scriptdir%\Data\Config.ini, Setting, autosave
-	IniWrite, %Savesleep%, %A_scriptdir%\Data\Config.ini, Setting, savesleep
-	IniWrite, %Tiptext%, %A_scriptdir%\Data\Config.ini, Setting, tiptext
-	IniWrite, %Check2%, %A_scriptdir%\Data\Config.ini, Setting, helptip
-	IniWrite, %Check3%, %A_scriptdir%\Data\Config.ini, Setting, lockIME
-	IniWrite, %Check4%, %A_scriptdir%\Data\Config.ini, Setting, launchPs
-	IniWrite, %Check5%, %A_scriptdir%\Data\Config.ini, Setting, Precisehudcp
-	IniWrite, %Check6%, %A_scriptdir%\Data\Config.ini, Setting, enableQCLayer
-	IniWrite, %Check7%, %A_scriptdir%\Data\Config.ini, Setting, enablehudcp
-	IniWrite, %Check8%, %A_scriptdir%\Data\Config.ini, Setting, enablefcp
-	IniWrite, %Check9%, %A_scriptdir%\Data\Config.ini, Setting, Centerhudcp
-	IniWrite, %Check10%, %A_scriptdir%\Data\Config.ini, Setting, DisableAltMenu
-	IniWrite, %Check11%, %A_scriptdir%\Data\Config.ini, Setting, enableModifyBrushRadius
-	If (hotkeyStableMode=1)
-		hotkeyMode=2
-	Else
-		hotkeyMode=1
-	IniWrite, %hotkeyMode%, %A_scriptdir%\Data\Config.ini, Setting, hotkeyMode
-	IniWrite, %Check13%, %A_scriptdir%\Data\Config.ini, Setting, SHLayerToggle
-	IniWrite, %Check14%, %A_scriptdir%\Data\Config.ini, Setting, CleanUpTempFiles
-	IniWrite, %SHLayer%, %A_scriptdir%\Data\Config.ini, Setting, SHLayer
-	IniWrite, %QCLayer%, %A_scriptdir%\Data\Config.ini, Setting, QCLayer
-	IniWrite, %ModifyBrushKey%, %A_scriptdir%\Data\Config.ini, Setting, ModifyBrushRadius
-	IniWrite, %MapAlt%, %A_scriptdir%\Data\Config.ini, Setting, mapalt
-	IniWrite, %Check15%, %A_scriptdir%\Data\Config.ini, Setting, 3dsMaxSync
-	If A_IsCompiled
-	{
-		run %A_scriptdir%\Apssistant.exe
-		ExitApp
-	}
-	Reload
-	return
 
 ; 添加控件 第四步
 GuiHideGB:
@@ -431,6 +495,23 @@ GuiHideGB:
 	GuiControl,Hide,GB_Other
 	GuiControl,Hide,Check15
 
+	GuiControl, Hide, GB_PSUserConfig
+	GuiControl, Hide, AllowAsyncIO
+	GuiControl, Hide, ReduceUXFriction
+	GuiControl, Hide, VMCompressPages
+	GuiControl, Hide, LegacyHealingBrush161
+	GuiControl, Hide, UseSystemStylus
+	GuiControl, Hide, uRTS
+	GuiControl, Hide, OverscrollAlways
+	GuiControl, Hide, OverscrollAlwaysEdit
+	GuiControl, Hide, RecentFilesSlowTimeout
+	GuiControl, Hide, RecentFilesSlowTimeoutEdit
+	GuiControl, Hide, FullPreviewMaxSize
+	GuiControl, Hide, FullPreviewMaxSizeEdit
+
+	GuiControl, Hide, Apply
+	GuiControl, Hide, Reset
+
 	GuiControl, Hide, GB_Donate
 	GuiControl, Hide, DonateAlipay
 	GuiControl, Hide, DonateWechat
@@ -471,10 +552,9 @@ FChoicecheck:
 		GuiControl,Show,GuiText5
 		GuiControl,Show,PsPath
 		GuiControl,Show,Browse1
-
-		GuiControl, Show, HelpTipText
 	}
-	Else If (leftTag=Lang_ColorPicker)
+
+	If (leftTag=Lang_ColorPicker)
 	{
 		GuiControl,Show,GB_ColorPicker
 		GuiControl,Show,Check7
@@ -488,10 +568,9 @@ FChoicecheck:
 		GuiControl,Show,MapAlt
 		GuiControl,Show,FCPk
 		Gosub, ChooseMapAltmode
-
-		GuiControl, Show, HelpTipText
 	}
-	Else If (leftTag=Lang_Hotkey)
+
+	If (leftTag=Lang_Hotkey)
 	{
 		GuiControl,Show,GB_Hotkey
 		GuiControl,Show,Check10
@@ -502,29 +581,64 @@ FChoicecheck:
 		GuiControl,Show,SHLayer
 		GuiControl,Show,QCLayer
 		GuiControl,Show,Check1
-
-		GuiControl, Show, HelpTipText
 	}
-	Else If (leftTag=Lang_Autosave)
+	
+	If (leftTag=Lang_Autosave)
 	{
 		GuiControl,Show,GB_Autosave
 		GuiControl,Show,Autosave
 		gosub AScheck
-
-		GuiControl, Show, HelpTipText
 	}
-	Else If (leftTag=Lang_Other)
+
+	If (leftTag=Lang_Other)
 	{
 		GuiControl,Show,GB_Other
 		GuiControl,Show,Check15
 		GuiControl,Show,Check3
 		GuiControl,Show,Check14
-
-		GuiControl, Show, HelpTipText
 	}
-	Else If (leftTag=Lang_Donate)
+
+	If (leftTag=Lang_PSUserConfig)
 	{
-		GuiControl, Hide, HelpTipText
+		ReadPSUserConfig()
+		Gosub, AdvanceCheck
+		GuiControl, Show, GB_PSUserConfig
+		GuiControl, Show, AllowAsyncIO
+		GuiControl, Show, ReduceUXFriction
+		GuiControl, Show, VMCompressPages
+		GuiControl, Show, LegacyHealingBrush161
+		GuiControl, Show, UseSystemStylus
+		GuiControl, Show, uRTS
+		GuiControl, Show, OverscrollAlways
+		;GuiControl, Show, OverscrollAlwaysEdit
+		GuiControl, Show, RecentFilesSlowTimeout
+		;GuiControl, Show, RecentFilesSlowTimeoutEdit
+		GuiControl, Show, FullPreviewMaxSize
+		;GuiControl, Show, FullPreviewMaxSizeEdit
+
+		GuiControl, Hide, Save
+		GuiControl, Hide, Cancel
+		GuiControl, Show, Apply
+		GuiControl, Show, Reset
+		GuiControl, +gApplyPSUserConfig, Apply
+		GuiControl, +gResetPSUserConfig, Reset
+
+		GuiControl, Move, HelpTip, x140 y320 w310 h200
+		GuiControl, Move, HelpTipText, x150 y340 w290 h175
+	}
+	Else
+	{
+		GuiControl, Show, Save
+		GuiControl, Show, Cancel
+		GuiControl, Hide, Apply
+		GuiControl, Hide, Reset
+
+		GuiControl, Move, HelpTip, x140 y270 w310 h250
+		GuiControl, Move, HelpTipText, x150 y290 w290 h225
+	}
+
+	If (leftTag=Lang_Donate)
+	{
 		GuiControl, Show, GB_Donate
 
 		If (G_Language = "简体中文") || (G_Language = "繁体中文") 
@@ -543,7 +657,13 @@ FChoicecheck:
 			GuiControl, Show, ShareFacebook
 			GuiControl, Show, ShareReddit
 		}
+		GuiControl, Hide, HelpTipText
 		GuiControl, Show, DonateText
+	}
+	Else
+	{
+		GuiControl, Hide, DonateText
+		GuiControl, Show, HelpTipText
 	}
 
 
@@ -609,6 +729,35 @@ VerChoose:
 			GuiControl,Disable,ModifyBrushKey	;Disable
 		}
 	}
+
+	If (curPsver!=14)
+	{
+		GuiControl, disable, OverscrollAlways
+		GuiControl, disable, uRTS
+	}
+	Else
+	{
+		GuiControl, enable, OverscrollAlways
+		GuiControl, enable, uRTS
+	}
+
+	If (curPsver!=16)
+	{
+		GuiControl, disable, LegacyHealingBrush161
+	}
+	Else
+	{
+		GuiControl, enable, LegacyHealingBrush161
+	}
+
+	If (curPsver<16)
+	{
+		GuiControl, disable, UseSystemStylus
+	}
+	Else
+	{
+		GuiControl, enable, UseSystemStylus
+	}
 	Return
 
 DonateNow:
@@ -628,7 +777,7 @@ ShareReddit:
 return
 
 ShareWeibo:
-url=%Github%/releases
+url=%Github%/releases/latest
 Lang_shareText:=StrReplace(Lang_shareText, "#", "%23")
 
 If (G_Language = "简体中文")
@@ -639,6 +788,138 @@ Else If (G_Language = "繁体中文")
 	Run, https://service.weibo.com/share/share.php?url=%url%&language=%langTag%&title=%Lang_shareText%
 return
 
+; 保存配置
+; 添加控件 第三步
+ConfigSave:
+	Gui, Submit
+	Tiptext:=StrReplace(Tiptext, "`r", "\r")
+	Tiptext:=StrReplace(Tiptext, "`n", "\n")
+	IniWrite, %PsPath%, %A_scriptdir%\Data\Config.ini, Setting, PsPath
+	IniWrite, %PsCSver%, %A_scriptdir%\Data\Config.ini, Setting, Psver
+	IniWrite, %HUDCP%, %A_scriptdir%\Data\Config.ini, Setting, hudcp
+	IniWrite, %FCPk%, %A_scriptdir%\Data\Config.ini, Setting, fcp
+	IniWrite, %Check1%, %A_scriptdir%\Data\Config.ini, Setting, undo
+	IniWrite, %Autosave%, %A_scriptdir%\Data\Config.ini, Setting, autosave
+	IniWrite, %Savesleep%, %A_scriptdir%\Data\Config.ini, Setting, savesleep
+	IniWrite, %Tiptext%, %A_scriptdir%\Data\Config.ini, Setting, tiptext
+	IniWrite, %Check2%, %A_scriptdir%\Data\Config.ini, Setting, helptip
+	IniWrite, %Check3%, %A_scriptdir%\Data\Config.ini, Setting, lockIME
+	IniWrite, %Check4%, %A_scriptdir%\Data\Config.ini, Setting, launchPs
+	IniWrite, %Check5%, %A_scriptdir%\Data\Config.ini, Setting, Precisehudcp
+	IniWrite, %Check6%, %A_scriptdir%\Data\Config.ini, Setting, enableQCLayer
+	IniWrite, %Check7%, %A_scriptdir%\Data\Config.ini, Setting, enablehudcp
+	IniWrite, %Check8%, %A_scriptdir%\Data\Config.ini, Setting, enablefcp
+	IniWrite, %Check9%, %A_scriptdir%\Data\Config.ini, Setting, Centerhudcp
+	IniWrite, %Check10%, %A_scriptdir%\Data\Config.ini, Setting, DisableAltMenu
+	IniWrite, %Check11%, %A_scriptdir%\Data\Config.ini, Setting, enableModifyBrushRadius
+	If (hotkeyStableMode=1)
+		hotkeyMode=2
+	Else
+		hotkeyMode=1
+	IniWrite, %hotkeyMode%, %A_scriptdir%\Data\Config.ini, Setting, hotkeyMode
+	IniWrite, %Check13%, %A_scriptdir%\Data\Config.ini, Setting, SHLayerToggle
+	IniWrite, %Check14%, %A_scriptdir%\Data\Config.ini, Setting, CleanUpTempFiles
+	IniWrite, %SHLayer%, %A_scriptdir%\Data\Config.ini, Setting, SHLayer
+	IniWrite, %QCLayer%, %A_scriptdir%\Data\Config.ini, Setting, QCLayer
+	IniWrite, %ModifyBrushKey%, %A_scriptdir%\Data\Config.ini, Setting, ModifyBrushRadius
+	IniWrite, %MapAlt%, %A_scriptdir%\Data\Config.ini, Setting, mapalt
+	IniWrite, %Check15%, %A_scriptdir%\Data\Config.ini, Setting, 3dsMaxSync
+	If A_IsCompiled
+	{
+		run %A_scriptdir%\Apssistant.exe
+		ExitApp
+	}
+	Reload
+	return
+
+ApplyPSUserConfig:
+	Gui, Submit, NoHide
+	FileSetAttrib, -R, %PSUserConfig%
+	FileDelete, %PSUserConfig%
+
+	Gosub, AdvanceCheckTransform
+
+	If (AllowAsyncIO=0)
+		FileAppend, AllowAsyncIO %AllowAsyncIO%`n, %PSUserConfig%
+	If (ReduceUXFriction=0)
+		FileAppend, ReduceUXFriction %ReduceUXFriction%`n, %PSUserConfig%
+	If (VMCompressPages=0)
+		FileAppend, VMCompressPages %VMCompressPages%`n, %PSUserConfig%
+	If (LegacyHealingBrush161=1)
+		FileAppend, LegacyHealingBrush161 %LegacyHealingBrush161%`n, %PSUserConfig%
+	If (UseSystemStylus=0)
+		FileAppend, UseSystemStylus %UseSystemStylus%`n, %PSUserConfig%
+	If (uRTS=1)
+		FileAppend, uRTS %uRTS%`n, %PSUserConfig%
+	
+	If (OverscrollAlways=1) && (OverscrollAlwaysEdit>=0)
+		FileAppend, OverscrollAlways %OverscrollAlwaysEdit%`n, %PSUserConfig%
+	If (RecentFilesSlowTimeout=1) && (RecentFilesSlowTimeoutEdit>=0)
+		FileAppend, RecentFilesSlowTimeout %RecentFilesSlowTimeoutEdit%`n, %PSUserConfig%
+	If (FullPreviewMaxSize=1) && (FullPreviewMaxSizeEdit>=0)
+		FileAppend, FullPreviewMaxSize %FullPreviewMaxSizeEdit%`n, %PSUserConfig%
+
+	return
+
+ResetPSUserConfig:
+	FileSetAttrib, -R, %PSUserConfig%
+	FileDelete, %PSUserConfig%
+
+	PSUserConfigDefault()
+	Gosub, AdvanceCheck
+	return
+
+ReadPSUserConfig()
+{
+	Global
+	Local Name, String
+	PSUserConfigDefault()
+
+	Loop, read, %PSUserConfig%
+	{
+		If (SubStr(A_LoopReadLine, 1, 1) !="#") && (A_LoopReadLine !="")
+		{
+			f_Split2(A_LoopReadLine,A_Space,Name,String)
+			Name=%Name%
+			String=%String%
+
+			%Name%:=String
+		}
+	}
+	return
+}
+
+PSUserConfigDefault()
+{
+	Global
+	AllowAsyncIO:=1
+	ReduceUXFriction:=1
+	VMCompressPages:=1
+	LegacyHealingBrush161:=0
+	UseSystemStylus:=1
+	uRTS:=0
+	OverscrollAlways:=0
+	RecentFilesSlowTimeout:=0
+	FullPreviewMaxSize:=0
+}
+
+f_Split2(String, Separator, ByRef LeftStr, ByRef RightStr)
+{
+	SplitPos := InStr(String, Separator)
+	if SplitPos = 0
+	{
+		LeftStr := String
+		RightStr:= ""
+	}
+	else
+	{
+		SplitPos--
+		StringLeft, LeftStr, String, %SplitPos%
+		SplitPos++
+		StringTrimLeft, RightStr, String, %SplitPos%
+	}
+	return
+}
 ; 当鼠标移动到控件上，显示帮助提示
 WM_MOUSEMOVE()
 {

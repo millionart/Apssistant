@@ -11,7 +11,7 @@ V_Trans()
 {
 	Global Regver, PsCSver, PSCSverList,PsCSverNo,GuiGetPsver,curPsver
 	
-	PSCSverList=6|7|CS|CS2|CS3|CS4|CS5|CS6|CC
+	PSCSverList=6|7|CS|CS2|CS3|CS4|CS5|CS6|CC|CC 2014|CC 2015|CC 2015.5|CC 2017|CC 2018
 	;GuiGetPsver=%PsCSver%
 	;curPsver=%Regver%
 	IniRead, PsCSver, %A_scriptdir%\Data\Config.ini, Setting, Psver, CC
@@ -23,6 +23,16 @@ V_Trans()
 		Regver=8
 	else If PsCSver=CC
 		Regver=14
+	else If PsCSver=CC 2014
+		Regver=15
+	else If PsCSver=CC 2015
+		Regver=16
+	else If PsCSver=CC 2015.5
+		Regver=17
+	else If PsCSver=CC 2017
+		Regver=18
+	else If PsCSver=CC 2018
+		Regver=19
 	else
 	{
 		RegCSver:=StrReplace(RegCSver, "CS", "")
@@ -38,6 +48,16 @@ V_Trans()
 		curPsver=8
 	else If GuiGetPsver=CC
 		curPsver=14
+	else If GuiGetPsver=CC 2014
+		curPsver=15
+	else If GuiGetPsver=CC 2015
+		curPsver=16
+	else If GuiGetPsver=CC 2015.5
+		curPsver=17
+	else If GuiGetPsver=CC 2017
+		curPsver=18
+	else If GuiGetPsver=CC 2018
+		curPsver=19
 	else
 	{
 		curPsCSver:=StrReplace(GuiGetPsver, "CS", "")
@@ -76,14 +96,25 @@ G_ReadLanguage()
         Name   = %Name%
 		String = %String%
 
-		
-		;Try
-        lang_%Name% := String
+		If (A_IsCompiled)
+		{
+			Try
+				lang_%Name% := String
+			Catch, e
+			{
+				MsgBox, Language file Error!`nPlease download Apssistant again!
+				Run, https://github.com/millionart/Apssistant/releases/latest
+				ExitApp
+			}
+		}
+		Else
+		{
+			lang_%Name% := String
+		}
+
 
         Row:=++Row
     }
-
-	return
 }
 
 #include %A_scriptdir%\inc\csv.ahk
