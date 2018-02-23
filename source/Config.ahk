@@ -36,9 +36,9 @@ Else
 	Gui, Add, ListBox, x10 y10 w120 h450 vFChoice gFChoicecheck, %Lang_General%|%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%|%Lang_Donate%
 
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_General, %Lang_General%
-	Gui, Add, Text, x150 y40 w200 h25 vGuiText4, %Lang_Your_language%
+	Gui, Add, Text, x150 y40 w200 h25 vGuiTextLang, %Lang_Your_language%
 	Gui, Add, DropDownList, x361 y40 w80 vG_Language gLangtip Choose%LangNum%, %gui_Language%
-	Gui, Add, Text, x150 y70 w200 h25 vGuiText5, %Lang_Your_Photoshop_version%
+	Gui, Add, Text, x150 y70 w200 h25 vGuiTextPsVersion, %Lang_Your_Photoshop_version%
 	Gui, Add, DropDownList, x361 y70 w80 vPsCSver Choose%PsCSverNo% gVerChoose, %PSCSverList%
 	Gui, Add, Edit, x150 y100 w211 h25 vPsPath Readonly, %PsPath%
 	Gui, Add, Button, x361 y100 w80 h25 vBrowse1 gBrowse1, %Lang_Browse%
@@ -88,19 +88,26 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Other, %Lang_Other%
 	Gui, Add, Checkbox, x150 y70 w190 h25 vCheck3, %Lang_P_I_LockIME%
 	Gui, Add, Checkbox, x150 y100 w280 h25 vCheck14, %Lang_C_TempFiles% ;Clean up temporary files
 ;===========================
-Gui, Add, GroupBox, x140 y10 w310 h300 vGB_PSUserConfig, %Lang_PSUserConfig%
+Gui, Add, GroupBox, x140 y10 w310 h250 vGB_PSUserConfig, %Lang_PSUserConfig%
 	Gui, Add, Checkbox, xp+10 yp+20 w235 h25 vAllowAsyncIO, %Lang_AllowAsyncIO%
 	Gui, Add, Checkbox, xp+0 y+5 wp hp vReduceUXFriction, %Lang_ReduceUXFriction%
 	Gui, Add, Checkbox, xp+0 y+5 wp hp vVMCompressPages, %Lang_VMCompressPages%
-	Gui, Add, Checkbox, xp+0 y+5 wp hp vLegacyHealingBrush161, %Lang_LegacyHealingBrush161%
-	Gui, Add, Checkbox, xp+0 y+5 wp hp vUseSystemStylus, %Lang_UseSystemStylus%
-	Gui, Add, Checkbox, xp+0 y+5 wp hp vuRTS, %Lang_uRTS%
-	Gui, Add, Checkbox, xp+0 y+5 w200 hp vOverscrollAlways gOverscrollAlwaysCheck, %Lang_OverscrollAlways%
-		Gui, Add, Edit, xp+240 yp+0 w50 hp vOverscrollAlwaysEdit Number Center, %OverscrollAlways%
-	Gui, Add, Checkbox, xp-240 y+5 w200 hp vRecentFilesSlowTimeout gRecentFilesSlowTimeoutCheck, %Lang_RecentFilesSlowTimeout%
+	Gui, Add, Checkbox, xp+0 y+5 w200 hp vRecentFilesSlowTimeout gRecentFilesSlowTimeoutCheck, %Lang_RecentFilesSlowTimeout%
 		Gui, Add, Edit, xp+240 yp+0 w50 hp vRecentFilesSlowTimeoutEdit Number Center, %RecentFilesSlowTimeout%
 	Gui, Add, Checkbox, xp-240 y+5 w200 hp vFullPreviewMaxSize gFullPreviewMaxSizeCheck, %Lang_FullPreviewMaxSize%
 		Gui, Add, Edit, xp+240 yp+0 w50 hp vFullPreviewMaxSizeEdit Number Center, %FullPreviewMaxSize%
+
+	Gui, Add, Checkbox, xp-240 y180 w200 hp vOverscrollAlways gOverscrollAlwaysCheck, %Lang_OverscrollAlways%
+		Gui, Add, Edit, xp+240 yp+0 w50 hp vOverscrollAlwaysEdit Number Center, %OverscrollAlways%
+	Gui, Add, Checkbox, xp-240 y+5 w235 hp vuRTS, %Lang_uRTS%
+
+	Gui, Add, Checkbox, xp+0 y180 wp hp vUseSystemStylus, %Lang_UseSystemStylus%
+
+	Gui, Add, DropDownList, xp+0 y+5 w290 vLegacyHealingBrush161 AltSubmit, %Lang_LegacyHealingBrush160%|%Lang_LegacyHealingBrush161%|%Lang_LegacyHealingBrush162%
+
+	Gui, Add, Text, x150 y240 w290 h25 vGuiText4 Center, %Lang_NeedRestartTip%
+
+
 
 ;===========================
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Donate, %Lang_Donate%
@@ -109,11 +116,13 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Donate, %Lang_Donate%
 	Gui, Add, Picture, x300 y59 w150 h-1 vDonateWechat, %A_scriptdir%\Data\Images\wechat.png
 
 	Gui, Add, Picture, x170 y59 w246 h-1 vDonatePaypal gDonateNow, %A_scriptdir%\Data\Images\paypal.png
+	Gui Add, Button, x150 y160 w290 h60 vDonateButton gDonateNow, %Lang_Donate%
+
 	Gui, Add, Text, x150 y290 w290 h180 vDonateText, %Lang_Donate_text%
 
 ;===========================
 Gui, Add, GroupBox, x140 y270 w310 h250 vHelpTip, %Lang_HelpTip%
-	Gui, Add, Text, x150 y290 w290 h225 vHelpTipText,%Lang_HelpTip_text%
+	Gui, Add, Text, x150 y290 w290 h225 vHelpTipText, %Lang_HelpTip_text%
 
 Gui, Add, Button, x460 y10 w100 h50 vSave gConfigSave, %Lang_Save%
 Gui, Add, Button, xp yp wp hp vApply, %Lang_Apply%
@@ -125,7 +134,11 @@ Gui Add, Link, x10 y495 w100 h20, <a href="%DeviantArt%">DeviantArt</a>
 Gui Font
 
 Gui Font, s20 Bold q5 c0x0080FF, %Fontname%
-Gui Add, Button, x150 y160 w290 h60 vDonateButton gDonateNow, %Lang_Donate%
+GuiControl, Font, DonateButton
+Gui Font
+
+Gui Font, Bold cRed, %Fontname%
+GuiControl, Font, GuiText4
 Gui Font
 
 Gui Add, Picture, x460 y275 w100 h-1 vShareTwitter gShareTwitter,  %A_scriptdir%\Data\Images\Twitter.png
@@ -183,17 +196,7 @@ If curPsver>=14
 ReadPSUserConfig()
 
 Gosub, AdvanceCheck
-/*
-	MsgBox, AllowAsyncIO %AllowAsyncIO%
-	MsgBox, ReduceUXFriction %ReduceUXFriction%
-	MsgBox, VMCompressPages %VMCompressPages%
-	MsgBox, LegacyHealingBrush161 %LegacyHealingBrush161%
-	MsgBox, UseSystemStylus %UseSystemStylus%
-	MsgBox, uRTS %uRTS%
-	MsgBox, OverscrollAlways %OverscrollAlways%
-	MsgBox, RecentFilesSlowTimeout %RecentFilesSlowTimeout%
-	MsgBox, FullPreviewMaxSize %FullPreviewMaxSize%
-*/
+
 OnMessage(0x200, "WM_MOUSEMOVE")
 
 GuiControl, Choose, FChoice, 1
@@ -204,40 +207,29 @@ Return
 OverscrollAlwaysCheck:
 	GuiControlGet, OverscrollAlways
 
-	If (OverscrollAlways=0)
-		GuiControl, Hide, OverscrollAlwaysEdit
-	Else
-		GuiControl, Show, OverscrollAlwaysEdit
+	showHide:=OverscrollAlways=0?"Hide":"Show"
+	GuiControl, %showHide%, OverscrollAlwaysEdit
 	Return
 
 RecentFilesSlowTimeoutCheck:
 	GuiControlGet, RecentFilesSlowTimeout
 
-	If (RecentFilesSlowTimeout=0)
-		GuiControl, Hide, RecentFilesSlowTimeoutEdit
-	Else
-		GuiControl, Show, RecentFilesSlowTimeoutEdit
+	showHide:=RecentFilesSlowTimeout=0?"Hide":"Show"
+	GuiControl, %showHide%, RecentFilesSlowTimeoutEdit
 	Return
 
 FullPreviewMaxSizeCheck:
 	GuiControlGet, FullPreviewMaxSize
 
-	If (FullPreviewMaxSize=0)
-		GuiControl, Hide, FullPreviewMaxSizeEdit
-	Else
-		GuiControl, Show, FullPreviewMaxSizeEdit
+	showHide:=FullPreviewMaxSize=0?"Hide":"Show"
+	GuiControl, %showHide%, FullPreviewMaxSizeEdit
 	Return
 
 AdvanceCheckTransform:
 	AllowAsyncIO:=AllowAsyncIO=1?0:1
 	ReduceUXFriction:=ReduceUXFriction=1?0:1
 	VMCompressPages:=VMCompressPages=1?0:1
-	;LegacyHealingBrush161:=LegacyHealingBrush161=1?0:1
 	UseSystemStylus:=UseSystemStylus=1?0:1
-	;uRTS:=uRTS=1?0:1
-	;OverscrollAlways:=OverscrollAlways=1?0:1
-	;RecentFilesSlowTimeout:=RecentFilesSlowTimeout=1?0:1
-	;FullPreviewMaxSize:=FullPreviewMaxSize=1?0:1
 Return
 
 AdvanceCheck:
@@ -246,7 +238,7 @@ AdvanceCheck:
 	GuiControl,,AllowAsyncIO,%AllowAsyncIO%
 	GuiControl,,ReduceUXFriction,%ReduceUXFriction%
 	GuiControl,,VMCompressPages,%VMCompressPages%
-	GuiControl,,LegacyHealingBrush161,%LegacyHealingBrush161%
+	;GuiControl,,LegacyHealingBrush161,%LegacyHealingBrush161%
 	GuiControl,,UseSystemStylus,%UseSystemStylus%
 	GuiControl,,uRTS,%uRTS%
 
@@ -457,7 +449,7 @@ SHLayerToggle:
 
 ; 添加控件 第四步
 GuiHideGB:
-	loop 3
+	loop 4
 	{
 	GuiControl,Hide,GuiText%A_Index%
 	}
@@ -534,8 +526,8 @@ FChoicecheck:
 	GuiControl,Hide,G_Language
 	GuiControl,Hide,Check4
 	GuiControl,Hide,Check2
-	GuiControl,Hide,GuiText4
-	GuiControl,Hide,GuiText5
+	GuiControl,Hide,GuiTextLang
+	GuiControl,Hide,GuiTextPsVersion
 	GuiControl,Hide,PsPath
 	GuiControl,Hide,Browse1
 
@@ -548,8 +540,8 @@ FChoicecheck:
 		GuiControl,Show,G_Language
 		GuiControl,Show,Check4
 		GuiControl,Show,Check2
-		GuiControl,Show,GuiText4
-		GuiControl,Show,GuiText5
+		GuiControl,Show,GuiTextLang
+		GuiControl,Show,GuiTextPsVersion
 		GuiControl,Show,PsPath
 		GuiControl,Show,Browse1
 	}
@@ -600,21 +592,52 @@ FChoicecheck:
 
 	If (leftTag=Lang_PSUserConfig)
 	{
+		GuiControlGet,GuiGetPsver,,PsCSver, Text
+		V_Trans()
 		ReadPSUserConfig()
 		Gosub, AdvanceCheck
 		GuiControl, Show, GB_PSUserConfig
 		GuiControl, Show, AllowAsyncIO
 		GuiControl, Show, ReduceUXFriction
 		GuiControl, Show, VMCompressPages
-		GuiControl, Show, LegacyHealingBrush161
-		GuiControl, Show, UseSystemStylus
-		GuiControl, Show, uRTS
-		GuiControl, Show, OverscrollAlways
-		;GuiControl, Show, OverscrollAlwaysEdit
+		;GuiControl, Show, LegacyHealingBrush161
+		;GuiControl, Show, UseSystemStylus
+		;GuiControl, Show, uRTS
+		;GuiControl, Show, OverscrollAlways
 		GuiControl, Show, RecentFilesSlowTimeout
-		;GuiControl, Show, RecentFilesSlowTimeoutEdit
 		GuiControl, Show, FullPreviewMaxSize
-		;GuiControl, Show, FullPreviewMaxSizeEdit
+
+		
+		If (curPsver!=14)
+		{
+			GuiControl, Hide, OverscrollAlways
+			GuiControl, Hide, uRTS
+		}
+		Else
+		{
+			GuiControl, Show, OverscrollAlways
+			GuiControl, Show, uRTS
+		}
+
+		If (curPsver<15)
+		{
+			GuiControl, Hide, UseSystemStylus
+		}
+		Else
+		{
+			GuiControl, Show, UseSystemStylus
+		}
+
+		If (curPsver!=16)
+		{
+			GuiControl, Hide, LegacyHealingBrush161
+		}
+		Else
+		{
+			LegacyHealingBrush161v:=LegacyHealingBrush161+1
+			GuiControl, Choose, LegacyHealingBrush161, %LegacyHealingBrush161v%
+			GuiControl, Show, LegacyHealingBrush161
+		}
 
 		GuiControl, Hide, Save
 		GuiControl, Hide, Cancel
@@ -623,8 +646,8 @@ FChoicecheck:
 		GuiControl, +gApplyPSUserConfig, Apply
 		GuiControl, +gResetPSUserConfig, Reset
 
-		GuiControl, Move, HelpTip, x140 y320 w310 h200
-		GuiControl, Move, HelpTipText, x150 y340 w290 h175
+		;GuiControl, Move, HelpTip, x140 y320 w310 h200
+		;GuiControl, Move, HelpTipText, x150 y340 w290 h175
 	}
 	Else
 	{
@@ -633,8 +656,8 @@ FChoicecheck:
 		GuiControl, Hide, Apply
 		GuiControl, Hide, Reset
 
-		GuiControl, Move, HelpTip, x140 y270 w310 h250
-		GuiControl, Move, HelpTipText, x150 y290 w290 h225
+		;GuiControl, Move, HelpTip, x140 y270 w310 h250
+		;GuiControl, Move, HelpTipText, x150 y290 w290 h225
 	}
 
 	If (leftTag=Lang_Donate)
@@ -709,10 +732,9 @@ VerChoose:
 		GuiControl, Move, MapAlt, x165 y103 w230
 		GuiControl, Move, FCPk, x400 y103 w40 h25
 		GuiControl,,MapAlt,|%Lang_Set_hotkey_mapalt_1%|%Lang_Set_hotkey_mapalt_2%|
-		if MapAltmode=1
-			GuiControl, Choose, MapAlt, |1
-		else
-			GuiControl, Choose, MapAlt, |2
+		
+		MapAltmodeNum:=MapAltmode=1?1:2
+		GuiControl, Choose, MapAlt, |%MapAltmodeNum%
 
 		WinSetTitle, %ConfigTitle% *** ***%Lang_Config_CS5mark%*** ***
 
@@ -730,34 +752,6 @@ VerChoose:
 		}
 	}
 
-	If (curPsver!=14)
-	{
-		GuiControl, disable, OverscrollAlways
-		GuiControl, disable, uRTS
-	}
-	Else
-	{
-		GuiControl, enable, OverscrollAlways
-		GuiControl, enable, uRTS
-	}
-
-	If (curPsver!=16)
-	{
-		GuiControl, disable, LegacyHealingBrush161
-	}
-	Else
-	{
-		GuiControl, enable, LegacyHealingBrush161
-	}
-
-	If (curPsver<16)
-	{
-		GuiControl, disable, UseSystemStylus
-	}
-	Else
-	{
-		GuiControl, enable, UseSystemStylus
-	}
 	Return
 
 DonateNow:
@@ -812,10 +806,7 @@ ConfigSave:
 	IniWrite, %Check9%, %A_scriptdir%\Data\Config.ini, Setting, Centerhudcp
 	IniWrite, %Check10%, %A_scriptdir%\Data\Config.ini, Setting, DisableAltMenu
 	IniWrite, %Check11%, %A_scriptdir%\Data\Config.ini, Setting, enableModifyBrushRadius
-	If (hotkeyStableMode=1)
-		hotkeyMode=2
-	Else
-		hotkeyMode=1
+	hotkeyMode:=hotkeyStableMode=1?2:1
 	IniWrite, %hotkeyMode%, %A_scriptdir%\Data\Config.ini, Setting, hotkeyMode
 	IniWrite, %Check13%, %A_scriptdir%\Data\Config.ini, Setting, SHLayerToggle
 	IniWrite, %Check14%, %A_scriptdir%\Data\Config.ini, Setting, CleanUpTempFiles
@@ -845,7 +836,7 @@ ApplyPSUserConfig:
 		FileAppend, ReduceUXFriction %ReduceUXFriction%`n, %PSUserConfig%
 	If (VMCompressPages=0)
 		FileAppend, VMCompressPages %VMCompressPages%`n, %PSUserConfig%
-	If (LegacyHealingBrush161=1)
+	If (LegacyHealingBrush161=1) || (LegacyHealingBrush161=2)
 		FileAppend, LegacyHealingBrush161 %LegacyHealingBrush161%`n, %PSUserConfig%
 	If (UseSystemStylus=0)
 		FileAppend, UseSystemStylus %UseSystemStylus%`n, %PSUserConfig%
@@ -859,6 +850,7 @@ ApplyPSUserConfig:
 	If (FullPreviewMaxSize=1) && (FullPreviewMaxSizeEdit>=0)
 		FileAppend, FullPreviewMaxSize %FullPreviewMaxSizeEdit%`n, %PSUserConfig%
 
+	GuiFlash("GuiText4",3,100)
 	return
 
 ResetPSUserConfig:
@@ -867,7 +859,22 @@ ResetPSUserConfig:
 
 	PSUserConfigDefault()
 	Gosub, AdvanceCheck
+	GuiFlash("GuiText4",3,100)
 	return
+
+GuiFlash(String,Times,Time)
+{
+	GuiControlGet,vis, Visible,%String%
+	If (vis=1)
+		GuiControl, Show, %String%
+	Loop, %Times%
+	{
+		Sleep, %Time%
+		GuiControl, Hide, %String%
+		Sleep, %Time%
+		GuiControl, Show, %String%
+	}
+}
 
 ReadPSUserConfig()
 {

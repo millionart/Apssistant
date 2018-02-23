@@ -175,6 +175,7 @@ Return
 		KeyWait, Alt
 		SendInput, {Alt up}
 	}
+	return
 #IfWinActive
 
 #IfWinActive ahk_group Photoshop
