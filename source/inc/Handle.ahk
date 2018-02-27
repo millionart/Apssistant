@@ -60,20 +60,20 @@ ConfigRead:
 	IniRead, Check1, %A_scriptdir%\Data\Config.ini, Setting, undo, 0
 	IniRead, Autosavenum, %A_scriptdir%\Data\Config.ini, Setting, autosave, 1
 	IniRead, Savesleep, %A_scriptdir%\Data\Config.ini, Setting, savesleep, 5
-	IniRead, Check2, %A_scriptdir%\Data\Config.ini, Setting, helptip, 0
+	IniRead, Check2, %A_scriptdir%\Data\Config.ini, Setting, helptip, 1
 	IniRead, Check3, %A_scriptdir%\Data\Config.ini, Setting, lockIME, 0
 	IniRead, Check4, %A_scriptdir%\Data\Config.ini, Setting, launchPs, 1
 	IniRead, Check5, %A_scriptdir%\Data\Config.ini, Setting, Precisehudcp, 1
-	IniRead, Check6, %A_scriptdir%\Data\Config.ini, Setting, enableQCLayer, 1
+	IniRead, Check6, %A_scriptdir%\Data\Config.ini, Setting, enableQCLayer, 0
 	IniRead, Check7, %A_scriptdir%\Data\Config.ini, Setting, enablehudcp, 1
 	IniRead, Check8, %A_scriptdir%\Data\Config.ini, Setting, enablefcp, 1
 	IniRead, Check9, %A_scriptdir%\Data\Config.ini, Setting, Centerhudcp, 0
 	IniRead, Check10, %A_scriptdir%\Data\Config.ini, Setting, DisableAltMenu, 1
-	IniRead, Check11, %A_scriptdir%\Data\Config.ini, Setting, enableModifyBrushRadius, 1
+	IniRead, Check11, %A_scriptdir%\Data\Config.ini, Setting, enableModifyBrushRadius, 0
 	IniRead, hotkeyMode, %A_scriptdir%\Data\Config.ini, Setting, CPThudcp, 1
 		IniRead, hotkeyMode, %A_scriptdir%\Data\Config.ini, Setting, hotkeyMode, %hotkeyMode%
 		IniDelete, %A_scriptdir%\Data\Config.ini, Setting, CPThudcp
-	IniRead, Check13, %A_scriptdir%\Data\Config.ini, Setting, SHLayerToggle, 1
+	IniRead, Check13, %A_scriptdir%\Data\Config.ini, Setting, SHLayerToggle, 0
 	IniRead, Check14, %A_scriptdir%\Data\Config.ini, Setting, CleanUpTempFiles, 1
 	IniRead, SHLayer, %A_scriptdir%\Data\Config.ini, Setting, SHLayer, H
 	IniRead, QCLayer, %A_scriptdir%\Data\Config.ini, Setting, QCLayer, F1

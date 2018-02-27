@@ -14,14 +14,6 @@ V_Trans()
 
 gosub ConfigRead
 
-stringStartNum=2
-gui_Language = 
-loop,%LangTotal%
-{
-	LangName:=CSV_ReadCell(CSV_Identifier, 1, stringStartNum)
-	gui_Language .=LangName . "|"
-	stringStartNum:=++stringStartNum
-}
 Github:="https://github.com/millionart/Apssistant"
 DeviantArt:="https://www.deviantart.com/deviation/160950828"
 
@@ -30,10 +22,7 @@ DeviantArt:="https://www.deviantart.com/deviation/160950828"
 Gui, +Toolwindow ;+LastFound +AlwaysonTop
 Gui, Font, S%fontsize%, %fontname%
 
-If (Regver>=14)
-	Gui, Add, ListBox, x10 y10 w120 h450 vFChoice gFChoicecheck, %Lang_General%|%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%|%Lang_PSUserConfig%|%Lang_Donate%
-Else
-	Gui, Add, ListBox, x10 y10 w120 h450 vFChoice gFChoicecheck, %Lang_General%|%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%|%Lang_Donate%
+Gui, Add, ListBox, x10 y10 w120 h450 vFChoice gFChoicecheck,
 
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_General, %Lang_General%
 	Gui, Add, Text, x150 y40 w200 h25 vGuiTextLang, %Lang_Your_language%
@@ -752,6 +741,14 @@ VerChoose:
 		}
 	}
 
+	If (curPsver<14)
+	{
+		GuiControl, Text, FChoice , |%Lang_General%||%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%|%Lang_Donate%
+	}
+	Else
+	{
+		GuiControl, Text, FChoice , |%Lang_General%||%Lang_ColorPicker%|%Lang_Hotkey%|%Lang_Autosave%|%Lang_Other%|%Lang_PSUserConfig%|%Lang_Donate%
+	}
 	Return
 
 DonateNow:

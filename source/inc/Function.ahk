@@ -10,59 +10,40 @@ V_CurrentVer()
 V_Trans()
 {
 	Global Regver, PsCSver, PSCSverList,PsCSverNo,GuiGetPsver,curPsver
-	
-	PSCSverList=6|7|CS|CS2|CS3|CS4|CS5|CS6|CC|CC 2014|CC 2015|CC 2015.5|CC 2017|CC 2018
-	;GuiGetPsver=%PsCSver%
-	;curPsver=%Regver%
-	IniRead, PsCSver, %A_scriptdir%\Data\Config.ini, Setting, Psver, CC
-	If PsCSver<8
+	PSCSverList:="CC 2018|CC 2017|CC 2015.5|CC 2015|CC 2014|CC|CS6|CS5|CS4|CS3|CS2|CS|7|6"
+	psVerArray:=StrSplit(PSCSverList, "|")
+
+	psVerDefault:=psVerArray[1]
+	IniRead, PsCSver, %A_scriptdir%\Data\Config.ini, Setting, Psver, %psVerDefault%
+
+	Loop, % psVerArray.MaxIndex()
 	{
-		Regver=%PsCSver%
+		If (PsCSver=psVerArray[a_index])
+			Break
+		Else
+			PsCSver=%psVerDefault%
 	}
-	else If PsCSver=CS
-		Regver=8
-	else If PsCSver=CC
-		Regver=14
-	else If PsCSver=CC 2014
-		Regver=15
-	else If PsCSver=CC 2015
-		Regver=16
-	else If PsCSver=CC 2015.5
-		Regver=17
-	else If PsCSver=CC 2017
-		Regver=18
-	else If PsCSver=CC 2018
-		Regver=19
-	else
+
+	PsCSverNo=1
+	Loop, % psVerArray.MaxIndex()
 	{
-		RegCSver:=StrReplace(RegCSver, "CS", "")
-		Regver:=RegCSver+7
+		If (psVerArray[a_index]!=PsCSver)
+			PsCSverNo:=++PsCSverNo
+		Else
+			Break
 	}
-	PsCSverNo:=Regver-5
-	
+
+	curPsver:=StrReplace(GuiGetPsver, "CC 20", "")
+	curPsver:=curPsver+1
+
 	If GuiGetPsver<8
-	{
 		curPsver=%GuiGetPsver%
-	}
-	else If GuiGetPsver=CS
+	If GuiGetPsver=CS
 		curPsver=8
-	else If GuiGetPsver=CC
+	If GuiGetPsver=CC
 		curPsver=14
-	else If GuiGetPsver=CC 2014
-		curPsver=15
-	else If GuiGetPsver=CC 2015
-		curPsver=16
-	else If GuiGetPsver=CC 2015.5
+	If GuiGetPsver=CC 2015.5
 		curPsver=17
-	else If GuiGetPsver=CC 2017
-		curPsver=18
-	else If GuiGetPsver=CC 2018
-		curPsver=19
-	else
-	{
-		curPsCSver:=StrReplace(GuiGetPsver, "CS", "")
-		curPsver:=curPsCSver+7
-	}
 }
 
 G_ReadLanguage()
@@ -76,17 +57,40 @@ G_ReadLanguage()
 	FileRemoveDir,%A_ScriptDir%\Data\Locales,1 ;Remove old language file.
 	CSV_Load(A_ScriptDir . "\Data\Language.csv")
 	TotalCols:=CSV_TotalCols(CSV_Identifier)
+    TotalRows:=CSV_TotalRows(CSV_Identifier)
 	LangTotal:=TotalCols-1
-	stringStartNum=2
 
-    TotalRows:=CSV_TotalRows(CSV_Identifier)   
-	StringCol:=CSV_SearchRow(CSV_Identifier, G_Language, 1, 1)
+	stringStartNum=2
+	gui_Language = 
+	langArray:=Array()
+
+	loop,%LangTotal%
+	{
+		LangName:=CSV_ReadCell(CSV_Identifier, 1, stringStartNum)
+		gui_Language .=LangName . "|"
+		stringStartNum:=++stringStartNum
+
+		langArray.Push(LangName)
+	}
+
+	loop,%LangTotal%
+	{
+		If (G_Language=langArray[a_index])
+		{
+			StringCol:=CSV_SearchRow(CSV_Identifier, G_Language, 1, 1)
+			Break
+		}
+		Else
+			StringCol=2
+	}
+
 	LangNum:=StringCol-1
+
+
 
     Row=2
     Loop, %TotalRows%
     {
-				;msgbox,%Row%
         Name:=CSV_ReadCell(CSV_Identifier, Row, 1)
         String:=CSV_ReadCell(CSV_Identifier, Row, StringCol)
 		
