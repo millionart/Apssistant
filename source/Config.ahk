@@ -227,7 +227,6 @@ AdvanceCheck:
 	GuiControl,,AllowAsyncIO,%AllowAsyncIO%
 	GuiControl,,ReduceUXFriction,%ReduceUXFriction%
 	GuiControl,,VMCompressPages,%VMCompressPages%
-	;GuiControl,,LegacyHealingBrush161,%LegacyHealingBrush161%
 	GuiControl,,UseSystemStylus,%UseSystemStylus%
 	GuiControl,,uRTS,%uRTS%
 
@@ -406,7 +405,6 @@ Langtip:
 	IniWrite, %Fontname%, %A_scriptdir%\Data\Config.ini, General, fontname
 	IniWrite, %G_Language%, %A_scriptdir%\Data\Config.ini, Setting, lang
 	Process,Close,Apssistant.exe
-	;MsgBox, 0,, %Lang_Langtip%
 	If A_IsCompiled=1
 		run %A_scriptdir%\Apssistant.exe
 	Reload
@@ -589,10 +587,6 @@ FChoicecheck:
 		GuiControl, Show, AllowAsyncIO
 		GuiControl, Show, ReduceUXFriction
 		GuiControl, Show, VMCompressPages
-		;GuiControl, Show, LegacyHealingBrush161
-		;GuiControl, Show, UseSystemStylus
-		;GuiControl, Show, uRTS
-		;GuiControl, Show, OverscrollAlways
 		GuiControl, Show, RecentFilesSlowTimeout
 		GuiControl, Show, FullPreviewMaxSize
 
@@ -634,9 +628,6 @@ FChoicecheck:
 		GuiControl, Show, Reset
 		GuiControl, +gApplyPSUserConfig, Apply
 		GuiControl, +gResetPSUserConfig, Reset
-
-		;GuiControl, Move, HelpTip, x140 y320 w310 h200
-		;GuiControl, Move, HelpTipText, x150 y340 w290 h175
 	}
 	Else
 	{
@@ -644,9 +635,6 @@ FChoicecheck:
 		GuiControl, Show, Cancel
 		GuiControl, Hide, Apply
 		GuiControl, Hide, Reset
-
-		;GuiControl, Move, HelpTip, x140 y270 w310 h250
-		;GuiControl, Move, HelpTipText, x150 y290 w290 h225
 	}
 
 	If (leftTag=Lang_Donate)
@@ -729,15 +717,15 @@ VerChoose:
 
 		If curPsver=11
 		{
-			GuiControl,enable,Check4		;enable
-			GuiControl,enable,Check11		;enable
-			GuiControl,enable,ModifyBrushKey	;enable
+			GuiControl,enable,Check4
+			GuiControl,enable,Check11
+			GuiControl,enable,ModifyBrushKey
 		}
 		else
 		{
-			GuiControl,Disable,Check4		;Disable
-			GuiControl,Disable,Check11		;Disable
-			GuiControl,Disable,ModifyBrushKey	;Disable
+			GuiControl,Disable,Check4
+			GuiControl,Disable,Check11
+			GuiControl,Disable,ModifyBrushKey
 		}
 	}
 
@@ -932,21 +920,15 @@ WM_MOUSEMOVE()
 	{
 		static Lang_HT_, CurrControl, PrevControl, ; HT means Help Tip
 		CurrControl := A_GuiControl
+
 		If (CurrControl <> PrevControl and not InStr(CurrControl, " "))
 		{
-			SetTimer, DisplayToolTip, 0
+			Try
+				GuiControl,,HelpTipText, % Lang_HT_%CurrControl% ; 第一个百分号表示后面是一个表达式
 			PrevControl := CurrControl
 		}
 	}
 	return
-
-	DisplayToolTip:
-	SetTimer, DisplayToolTip, Off
-	Try
-		GuiControl,,HelpTipText, % Lang_HT_%CurrControl% ; 第一个百分号表示后面是一个表达式
-	return
-
 }
 
-;#include %A_scriptdir%\inc\Font.ahk
 #include %A_scriptdir%\inc\Handle.ahk
