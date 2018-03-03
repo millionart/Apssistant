@@ -29,8 +29,16 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_General, %Lang_General%
 	Gui, Add, DropDownList, x361 y40 w80 vG_Language gLangtip Choose%LangNum%, %gui_Language%
 	Gui, Add, Text, x150 y70 w200 h25 vGuiTextPsVersion, %Lang_Your_Photoshop_version%
 	Gui, Add, DropDownList, x361 y70 w80 vPsCSver Choose%PsCSverNo% gVerChoose, %PSCSverList%
-	Gui, Add, Edit, x150 y100 w211 h25 vPsPath Readonly, %PsPath%
-	Gui, Add, Button, x361 y100 w80 h25 vBrowse1 gBrowse1, %Lang_Browse%
+	If (A_OSVersion!=WIN_2000) && (A_OSVersion!=WIN_2003) && (A_OSVersion!=WIN_XP) && (A_OSVersion!=WIN_VISTA) && (A_OSVersion!=WIN_7)
+	{
+		Gui, Add, Edit, x150 y100 w266 h25 vPsPath Readonly, %PsPath%
+		Gui, Add, Button, x+0 yp+0 w25 h25 vBrowse1 gBrowse1, 🔍
+	}
+	Else
+	{
+		Gui, Add, Edit, x150 y100 w211 h25 vPsPath Readonly, %PsPath%
+		Gui, Add, Button, x361 y100 w80 h25 vBrowse1 gBrowse1, %Lang_Browse%
+	}
 	Gui, Add, Checkbox, x150 y130 w200 h25 vCheck4, %Lang_P_I_LaunchPs%
 	Gui, Add, Checkbox, x150 y160 w190 h25 vCheck2, %Lang_P_I_Hidehelptip%
 ;===========================
@@ -304,14 +312,26 @@ Return
 	Return
 
 Browse1:
-	If PsPath=NULL
-		ProgramFilesDir:="A_ProgramFiles"
-	else
-		ProgramFilesDir:="PsDir"
-	FileSelectFile, Dir , 1, %ProgramFilesDir%\Photoshop.exe, %Lang_PsDir%, Photoshop (*.exe)
-	Dir:=StrReplace(Dir, "`n", "`r`n")
-	If dir<>
-		ControlSetText,Edit1,%Dir%
+	GuiControlGet, psPath,, PsPath
+	RegRead, psDir, HKLM, SOFTWARE\Adobe\Photoshop\%Regver%.0 , ApplicationPath
+
+	If FileExist(psPath)
+	{
+		psDir:=StrReplace(psPath, "Photoshop.exe" , "")
+		FileSelectFile, psPath, 1, %psDir%\Photoshop.exe, %Lang_PsDir%, Photoshop.exe
+		If (psPath!="")
+			GuiControl,, PsPath, %psPath%
+	}
+	Else If FileExist(psDir . "Photoshop.exe")
+		GuiControl,, PsPath, %psDir%Photoshop.exe
+	Else
+	{
+		FileSelectFile, psPath, 1, %A_ProgramFiles%\Photoshop.exe, %Lang_PsDir%, Photoshop.exe
+		If (psPath!="")
+			GuiControl,, PsPath, %psPath%
+	}
+	Gui, Submit, NoHide
+	IniWrite, %psPath%, %A_scriptdir%\Data\Config.ini, Setting, PsPath
 	Return
 
 ModifyBrushKeyToggle:
@@ -773,7 +793,6 @@ ConfigSave:
 	Gui, Submit
 	Tiptext:=StrReplace(Tiptext, "`r", "\r")
 	Tiptext:=StrReplace(Tiptext, "`n", "\n")
-	IniWrite, %PsPath%, %A_scriptdir%\Data\Config.ini, Setting, PsPath
 	IniWrite, %PsCSver%, %A_scriptdir%\Data\Config.ini, Setting, Psver
 	IniWrite, %HUDCP%, %A_scriptdir%\Data\Config.ini, Setting, hudcp
 	IniWrite, %FCPk%, %A_scriptdir%\Data\Config.ini, Setting, fcp

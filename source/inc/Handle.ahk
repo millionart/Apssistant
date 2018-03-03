@@ -1,43 +1,4 @@
 
-
-; ==========================================�Ԅӱ����Д�
-/* 
-#Persistent
-SetTimer,ClsEvthn,1000
-return
-
-ClsEvthn:
-IfWinExist,ahk_class EVERYTHING
-        IfWinNotActive
-                WinClose
-return
- */
-
-
-; ==========================================调试信息
-/* 
-Debug:
-	msgbox,DPI %%VirtualWidth%% %%VirtualHeight%%`n%VirtualWidth% %VirtualHeight% `n fcp %fcX% %fcY% `n MapAltmode=%MapAltmode%
-	;msgbox, %Precisehudcp%
-	;msgbox, %centerw% %centerh% 
-	;msgbox ,%FCPk%
-	Return
- */
-
-Browse2:
-	;PsPath=NULL
-	ProgramFilesDir:="A_ProgramFiles"
-	FileSelectFile, Dir , 1, %ProgramFilesDir%\Photoshop.exe, %Lang_PsDir%, Photoshop (*.exe; *.lnk)
-	StringReplace, Dir, Dir, `n, `r`n, A
-	If Dir=
-		return
-	else
-	{
-		IniWrite, %Dir%, %A_scriptdir%\Data\Config.ini, Setting, PsPath
-		run "%Dir%"
-	}
-	Return
-
 CleanUpTempFiles:
 	If Check14=1
 	{
@@ -51,7 +12,6 @@ CleanUpTempFiles:
 		}
 	}
 	Return
-
 
 ; 读取配置信息
 ConfigRead:
@@ -81,16 +41,6 @@ ConfigRead:
 	IniRead, MapAltmode, %A_scriptdir%\Data\Config.ini, Setting, mapalt, 1
 	IniRead, PsPath, %A_scriptdir%\Data\Config.ini, Setting, PsPath, NULL
 	IniRead, Check15, %A_scriptdir%\Data\Config.ini, Setting, 3dsMaxSync, 0
-	If PsPath=NULL
-	{
-		RegRead, PsDir, HKLM, SOFTWARE\Adobe\Photoshop\%Regver%.0 , ApplicationPath
-		;PsDir:=RegRead64("HKEY_LOCAL_MACHINE", "SOFTWARE\Adobe\Photoshop\" . Regver . ".0", "ApplicationPath")
-		If ErrorLevel
-			PsPath=NULL
-		else
-			PsPath=%PsDir%Photoshop.exe
-	}
-
 	IniRead, Tiptext, %A_scriptdir%\Data\Config.ini, Setting, tiptext, %Lang_tiptext%
 	IniRead, fontname, %A_scriptdir%\Data\Config.ini, General, fontname, Segoe UI
 	stringreplace, Tiptext, Tiptext, \n, `n, All
@@ -98,7 +48,6 @@ ConfigRead:
 	Return
 
 Website:
-	; please retain the original links and related notes.
 	run http://www.deviantart.com/deviation/160950828
 	return
 
@@ -108,10 +57,7 @@ WinClose:
 GuiClose:
 GuiEscape:
 Cancel:
-;	Gui, Cancel
 	ExitApp
 	return
 
 #include %A_scriptdir%\inc\Function.ahk
-;#include %A_scriptdir%\inc\reg64.ahk
-;#include %A_scriptdir%\inc\Dlg.ahk

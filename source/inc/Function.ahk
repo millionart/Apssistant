@@ -9,41 +9,76 @@ V_CurrentVer()
 
 V_Trans()
 {
-	Global Regver, PsCSver, PSCSverList,PsCSverNo,GuiGetPsver,curPsver
+	/*
+	CC 2018		120.0
+	CC 2017		110.0
+	CC 2015.5	100.0
+	CC 2015		90.0
+	CC 2014		80.0
+	CC			70.0
+
+	CS6			60.0
+	CS5.1		55.0
+	CS5			12.0
+	CS4			11.0
+	CS3			10.0
+	CS2			9.0
+	CS			8.0
+
+	7			7.0
+	6			6.0
+	*/
+	Global
 	PSCSverList:="CC 2018|CC 2017|CC 2015.5|CC 2015|CC 2014|CC|CS6|CS5|CS4|CS3|CS2|CS|7|6"
 	psVerArray:=StrSplit(PSCSverList, "|")
 
-	psVerDefault:=psVerArray[1]
-	IniRead, PsCSver, %A_scriptdir%\Data\Config.ini, Setting, Psver, %psVerDefault%
+	IniRead, PsCSver, %A_scriptdir%\Data\Config.ini, Setting, Psver, % psVerArray[1]
 
 	Loop, % psVerArray.MaxIndex()
 	{
 		If (PsCSver=psVerArray[a_index])
+		{
+			PsCSverNo=%a_index%
 			Break
+		}
 		Else
-			PsCSver=%psVerDefault%
+			PsCSverNo=1
 	}
 
-	PsCSverNo=1
-	Loop, % psVerArray.MaxIndex()
+	ccOrCs:=SubStr(GuiGetPsver, 1 , 2)
+	If (ccOrCs="CC")
 	{
-		If (psVerArray[a_index]!=PsCSver)
-			PsCSverNo:=++PsCSverNo
-		Else
-			Break
+		curPsver:=StrReplace(GuiGetPsver, "CC 20", "")
+		curPsver:=curPsver+1
+		Regver:=(curPsver-7)*10
 	}
-
-	curPsver:=StrReplace(GuiGetPsver, "CC 20", "")
-	curPsver:=curPsver+1
+	If (ccOrCs="CS")
+	{
+		curPsver:=StrReplace(GuiGetPsver, "CS", "")
+		curPsver:=curPsver+7
+		Regver:=curPsver
+	}
 
 	If GuiGetPsver<8
+	{
 		curPsver=%GuiGetPsver%
+	}
 	If GuiGetPsver=CS
+	{
 		curPsver=8
+	}
+	If GuiGetPsver=CS6
+	{
+		Regver=60
+	}
 	If GuiGetPsver=CC
+	{
 		curPsver=14
+	}
 	If GuiGetPsver=CC 2015.5
+	{
 		curPsver=17
+	}
 }
 
 G_ReadLanguage()
