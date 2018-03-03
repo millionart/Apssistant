@@ -29,7 +29,7 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_General, %Lang_General%
 	Gui, Add, DropDownList, x361 y40 w80 vG_Language gLangtip Choose%LangNum%, %gui_Language%
 	Gui, Add, Text, x150 y70 w200 h25 vGuiTextPsVersion, %Lang_Your_Photoshop_version%
 	Gui, Add, DropDownList, x361 y70 w80 vPsCSver Choose%PsCSverNo% gVerChoose, %PSCSverList%
-	If (A_OSVersion!=WIN_2000) && (A_OSVersion!=WIN_2003) && (A_OSVersion!=WIN_XP) && (A_OSVersion!=WIN_VISTA)
+	If A_OSVersion not in WIN_2000,WIN_2003,WIN_XP,WIN_VISTA
 	{
 		Gui, Add, Edit, x150 y100 w266 h25 vPsPath Readonly, %PsPath%
 		Gui, Add, Button, x+0 yp+0 w25 h25 vBrowse1 gBrowse1, 🔍
@@ -610,37 +610,30 @@ FChoicecheck:
 		GuiControl, Show, RecentFilesSlowTimeout
 		GuiControl, Show, FullPreviewMaxSize
 
-		
-		If (curPsver!=14)
-		{
-			GuiControl, Hide, OverscrollAlways
-			GuiControl, Hide, uRTS
-		}
-		Else
+		If (curPsver=14)
 		{
 			GuiControl, Show, OverscrollAlways
 			GuiControl, Show, uRTS
 		}
-
-		If (curPsver<15)
-		{
-			GuiControl, Hide, UseSystemStylus
-		}
 		Else
 		{
+			GuiControl, Hide, OverscrollAlways
+			GuiControl, Hide, uRTS
+		}
+
+		If curPsver>=15 && A_OSVersion not in WIN_2000,WIN_2003,WIN_XP,WIN_VISTA,WIN_7
 			GuiControl, Show, UseSystemStylus
-		}
-
-		If (curPsver!=16)
-		{
-			GuiControl, Hide, LegacyHealingBrush161
-		}
 		Else
+			GuiControl, Hide, UseSystemStylus
+
+		If (curPsver=16)
 		{
 			LegacyHealingBrush161v:=LegacyHealingBrush161+1
 			GuiControl, Choose, LegacyHealingBrush161, %LegacyHealingBrush161v%
 			GuiControl, Show, LegacyHealingBrush161
 		}
+		Else
+			GuiControl, Hide, LegacyHealingBrush161
 
 		GuiControl, Hide, Save
 		GuiControl, Hide, Cancel
