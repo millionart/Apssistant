@@ -122,9 +122,9 @@ Gui, Add, GroupBox, x140 y270 w310 h250 vHelpTip, %Lang_HelpTip%
 	Gui, Add, Text, x150 y290 w290 h225 vHelpTipText, %Lang_HelpTip_text%
 
 Gui, Add, Button, x460 y10 w100 h50 vSave gConfigSave, %Lang_Save%
-Gui, Add, Button, xp yp wp hp vApply, %Lang_Apply%
+Gui, Add, Button, xp yp wp hp vApply gApplyPSUserConfig, %Lang_Apply%
 Gui, Add, Button, xp y+10 wp h30 vCancel gGuiClose, %Lang_Cancel%
-Gui, Add, Button, xp yp wp hp vReset, %Lang_Reset%
+Gui, Add, Button, xp yp wp hp vReset gResetPSUserConfig, %Lang_Reset%
 
 Gui Add, Link, x10 y470 w100 h20, <a href="%Github%">Github</a>
 Gui Add, Link, x10 y495 w100 h20, <a href="%DeviantArt%">DeviantArt</a>
@@ -337,13 +337,13 @@ Browse1:
 ModifyBrushKeyToggle:
 	GuiControlGet, Check11
 
-	If Check11=0
+	If (Check11=1) && (curPsver>10)
 	{
-		GuiControl,Disable,ModifyBrushKey
+		GuiControl, Enable, ModifyBrushKey
 	}
-	else If Check11=1
+	Else
 	{
-		GuiControl,Enable,ModifyBrushKey
+		GuiControl, Disable, ModifyBrushKey
 	}
 	Return
 
@@ -580,6 +580,8 @@ FChoicecheck:
 		GuiControl,Show,SHLayer
 		GuiControl,Show,QCLayer
 		GuiControl,Show,Check1
+
+		Gosub, ModifyBrushKeyToggle
 	}
 	
 	If (leftTag=Lang_Autosave)
@@ -613,7 +615,9 @@ FChoicecheck:
 		If (curPsver=14)
 		{
 			GuiControl, Show, OverscrollAlways
-			GuiControl, Show, uRTS
+
+			If A_OSVersion in WIN_8
+				GuiControl, Show, uRTS
 		}
 		Else
 		{
@@ -621,7 +625,7 @@ FChoicecheck:
 			GuiControl, Hide, uRTS
 		}
 
-		If curPsver>=15 && A_OSVersion not in WIN_2000,WIN_2003,WIN_XP,WIN_VISTA,WIN_7
+		If curPsver>14 && A_OSVersion not in WIN_2000,WIN_2003,WIN_XP,WIN_VISTA,WIN_7
 			GuiControl, Show, UseSystemStylus
 		Else
 			GuiControl, Hide, UseSystemStylus
@@ -639,8 +643,6 @@ FChoicecheck:
 		GuiControl, Hide, Cancel
 		GuiControl, Show, Apply
 		GuiControl, Show, Reset
-		GuiControl, +gApplyPSUserConfig, Apply
-		GuiControl, +gResetPSUserConfig, Reset
 	}
 	Else
 	{
@@ -686,24 +688,31 @@ VerChoose:
 	GuiControlGet,GuiGetPsver,,PsCSver, Text
 	V_Trans()
 
-	If curPsver>=12
+	If curPsver>10
 	{
-		GuiControl,enable,Check4
+		GuiControl, Enable, Check4
+		GuiControl, Enable, Check11
+	}
+	else
+	{
+		GuiControl, Disable, Check4
+		GuiControl, Disable, Check11
+	}
+
+	If curPsver>11
+	{
 		GuiControl,enable,Check5
 		GuiControl,enable,Check7
 		GuiControl,enable,Check9
-		GuiControl,enable,Check11
 		GuiControl,enable,hotkeyFastMode
 		GuiControl,enable,hotkeyStableMode
-		if check11=1
-		{
-			GuiControl,enable,ModifyBrushKey
-		}
+
 		GuiControl,enable,HUDCP
 
 		GuiControl, Move, MapAlt, x165 y103 w275
 		GuiControl, Move, FCPk, x400 y225 w40 h25
 		GuiControl,,MapAlt,|%Lang_hotKeyMapCS5Plus%|%Lang_Set_hotkey_mapalt_2%|%Lang_Set_hotkey_mapalt_3%|
+
 		GuiControl, Choose, MapAlt, |%MapAltmode%
 		GuiControl,Hide,FastColorPickerCS5Tip
 		GuiControl,Hide,FastColorPickerCS5Tip2
@@ -727,19 +736,6 @@ VerChoose:
 		GuiControl, Choose, MapAlt, |%MapAltmodeNum%
 
 		WinSetTitle, %ConfigTitle% *** ***%Lang_Config_CS5mark%*** ***
-
-		If curPsver=11
-		{
-			GuiControl,enable,Check4
-			GuiControl,enable,Check11
-			GuiControl,enable,ModifyBrushKey
-		}
-		else
-		{
-			GuiControl,Disable,Check4
-			GuiControl,Disable,Check11
-			GuiControl,Disable,ModifyBrushKey
-		}
 	}
 
 	If (curPsver<14)
