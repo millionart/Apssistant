@@ -268,11 +268,9 @@ AdvanceCheck:
 Return
 
 AScheck:
-	SetTimer, lockAutosaveMinTime, 50 
 	GuiControlGet,txt,,Autosave, Text
 	If (txt=Lang_Autosave_no)
 	{
-		SetTimer, lockAutosaveMinTime, off 
 		GuiControl,Hide,Savesleep
 		GuiControl,Hide,GuiText2
 		GuiControl,Hide,GuiText3
@@ -295,16 +293,10 @@ AScheck:
 	Return
 
 lockAutosaveMinTime:
-	GuiControlGet,txt,,FChoice,
-	If (txt!=Lang_Autosave)
- 	   SetTimer, lockAutosaveMinTime, off 
-	Else
+	GuiControlGet, autoSaveTime,, Savesleep,
+	If (autosavetime<2)
 	{
-		GuiControlGet, autoSaveTime,, Savesleep,
-		If (autosavetime<2)
-		{
-			GuiControl,, Savesleep, 2
-		}
+		GuiControl,, Savesleep, 2
 	}
 Return
 
@@ -590,6 +582,8 @@ FChoicecheck:
 		GuiControl,Show,Autosave
 		gosub AScheck
 	}
+	Else
+	Gosub, lockAutosaveMinTime
 
 	If (leftTag=Lang_Other)
 	{
@@ -788,6 +782,8 @@ ConfigSave:
 	IniWrite, %FCPk%, %A_scriptdir%\Data\Config.ini, Setting, fcp
 	IniWrite, %Check1%, %A_scriptdir%\Data\Config.ini, Setting, undo
 	IniWrite, %Autosave%, %A_scriptdir%\Data\Config.ini, Setting, autosave
+	If (Savesleep<2)
+		Savesleep=2
 	IniWrite, %Savesleep%, %A_scriptdir%\Data\Config.ini, Setting, savesleep
 	IniWrite, %Tiptext%, %A_scriptdir%\Data\Config.ini, Setting, tiptext
 	IniWrite, %Check2%, %A_scriptdir%\Data\Config.ini, Setting, helptip
