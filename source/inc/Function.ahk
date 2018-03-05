@@ -2,7 +2,7 @@
 V_CurrentVer()
 {
 	Global f_CurrentVer
-	f_CurrentVer = 0.9.0.0
+	f_CurrentVer = 0.9.1.0
 	IniDelete, %A_scriptdir%\Data\Config.ini,Setting,Apssistantver
 	;IniWrite, %f_CurrentVer%, %A_scriptdir%\Data\Config.ini, Setting, Apssistantver
 }
@@ -45,16 +45,17 @@ V_Trans()
 			PsCSverNo=1
 	}
 
-	ccOrCs:=SubStr(GuiGetPsver, 1 , 2)
+	ccOrCs:=SubStr(PsCSver, 1 , 2)
+
 	If (ccOrCs="CC")
 	{
-		curPsver:=StrReplace(GuiGetPsver, "CC 20", "")
+		curPsver:=StrReplace(PsCSver, "CC 20", "")
 		curPsver:=curPsver+1
 		Regver:=(curPsver-7)*10
 	}
 	If (ccOrCs="CS")
 	{
-		curPsver:=StrReplace(GuiGetPsver, "CS", "")
+		curPsver:=StrReplace(PsCSver, "CS", "")
 		curPsver:=curPsver+7
 		Regver:=curPsver
 	}

@@ -685,6 +685,8 @@ FChoicecheck:
 Return
 
 VerChoose:
+	Gui, Submit, NoHide
+	IniWrite, %PsCSver%, %A_scriptdir%\Data\Config.ini, Setting, Psver
 	GuiControlGet,GuiGetPsver,,PsCSver, Text
 	V_Trans()
 
@@ -782,7 +784,6 @@ ConfigSave:
 	Gui, Submit
 	Tiptext:=StrReplace(Tiptext, "`r", "\r")
 	Tiptext:=StrReplace(Tiptext, "`n", "\n")
-	IniWrite, %PsCSver%, %A_scriptdir%\Data\Config.ini, Setting, Psver
 	IniWrite, %HUDCP%, %A_scriptdir%\Data\Config.ini, Setting, hudcp
 	IniWrite, %FCPk%, %A_scriptdir%\Data\Config.ini, Setting, fcp
 	IniWrite, %Check1%, %A_scriptdir%\Data\Config.ini, Setting, undo
