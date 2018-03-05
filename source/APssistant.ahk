@@ -1,3 +1,4 @@
+﻿
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ;SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -248,30 +249,57 @@ Autosave:
 	return
 
 ModifyBrushKey:
-	send, {Alt down}{RButton down}
-	keywait, %ModifyBrushKey%
-	send, {Alt up}{RButton up}
+	gosub, IfTextMode
+	If (hotkeyOn=1)
+	{
+		send, {Alt down}{RButton down}
+		keywait, %ModifyBrushKey%
+		send, {Alt up}{RButton up}
+	}
+	Else
+		SendInput, %ModifyBrushKey%
 	Return
 
 SHlayer:
-	PostMessage, 0x111, 0x45A,,,ahk_class Photoshop
+	gosub, IfTextMode
+	If (hotkeyOn=1)
+		PostMessage, 0x111, 0x45A,,,ahk_class Photoshop
+	Else
+		SendInput, %SHLayer%
 	Return
+
+IfTextMode:
+	ControlGetText, textDisplayModeComboBox, ComboBox46, ahk_class Photoshop
+	ControlGetText, fontName, Edit94, ahk_class Photoshop
+	ControlGetText, fontMode, Edit93, ahk_class Photoshop
+	ControlGetText, fontSize, Edit92, ahk_class Photoshop
+	If (textDisplayModeComboBox!="衐苷ċ")
+		hotkeyOn=1
+	Else
+		hotkeyOn=0
+return
 ; ==========================================普通拾色器点击
 FCPc1:
-	ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\brush.png
-	if ErrorLevel=1
+	gosub, IfTextMode
+	If (hotkeyOn=1)
 	{
-		ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\pencil.png
-		if (ErrorLevel=1) and (Regver>=9)
+		ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\brush.png
+		if ErrorLevel=1
 		{
-			ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\ColorReplacement.png
-			if ErrorLevel=1
-				return
+			ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\pencil.png
+			if (ErrorLevel=1) and (Regver>=9)
+			{
+				ImageSearch, , , 0, 0, %VirtualWidth%, %VirtualHeight%, %A_scriptdir%\Data\Imagesearch\%PsCSver%\ColorReplacement.png
+				if ErrorLevel=1
+					return
+			}
+			else if (ErrorLevel=1)
+			return
 		}
-		else if (ErrorLevel=1)
-		return
+		Gosub FCPc2
 	}
-	Gosub FCPc2
+	Else
+		SendInput, %FCPc1%
 	Return
 
 FCPc2:
@@ -342,6 +370,9 @@ FCPsearch:
 ; HUD 拾色器快捷鍵設置
 HUDCP:
 	Hotkey, IfWinActive, ahk_group Photoshop
+	gosub, IfTextMode
+	If (hotkeyOn=1)
+	{
 		If Check2=0
 			TrayTip, %Lang_Tiptitle%, %Lang_OpenGLtip%, 1, 1
 
@@ -402,6 +433,9 @@ HUDCP:
 				send,{Shift up}{Alt up}{RButton up}
 			}
 		}
+	}
+	Else
+		SendInput, %HUDCP%
 	Hotkey, IfWinActive
 	Return
 
@@ -458,17 +492,21 @@ LockIME:
 
 SetKeyState:
 	SetCapsLockState ,Off
-	;SetNumLockState ,On
-	;SetScrollLockState ,Off
 	Return
 
 QCLayer:
-	gosub, SetKeyState
-	Send, {Ctrl down}{Alt down}{Ctrl up}
-	PostMessage, 0x111, 1099,,,ahk_class Photoshop
-	sleep, 100
-	KeyWait, Alt
-	Send, {Alt up}
+	gosub, IfTextMode
+	If (hotkeyOn=1)
+	{
+		gosub, SetKeyState
+		Send, {Ctrl down}{Alt down}{Ctrl up}
+		PostMessage, 0x111, 1099,,,ahk_class Photoshop
+		sleep, 100
+		KeyWait, Alt
+		Send, {Alt up}
+	}
+	Else
+		SendInput, %QCLayer%
 	Return
 
 LockIMESwitch:
