@@ -29,7 +29,7 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_General, %Lang_General%
 	Gui, Add, DropDownList, x361 y40 w80 vG_Language gLangtip Choose%LangNum%, %gui_Language%
 	Gui, Add, Text, x150 y70 w200 h25 vGuiTextPsVersion, %Lang_Your_Photoshop_version%
 	Gui, Add, DropDownList, x361 y70 w80 vPsCSver Choose%PsCSverNo% gVerChoose, %PSCSverList%
-	If A_OSVersion not in WIN_2000,WIN_2003,WIN_XP,WIN_VISTA
+	If A_OSVersion not in WIN_2000,WIN_2003,WIN_XP,WIN_VISTA,WIN_7
 	{
 		Gui, Add, Edit, x150 y100 w266 h25 vPsPath Readonly, %PsPath%
 		Gui, Add, Button, x+0 yp+0 w25 h25 vBrowse1 gBrowse1, 🔍
@@ -53,7 +53,7 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_ColorPicker, %Lang_ColorPicker%
 
 	Gui, Add, CheckBox, x150 y100 w15 h25 vCheck8 gChooseMapAltmode,
 		Gui, Add, DropDownList, x165 y103 w275 vMapAlt Choose%MapAltmode% AltSubmit gChooseMapAltmode,
-		Gui, Add, Text, x165 y125 w235 h100 vFastColorPickerCS5Tip, %Lang_fastColorPickerCS5Tip%
+		Gui, Add, Text, x165 y+0 w235 h100 vFastColorPickerCS5Tip, %Lang_fastColorPickerCS5Tip%
 		Gui, Add, Text, x165 y225 w235 h25 vFastColorPickerCS5Tip2, %Lang_fastColorPickerCS5Tip2%
 		Gui, Add, Hotkey, x400 y225 w40 h25 vFCPk, %FCPk%
 ;===========================
