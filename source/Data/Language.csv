@@ -81,12 +81,12 @@ hotkeyStableMode,Stable,稳定模式,穩定模式
 HT_hotkeyFastMode,,快速模式（默认）：\n无延迟，对硬件配置要求较高。\n某些软件可能对本软件造成严重的性能损失，请在使用本软件及 Photoshop 时禁用其 进程 / 服务（如 Gdipp / Mactype）。\n\n如频繁造成延迟，请使用稳定模式。,快速模式（默認）：\n無延遲，對硬體配置要求較高。 \n某些軟體可能對本軟體造成嚴重的效能損失，請在使用本軟體及 Photoshop 時禁用其 進程 / 服務（如 Gdipp / Mactype）。 \n\n如頻繁造成延遲，請使用穩定模式。
 HT_hotkeyStableMode,,稳定模式：\n增加 0.2 秒延迟以提高稳定性，并瞬时锁定鼠标以避免选色偏差，也因此易被安全软件屏蔽。\n如果使用此模式失效，请尝试暂时关闭安全软件或使用快速模式。,穩定模式：\n增加 0.2 秒延遲以提高穩定性，並瞬時鎖定滑鼠以避免選色偏差，也因此易被安全軟體屏蔽。 \n如果使用此模式失效，請嘗試暫時關閉安全軟體或使用快速模式。
 Set_hotkey_HUD_Color_Picker,HUD color picker Enhancement:,HUD 拾色器增强：,HUD 檢色器加強：
-hotKeyMapCS5Plus,Color Picker hotkey Enhancement,前景拾色器快捷键加强,前景檢色器快速鍵加強
-Set_hotkey_mapalt_1,Color Picker hotkey Set to,前景拾色器快捷键设置为,前景檢色器快速鍵設定為
-Set_hotkey_mapalt_2,Color Picker + Eyedropper to Alt,前景拾色器与滴管工具合并至 Alt,前景檢色器與滴管工具合併至 Alt
-Set_hotkey_mapalt_3,Color Picker + Eyedropper to Alt (Optimized),前景拾色器与滴管工具合并至 Alt （优化）,前景檢色器與滴管工具合併至 Alt（優化）
-fastColorPickerCS5Tip,Please open the following interface in Photoshop to change hotkey: \nKeyboard Shortcuts and Menus \n      ↳ Shortcuts for (Tools) \n\t↳ Foreground Color Picker,请先打开 Photoshop 修改以下位置快捷键：\n键盘快捷键和菜单\n\t↳ 快捷键用于（工具）\n\t\t↳ 前景拾色器,請先打開 Photoshop 以下位置修改快速鍵：\n鍵盤快速鍵和菜單\n\t↳ 快速鍵用於（工具）\n\t\t↳ 前景檢色器
-fastColorPickerCS5Tip2,Set here For the same hotkey:,手动将该处设置的快捷键输入此处：,手動將該處設置的快速鍵輸入此處：
+hotKeyMapCS5Plus,Color Picker hotkey Enhancement,前景色拾色器快捷键加强,前景檢色器快速鍵加強
+Set_hotkey_mapalt_1,Color Picker hotkey Set to,前景色拾色器快捷键设置为,前景檢色器快速鍵設定為
+Set_hotkey_mapalt_2,Color Picker + Eyedropper to Alt,前景色拾色器与滴管工具合并至 Alt,前景檢色器與滴管工具合併至 Alt
+Set_hotkey_mapalt_3,Color Picker + Eyedropper to Alt (Optimized),前景色拾色器与滴管工具合并至 Alt （优化）,前景檢色器與滴管工具合併至 Alt（優化）
+fastColorPickerCS5Tip,Foreground Color Picker hotkey:,前景色拾色器快捷键：,請先打開 Photoshop 以下位置修改快速鍵：\n鍵盤快速鍵和菜單\n\t↳ 快速鍵用於（工具）\n\t\t↳ 前景檢色器
+fastColorPickerCS5Tip2,Need to restart Photoshop to apply.,更改后将在下次启动 Photoshop 时生效,手動將該處設置的快速鍵輸入此處：
 HT_MapAlt,"Hotkey Enhancement (CS5+) / Hotkey Set to (CS4-) \nCS5 and later can  further strengthen the shortcut keys:\nHold to open the color picker panel, release to confirmation color, and close the panel. \n\n+ Eyedropper to Alt \nCombine the Color Picker with Alt Coloring, using the color picker triggering of previous versions of CS5. \n* Conflicts with ""Disable Alt menu"". \n\n+ Eyedropper to Alt (Optimized) \nVisible only in CS5 and above, you will need to enter the color picker shortcut set in CS5 and above. \n* Conflicts with ""Disable Alt menu"".",快捷键加强（CS5 以上）/ 快捷键设置为（CS4 以下）\nCS5 及以上版本可进一步强化快捷键：\n按住可打开拾色器面板，松开确认颜色并关闭面板。\n\n与滴管工具合并至 Alt\n将拾色器与 Alt 取色合并，使用 CS5 以前版本的拾色器触发方式。\n* 与“禁用 Alt 菜单键”冲突。\n\n与滴管工具合并至 Alt（优化）\n仅 CS5 及以上版本可见，需要输入 CS5 以上版本内设置的拾色器快捷键。\n* 与“禁用 Alt 菜单键”冲突。,快速鍵加強（CS5 以上）/ 快速鍵設置為（CS4 以下）\nCS5 及以上版本可進一步強化快速鍵：\n按住可打開檢色器面板，鬆開確認顏色並關閉面板。 \n\n與滴管工具合併至 Alt\n將拾色器與 Alt 取色合併，使用 CS5 以前版本的檢色器觸發方式。 \n* 與“禁用 Alt 菜單鍵”衝突。 \n\n與滴管工具合併至 Alt（優化）\n僅 CS5 及以上版本可見，需要輸入 CS5 以上版本內設置的檢色器快速鍵。 \n* 與“禁用 Alt 菜單鍵”衝突。
 Set_hotkey_ModifyBrushKey,Modify brush radius:,修改笔刷范围：,修改筆刷范圍：
 Set_hotkey_Precise,Precise,精确,精確

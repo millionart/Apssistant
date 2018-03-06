@@ -53,9 +53,10 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_ColorPicker, %Lang_ColorPicker%
 
 	Gui, Add, CheckBox, x150 y100 w15 h25 vCheck8 gChooseMapAltmode,
 		Gui, Add, DropDownList, x165 y103 w275 vMapAlt Choose%MapAltmode% AltSubmit gChooseMapAltmode,
-		Gui, Add, Text, x165 y+0 w235 h100 vFastColorPickerCS5Tip, %Lang_fastColorPickerCS5Tip%
-		Gui, Add, Text, x165 y225 w235 h25 vFastColorPickerCS5Tip2, %Lang_fastColorPickerCS5Tip2%
-		Gui, Add, Hotkey, x400 y225 w40 h25 vFCPk, %FCPk%
+		Gui, Add, Hotkey, x400 y+5 w40 h25 vFCPk, %FCPk%
+		Gui, Add, Text, x167 yp+3 w230 hp vFastColorPickerCS5Tip, %Lang_fastColorPickerCS5Tip%
+		Gui, Add, Text, xp y+5 w250 h25 vFastColorPickerCS5Tip2, %Lang_fastColorPickerCS5Tip2%
+
 ;===========================
 
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Hotkey, %Lang_Hotkey%
@@ -706,7 +707,6 @@ VerChoose:
 		GuiControl,enable,HUDCP
 
 		GuiControl, Move, MapAlt, x165 y103 w275
-		GuiControl, Move, FCPk, x400 y225 w40 h25
 		GuiControl,,MapAlt,|%Lang_hotKeyMapCS5Plus%|%Lang_Set_hotkey_mapalt_2%|%Lang_Set_hotkey_mapalt_3%|
 
 		GuiControl, Choose, MapAlt, |%MapAltmode%
@@ -725,7 +725,6 @@ VerChoose:
 		GuiControl,Disable,HUDCP
 
 		GuiControl, Move, MapAlt, x165 y103 w230
-		GuiControl, Move, FCPk, x400 y103 w40 h25
 		GuiControl,,MapAlt,|%Lang_Set_hotkey_mapalt_1%|%Lang_Set_hotkey_mapalt_2%|
 		
 		MapAltmodeNum:=MapAltmode=1?1:2
@@ -778,6 +777,16 @@ ConfigSave:
 	Gui, Submit
 	Tiptext:=StrReplace(Tiptext, "`r", "\r")
 	Tiptext:=StrReplace(Tiptext, "`n", "\n")
+	StringUpper, FCPk, FCPk
+	Try
+	{
+		keyboardShortcutsFile=%A_AppData%\Adobe\Adobe Photoshop %GuiGetPsver%\Adobe Photoshop %GuiGetPsver% Settings\Keyboard Shortcuts.psp
+		FCPkText := new xml(keyboardShortcutsFile)
+		if FCPkText.documentElement {
+			FCPkText.setText("//photoshop-keyboard-shortcuts/tool[@type=15]", FCPk)
+			FCPkText.save(keyboardShortcutsFile)
+		}
+	}
 	IniWrite, %HUDCP%, %A_scriptdir%\Data\Config.ini, Setting, hudcp
 	IniWrite, %FCPk%, %A_scriptdir%\Data\Config.ini, Setting, fcp
 	IniWrite, %Check1%, %A_scriptdir%\Data\Config.ini, Setting, undo
@@ -937,3 +946,4 @@ WM_MOUSEMOVE()
 }
 
 #include %A_scriptdir%\inc\Handle.ahk
+#include %A_scriptdir%\inc\xml.ahk
