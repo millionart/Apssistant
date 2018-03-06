@@ -69,10 +69,6 @@ ConfigRead:
 	stringreplace, Tiptext, Tiptext, \r, `r, All
 	Return
 
-Website:
-	run http://www.deviantart.com/deviation/160950828
-	return
-
 WinClose:
 	Process, Close, Config.exe
 	gosub CleanUpTempFiles

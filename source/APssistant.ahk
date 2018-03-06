@@ -61,48 +61,34 @@ If A_IsCompiled=1
 Menu, Tray, Icon,%A_scriptdir%\Data\tray.ico,, 1
 
 Menu, tray, add
-If WinExist("ahk_class Photoshop")
+
+If (Check3=1)
 {
-	If (Check3=1)
-	{
-		Menu, tray, add, %Lang_tray_LockIMEOn%, LockIMESwitch
-		Menu, tray, Check, %Lang_tray_LockIMEOn%
-	}
-	else
-	{
-		Menu, tray, add, %Lang_tray_LockIMEOff%, LockIMESwitch
-	}
+	Menu, tray, add, %Lang_tray_LockIMEOn%, LockIMESwitch
+	Menu, tray, Check, %Lang_tray_LockIMEOn%
 }
+else
+{
+	Menu, tray, add, %Lang_tray_LockIMEOff%, LockIMESwitch
+}
+
 
 Menu, tray, add, %Lang_tray_LaunchPs%, LaunchPs
 
 
 Menu, tray, add, %Lang_tray_Config%, Config
 Menu, tray, add
-Menu, tray, add, %Lang_Website%, Website
 
 
 Menu, tray, add, %Lang_tray_Exit%, WinClose
 
-If FileExist(PsPath)
-{
-	Menu, tray, default, %Lang_tray_LaunchPs%
-	try
-	Menu, tray, Icon, %Lang_tray_LaunchPs%, %PsPath%,, %trayIconSize%
-}
-else If !FileExist(PsPath) && !WinExist("ahk_class Photoshop")
-{
-	Menu, tray, default, %Lang_tray_Config%
-}
 
 If A_IsCompiled=1
 {
-	Menu, tray, Icon, %Lang_Website%, %A_scriptdir%\APssistant.exe,, %trayIconSize%
 	Menu, tray, Icon, %Lang_tray_Config%, %A_scriptdir%\Config.exe,, %trayIconSize%
 }
 else
 {
-	Menu, tray, Icon, %Lang_Website%, %A_scriptdir%\Data\tray.ico,, %trayIconSize%
 	Menu, tray, Icon, %Lang_tray_Config%, %A_scriptdir%\inc\Config.ico,, %trayIconSize%
 }
 Gui, Add, Text,,
@@ -120,6 +106,8 @@ else
 
 Time:= Savesleep*60000
 SetTimer, Autosave, %Time% ; 自动保存计时器
+
+SetTimer, setTrayDefault, 1000
 
 If Check3=1
 	SetTimer, LockIME, 2000 ; 2秒锁定一次输入法
@@ -147,8 +135,7 @@ Hotkey, IfWinActive, ahk_class PSFloatC, Web
 		Hotkey, %FCPk%, FCPs
 Hotkey, IfWinActive
 
-If Check14=1
-	gosub CleanUpTempFiles
+gosub CleanUpTempFiles
 
 If Check4=1
 	gosub LaunchPsAuto
@@ -227,6 +214,31 @@ $^s::
 	return
 #IfWInActive
 
+setTrayDefault:
+	If FileExist(PsPath) && !WinExist("ahk_class Photoshop")
+	{
+		try
+		Menu, tray, Disable,%Lang_tray_LockIMEOn%
+		try
+		Menu, tray, Disable,%Lang_tray_LockIMEOff%
+
+		Menu, tray, default, %Lang_tray_LaunchPs%
+		try
+		Menu, tray, Icon, %Lang_tray_LaunchPs%, %PsPath%,, %trayIconSize%
+	}
+	Else
+	{
+		try
+		Menu, tray, Enable,%Lang_tray_LockIMEOn%
+		try
+		Menu, tray, Enable,%Lang_tray_LockIMEOff%
+
+		Menu, tray, default, %Lang_tray_Config%
+	}
+
+	If !FileExist(PsPath)
+		Menu, tray, Disable, %Lang_tray_LaunchPs%
+Return
 
 Autosave:
 	If WinExist("ahk_group Photoshop") and (Autosavenum=3)
@@ -463,13 +475,12 @@ Config:
 	return
 
 LaunchPs:
-	If FileExist("%PsPath%") && !WinExist("ahk_class Photoshop")
+	If FileExist(PsPath) && !WinExist("ahk_class Photoshop")
 	{
-		Run, "%PsPath%"
+		Run, % PsPath
 	}
 
 	WinwaitActive, ahk_class Photoshop
-	Reload
 Return
 
 LaunchPsAuto:
@@ -513,10 +524,7 @@ QCLayer:
 	Return
 
 LockIMESwitch:
-	if Check3=1
-		Check3=0
-	else
-		Check3=1
+	Check3:=Check3=1?0:1
 	IniWrite, %Check3%, %A_scriptdir%\Data\Config.ini, Setting, lockIME
 	Reload
 	return
