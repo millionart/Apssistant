@@ -52,21 +52,42 @@ del ..\bin\x32\Setup.exe
 del ..\bin\x64\APssistant.7z
 del ..\bin\x64\Setup.exe
 
-..\tools\7za.exe a -t7z ..\bin\x32\APssistant.7z @listfile.txt -mx=9 -x!Data\Config.ini -xr!*\.SVN\  -xr!*\_SVN\ -xr!*\inc\ -xr!*\Readme\ 
+..\tools\7za.exe a -t7z ..\bin\x32\APssistant.7z @listfile.txt -mx=9 -x!Data\Config.ini -xr!*\.SVN\  -xr!*\_SVN\ -xr!*\inc\ -xr!*\Readme\
 copy /b ..\tools\7zsd_LZMA2.sfx + bin.txt + ..\bin\x32\APssistant.7z ..\bin\x32\Setup.exe
-move ..\bin\x32\APssistant.7z Data\Update\APssistant.7z
-del ..\bin\x32\APssistant.7z
+move /y ..\bin\x32\APssistant.7z Data\Update\APssistant.7z
+
+md Apssistant
+move /y Data Apssistant\Data
+move /y APssistant.exe Apssistant\APssistant.exe
+move /y Update.com Apssistant\Update.com
+move /y Config.com Apssistant\Config.com
+del ..\bin\%f_CurrentVer%x32.zip
+..\tools\7za.exe a -tzip ..\bin\%f_CurrentVer%x32.zip Apssistant\ -mx=9 -x!APssistant\Data\Config.ini -x!APssistant\Data\Update\APssistant.7z -xr!*\.SVN\  -xr!*\_SVN\ -xr!*\inc\ -xr!*\Readme\
+move /y Apssistant\Data Data
+
 
 ::====64-bit====
+cd "%Compiler%"
 Ahk2exe.exe /in "%A_ScriptDir%\APssistant.ahk" /icon "%A_ScriptDir%\Data\tray.ico"
 Ahk2exe.exe /in "%A_ScriptDir%\Config.ahk" /out "%A_ScriptDir%\Config.com" /icon "%A_ScriptDir%\inc\Config.ico"
 Ahk2exe.exe /in "%A_ScriptDir%\Update.ahk" /out "%A_ScriptDir%\Update.com" /icon "%A_ScriptDir%\inc\Update.ico"
 
-
-..\tools\7za.exe a -t7z ..\bin\x64\APssistant.7z @listfile.txt -mx=9 -x!Data\Config.ini -xr!*\.SVN\  -xr!*\_SVN\ -xr!*\inc\ -xr!*\Readme\ 
+cd "%A_ScriptDir%\"
+..\tools\7za.exe a -t7z ..\bin\x64\APssistant.7z @listfile.txt -mx=9 -x!Data\Config.ini -xr!*\.SVN\  -xr!*\_SVN\ -xr!*\inc\ -xr!*\Readme\
 copy /b ..\tools\7zsd_LZMA2_x64.sfx + bin.txt + ..\bin\x64\APssistant.7z ..\bin\x64\Setup.exe
 del ..\bin\x64\APssistant.7z
 
+move /y Data Apssistant\Data
+move /y APssistant.exe Apssistant\APssistant.exe
+move /y Update.com Apssistant\Update.com
+move /y Config.com Apssistant\Config.com
+del ..\bin\%f_CurrentVer%x64.zip
+..\tools\7za.exe a -tzip ..\bin\%f_CurrentVer%x64.zip Apssistant\ -mx=9 -x!APssistant\Data\Config.ini -x!APssistant\Data\Update\APssistant.7z -xr!*\.SVN\  -xr!*\_SVN\ -xr!*\inc\ -xr!*\Readme\
+move /y Apssistant\Data Data
+move /y Apssistant\APssistant.exe APssistant.exe 
+move /y Apssistant\Update.com Update.com
+move /y Apssistant\Config.com Config.com
+rmdir /s/q Apssistant
 
 move Update.com Update.exe
 move Config.com Config.exe
@@ -99,7 +120,7 @@ IniWrite, %testMD5%,  %A_scriptdir%\..\bin\test\Update.ini, Win32, MD5
 
 FileCopy, %A_scriptdir%\..\bin\x32\*.*, %A_scriptdir%\..\bin\old\*.* ,1
 
-return
+ExitApp
 
 #include %A_scriptdir%\inc\Function.ahk
 #include %A_scriptdir%\inc\FileHelperAndHash.ahk
