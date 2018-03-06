@@ -269,15 +269,18 @@ SHlayer:
 	Return
 
 IfTextMode:
-	ControlGetText, textDisplayModeComboBox, ComboBox46, ahk_class Photoshop
-	ControlGetText, fontName, Edit94, ahk_class Photoshop
-	ControlGetText, fontMode, Edit93, ahk_class Photoshop
-	ControlGetText, fontSize, Edit92, ahk_class Photoshop
-	If (textDisplayModeComboBox!="衐苷ċ")
-		hotkeyOn=1
-	Else
+	ControlGetPos,textDisplayModeComboBoxX,, , , ComboBox46, ahk_class Photoshop
+	ControlGet, textDisplayModeComboBox, Visible,, ComboBox46, ahk_class Photoshop
+	ControlGet, fontName, Visible,, Edit94, ahk_class Photoshop
+	ControlGet, fontMode, Visible,, Edit93, ahk_class Photoshop
+	ControlGet, fontSize, Visible,, Edit92, ahk_class Photoshop
+	ControlGet, fill, Enabled,, Edit1, ahk_class Photoshop
+	ControlGet, layerMode, Enabled,, ComboBox1, ahk_class Photoshop
+	If (textDisplayModeComboBox=1) && (fontName=1) && (fontMode=1) && (fontSize=1) && (fill=0) && (layerMode=1) && ((textDisplayModeComboBoxX>1000) || (textDisplayModeComboBoxX<1500)) ; textDisplayModeComboBoxX = 1134 & 1139
 		hotkeyOn=0
-return
+	Else
+		hotkeyOn=1
+	return
 ; ==========================================普通拾色器点击
 FCPc1:
 	gosub, IfTextMode
