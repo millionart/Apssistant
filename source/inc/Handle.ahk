@@ -16,6 +16,7 @@ CleanUpTempFiles:
 ; 读取配置信息
 ConfigRead:
 	IniRead, HUDCP, %A_scriptdir%\Data\Config.ini, Setting, hudcp, ``
+	IniRead, FCPk, %A_scriptdir%\Data\Config.ini, Setting, fcp, N
 	
 	Try
 	{
@@ -35,12 +36,9 @@ ConfigRead:
 		}
 	}
 
-	If (FCPkText="")
-		FCPk=N
-	Else
+	If (FCPkText!="")
 		FCPk=%FCPkText%
 
-	IniRead, FCPk, %A_scriptdir%\Data\Config.ini, Setting, fcp, %FCPk%
 	IniRead, Check1, %A_scriptdir%\Data\Config.ini, Setting, undo, 0
 	IniRead, Autosavenum, %A_scriptdir%\Data\Config.ini, Setting, autosave, 1
 	IniRead, Savesleep, %A_scriptdir%\Data\Config.ini, Setting, savesleep, 5
