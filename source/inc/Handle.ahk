@@ -16,7 +16,31 @@ CleanUpTempFiles:
 ; 读取配置信息
 ConfigRead:
 	IniRead, HUDCP, %A_scriptdir%\Data\Config.ini, Setting, hudcp, ``
-	IniRead, FCPk, %A_scriptdir%\Data\Config.ini, Setting, fcp, n
+	
+	Try
+	{
+		Loop, Files, %A_AppData%\Adobe\Adobe Photoshop *, D
+		{
+			psConfigFileVer:=StrReplace(A_LoopFileName, "Adobe Photoshop " ,"")
+			keyboardShortcutsFile=%A_AppData%\Adobe\Adobe Photoshop %psConfigFileVer%\Adobe Photoshop %psConfigFileVer% Settings\Keyboard Shortcuts.psp
+		}
+
+		If FileExist(keyboardShortcutsFile)
+		{
+			FCPkText := new xml(keyboardShortcutsFile)
+			if FCPkText.documentElement
+			{
+				FCPkText:=FCPkText.selectSingleNode("/photoshop-keyboard-shortcuts/tool[@type=""15""]").text
+			}
+		}
+	}
+
+	If (FCPkText="")
+		FCPk=N
+	Else
+		FCPk=%FCPkText%
+
+	IniRead, FCPk, %A_scriptdir%\Data\Config.ini, Setting, fcp, %FCPk%
 	IniRead, Check1, %A_scriptdir%\Data\Config.ini, Setting, undo, 0
 	IniRead, Autosavenum, %A_scriptdir%\Data\Config.ini, Setting, autosave, 1
 	IniRead, Savesleep, %A_scriptdir%\Data\Config.ini, Setting, savesleep, 5
@@ -61,3 +85,4 @@ Cancel:
 	return
 
 #include %A_scriptdir%\inc\Function.ahk
+#include %A_scriptdir%\inc\xml.ahk

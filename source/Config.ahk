@@ -782,7 +782,8 @@ ConfigSave:
 	{
 		keyboardShortcutsFile=%A_AppData%\Adobe\Adobe Photoshop %GuiGetPsver%\Adobe Photoshop %GuiGetPsver% Settings\Keyboard Shortcuts.psp
 		FCPkText := new xml(keyboardShortcutsFile)
-		if FCPkText.documentElement {
+		if FCPkText.documentElement
+		{
 			FCPkText.setText("//photoshop-keyboard-shortcuts/tool[@type=15]", FCPk)
 			FCPkText.save(keyboardShortcutsFile)
 		}
@@ -946,4 +947,3 @@ WM_MOUSEMOVE()
 }
 
 #include %A_scriptdir%\inc\Handle.ahk
-#include %A_scriptdir%\inc\xml.ahk
