@@ -22,70 +22,80 @@ Gosub, SetGroupPhotoshop
 Gui, +Toolwindow +E0x40000 ;+LastFound +AlwaysonTop
 Gui, Font, S%fontsize%, %fontname%
 
-Gui, Add, ListBox, x10 y10 w120 h450 vFChoice gFChoicecheck,
 
+;						分类列表
+Gui, Add, ListBox, x10 y10 w120 h450 vFChoice gFChoicecheck,
+Gui Add, Link, xp y+10 wp h20, <a href="%Github%">Github</a>
+Gui Add, Link, xp y+5 wp hp, <a href="%DeviantArt%">DeviantArt</a>
+
+
+;						常规
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_General, %Lang_General%
-	Gui, Add, Text, x150 y40 w200 h25 vGuiTextLang, %Lang_Your_language%
-	Gui, Add, DropDownList, x361 y40 w80 vG_Language gLangtip Choose%LangNum%, %gui_Language%
-	Gui, Add, Text, x150 y70 w200 h25 vGuiTextPsVersion, %Lang_Your_Photoshop_version%
-	Gui, Add, DropDownList, x361 y70 w80 vPsCSver Choose%PsCSverNo% gVerChoose, %PSCSverList%
+	Gui, Add, Text, xp+10 yp+20 w200 h25 vGuiTextLang, %Lang_Your_language%
+	Gui, Add, DropDownList, x+10 yp w80 vG_Language gLangtip Choose%LangNum%, %gui_Language%
+	Gui, Add, Text, x150 y+10 w200 h25 vGuiTextPsVersion, %Lang_Your_Photoshop_version%
+	Gui, Add, DropDownList, x+10 yp w80 vPsCSver Choose%PsCSverNo% gVerChoose, %PSCSverList%
 	If A_OSVersion not in WIN_2000,WIN_2003,WIN_XP,WIN_VISTA,WIN_7
 	{
-		Gui, Add, Edit, x150 y100 w266 h25 vPsPath Readonly, %PsPath%
-		Gui, Add, Button, x+0 yp+0 w25 h25 vBrowse1 gBrowse1, 🔍
+		Gui, Add, Edit, x150 y+10 w266 h25 vPsPath Readonly, %PsPath%
+		Gui, Add, Button, x+0 yp+0 w25 hp vBrowse1 gBrowse1, 🔍
 	}
 	Else
 	{
-		Gui, Add, Edit, x150 y100 w211 h25 vPsPath Readonly, %PsPath%
-		Gui, Add, Button, x361 y100 w80 h25 vBrowse1 gBrowse1, %Lang_Browse%
+		Gui, Add, Edit, x150 y+10 w211 h25 vPsPath Readonly, %PsPath%
+		Gui, Add, Button, x361 y100 w80 hp vBrowse1 gBrowse1, %Lang_Browse%
 	}
-	Gui, Add, Checkbox, x150 y130 w200 h25 vCheck4, %Lang_P_I_LaunchPs%
-	Gui, Add, Checkbox, x150 y160 w190 h25 vCheck2, %Lang_P_I_Hidehelptip%
-;===========================
+	Gui, Add, Checkbox, x150 y+10 w235 hp vCheck4, %Lang_P_I_LaunchPs%
+	Gui, Add, Checkbox, xp y+10 wp hp vCheck2, %Lang_P_I_Hidehelptip%
 
+
+;						拾色器
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_ColorPicker, %Lang_ColorPicker%
-	Gui, Add, CheckBox, x150 y40 w230 h25 vCheck7 gHUDToggle, %Lang_Set_hotkey_HUD_Color_Picker%
-		Gui, Add, Hotkey, x400 y40 w40 h25 vHUDCP, %HUDCP%
-		Gui, Add, Checkbox, x165 y65 w60 h25 vCheck5, %Lang_Set_hotkey_Precise%
-		Gui, Add, Checkbox, x225 y65 w60 h25 vCheck9, %Lang_Set_hotkey_Center%
-		Gui, Add, Radio, x295 y65 w70 h25 vhotkeyFastMode -Wrap Group, %Lang_hotkeyFastMode%
-		Gui, Add, Radio, x375 y65 w70 h25 vhotkeyStableMode -Wrap, %Lang_hotkeyStableMode%
+	Gui, Add, CheckBox, xp+10 yp+20 w230 h25 vCheck7 gHUDToggle, %Lang_Set_hotkey_HUD_Color_Picker%
+		Gui, Add, Hotkey, x+10 yp w40 hp vHUDCP, %HUDCP%
+		Gui, Add, Checkbox, x165 y+5 w60 hp vCheck5, %Lang_Set_hotkey_Precise%
+		Gui, Add, Checkbox, x+5 yp w60 hp vCheck9, %Lang_Set_hotkey_Center%
+		Gui, Add, Radio, x+10 yp w70 hp vhotkeyFastMode -Wrap Group, %Lang_hotkeyFastMode%
+		Gui, Add, Radio, x+5 yp w70 hp vhotkeyStableMode -Wrap, %Lang_hotkeyStableMode%
 
-	Gui, Add, CheckBox, x150 y100 w15 h25 vCheck8 gChooseMapAltmode,
-		Gui, Add, DropDownList, x165 y103 w275 vMapAlt Choose%MapAltmode% AltSubmit gChooseMapAltmode,
+	Gui, Add, CheckBox, x150 y+10 w15 hp vCheck8 gChooseMapAltmode,
+		Gui, Add, DropDownList, xp+15 yp+3 w275 vMapAlt Choose%MapAltmode% AltSubmit gChooseMapAltmode,
 		Gui, Add, Hotkey, x400 y+5 w40 h25 vFCPk, %FCPk%
 		Gui, Add, Text, x167 yp+3 w230 hp vFastColorPickerCS5Tip, %Lang_fastColorPickerCS5Tip%
-		Gui, Add, Text, xp y+5 w250 h25 vFastColorPickerCS5Tip2, %Lang_fastColorPickerCS5Tip2%
+		Gui, Add, Text, xp y+5 w250 hp vFastColorPickerCS5Tip2, %Lang_fastColorPickerCS5Tip2%
 
-;===========================
 
+;						快捷键
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Hotkey, %Lang_Hotkey%
-	Gui, Add, Checkbox, x150 y40 w190 h25 vCheck10, %Lang_P_I_DisableAltMenu%
-	Gui, Add, Checkbox, x150 y70 w200 h25 vCheck11 gModifyBrushKeyToggle, %Lang_Set_hotkey_ModifyBrushKey%
-		Gui, Add, Hotkey, x361 y70 w80 h25 vModifyBrushKey, %ModifyBrushKey%
+	Gui, Add, Checkbox, xp+10 yp+20 w200 h25 vCheck11 gModifyBrushKeyToggle, %Lang_Set_hotkey_ModifyBrushKey%
+		Gui, Add, Hotkey, x+10 yp w80 hp vModifyBrushKey, %ModifyBrushKey%
 
-	Gui, Add, Checkbox, x150 y100 w200 h25 vCheck6 gQCLayerToggle, %Lang_Set_hotkey_QCLayer%
-		Gui, Add, Hotkey, x361 y100 w80 h25 vQCLayer, %QCLayer%
+	Gui, Add, Checkbox, x150 y+5 w200 hp vCheck6 gQCLayerToggle, %Lang_Set_hotkey_QCLayer%
+		Gui, Add, Hotkey, x+10 yp w80 hp vQCLayer, %QCLayer%
 
-	Gui, Add, Checkbox, x150 y130 w200 h25 vCheck13 gSHLayerToggle, %Lang_Set_hotkey_SHLayer%
-		Gui, Add, Hotkey, x361 y130 w80 h25 vSHLayer, %SHLayer%
+	Gui, Add, Checkbox, x150 y+5 w200 hp vCheck13 gSHLayerToggle, %Lang_Set_hotkey_SHLayer%
+		Gui, Add, Hotkey, x+10 yp w80 hp vSHLayer, %SHLayer%
 
-	Gui, Add, Checkbox, x150 y160 w280 h25 vCheck1, %Lang_Set_hotkey_Undo%
+	Gui, Add, Checkbox, x150 y+5 w280 hp vCheck1, %Lang_Set_hotkey_Undo%
 
-;===========================
+
+;						自动保存
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Autosave, %Lang_Autosave%
-	Gui, Add, DropDownList, x150 y40 w190 vAutosave Choose%Autosavenum% AltSubmit gAScheck, %Lang_Autosave_no%|%Lang_Autosave_tip%|%Lang_Autosave_yes%
-		Gui, Add, Edit, x345 y40 w50 h25 vSavesleep Number Center, %Savesleep%
-		Gui, Add, Text, x401 y40 w40 h25 vGuiText2, %Lang_Autosave_Min%
-		Gui, Add, Text, x150 y70 w130 h25 vGuiText3, %Lang_Autosave_Optional%
-		Gui, Add, Edit, x271 y70 w160 h40 vTiptext Limit28, %Tiptext%
+	Gui, Add, DropDownList, xp+10 yp+20 w190 vAutosave Choose%Autosavenum% AltSubmit gAScheck, %Lang_Autosave_no%|%Lang_Autosave_tip%|%Lang_Autosave_yes%
+		Gui, Add, Edit, x+5 yp+0 w50 h25 vSavesleep Number Center, %Savesleep%
+		Gui, Add, Text, x+5  yp+5 w40 h25 vGuiText2, %Lang_Autosave_Min%
+		Gui, Add, Text, x150 y+0 w130 h25 vGuiText3, %Lang_Autosave_Optional%
+		Gui, Add, Edit, x+0 yp w160 h40 vTiptext Limit28, %Tiptext%
 
-;===========================
+
+;						其他
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Other, %Lang_Other%
-	Gui, Add, Checkbox, x150 y40 w190 h25 vCheck15, %Lang_Other_3dsMaxSync%
-	Gui, Add, Checkbox, x150 y70 w190 h25 vCheck3, %Lang_P_I_LockIME%
-	Gui, Add, Checkbox, x150 y100 w280 h25 vCheck14, %Lang_C_TempFiles% ;Clean up temporary files
-;===========================
+	Gui, Add, Checkbox, xp+10 yp+20 w280 h25 vCheck10, %Lang_P_I_DisableAltMenu%
+	Gui, Add, Checkbox, xp y+5 wp hp vCheck3, %Lang_P_I_LockIME%
+	Gui, Add, Checkbox, xp y+5 wp hp vCheck14, %Lang_C_TempFiles% ;Clean up temporary files
+	Gui, Add, Checkbox, xp y+5 wp hp vCheck15, %Lang_Other_3dsMaxSync%
+
+;						高级设置
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_PSUserConfig, %Lang_PSUserConfig%
 	Gui, Add, Checkbox, xp+10 yp+20 w235 h25 vAllowAsyncIO, %Lang_AllowAsyncIO%
 	Gui, Add, Checkbox, xp+0 y+5 wp hp vReduceUXFriction, %Lang_ReduceUXFriction%
@@ -106,29 +116,26 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_PSUserConfig, %Lang_PSUserConfig%
 	Gui, Add, Text, x150 y240 w290 h25 vGuiText4 Center, %Lang_NeedRestartTip%
 
 
-
-;===========================
+;						打赏
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Donate, %Lang_Donate%
+	Gui, Add, Picture, xp yp+60 w150 h-1 vDonateAlipay, %A_scriptdir%\Data\Images\alipay.png
+	Gui, Add, Picture, x+10 yp wp h-1 vDonateWechat, %A_scriptdir%\Data\Images\wechat.png
 
-	Gui, Add, Picture, x140 y59 w150 h-1 vDonateAlipay, %A_scriptdir%\Data\Images\alipay.png
-	Gui, Add, Picture, x300 y59 w150 h-1 vDonateWechat, %A_scriptdir%\Data\Images\wechat.png
+	Gui, Add, Picture, x170 yp w246 h-1 vDonatePaypal gDonateNow, %A_scriptdir%\Data\Images\paypal.png
+	Gui Add, Button, x150 y+20 w290 h60 vDonateButton gDonateNow, %Lang_Donate%
 
-	Gui, Add, Picture, x170 y59 w246 h-1 vDonatePaypal gDonateNow, %A_scriptdir%\Data\Images\paypal.png
-	Gui Add, Button, x150 y160 w290 h60 vDonateButton gDonateNow, %Lang_Donate%
 
-	Gui, Add, Text, x150 y290 w290 h180 vDonateText, %Lang_Donate_text%
-
-;===========================
+;						提示
 Gui, Add, GroupBox, x140 y270 w310 h250 vHelpTip, %Lang_HelpTip%
-	Gui, Add, Text, x150 y290 w290 h225 vHelpTipText, %Lang_HelpTip_text%
+	Gui, Add, Text, xp+10 yp+20 wp-20 hp-25 vHelpTipText, %Lang_HelpTip_text%
+	Gui, Add, Text, xp yp wp hp vDonateText, %Lang_Donate_text%
 
+;						保存
 Gui, Add, Button, x460 y10 w100 h50 vSave gConfigSave, %Lang_Save%
 Gui, Add, Button, xp yp wp hp vApply gApplyPSUserConfig, %Lang_Apply%
 Gui, Add, Button, xp y+10 wp h30 vCancel gGuiClose, %Lang_Cancel%
 Gui, Add, Button, xp yp wp hp vReset gResetPSUserConfig, %Lang_Reset%
 
-Gui Add, Link, x10 y470 w100 h20, <a href="%Github%">Github</a>
-Gui Add, Link, x10 y495 w100 h20, <a href="%DeviantArt%">DeviantArt</a>
 Gui Font
 
 Gui Font, s20 Bold q5 c0x0080FF, %Fontname%
@@ -139,11 +146,13 @@ Gui Font, Bold cRed, %Fontname%
 GuiControl, Font, GuiText4
 Gui Font
 
-Gui Add, Picture, x460 y275 w100 h-1 vShareTwitter gShareTwitter,  %A_scriptdir%\Data\Images\Twitter.png
-Gui Add, Picture, x460 y315 w100 h-1 vShareFacebook gShareFacebook,  %A_scriptdir%\Data\Images\Facebook.png
-Gui Add, Picture, x460 y355 w100 h-1 vShareReddit gShareReddit,  %A_scriptdir%\Data\Images\Reddit.png
-
 Gui Add, Picture, x460 y275 w100 h-1 vShareWeibo gShareWeibo,  %A_scriptdir%\Data\Images\Weibo.png
+
+Gui Add, Picture, xp yp wp h-1 vShareTwitter gShareTwitter,  %A_scriptdir%\Data\Images\Twitter.png
+Gui Add, Picture, xp y+5 wp h-1 vShareFacebook gShareFacebook,  %A_scriptdir%\Data\Images\Facebook.png
+Gui Add, Picture, xp y+5 wp h-1 vShareReddit gShareReddit,  %A_scriptdir%\Data\Images\Reddit.png
+
+
 
 
 ;=============================================================
@@ -362,7 +371,8 @@ ChooseMapAltmode:
 			If (mapAltTxt=Lang_Set_hotkey_mapalt_1)
 			{
 				GuiControl, Enable, Check10
-				GuiControl, Move, MapAlt, x165 y103 w230
+				GuiControl, Move, MapAlt, w230
+				GuiControl, Move, FCPk, y98
 			}
 
 			If (mapAltTxt=Lang_Set_hotkey_mapalt_3)
@@ -387,7 +397,8 @@ ChooseMapAltmode:
 		GuiControl, Disable, Check10
 		GuiControl, Hide, FastColorPickerCS5Tip
 		GuiControl, Hide, FastColorPickerCS5Tip2
-		GuiControl, Move, MapAlt, x165 y103 w275
+		GuiControl, Move, MapAlt, w275
+		GuiControl, Move, FCPk, y125
 	}
 	Return
 
@@ -565,7 +576,6 @@ FChoicecheck:
 	If (leftTag=Lang_Hotkey)
 	{
 		GuiControl,Show,GB_Hotkey
-		GuiControl,Show,Check10
 		GuiControl,Show,Check11
 		GuiControl,Show,ModifyBrushKey
 		GuiControl,Show,Check6
@@ -589,6 +599,7 @@ FChoicecheck:
 	If (leftTag=Lang_Other)
 	{
 		GuiControl,Show,GB_Other
+		GuiControl,Show,Check10
 		GuiControl,Show,Check15
 		GuiControl,Show,Check3
 		GuiControl,Show,Check14
@@ -706,7 +717,8 @@ VerChoose:
 
 		GuiControl,enable,HUDCP
 
-		GuiControl, Move, MapAlt, x165 y103 w275
+		GuiControl, Move, MapAlt, w275
+		GuiControl, Move, FCPk, y125
 		GuiControl,,MapAlt,|%Lang_hotKeyMapCS5Plus%|%Lang_Set_hotkey_mapalt_2%|%Lang_Set_hotkey_mapalt_3%|
 
 		GuiControl, Choose, MapAlt, |%MapAltmode%
@@ -724,7 +736,8 @@ VerChoose:
 
 		GuiControl,Disable,HUDCP
 
-		GuiControl, Move, MapAlt, x165 y103 w230
+		GuiControl, Move, MapAlt, w230
+		GuiControl, Move, FCPk, y98
 		GuiControl,,MapAlt,|%Lang_Set_hotkey_mapalt_1%|%Lang_Set_hotkey_mapalt_2%|
 		
 		MapAltmodeNum:=MapAltmode=1?1:2
