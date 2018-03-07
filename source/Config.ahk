@@ -16,7 +16,7 @@ gosub ConfigRead
 
 Github:="https://github.com/millionart/Apssistant"
 DeviantArt:="https://www.deviantart.com/deviation/160950828"
-
+Gosub, SetGroupPhotoshop
 ; ============================================================================
 ; 添加控件 第一步
 Gui, +Toolwindow +E0x40000 ;+LastFound +AlwaysonTop
@@ -849,8 +849,8 @@ ApplyPSUserConfig:
 		FileAppend, RecentFilesSlowTimeout %RecentFilesSlowTimeoutEdit%`n, %PSUserConfig%
 	If (FullPreviewMaxSize=1) && (FullPreviewMaxSizeEdit>=0)
 		FileAppend, FullPreviewMaxSize %FullPreviewMaxSizeEdit%`n, %PSUserConfig%
-
-	GuiFlash("GuiText4",3,100)
+	If WinExist("ahk_group Photoshop")
+		GuiFlash("GuiText4",3,100)
 	return
 
 ResetPSUserConfig:
@@ -859,7 +859,8 @@ ResetPSUserConfig:
 
 	PSUserConfigDefault()
 	Gosub, AdvanceCheck
-	GuiFlash("GuiText4",3,100)
+	If WinExist("ahk_group Photoshop")
+		GuiFlash("GuiText4",3,100)
 	return
 
 GuiFlash(String,Times,Time)

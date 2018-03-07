@@ -35,9 +35,7 @@ else
 
 ; ===================================================
 DetectHiddenText, On
-GroupAdd, Photoshop, ahk_class Photoshop
-GroupAdd, Photoshop, ahk_class OWL.DocumentWindow ;CS5+画布
-GroupAdd, Photoshop, ahk_class PSDocC ;CS2画布
+Gosub, SetGroupPhotoshop
 
 SysGet, VirtualWidth, 78
 SysGet, VirtualHeight, 79
