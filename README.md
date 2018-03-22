@@ -139,7 +139,7 @@
 [中文](https://helpx.adobe.com/cn/photoshop/kb/enable-optional-extensions-photoshop-cc.html) |
 [English](https://helpx.adobe.com/photoshop/kb/enable-optional-extensions-photoshop-cc.html) |
 [日本語](https://helpx.adobe.com/jp/photoshop/kb/enable-optional-extensions-photoshop-cc.html) |
-[한국어](https://helpx.adobe.com/jp/photoshop/kb/enable-optional-extensions-photoshop-cc.html)
+[한국어](https://helpx.adobe.com/kr/photoshop/kb/enable-optional-extensions-photoshop-cc.html)
 
 *_英语以外的版本可能内容不全_
 
