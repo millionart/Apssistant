@@ -4,7 +4,7 @@
 
 功能\版本号|CC|CS6|CS5|CS4|CS3|CS2|CS|7|6|![Illustrator](https://helpx.adobe.com/content/dam/help/mnemonics/ai_cc_app_RGB.svg)
 ----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:
-**[禁用Alt菜单键](#1禁用-alt-菜单键)**|😃|😃|😃|😃|😃|😃|😃|😃|😃|😃|
+**[禁用<kbd>Alt</kbd>菜单键](#1禁用-alt-菜单键)**|😃|😃|😃|😃|😃|😃|😃|😃|😃|😃|
 **[前景拾色器快捷键](#2前景色拾色器快捷键)**|😃|😃|😃|🙂|🙂|🙂|🙂|🙂|🙂|🤢|
 **[快速创建新图层](#3快速创建新图层)**|😃|😃|😃|😃|😃|😃|😃|😃|😃|🤢|
 **[自动保存](#4自动保存)**|😃|😃|😃|😃|😃|😃|😃|😃|😃|🤢|
@@ -25,9 +25,9 @@
 
 *_以下全部功能需要在 **常规** 界面正确选择 Photoshop 版本号_
 
-### 1.禁用 Alt 菜单键
+### 1.禁用 <kbd>Alt</kbd> 菜单键
 
-防止单击 Alt 触发菜单，同时对 Illustrator 生效
+防止单击 <kbd>Alt</kbd> 触发菜单，同时对 Illustrator 生效
 
 *_不支持数位板扩展键_
 
@@ -62,23 +62,23 @@
   * Windows 7 用户：控制面板——外观和个性化 ——更改半透明窗口颜色——高级外观设置——项目“三维物体”
 * 至 _Data\\Imagesearch\\**PS版本号**_ 目录下修改对应版本的参考图片并以 PNG 格式替换。
 
-#### B.前景色拾色器与滴管工具合并至 Alt
+#### B.前景色拾色器与滴管工具合并至 <kbd>Alt</kbd>
 
-此功能可将拾色器与 Alt 取色合并，使用 Photoshop CS5 以前版本的前景色拾色器触发方式。
+此功能可将拾色器与 <kbd>Alt</kbd> 取色合并，使用 Photoshop CS5 以前版本的前景色拾色器触发方式。
 
-*_与“禁用 Alt 菜单键”冲突。_
+*_与“禁用 <kbd>Alt</kbd> 菜单键”冲突。_
 
-#### C.前景色拾色器与滴管工具合并至 Alt（优化）
+#### C.前景色拾色器与滴管工具合并至 <kbd>Alt</kbd>（优化）
 
 效果同上，仅 Photoshop CS5 及以上版本可见，使用内置快捷键触发前景色拾色器面板。
 
-*_与“禁用 Alt 菜单键”冲突。_
+*_与“禁用 <kbd>Alt</kbd> 菜单键”冲突。_
 
 ### 3.快速创建新图层
 
 点击快捷键快速创建普通图层而无需确认。
 
-*_官方快捷键：Alt+Shift+Ctrl+N_
+*_官方快捷键：<kbd>Alt</kbd><kbd>Shift</kbd><kbd>Ctrl</kbd>+<kbd>N</kbd>_
 
 ### 4.自动保存
 
@@ -96,10 +96,10 @@
 
  *功能* | *修改前* | *修改后*
  :----:|:----:|:----:
-后退一步|Alt+Ctrl+Z|Ctrl+Z
-还原/重做|Ctrl+Z|Shift+Ctrl+Z
-前进一步|Shift+Ctrl+Z|Ctrl+Y
-校样颜色|Ctrl+Y|Alt+Ctrl+Z
+后退一步|<kbd>Alt</kbd><kbd>Ctrl</kbd>+<kbd>Z</kbd>|<kbd>Ctrl</kbd>+<kbd>Z</kbd>
+还原/重做|<kbd>Ctrl</kbd>+<kbd>Z</kbd>|<kbd>Shift</kbd><kbd>Ctrl</kbd>+<kbd>Z</kbd>
+前进一步|<kbd>Shift</kbd><kbd>Ctrl</kbd>+<kbd>Z</kbd>|<kbd>Ctrl</kbd>+<kbd>Y</kbd>
+校样颜色|<kbd>Ctrl</kbd>+<kbd>Y</kbd>|<kbd>Alt</kbd><kbd>Ctrl</kbd>+<kbd>Z</kbd>
 
 ### 6.锁定为英文输入法
 
