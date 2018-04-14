@@ -5,14 +5,15 @@ HT_G_Language,Change the interface of this software to the language you are usin
 Your_Photoshop_version,Photoshop version:,Photoshop 版本：,Photoshop 版本：
 HT_PsCSver,,正确选择你正在使用的 Photoshop 版本。\n\n此选项将影响本软件使用效果。,正確選擇你正在使用的 Photoshop 版本。\n\n此選項將影響本軟體使用效果。
 Autosave,Autosave,自动保存,自動儲存
-Autosave_no,Disabled,禁用自动保存,禁用自動儲存
+Disabled,Disabled,禁用,禁用
+Autosave_tip,Tip only,提示,提示
+Autosave_yes,Automatically,自动,自動
+Every,Every,间隔,間隔
+Min,Min.,分钟,分鐘
 Autosave_Optional,Tip text (Optional),提示文本（选填）,提示文字（選填）
-Autosave_tip,Tip to save. Every:,提示保存，间隔时间：,提示儲存，間隔時間：
-Autosave_yes,Automatically save. Every:,自动保存，间隔时间：,自動儲存，間隔時間：
-Autosave_Min,Min.,分钟,分鐘
-tiptext,It's time to save!,现在保存一下吧！,現在儲存一下吧！
+TipText,It's time to save!,现在保存一下吧！,現在儲存一下吧！
 Savenow,Save now!,立刻保存！,立即儲存！
-HT_Autosave,,禁用自动保存：\n关闭此功能。\n\n提示保存，间隔时间：\n定时弹出保存提示信息。\n\n自动保存，间隔时间：\n无提示，定时自动保存。,禁用自動儲存：\n關閉此功能。\n\n提示儲存，間隔時間：\n定時彈出儲存提示信息。\n\n自動儲存，間隔時間：\n無提示，定時自動儲存。
+HT_Autosave,,禁用：\n关闭此功能。\n\n提示：\n定时弹出保存提示信息。\n\n自动：\n无提示，定时自动保存。,禁用：\n關閉此功能。\n\n提示：\n定時彈出儲存提示信息。\n\n自動：\n無提示，定時自動儲存。
 HT_Savesleep,Interval set too short (less than 2 minutes) may damage the file!,间隔时间设置过短（小于 2 分钟）有可能损坏文件！,間隔時間設置過短（小於 2 分鐘）有可能損壞文件！
 Save,Save,保存,儲存
 Cancel,Cancel,取消,取消
@@ -81,11 +82,11 @@ hotkeyStableMode,Stable,稳定模式,穩定模式
 HT_hotkeyFastMode,,快速模式（默认）：\n无延迟，对硬件配置要求较高。\n某些软件可能对本软件造成严重的性能损失，请在使用本软件及 Photoshop 时禁用其 进程 / 服务（如 Gdipp / Mactype）。\n\n如频繁造成延迟，请使用稳定模式。,快速模式（默認）：\n無延遲，對硬體配置要求較高。 \n某些軟體可能對本軟體造成嚴重的效能損失，請在使用本軟體及 Photoshop 時禁用其 進程 / 服務（如 Gdipp / Mactype）。 \n\n如頻繁造成延遲，請使用穩定模式。
 HT_hotkeyStableMode,,稳定模式：\n增加 0.2 秒延迟以提高稳定性，并瞬时锁定鼠标以避免选色偏差，也因此易被安全软件屏蔽。\n如果使用此模式失效，请尝试暂时关闭安全软件或使用快速模式。,穩定模式：\n增加 0.2 秒延遲以提高穩定性，並瞬時鎖定滑鼠以避免選色偏差，也因此易被安全軟體屏蔽。 \n如果使用此模式失效，請嘗試暫時關閉安全軟體或使用快速模式。
 Set_hotkey_HUD_Color_Picker,HUD color picker Enhancement:,HUD 拾色器增强：,HUD 檢色器加強：
-hotKeyMapCS5Plus,Color Picker hotkey Enhancement,前景色拾色器快捷键加强,前景檢色器快速鍵加強
-Set_hotkey_mapalt_1,Color Picker hotkey Set to,前景色拾色器快捷键设置为,前景檢色器快速鍵設定為
-Set_hotkey_mapalt_2,Color Picker + Eyedropper to Alt,前景色拾色器与滴管工具合并至 Alt,前景檢色器與滴管工具合併至 Alt
-Set_hotkey_mapalt_3,Color Picker + Eyedropper to Alt (Optimized),前景色拾色器与滴管工具合并至 Alt （优化）,前景檢色器與滴管工具合併至 Alt（優化）
-fastColorPickerCS5Tip,Foreground Color Picker hotkey:,前景色拾色器快捷键：,請先打開 Photoshop 以下位置修改快速鍵：\n鍵盤快速鍵和菜單\n\t↳ 快速鍵用於（工具）\n\t\t↳ 前景檢色器
+hotKeyMapCS5Plus,Color Picker hotkey Enhancement,前景色拾色器快捷键加强,前景色檢色器快速鍵加強
+Set_hotkey_mapalt_1,Color Picker hotkey Set to,前景色拾色器快捷键设置为,前景色檢色器快速鍵設定為
+Set_hotkey_mapalt_2,Color Picker + Eyedropper to Alt,前景色拾色器与滴管工具合并至 Alt,前景色檢色器與滴管工具合併至 Alt
+Set_hotkey_mapalt_3,Color Picker + Eyedropper to Alt (Optimized),前景色拾色器与滴管工具合并至 Alt （优化）,前景色檢色器與滴管工具合併至 Alt（優化）
+fastColorPickerCS5Tip,Foreground Color Picker hotkey:,前景色拾色器快捷键：,請先打開 Photoshop 以下位置修改快速鍵：\n鍵盤快速鍵和菜單\n\t↳ 快速鍵用於（工具）\n\t\t↳ 前景色檢色器
 fastColorPickerCS5Tip2,Need to restart Photoshop to apply.,更改后将在下次启动 Photoshop 时生效,手動將該處設置的快速鍵輸入此處：
 HT_MapAlt,"Hotkey Enhancement (CS5+) / Hotkey Set to (CS4-) \nCS5 and later can  further strengthen the shortcut keys:\nHold to open the color picker panel, release to confirmation color, and close the panel. \n\n+ Eyedropper to Alt \nCombine the Color Picker with Alt Coloring, using the color picker triggering of previous versions of CS5. \n* Conflicts with ""Disable Alt menu"". \n\n+ Eyedropper to Alt (Optimized) \nVisible only in CS5 and above, you will need to enter the color picker shortcut set in CS5 and above. \n* Conflicts with ""Disable Alt menu"".",快捷键加强（CS5 以上）/ 快捷键设置为（CS4 以下）\nCS5 及以上版本可进一步强化快捷键：\n按住可打开拾色器面板，松开确认颜色并关闭面板。\n\n与滴管工具合并至 Alt\n将拾色器与 Alt 取色合并，使用 CS5 以前版本的拾色器触发方式。\n* 与“禁用 Alt 菜单键”冲突。\n\n与滴管工具合并至 Alt（优化）\n仅 CS5 及以上版本可见，需要输入 CS5 以上版本内设置的拾色器快捷键。\n* 与“禁用 Alt 菜单键”冲突。,快速鍵加強（CS5 以上）/ 快速鍵設置為（CS4 以下）\nCS5 及以上版本可進一步強化快速鍵：\n按住可打開檢色器面板，鬆開確認顏色並關閉面板。 \n\n與滴管工具合併至 Alt\n將拾色器與 Alt 取色合併，使用 CS5 以前版本的檢色器觸發方式。 \n* 與“禁用 Alt 菜單鍵”衝突。 \n\n與滴管工具合併至 Alt（優化）\n僅 CS5 及以上版本可見，需要輸入 CS5 以上版本內設置的檢色器快速鍵。 \n* 與“禁用 Alt 菜單鍵”衝突。
 Set_hotkey_ModifyBrushKey,Modify brush radius:,修改笔刷范围：,修改筆刷范圍：
@@ -97,30 +98,24 @@ Set_hotkey_SHLayer,Show / Hide current layer:,显示或隐藏当前图层：,显
 HT_Check13,Set a key to show or hide the current layer.,设置一个按键用于显示或隐藏当前图层。,設置一個按鍵用於顯示或隱藏當前圖層。
 tray_Config,Preferences,设置,設定
 tray_Exit,Exit,退出,關閉
-OpenGLtip,a.Please enable Preferences → Enable OpenGL Drawing\nb.Hold on/off space to change hue at the same time,1.此功能需到首选项 → 性能中启用 OpenGL 绘图\n2.按住空格以切换选色区域,1.此功能需至選項 → 性能中啟動 OpenGL 繪圖\n2.按住空格以切換選色區域
+OpenGLtip,a.Please enable Preferencess → Performances → Advanced → Enable OpenGL drawing\nb.Hold on/off space to change hue at the same time,1.此功能需到 首选项 → 性能 → 高级选项 中启用 OpenGL 绘图\n2.按住空格以切换选色区域,1.此功能需至選項 → 性能 → 高級選項 中啟動 OpenGL 繪圖\n2.按住空格以切換選色區域
 Tiptitle,Tips,提示,提示
 Undotip,The following LSide hotkeys have been changed to RSide:,以下左边默认快捷键已更改为右边：,以下左邊的預設快速鍵已更改為右邊：
-HT_FChoice,"Note:\n * Hotkey does not support the tablet expansion key.\n * Using the HUD Color Picker while in lasso tool state may cause Photoshop crash.\n * Continuous click shortcuts key may cause Photoshop instability.\n * Some of the software may cause serious performance loss (such as Gdipp, MacType). Please close the process / service when using this software and Photoshop.",注意事项\n* 快捷键修改不支持数位板扩展键。\n* 套索工具状态下使用 HUD 拾色器可能导致假死。\n* 连续快速使用快捷键可能导致 Photoshop 不稳定。\n* 某些软件可能对本软件造成严重的性能损失（如 Gdipp、MacType），请在使用本软件及 Photoshop 时禁用其 进程 / 服务。,注意事項\n* 快速鍵修改不支援數位板擴展鍵。\n* 套索工具狀態下使用 HUD 檢色器容易造成假死。\n* 連續快速使用快速鍵可能導致 Photoshop 不穩定。\n* 某些軟體可能對本軟體造成嚴重的性能損失（如 Gdipp、MacType），請在使用本軟體及 Photoshop 時禁用其 進程 / 服務。
-HT_GuiText4,,,
-HT_GuiText5,,,
+HT_FChoice,"Note:\n * Hotkey does not support the tablet expansion key.\n * Using the HUD Color Picker while in lasso tool state may cause Photoshop crash.\n * Continuous click shortcuts key may cause Photoshop instability.\n * Some of the software may cause serious performance loss (such as Gdipp, MacType). Please close the process / service when using this software and Photoshop.",注意事项\n* 快捷键修改不支持数位板扩展键。\n* 快捷键切勿留空或与本软件其他快捷键冲突。\n* 套索工具状态下使用 HUD 拾色器可能导致假死。\n* 连续快速使用快捷键可能导致 Photoshop 不稳定。\n* 某些软件可能对本软件造成严重的性能损失（如 Gdipp、MacType），请在使用本软件及 Photoshop 时禁用其 进程 / 服务。,注意事項\n* 快速鍵修改不支援數位板擴展鍵。\n* 快速鍵切勿留空或與本軟體其他快速鍵沖突。\n* 套索工具狀態下使用 HUD 檢色器容易造成假死。\n* 連續快速使用快速鍵可能導致 Photoshop 不穩定。\n* 某些軟體可能對本軟體造成嚴重的性能損失（如 Gdipp、MacType），請在使用本軟體及 Photoshop 時禁用其 進程 / 服務。
 HT_Check2,Turn off the software's operating tips on the System tray.,关闭本软件附带的操作信息托盘提示。,關閉本軟體附帶的操作信息托盤提示。
 HT_Check7,,选中以启用 HUD 拾色器增强功能，此功能只适用于 CS5 及以上版本，需在 首选项 中启用 OpenGL 支持方可使用。\n在 Photoshop 菜单中启用 OpenGL 的方法： \n\t编辑>首选项>性能>启用 OpenGL 绘图\n部分显卡不支持启用 OpenGL 绘图选项（复选框为灰色），可尝试修改注册表、升级显卡驱动或硬件。,選中以啟用 HUD 檢色器增強功能，此功能只適用于 CS5 及以上版本，需在 選項 中啟用 OpenGL 支持方可使用。\n在 Photoshop 菜單中啟用 OpenGL 的方法： \n\t編輯>選項>性能>啟用 OpenGL 繪圖\n部分顯卡不支持啟用 OpenGL 繪圖選項（復選框為灰色），可嘗試修改注冊表、升級顯卡驅動或硬件。
-HT_HUDCP,,为 HUD 拾色器增强功能设置一个快捷键。\n\n切勿留空或与本软件其他快捷键冲突。,為 HUD 檢色器增強功能設置一個快速鍵。\n\n切勿留空或與本軟體其他快速鍵沖突。
-HT_Check5,,选中后将不需要按住空格键切换选色区域。前景拾色器将自动识别。 \n\n建议启用此选项。,選中后將不需要按住空格鍵切換選色區域。前景檢色器將自動識別。 \n\n建議啟用此選項。
+HT_HUDCP,,为 HUD 拾色器增强功能设置一个快捷键。,為 HUD 檢色器增強功能設置一個快速鍵。
+HT_Check5,,选中后将不需要按住空格键切换选色区域。前景色拾色器将自动识别。 \n\n建议启用此选项。,選中后將不需要按住空格鍵切換選色區域。前景色檢色器將自動識別。 \n\n建議啟用此選項。
 HT_Check9,,选中后将自动定位到屏幕中心显示 HUD 拾色器。\n\n注意：\n因为数位板使用屏幕绝对定位，所以使用此选项时应抬起数位笔。,選中后將自動定位到屏幕中心顯示 HUD 檢色器。\n\n注意：\n因為數位板使用屏幕絕對定位，所以使用此選項時應抬起數位筆。
-HT_Check8,,选中后启用前景拾色器快捷键功能。\n注意：\n此按键可在选择版本号之后同时可实现打开/保存拾色器，即一键操作。\nCS4 及以前版本（最低至 6）在使用此功能时可能需满足以下条件：\n\t* 前景色处于可点击状态（非全屏模式）\n\t* 使用画笔工具或铅笔工具\n\t* 使用系统默认主题,選中后啟用前景檢色器快速鍵功能。\n注意：\n此按鍵可在選擇版本號之后同時可實現打開/儲存檢色器，即一鍵操作。\nCS4 及以前版本（最低至 6）在使用此功能時可能需滿足以下條件：\n\t* 前景色處于可點擊狀態（非全屏模式）\n\t* 使用畫筆工具或鉛筆工具\n\t* 使用系統默認主題
-HT_FCPk,,为前景拾色器设置一个快捷键。\n\n切勿留空或与本软件其他快捷键冲突。,為前景檢色器設置一個快速鍵。\n\n切勿留空或與本軟體其他快速鍵沖突。
+HT_Check8,,选中后启用前景色拾色器快捷键功能。\n注意：\n此按键可在选择版本号之后同时可实现打开/保存拾色器，即一键操作。\nCS4 及以前版本（最低至 6）在使用此功能时可能需满足以下条件：\n\t* 前景色处于可点击状态（非全屏模式）\n\t* 使用画笔工具或铅笔工具\n\t* 使用系统默认主题,選中后啟用前景色檢色器快速鍵功能。\n注意：\n此按鍵可在選擇版本號之后同時可實現打開/儲存檢色器，即一鍵操作。\nCS4 及以前版本（最低至 6）在使用此功能時可能需滿足以下條件：\n\t* 前景色處于可點擊狀態（非全屏模式）\n\t* 使用畫筆工具或鉛筆工具\n\t* 使用系統默認主題
+HT_FCPk,,为前景色拾色器设置一个快捷键。,為前景色檢色器設置一個快速鍵。
 HT_Check11,,仅用于 CS4 及以上版本，将 Alt+右键 合并以达到模拟3D软件相关功能的效果。,僅用于 CS4 及以上版本，將 Alt+右鍵 合并以達到模擬3D軟體相關功能的效果。
-HT_ModifyBrushKey,,为修改笔刷范围功能设置一个快捷键。\n\n切勿留空或与本软件其他快捷键冲突。,為修改筆刷范圍功能設置一個快速鍵。\n\n切勿留空或與本軟體其他快速鍵沖突。
+HT_ModifyBrushKey,,为修改笔刷范围功能设置一个快捷键。,為修改筆刷范圍功能設置一個快速鍵。
 HT_Check6,,一键创建新图层（Alt+Shift+Ctrl+N）而无需确认。,一鍵創建新圖層（Alt+Shift+Ctrl+N）而無需確認。
-HT_QCLayer,,为快速创建新图层功能设置一个快捷键。\n\n切勿留空或与本软件其他快捷键冲突。,為快速創建新圖層功能設置一個快速鍵。\n\n切勿留空或與本軟體其他快速鍵沖突。
-HT_GuiText2,,,
-HT_GuiText3,,,
+HT_QCLayer,,为快速创建新图层功能设置一个快捷键。,為快速創建新圖層功能設置一個快速鍵。
 HT_Tiptext,,选填，内容将显示于弹出信息内。,選填，內容將顯示于彈出信息內。
 HT_Check10,,选中后防止单击 Alt 触发菜单。,選中后防止單擊 Alt 觸發菜單。
-HT_HelpTip,,,
-HT_HelpTipText,,,
 HT_CSave,,保存并退出设置界面。,儲存并關閉設置窗口。
 HT_CCancel,,取消保存并退出设置界面。,取消儲存并關閉設置窗口。
 HT_Check14,After exiting Apssistant automatically try to clean up the temporary files left behind due to Photoshop illegal closure.,选中后可在退出本程序时自动尝试清理因 Photoshop 非法关闭而残留的临时文件。,選中后可在退出本程序時自動嘗試清理因 Photoshop 非法關閉而殘留的臨時文件。
-HT_SHLayer,,为显示或隐藏当前图层功能设置一个快捷键。\n\n切勿留空或与本软件其他快捷键冲突。,為顯示或隱藏當前圖層功能設置一個快速鍵。\n\n切勿留空或與本軟體其他快速鍵沖突。
+HT_SHLayer,,为显示或隐藏当前图层功能设置一个快捷键。,為顯示或隱藏當前圖層功能設置一個快速鍵。

@@ -1,5 +1,8 @@
 ﻿
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+SetBatchLines -1
+ListLines Off
+
 ;SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 FileEncoding , UTF-8
@@ -207,13 +210,13 @@ $^s::
 	{
 		SetControlDelay -1
 		ControlClick, Label1, ahk_class 3dsMax,,,, NA
-		WinActivate, ahk_class Photoshop
+		WinActivate, ahk_group Photoshop
 	}
 	return
 #IfWInActive
 
 setTrayDefault:
-	If FileExist(PsPath) && !WinExist("ahk_class Photoshop")
+	If FileExist(PsPath) && !WinExist("ahk_group Photoshop")
 	{
 		try
 		Menu, tray, Disable,%Lang_tray_LockIMEOn%
@@ -246,7 +249,6 @@ Autosave:
 		{
 			SetControlDelay -1
 			ControlClick, Label1, ahk_class 3dsMax,,,, NA
-			;WinActivate, ahk_class Photoshop
 		}
 	}
 	else If WinExist("ahk_group Photoshop") and (Autosavenum=2)
@@ -465,34 +467,30 @@ LButtondown1:
 	send,{space down}
 	Return
 
-Config:
-	If A_IsCompiled
-		Run %A_scriptdir%\Config.exe
-	else
-		Run %A_scriptdir%\Config.ahk
-	return
-
 LaunchPs:
 	If FileExist(PsPath) && !WinExist("ahk_class Photoshop")
-	{
 		Run, % PsPath
-	}
 
 	WinwaitActive, ahk_class Photoshop
 Return
 
 LaunchPsAuto:
-	If FileExist("%PsPath%") && !WinExist("ahk_class Photoshop")
+	If FileExist(PsPath) && !WinExist("ahk_class Photoshop")
 	{
-		Run, "%PsPath%"
+		Run, % PsPath
 		WinwaitActive, ahk_class Photoshop
 		Reload
 	}
 	
-	If FileExist("%PsPath%")=False
-	{
+	If !FileExist(PsPath)
 		gosub Config
-	}
+	return
+
+Config:
+	If A_IsCompiled
+		Run %A_scriptdir%\Config.exe
+	else
+		Run %A_scriptdir%\Config.ahk
 	return
 
 ; 鎖定輸入法1
@@ -529,7 +527,6 @@ LockIMESwitch:
 
 ; 立即保存提示按鈕
 Savenow:
-	;WinActivate, ahk_class Photoshop
 	PostMessage, 0x111, 30,,,ahk_class Photoshop
 	Gui, Cancel
 

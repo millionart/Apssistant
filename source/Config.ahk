@@ -1,4 +1,7 @@
-﻿#NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
+﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+SetBatchLines -1
+ListLines Off
+
 SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 FileEncoding , UTF-8
@@ -81,11 +84,12 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Hotkey, %Lang_Hotkey%
 
 ;						自动保存
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Autosave, %Lang_Autosave%
-	Gui, Add, DropDownList, xp+10 yp+20 w190 vAutosave Choose%Autosavenum% AltSubmit gAScheck, %Lang_Autosave_no%|%Lang_Autosave_tip%|%Lang_Autosave_yes%
-		Gui, Add, Edit, x+5 yp+0 w50 h25 vSavesleep Number Center, %Savesleep%
-		Gui, Add, Text, x+5  yp+5 w40 h25 vGuiText2, %Lang_Autosave_Min%
-		Gui, Add, Text, x150 y+0 w130 h25 vGuiText3, %Lang_Autosave_Optional%
-		Gui, Add, Edit, x+0 yp w160 h40 vTiptext Limit28, %Tiptext%
+	Gui, Add, DropDownList, xp+10 yp+20 w100 vAutosave Choose%Autosavenum% AltSubmit gAScheck, %Lang_Disabled%|%Lang_Autosave_tip%|%Lang_Autosave_yes%
+		Gui, Add, Text, xp y+10 w40 h25 vGuiText1, %Lang_Every%
+		Gui, Add, Text, x+65 yp w40 hp vGuiText2 Right, %Lang_Min%
+		Gui, Add, Edit, xp-55 yp-5 w50 hp vSavesleep Number Center, %Savesleep%
+		Gui, Add, Text, x150 y+5 w130 hp vGuiText3, %Lang_Autosave_Optional%
+		Gui, Add, Edit, xp y+0 w290 hp vTiptext Limit28, %Tiptext%
 
 
 ;						其他
@@ -94,6 +98,7 @@ Gui, Add, GroupBox, x140 y10 w310 h250 vGB_Other, %Lang_Other%
 	Gui, Add, Checkbox, xp y+5 wp hp vCheck3, %Lang_P_I_LockIME%
 	Gui, Add, Checkbox, xp y+5 wp hp vCheck14, %Lang_C_TempFiles% ;Clean up temporary files
 	Gui, Add, Checkbox, xp y+5 wp hp vCheck15, %Lang_Other_3dsMaxSync%
+
 
 ;						高级设置
 Gui, Add, GroupBox, x140 y10 w310 h250 vGB_PSUserConfig, %Lang_PSUserConfig%
@@ -153,8 +158,6 @@ Gui Add, Picture, xp y+5 wp h-1 vShareFacebook gShareFacebook,  %A_scriptdir%\Da
 Gui Add, Picture, xp y+5 wp h-1 vShareReddit gShareReddit,  %A_scriptdir%\Data\Images\Reddit.png
 
 
-
-
 ;=============================================================
 ; 添加控件 第二步
 
@@ -212,25 +215,25 @@ Gosub, FChoicecheck
 Return
 
 OverscrollAlwaysCheck:
-	GuiControlGet, OverscrollAlways
-
-	showHide:=OverscrollAlways=0?"Hide":"Show"
-	GuiControl, %showHide%, OverscrollAlwaysEdit
+	AdvanceControlShowHide("OverscrollAlways")
 	Return
 
 RecentFilesSlowTimeoutCheck:
-	GuiControlGet, RecentFilesSlowTimeout
-
-	showHide:=RecentFilesSlowTimeout=0?"Hide":"Show"
-	GuiControl, %showHide%, RecentFilesSlowTimeoutEdit
+	AdvanceControlShowHide("RecentFilesSlowTimeout")
 	Return
 
 FullPreviewMaxSizeCheck:
-	GuiControlGet, FullPreviewMaxSize
-
-	showHide:=FullPreviewMaxSize=0?"Hide":"Show"
-	GuiControl, %showHide%, FullPreviewMaxSizeEdit
+	AdvanceControlShowHide("FullPreviewMaxSize")
 	Return
+
+AdvanceControlShowHide(controlName)
+{
+	global
+	GuiControlGet, %controlName%
+
+	showHide:=%controlName%=0?"Hide":"Show"
+	GuiControl, %showHide%, %controlName%Edit
+}
 
 AdvanceCheckTransform:
 	AllowAsyncIO:=AllowAsyncIO=1?0:1
@@ -248,40 +251,31 @@ AdvanceCheck:
 	GuiControl,,UseSystemStylus,%UseSystemStylus%
 	GuiControl,,uRTS,%uRTS%
 
-	If (OverscrollAlways>0)
-	{
-		GuiControl,,OverscrollAlwaysEdit,%OverscrollAlways%
-		OverscrollAlways=1
-		GuiControl, Enable, OverscrollAlwaysEdit
-	}
-	GuiControl,,OverscrollAlways,%OverscrollAlways%
-
-	If (RecentFilesSlowTimeout>0)
-	{
-		GuiControl,,RecentFilesSlowTimeoutEdit,%RecentFilesSlowTimeout%
-		RecentFilesSlowTimeout=1
-		GuiControl, Enable, OverscrollAlwaysEdit
-	}
-	GuiControl,,RecentFilesSlowTimeout,%RecentFilesSlowTimeout%
-
-	If (FullPreviewMaxSize>0)
-	{
-		GuiControl,,FullPreviewMaxSizeEdit,%FullPreviewMaxSize%
-		FullPreviewMaxSize=1
-		GuiControl, Enable, FullPreviewMaxSizeEdit
-	}
-	GuiControl,,FullPreviewMaxSize,%FullPreviewMaxSize%
-
-	Gosub, OverscrollAlwaysCheck
-	Gosub, RecentFilesSlowTimeoutCheck
-	Gosub, FullPreviewMaxSizeCheck
+	AdvanceControlCheck("OverscrollAlways")
+	AdvanceControlCheck("RecentFilesSlowTimeout")
+	AdvanceControlCheck("FullPreviewMaxSize")
 Return
+
+AdvanceControlCheck(controlName)
+{
+	global
+	If (%controlName%>0)
+	{
+		GuiControl,, %controlName%Edit, % %controlName%
+		%controlName%=1
+		GuiControl, Enable, %controlName%Edit
+	}
+	GuiControl,, %controlName%, % %controlName%
+
+	AdvanceControlShowHide(controlName)
+}
 
 AScheck:
 	GuiControlGet,txt,,Autosave, Text
-	If (txt=Lang_Autosave_no)
+	If (txt=Lang_Disabled)
 	{
 		GuiControl,Hide,Savesleep
+		GuiControl,Hide,GuiText1
 		GuiControl,Hide,GuiText2
 		GuiControl,Hide,GuiText3
 		GuiControl,Hide,Tiptext
@@ -289,6 +283,7 @@ AScheck:
 	Else If (txt=Lang_Autosave_tip)
 	{
 		GuiControl,Show,Savesleep
+		GuiControl,Show,GuiText1
 		GuiControl,Show,GuiText2
 		GuiControl,Show,GuiText3
 		GuiControl,Show,Tiptext
@@ -296,6 +291,7 @@ AScheck:
 	Else If (txt=Lang_Autosave_yes)
 	{
 		GuiControl,Show,Savesleep
+		GuiControl,Show,GuiText1
 		GuiControl,Show,GuiText2
 		GuiControl,Hide,GuiText3
 		GuiControl,Hide,Tiptext
@@ -778,7 +774,7 @@ Lang_shareText:=StrReplace(Lang_shareText, "#", "%23")
 
 If (G_Language = "简体中文")
 	langTag=zh_cn
-Else If (G_Language = "繁体中文") 
+Else
 	langTag=zh_tw
 
 	Run, https://service.weibo.com/share/share.php?url=%url%&language=%langTag%&title=%Lang_shareText%
@@ -808,7 +804,7 @@ ConfigSave:
 	If (Savesleep<2)
 		Savesleep=2
 	IniWrite, %Savesleep%, %A_scriptdir%\Data\Config.ini, Setting, savesleep
-	IniWrite, %Tiptext%, %A_scriptdir%\Data\Config.ini, Setting, tiptext
+	IniWrite, %Tiptext%, %A_scriptdir%\Data\Config.ini, Setting, TipText
 	IniWrite, %Check2%, %A_scriptdir%\Data\Config.ini, Setting, helptip
 	IniWrite, %Check3%, %A_scriptdir%\Data\Config.ini, Setting, lockIME
 	IniWrite, %Check4%, %A_scriptdir%\Data\Config.ini, Setting, launchPs

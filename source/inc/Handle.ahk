@@ -85,4 +85,4 @@ Cancel:
 	return
 
 #include %A_scriptdir%\inc\Function.ahk
-#include %A_scriptdir%\inc\xml.ahk
+#include %A_scriptdir%\Lib\xml.ahk

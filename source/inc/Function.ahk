@@ -96,15 +96,13 @@ G_ReadLanguage()
     TotalRows:=CSV_TotalRows(CSV_Identifier)
 	LangTotal:=TotalCols-1
 
-	stringStartNum=2
-	gui_Language = 
-	langArray:=Array()
+	gui_Language:= 
+	langArray:=[]
 
 	loop,%LangTotal%
 	{
-		LangName:=CSV_ReadCell(CSV_Identifier, 1, stringStartNum)
+		LangName:=CSV_ReadCell(CSV_Identifier, 1, A_Index+1)
 		gui_Language .=LangName . "|"
-		stringStartNum:=++stringStartNum
 
 		langArray.Push(LangName)
 	}
@@ -157,4 +155,4 @@ G_ReadLanguage()
     }
 }
 
-#include %A_scriptdir%\inc\csv.ahk
+#include %A_scriptdir%\Lib\csv.ahk
