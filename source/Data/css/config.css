@@ -1,0 +1,504 @@
+/* Reset CSS
+ * --------------------------------------- */
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+	padding: 0;
+	margin: 0;
+}
+
+h2 {
+	font-weight: 200;
+	height: 60px;
+	line-height: 60px;
+}
+
+a {
+	text-decoration: none;
+}
+
+table {
+	border-spacing: 0;
+}
+
+fieldset,
+img {
+	border: 0;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+	font-weight: normal;
+	font-style: normal;
+}
+
+strong {
+	font-weight: bold;
+}
+
+ol,
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+caption,
+th {
+	text-align: left;
+}
+
+q:before,
+q:after {
+	content: '';
+}
+
+abbr,
+acronym {
+	border: 0;
+}
+
+/* Custom CSS
+ * --------------------------------------- */
+
+body {
+	font-family: "微软雅黑 Light", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 20px;
+	background-color: #FFFFFF;
+	color: #5E5E5E;
+}
+
+.wrap {
+	margin-left: auto;
+	margin-right: auto;
+	width: 960px;
+	position: relative;
+}
+
+h1 {
+	font-size: 6em;
+}
+
+p {
+	font-size: 1em;
+	padding-bottom: 10px;
+}
+
+kbd {
+	position: relative;
+	top: -4px;
+	font-size: 1em;
+	box-shadow: 1px 0 1px 0 #eee, 0 2px 0 2px #ccc, 0 2px 0 3px #666;
+	border-radius: 3px;
+	margin: 0 3px 0 3px;
+	padding: 1px 5px;
+	cursor: default;
+}
+
+.intro p {
+	width: 50%;
+	margin: 0 auto;
+	font-size: 1.5em;
+}
+
+.section {}
+
+#menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	z-index: 70;
+	width: 260px;
+	padding-top: 40px;
+	margin: 0;
+	background: rgba(0, 0, 0, 0.05);
+	text-shadow: 0 0 100px 2px #000000;
+	overflow:hidden;
+}
+
+#menu li {
+	margin: 0;
+	height: 60px;
+	width: 260px;
+	font-weight: 100;
+	line-height: 60px;
+	
+}
+
+#menu li a {
+	padding-left: 80px;
+	display: block;
+	height: 100%;
+	text-decoration: none;
+	color: rgba(0, 0, 0, 0.4);
+	white-space:nowrap;
+}
+
+#menu li:hover {
+	background: #ffffff;
+	box-shadow: 0 0 40px #ffffff;
+}
+
+#menu li:hover a {
+	font-weight: 400;
+	color: #66CCFF;
+}
+
+#menu li.active:hover {
+	box-shadow: none;
+}
+
+#menu li.active {
+	background: transparent;
+}
+
+#menu li.active a {
+	font-weight: 400;
+	color: #66CCFF;
+	font-size: 1.4em;
+	text-shadow: 0 0 40px 4px rgba(102, 204, 255, 0.4);
+	cursor: default;
+}
+
+#exitApp {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	padding: 0;
+	font-size: 1.2em;
+	font-weight: 100;
+}
+
+#exitApp a {
+	display: block;
+	height: 100%;
+	color: #5E5E5E;
+}
+
+#exitApp a:hover {
+	text-shadow: 0 0 100px 30px #E81123;
+	color: #E81123;
+}
+
+#exitApp:hover {}
+
+#fullpage {
+	padding-top: 0;
+	padding-right: 0;
+	padding-left: 260px;
+	padding-bottom: 0;
+}
+
+fieldset {
+	padding-top: 0;
+	padding-right: 40px;
+	padding-left: 40px;
+	padding-bottom: 0;
+	margin-bottom: 10px;
+	margin-left: -40px;
+	margin-right: -40px;
+}
+
+fieldset legend {
+	font-size: 1.4em;
+	font-weight: 200;
+	line-height: 60px;
+	cursor: default;
+	float: left;
+}
+fieldset div {
+	clear: both;
+}
+fieldset:hover {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+.page {
+	cursor: default;
+	padding: 40px 40px 0 40px;
+}
+
+fieldset input {
+	border-radius: 4px;
+	border: 1px solid #D7D7D7;
+	height: 40px;
+	padding-left: 10px;
+	margin-bottom: 10px;
+	font-size: 1em;
+	background-color: transparent;
+}
+
+fieldset input:hover {
+	background-color: #FFFFFF;
+}
+
+#langChoose {
+	/*! margin-bottom: 10px; */
+	/*! height: 60px; */
+	/*! line-height: 60px; */
+	clear: both;
+}
+
+@import "chooselang.css";
+
+.hotkey {
+	/*! position: absolute; */
+	/*! right: 40px; */
+	margin-top: 10px;
+	width: 200px;
+	float: right;
+}
+
+.optionList {
+	margin-top: 10px;
+	display: block;
+	clear: both;
+}
+
+
+.optionList>li {
+	height: 40px;
+	padding-left: 10px;
+	line-height: 40px;
+	margin-bottom: 10px;
+	cursor: default;
+}
+
+.undoredoMode>.optionList {
+	opacity: 0;
+}
+
+.undoredoMode:hover>.optionList {
+	opacity: 1;
+	transition: opacity 1s ease;
+}
+
+.undoredoMode:hover li.lightLine {
+	background-color: #FFFFFF;
+}
+
+.undoredoMode kbd {
+	box-shadow: none;
+}
+
+.undoredoMode:hover kbd {
+	box-shadow: 1px 0 1px 0 #eee, 0 2px 0 2px #ccc, 0 2px 0 3px #666;
+}
+
+.undoredoMode li.lightLine {
+	border-radius: 6px;
+}
+
+.layui-form-select dt {
+	display: block;
+	width: 90%;
+}
+
+.layui-form-select dl dd {
+	float: left;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border: 1px solid #D7D7D7;
+	border-radius: 6px;
+	background-color: transparent;
+}
+
+.layui-form-select dl>dd.layui-disabled {
+	border-width: 0;
+	padding: 0;
+	margin-bottom: 0;
+}
+
+.layui-form-switch {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 40px;
+	line-height: 40px;
+	width: 200px;
+	padding: 0;
+	/* margin-top: 8px; */
+	/* border: 1px solid #d2d2d2; */
+	/* border-radius: 6px; */
+	border-width: 0;
+	margin: 0;
+	cursor: pointer;
+	background-color: transparent;
+	-webkit-transition: .1s linear;
+	transition: .1s linear;
+}
+
+.layui-form-switch em {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100px;
+	padding: 0 !important;
+	text-align: center !important;
+	color: #D7D7D7 !important;
+	font-style: normal !important;
+	font-size: 1em;
+}
+
+.layui-form-onswitch em {
+	left: 0;
+}
+
+.layui-form-switch i {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 98px;
+	height: 40px;
+	border-radius: 4px;
+	background-color: transparent;
+	-webkit-transition: .1s linear;
+	transition: .1s linear;
+	border: 1px solid #D7D7D7;
+}
+
+.layui-form-onswitch i {
+	left: 100px;
+	background-color: transparent;
+}
+
+.checkText {
+	position: absolute;
+	right: 40px;
+	width: 200px;
+	height: 40px;
+	margin-top: 10px;
+}
+
+.optionList .checkText,
+.optionList .hotkey
+{
+	margin-top:0;
+}
+
+.checkText li {
+	font-size: 1em;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+
+.layui-form-switch~li:nth-of-type(1) {
+	/*! display: none; */
+	float: left;
+	color: #5E5E5E;
+}
+
+.layui-form-switch~li:nth-of-type(2) {
+	display: block;
+	float: right;
+	color: #E5E5E5;
+}
+
+.layui-form-onswitch~li:nth-of-type(1) {
+	/*! display: none; */
+	float: left;
+
+	color: #D7D7D7;
+}
+
+.layui-form-onswitch~li:nth-of-type(2) {
+	display: block;
+	float: right;
+	color: #5E5E5E;
+}
+
+.layui-input::-ms-clear {
+	display: none;
+}
+
+#githubButton {
+	color: #24292e;
+	text-decoration: none;
+	outline: 0;
+	/*! display: inline-block; */
+	font-weight: 600;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid #d1d2d3;
+	border-radius: 0.25em;
+	background-image: linear-gradient(to bottom, #fafbfc, #e4ebf0);
+	background-repeat: repeat-x;
+	background-size: 110% 110%;
+	background-color: #eff3f6;
+	height: 26px;
+	line-height: 26px;
+	padding: 0 10px;
+	font-size: 12px;
+	width: 40px;
+}
+
+#githubButton svg {
+	fill: #24292e;
+	height: 16px;
+	position: relative;
+	top: 4px;
+}
+
+#shareButton img {
+	max-width: 60px;
+	max-width: 60px;
+	cursor: pointer;
+}
+
+.qrcode {
+	width: 200px;
+	height: 200px;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.layui-form-select dl dd.layui-this {
+	background-color: #66CCFF;
+	border-width: 0;
+}
+
+.layui-form-checkbox,
+.layui-form-select dl dd.layui-disabled {
+	background-color: transparent;
+}
+.layui-form-select dl {
+    max-height: 350px;
+}
+

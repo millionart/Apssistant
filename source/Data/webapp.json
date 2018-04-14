@@ -1,0 +1,11 @@
+{
+  "name":				"APssistant Config",
+  "width":				960,
+  "height":				700,
+  "protocol":			"app",
+  "protocol_call":		"app_call",
+  "html_url":			"Data\\Config.html",
+  "NavComplete_call":	"app_page",
+  "Nav_sounds":			false,
+  "fullscreen":			false
+}

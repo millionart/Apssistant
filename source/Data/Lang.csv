@@ -1,0 +1,126 @@
+﻿ID,English,简体中文,繁体中文
+General,General,常规,常規
+Your_language,Language:,语言：,語言：
+HT_G_Language,Change the interface of this software to the language you are using.\n\n Language file are located at:\n\tData\Language.csv\n\n You can add your language or edit this file with Excel or any other csv editor.\n\n Please mail your new file to millionart gmail.com,将本软件的界面改为你所使用的语种。\n\n 语言文件位于：\n\tData\Language.csv\n\n 你可以使用 Excel 或任意 csv 编辑器添加或修改语言文件。\n\n 请将修改过的语言文件发送至 millionart gmail.com,將本軟體的界面改為你所使用的語種。\n\n語言文件位于：\n\tData\Language.csv\n\n 您可以使用 Excel 或任意 csv 編輯器添加或編輯語言文件。\n\n請將修改后的語言文件發送至 millionart gmail.com
+Your_Photoshop_version,The Photoshop version being used:,正在使用的 Photoshop 版本：,正在使用的 Photoshop 版本：
+HT_PsCSver,,正确选择你正在使用的 Photoshop 版本。\n\n此选项将影响本软件使用效果。,正確選擇你正在使用的 Photoshop 版本。\n\n此選項將影響本軟體使用效果。
+Autosave,Autosave,自动保存,自動存儲
+Disabled,Disabled,禁用,禁用
+Autosave_tip,Tip only,提示,提示
+Autosave_yes,Automatically,自动,自動
+Every,Every,间隔,間隔
+Min,Min.,分钟,分鐘
+Autosave_Optional,Tip text (Optional),提示文本（选填）,提示文字（選填）
+TipText,It's time to save!,现在保存一下吧！,現在存儲一下吧！
+Savenow,Save now!,立刻保存！,立即存儲！
+HT_Autosave,,禁用：\n关闭此功能。\n\n提示：\n定时弹出保存提示信息。\n\n自动：\n无提示，定时自动保存。,禁用：\n關閉此功能。\n\n提示：\n定時彈出存儲提示信息。\n\n自動：\n無提示，定時自動存儲。
+HT_Savesleep,Interval set too short (less than 2 minutes) may damage the file!,间隔时间设置过短（小于 2 分钟）有可能损坏文件！,間隔時間設置過短（小於 2 分鐘）有可能損壞文件！
+Save,Save,保存,存儲
+Cancel,Cancel,取消,取消
+Apply,Apply,应用,應用
+Reset,Reset,恢复默认,還原默認
+Config_CS5mark,Gray items are only for CS5 and later,灰色项目仅用于 CS5 及以上版本,灰色項目僅適用於 CS5 及以上版本
+Browse,Browse...,浏览...,瀏覽…
+HT_PsPath,,当前 Photoshop 启动文件的位置。\n点击浏览按钮以更改。,當前 Photoshop 啟動文件的位置。\n點擊瀏覽按鈕以更改。
+HT_Browse1,,点击以选择 Photoshop 启动文件的位置。\n也可以是加载器或快捷方式。,點擊以選擇 Photoshop 啟動文件的位置。\n也可以是加載器或快捷方式。
+HelpTip,Tips,说明,說明
+Ignore,Ignore,忽略,忽略
+ChangeLog,ChangeLog,更新日志,更新日誌
+Update,Update,立即更新,立即更新
+Error,Error,错误,錯誤
+CannotConnect,Cannot connect to the update server!\nPlease check your Internet connection.,无法连接更新服务器！\n 请检查你的网络连接状况,無法連接更新服務器！\n 請檢查您的網路鏈接狀態
+NewVer,New Version!,发现新版本！,發現新版本！
+NewVerAvailable,There's a new version v%LatestVer% available.\n\nAuto Update now!,当前发布了一个新版本： v%LatestVer%\n\n建议 立即更新！。,當前發布了一個新版本： v%LatestVer%\n\n推薦 立即更新！
+NewVerNotAvailable,You're up-to-date!,你正在使用最新版！, 你正在運行最新版！
+UpdateSuccessful,Updated successfully!,更新成功！,更新成功！
+ColorPicker,Color Picker,拾色器,檢色器
+Hotkey,Hotkeys,快捷键,快速鍵
+PsDir,Browse to the location of Photoshop,请选择 Photoshop 的位置,請選擇 Photoshop 的位置
+Msg_Debug,Error: Missing coordinates,错误：找不到相关位置，请尝试以下解决方法：\n\t- 在本程序中正确设置您当前使用的 Photoshop 版本\n\t- 将系统主题设置为默认\n\t- 有前置窗口影响，需将其关闭\n\t- 检查当前版本文件夹内图片是否符合（参考说明）,錯誤：找不到相關位置，請嘗試以下解決方法：\n - 在本程序中正確設置您當前使用的 Photoshop 版本\n - 將系統主題設置為默認\n - 有前置窗口影響，需將其關閉\n - 最后檢查當前版本文件夾內圖片是否符合（參考說明）
+P_I_DisableAltMenu,Disable Alt menu,禁用 Alt 菜单键,禁用 Alt 菜單鍵
+P_I_Hidehelptip,Disable tray notificaion,关闭帮助提示,關閉說明提示
+P_I_LaunchPs,Auto launch Photoshop,自动启动 Photoshop,自動啟動 Photoshop
+HT_Check4,Check this option will automatically run Photoshop after start the software.,选中后启动本软件时将自动运行 Photoshop。,選中后啟動本軟體時讲將自動運行 Photoshop。
+tray_LaunchPs,Launch Photoshop,启动 Photoshop,啟動 Photoshop
+P_I_LockIME,Lock input method to English,锁定为英文输入法,鎖定為英文輸入法
+LockIMEtip,Your input method has been locked to English by Photoshop CS5++,你的输入法已经被锁定为英文,你的輸入法已經被鎖定為英文
+tray_LockIMEOn,English Input Locked,已锁定为英文输入法,已鎖定為英文輸入法
+tray_LockIMEOff,Lock to English Input,未锁定为英文输入法,未鎖定為英文輸入法
+HT_Check3,"Designed specifically for Asian input methods to prevent hotkeys from failing due to input method conflicts, you can turn it on or off at the tray menu. \nBe sure to turn this feature off when using a text tool.",防止输入法导致快捷键冲突。 \n\n针对亚洲输入法设计，可在托盘菜单处开启、关闭。\n使用文字工具时请务必关闭此功能。,防止輸入法導致快速鍵沖突。 \n\n針對亞洲輸入法設計，可托盤菜單處開啟、關閉。\n使用文字工具時請務必關閉此功能。
+C_TempFiles,Automatically clean up temporary files after exit,退出时自动清理残留临时文件,退出時自動清理殘留臨時文件
+P_I,Anti-disturb,防止干扰,防止干擾
+Other,Other,其他,其他
+PSUserConfig,Advanced(Test),高级设置（测试）,高級設置（測試）
+AllowAsyncIO,Disable Async IO,禁用异步 IO,Disable Async IO
+HT_AllowAsyncIO,,,
+ReduceUXFriction,Disable Reduce User Experience Friction,简化用户操作步驟,Disable Reduce User Experience Friction
+HT_ReduceUXFriction,"When enabled, clicking on the canvas with an active Type layer will commit the text without having to hit Enter or Esc or click on the commit checkbox in the options bar.  Also attempting to move a ​Background layer will prompt with an option to Convert to Normal Layer.  Disabling this option will return legacy/default functionality.",启用后，单击画布上非锁定的图层将直接提交文本，而不必按 Enter 或 Esc 或单击选项栏中的提交复选框。 另外尝试移动背景图层将会提示一个选项以将其转换为普通图层。 禁用此选项将返回传统 / 默认功能。,"When enabled, clicking on the canvas with an active Type layer will commit the text without having to hit Enter or Esc or click on the commit checkbox in the options bar.  Also attempting to move a ​Background layer will prompt with an option to Convert to Normal Layer.  Disabling this option will return legacy/default functionality."
+VMCompressPages,Disable Scratch Compression,停用暂存压缩,Disable Scratch Compression
+HT_VMCompressPages,"By default, Photoshop compresses pages before writing them to the scratch file. This compression does not result in a smaller scratch file since Photoshop must still reserve space for the uncompressed pages. For slow disk drives or SCSI implementations, however, the reduction in the data to be transferred to or from disk more than compensates for the time needed to compress or decompress the data. For fast disk drives and SCSI implementations, this is not the case. Disable Scratch Compression provides a slight performance improvement on machines with fast disk drives and SCSI implementations.",在具有快速磁盘驱动器和 SCSI 系统的计算机上，次选项可以稍微提升性能。\n\n默认情况下，Photoshop 将页面写入暂存盘文件之前会将其压缩。\n由于 Photoshop 仍须为未压缩的页面保留空间，因此这种压缩并不会获得较小的暂存盘文件。\n但是，因为压缩或解压缩数据所需的时间相对较少，所以对于慢速磁盘驱动器或 SCSI 系统，减小在磁盘上来回传输的数据是值得的。而对于快速磁盘驱动器和 SCSI 系统，情况却并非如此。,"By default, Photoshop compresses pages before writing them to the scratch file. This compression does not result in a smaller scratch file since Photoshop must still reserve space for the uncompressed pages. For slow disk drives or SCSI implementations, however, the reduction in the data to be transferred to or from disk more than compensates for the time needed to compress or decompress the data. For fast disk drives and SCSI implementations, this is not the case. Disable Scratch Compression provides a slight performance improvement on machines with fast disk drives and SCSI implementations."
+OverscrollAlways,Overscroll Always,总是过界,Overscroll Always
+HT_OverscrollAlways,"Overscroll Always allows you to continue to pan a document even when outside the document bounds (marked by the default gray area surrounding the image boundaries). By default, images that fit within the document window cannot be overscrolled.\n\nNote:\n\nIn current versions of Photoshop, a preference controls the overscroll behavior:\n\tIn Photoshop CC 2014, select Preferences > Interface and enable Overscroll.\n\tIn Photoshop CC 2015 and later, select Preferences > Tools and enable Overscroll.",此选项允许您即使在超出文档边界（由图像边界周围的默认灰色区域标记）时，仍可继续平移文档。\n默认情况下，无法过界限制在文档窗口内的图像。\n注意:\n在 Photoshop 的当前版本中，有一个首选项控制过界行为：\n在 Photoshop CC 2014 中，选择 “首选项”>“界面”，然后启用 “过界”。\n在 Photoshop CC 2015 及更高版本中，选择 “首选项”>“工具”，然后启用 “过界”。,"Overscroll Always allows you to continue to pan a document even when outside the document bounds (marked by the default gray area surrounding the image boundaries). By default, images that fit within the document window cannot be overscrolled.\n\nNote:\n\nIn current versions of Photoshop, a preference controls the overscroll behavior:\n\tIn Photoshop CC 2014, select Preferences > Interface and enable Overscroll.\n\tIn Photoshop CC 2015 and later, select Preferences > Tools and enable Overscroll."
+RecentFilesSlowTimeout,Remember Slow Files,记住慢速文件,Remember Slow Files
+HT_RecentFilesSlowTimeout,"By default, Photoshop removes files from its recent file list if it ever takes longer than 20 ticks (1/3 second) to figure out where the file is when the list is updated after you open or save a file. Some removable devices and some network drives may take longer than this. Remember Slow Files prevents the recent file list from forgetting about files that take too long to resolve when the list is updated (it allows up to 20 seconds). However, saving or opening a file may take longer if this plug-in is installed.",默认情况下，在打开或保存某个文件后更新最近打开的文件列表时，如果为确定该文件所在的位置而花费的时间超过 20 tick（1/3 秒），则 Photoshop 会从最近打开的文件列表中删除该文件。\n某些可移动设备和某些网络驱动器可能需要更长的时间。“记住慢速文件” 可避免最近打开的文件列表遗忘在列表进行更新时因花费时间太长而无法解析的文件（允许的时间上限为 20 秒）。\n但是，如果安装该增效工具，存储或打开文件的时间可能会变长。,"By default, Photoshop removes files from its recent file list if it ever takes longer than 20 ticks (1/5 second) to figure out where the file is when the list is updated after you open or save a file. Some removable devices and some network drives may take longer than this. Remember Slow Files prevents the recent file list from forgetting about files that take too long to resolve when the list is updated (it allows up to 20 seconds). However, saving or opening a file may take longer if this plug-in is installed."
+LegacyHealingBrush160,Real-time Healing Brush with UI feedback,新版修复画笔，有实时反馈,新版修復畫筆，有實時反饋
+LegacyHealingBrush161,Legacy Healing Brush,使用修复画笔的旧版修复算法,舊版修復畫筆
+LegacyHealingBrush162,"Real-time Healing Brush, no UI feedback ",新版修复画笔，无实时反馈,新版修復畫筆，無實時反饋
+HT_LegacyHealingBrush161,"Note:\nIn Photoshop CC 2015.5 or later, you can revert to the legacy Photoshop CC 2014 behavior for the Healing Brush tool by enabling Preferences > Tools > Use Legacy Healing Algorithm For Healing Brush.\nPhotoshop CC 2015 introduced a new real-time healing brush algorithm. However, some users prefer the old healing brush algorithm and/or feedback.\nIn Photoshop CC 2015.1, a new Diffusion slider was introduced, which allows you to achieve results similar to the legacy algorithm. See Healing brush examples for more information.https://helpx.adobe.com/photoshop/using/healing-examples.html",注意:\n在 Photoshop CC 2015.5 或更高版本中，您可以通过启用 “首选项”>“工具”>“使用修复画笔的旧版修复算法”，恢复到 Photoshop CC 2014 的旧版修复画笔工具行为。\nPhotoshop CC 2015 引入了一种新的实时修复画笔算法。但是，有些用户喜欢旧版修复画笔算法和 / 或反馈。\nPhotoshop CC 2015.1 引入了新的 “扩散” 滑块，它可以让您获得与旧版算法类似的结果。有关详细信息，请参阅修复画笔示例。https://helpx.adobe.com/cn/photoshop/using/healing-examples.html,"Note:\nIn Photoshop CC 2015.5 or later, you can revert to the legacy Photoshop CC 2014 behavior for the Healing Brush tool by enabling Preferences > Tools > Use Legacy Healing Algorithm For Healing Brush.\nPhotoshop CC 2015 introduced a new real-time healing brush algorithm. However, some users prefer the old healing brush algorithm and/or feedback.\nIn Photoshop CC 2015.1, a new Diffusion slider was introduced, which allows you to achieve results similar to the legacy algorithm. See Healing brush examples for more information.https://helpx.adobe.com/photoshop/using/healing-examples.html"
+UseSystemStylus,Turn off System Stylus,关闭系统触控笔,Turn off System Stylus
+HT_UseSystemStylus,"On Windows 8 or later, Photoshop (CC 2014 or later) uses Windows Ink to control the interaction of Photoshop and a stylus device. Using Windows Ink gives you better stroke results and allows you to use your tablet PC or convertible device without having to install a driver.\nIf the tablet uses a WinTab driver and does not have an option to use Windows Ink, or if you encounter other issues, you can use Turn off System Stylus to force Photoshop to use WinTab.\nSee Tablet support for Photoshop for more information.https://helpx.adobe.com/photoshop/kb/tablet-support-faq-photoshop.html",如果在使用数位板时出现“水波纹”，则可以开启此选项以修复该问题。\n\n详细信息，请参阅：\nhttps://helpx.adobe.com/cn/photoshop/kb/\ntablet-support-faq-photoshop.html,"On Windows 8 or later, Photoshop (CC 2014 or later) uses Windows Ink to control the interaction of Photoshop and a stylus device. Using Windows Ink gives you better stroke results and allows you to use your tablet PC or convertible device without having to install a driver.\nIf the tablet uses a WinTab driver and does not have an option to use Windows Ink, or if you encounter other issues, you can use Turn off System Stylus to force Photoshop to use WinTab.\nSee Tablet support for Photoshop for more information.https://helpx.adobe.com/photoshop/kb/tablet-support-faq-photoshop.html"
+uRTS,Turn on RealTimeStylus,打开 RealTimeStylus,Turn on RealTimeStylus
+HT_uRTS,"When you run Photoshop CC (v14.2.x) on Windows 8.x, Photoshop uses Microsoft’s Wintab technology to control the interaction of Photoshop and a stylus device. If your tablet has issues when using WinTab, you can use Turn on RealTimeStylus to force Photoshop to use Windows Ink, which can give your stylus better performance.\nSee Tablet functions don't work in Photoshop (v14.2.x) | Windows for more information.https://helpx.adobe.com/photoshop/kb/tablet-functions-dont-photoshop-142.html",当您在 Windows 8.x 上运行 Photoshop CC (v14.2.x) 时，Photoshop 使用 Microsoft 的 Wintab 技术来控制 Photoshop 与触笔设备之间的交互。如果使用 WinTab 时平板电脑出现问题，可以通过 “打开 RealTimeStylus” 强制 Photoshop 使用 Windows Ink，它可以提高触笔的性能。\n有关详细信息，请参阅平板电脑功能无法在 Photoshop (v14.2.x) 中使用 | Windows。https://helpx.adobe.com/cn/photoshop/kb/tablet-functions-dont-photoshop-142.html,"When you run Photoshop CC (v14.2.x) on Windows 8.x, Photoshop uses Microsoft’s Wintab technology to control the interaction of Photoshop and a stylus device. If your tablet has issues when using WinTab, you can use Turn on RealTimeStylus to force Photoshop to use Windows Ink, which can give your stylus better performance.\nSee Tablet functions don't work in Photoshop (v14.2.x) | Windows for more information.https://helpx.adobe.com/photoshop/kb/tablet-functions-dont-photoshop-142.html"
+FullPreviewMaxSize,Unlimited Preview Size,无限制的预览大小,Unlimited Preview Size
+HT_FullPreviewMaxSize,"If you have the Full Size option for Image Previews turned on in the Saving Files preferences, Photoshop limits the size of the preview to 512 x 512 pixels. Unlimited Preview Size removes the 512 x 512–pixel limit on file previews.",如果在 “存储文件” 首选项中为 “图像预览” 打开了 “全大小” 选项，则 Photoshop 会将预览的大小限制为 512 x 512 像素。\n“无限制的预览大小”可消除对文件预览的 512 x 512 像素限制。,"If you have the Full Size option for Image Previews turned on in the Saving Files preferences, Photoshop limits the size of the preview to 512 x 512 pixels. Unlimited Preview Size removes the 512 x 512–pixel limit on file previews."
+NeedRestartTip,* Need to restart Photoshop.,* 需要重启 Photoshop 以生效。,* 需要重啟 Photoshop 以生效。
+Support,Support Me,支持作者,支援作者
+Support_text,"Thank you for using Apssistant!\nThis software has helped countless Photoshop users around the world since 2010.\nIf this software used to be helpful to you, please",感谢使用 APssistant！\n此软件自 2010 年诞生至今，\n已经为全世界无数的 Photoshop 用户提供了帮助。\n如果你也是其中之一，可以选择： ,感謝使用 Apssistant！\n此軟體自 2010 年誕生以來，已經為全世界無數的 Photoshop 使用者提供了幫助。\n如果這款軟體曾經對您有幫助，可以
+Support_Share,share it to more people,分享到社交网站,分享到社交網路
+Support_Github,Give me a star on Github,在 Github 右上方点收藏,於 Github 右上方点收藏
+Support_Donate,treat me to have a cup of coffee,请作者喝杯咖啡,請作者喝杯咖啡
+shareText,Here is a free software can disable Alt menu in Photoshop.,发现一个免费的#Photoshop#小插件，可以禁用 Alt 菜单键和自动保存，很方便！作者是@杰克-弗罗斯特,發現一個免費的#Photoshop#小外掛，可以禁用 Alt 菜單鍵和自動存儲，很便捷！作者是@杰克-弗罗斯特
+Other_3DsMaxSync,3ds Max Texture Sync,3ds Max 贴图同步,3ds Max 貼圖同步
+Set_hotkey_Center,Center,中心,中心
+hotkeyFastMode,Fast,快速模式,快速模式
+hotkeyStableMode,Stable,稳定模式,穩定模式
+HT_hotkeyFastMode,,快速模式（默认）：\n无延迟，对硬件配置要求较高。\n某些软件可能对本软件造成严重的性能损失，请在使用本软件及 Photoshop 时禁用其 进程 / 服务（如 Gdipp / Mactype）。\n\n如频繁造成延迟，请使用稳定模式。,快速模式（默認）：\n無延遲，對硬體配置要求較高。 \n某些軟體可能對本軟體造成嚴重的效能損失，請在使用本軟體及 Photoshop 時禁用其 進程 / 服務（如 Gdipp / Mactype）。 \n\n如頻繁造成延遲，請使用穩定模式。
+HT_hotkeyStableMode,,稳定模式：\n增加 0.2 秒延迟以提高稳定性，并瞬时锁定鼠标以避免选色偏差，也因此易被安全软件屏蔽。\n如果使用此模式失效，请尝试暂时关闭安全软件或使用快速模式。,穩定模式：\n增加 0.2 秒延遲以提高穩定性，並瞬時鎖定滑鼠以避免選色偏差，也因此易被安全軟體屏蔽。 \n如果使用此模式失效，請嘗試暫時關閉安全軟體或使用快速模式。
+Set_hotkey_HUD_Color_Picker,HUD color picker Enhancement:,HUD 拾色器增强：,HUD 檢色器加強：
+hotKeyMapCS5Plus,Color Picker hotkey Enhancement,前景色拾色器快捷键加强,前景色檢色器快速鍵加強
+Set_hotkey_mapalt_1,Color Picker hotkey Set to,前景色拾色器快捷键设置为,前景色檢色器快速鍵設定為
+Set_hotkey_mapalt_2,Color Picker + Eyedropper to Alt,前景色拾色器与滴管工具合并至 Alt,前景色檢色器與滴管工具合併至 Alt
+Set_hotkey_mapalt_3,Color Picker + Eyedropper to Alt (Optimized),前景色拾色器与滴管工具合并至 Alt （优化）,前景色檢色器與滴管工具合併至 Alt（優化）
+fastColorPickerCS5Tip,Foreground Color Picker hotkey:,前景色拾色器快捷键：,請先打開 Photoshop 以下位置修改快速鍵：\n鍵盤快速鍵和菜單\n\t↳ 快速鍵用於（工具）\n\t\t↳ 前景色檢色器
+fastColorPickerCS5Tip2,Need to restart Photoshop to apply.,更改后将在下次启动 Photoshop 时生效,手動將該處設置的快速鍵輸入此處：
+HT_MapAlt,"Hotkey Enhancement (CS5+) / Hotkey Set to (CS4-) \nCS5 and later can  further strengthen the shortcut keys:\nHold to open the color picker panel, release to confirmation color, and close the panel. \n\n+ Eyedropper to Alt \nCombine the Color Picker with Alt Coloring, using the color picker triggering of previous versions of CS5. \n* Conflicts with ""Disable Alt menu"". \n\n+ Eyedropper to Alt (Optimized) \nVisible only in CS5 and above, you will need to enter the color picker shortcut set in CS5 and above. \n* Conflicts with ""Disable Alt menu"".",快捷键加强（CS5 以上）/ 快捷键设置为（CS4 以下）\nCS5 及以上版本可进一步强化快捷键：\n按住可打开拾色器面板，松开确认颜色并关闭面板。\n\n与滴管工具合并至 Alt\n将拾色器与 Alt 取色合并，使用 CS5 以前版本的拾色器触发方式。\n* 与“禁用 Alt 菜单键”冲突。\n\n与滴管工具合并至 Alt（优化）\n仅 CS5 及以上版本可见，需要输入 CS5 以上版本内设置的拾色器快捷键。\n* 与“禁用 Alt 菜单键”冲突。,快速鍵加強（CS5 以上）/ 快速鍵設置為（CS4 以下）\nCS5 及以上版本可進一步強化快速鍵：\n按住可打開檢色器面板，鬆開確認顏色並關閉面板。 \n\n與滴管工具合併至 Alt\n將拾色器與 Alt 取色合併，使用 CS5 以前版本的檢色器觸發方式。 \n* 與“禁用 Alt 菜單鍵”衝突。 \n\n與滴管工具合併至 Alt（優化）\n僅 CS5 及以上版本可見，需要輸入 CS5 以上版本內設置的檢色器快速鍵。 \n* 與“禁用 Alt 菜單鍵”衝突。
+Set_hotkey_ModifyBrushKey,Modify brush radius:,修改笔刷范围：,修改筆刷范圍：
+Set_hotkey_Precise,Precise,精确,精確
+Set_hotkey_QCLayer,Creat a new layer:,快速创建新图层：,快速建立新圖層：
+Set_hotkey_Undo,Change Step Forward / Backward shortcut keys,修改撤销（后退一步）恢复（前进一步）快捷键,修改復原/重複的快速鍵
+HT_Check1,This function to undo and restore shortcut keys to the system commonly used Ctrl + Z / Y \nPhotoshop the four default shortcut keys will be circularly replaced as follows: \n Function \tBefore\t\tAfter\n Step back\tAlt+Ctrl+Z\tCtrl+Z\n Restore / Redo\tCtrl+Z\t\tShift+Ctrl+Z\n Move forward\tShift+Ctrl+Z\tCtrl+Y\n Proof color\tCtrl+Y\t\tAlt+Ctrl+Z\nRecommended own computer using Photoshop's built-in function to change: \nkeyboard shortcuts and menus\n\t↳ shortcut keys for (application menu)\nRefer to the above changes.,此功能将撤销、恢复快捷键改为系统常用的 Ctrl+Z/Y\nPhotoshop 默认的4个快捷键将被循环更换如下：\n功能\t\t修改前\t\t修改后\n后退一步\t\tAlt+Ctrl+Z\tCtrl+Z\n还原/重做\tCtrl+Z\t\tShift+Ctrl+Z\n前进一步\t\tShift+Ctrl+Z\tCtrl+Y\n校样颜色\t\tCtrl+Y\t\tAlt+Ctrl+Z\n\n建议常用设备使用 Photoshop 自带改键功能，方法：\n键盘快捷键和菜单\n\t↳ 快捷键用于（应用程序菜单）\n按上文次序更改。,為方便經常重裝并習慣改鍵的用戶設計，將默認的撤銷和重做快速鍵更換如下： \n功能\t修改前\t修改后\n后退一步\tAlt+Ctrl+z\tCtrl+z\n前進一步\tShift+Ctrl+z\tCtrl+y\n\n強烈不建議常用此功能，推薦 Photoshop 自帶改鍵功能，方法：\n\t鍵盤快速鍵和菜單>快速鍵用于（應用程序菜單）>按上文次序更改。
+Set_hotkey_SHLayer,Show / Hide current layer:,显示或隐藏当前图层：,显示或隐藏当前图层：
+HT_Check13,Set a key to show or hide the current layer.,设置一个按键用于显示或隐藏当前图层。,設置一個按鍵用於顯示或隱藏當前圖層。
+tray_Config,Preferences,设置,設定
+tray_Exit,Exit,退出,關閉
+OpenGLtip,a.Please enable Preferencess → Performances → Advanced → Enable OpenGL drawing\nb.Hold on/off space to change hue at the same time,1.此功能需到 首选项 → 性能 → 高级选项 中启用 OpenGL 绘图\n2.按住空格以切换选色区域,1.此功能需至選項 → 性能 → 高級選項 中啟動 OpenGL 繪圖\n2.按住空格以切換選色區域
+Tiptitle,Tips,提示,提示
+Undotip,The following LSide hotkeys have been changed to RSide:,以下左边默认快捷键已更改为右边：,以下左邊的預設快速鍵已更改為右邊：
+HT_FChoice,"Note:\n * Hotkey does not support the tablet expansion key.\n * Using the HUD Color Picker while in lasso tool state may cause Photoshop crash.\n * Continuous click shortcuts key may cause Photoshop instability.\n * Some of the software may cause serious performance loss (such as Gdipp, MacType). Please close the process / service when using this software and Photoshop.",注意事项\n* 快捷键修改不支持数位板扩展键。\n* 快捷键切勿留空或与本软件其他快捷键冲突。\n* 套索工具状态下使用 HUD 拾色器可能导致假死。\n* 连续快速使用快捷键可能导致 Photoshop 不稳定。\n* 某些软件可能对本软件造成严重的性能损失（如 Gdipp、MacType），请在使用本软件及 Photoshop 时禁用其 进程 / 服务。,注意事項\n* 快速鍵修改不支援數位板擴展鍵。\n* 快速鍵切勿留空或與本軟體其他快速鍵沖突。\n* 套索工具狀態下使用 HUD 檢色器容易造成假死。\n* 連續快速使用快速鍵可能導致 Photoshop 不穩定。\n* 某些軟體可能對本軟體造成嚴重的性能損失（如 Gdipp、MacType），請在使用本軟體及 Photoshop 時禁用其 進程 / 服務。
+HT_Check2,Turn off the software's operating tips on the System tray.,关闭本软件附带的操作信息托盘提示。,關閉本軟體附帶的操作信息托盤提示。
+HT_Check7,,选中以启用 HUD 拾色器增强功能，此功能只适用于 CS5 及以上版本，需在 首选项 中启用 OpenGL 支持方可使用。\n在 Photoshop 菜单中启用 OpenGL 的方法： \n\t编辑>首选项>性能>启用 OpenGL 绘图\n部分显卡不支持启用 OpenGL 绘图选项（复选框为灰色），可尝试修改注册表、升级显卡驱动或硬件。,選中以啟用 HUD 檢色器增強功能，此功能只適用于 CS5 及以上版本，需在 選項 中啟用 OpenGL 支持方可使用。\n在 Photoshop 菜單中啟用 OpenGL 的方法： \n\t編輯>選項>性能>啟用 OpenGL 繪圖\n部分顯卡不支持啟用 OpenGL 繪圖選項（復選框為灰色），可嘗試修改注冊表、升級顯卡驅動或硬件。
+HT_HUDCP,,为 HUD 拾色器增强功能设置一个快捷键。,為 HUD 檢色器增強功能設置一個快速鍵。
+HT_Check5,,选中后将不需要按住空格键切换选色区域。前景色拾色器将自动识别。 \n\n建议启用此选项。,選中后將不需要按住空格鍵切換選色區域。前景色檢色器將自動識別。 \n\n建議啟用此選項。
+HT_Check9,,选中后将自动定位到屏幕中心显示 HUD 拾色器。\n\n注意：\n因为数位板使用屏幕绝对定位，所以使用此选项时应抬起数位笔。,選中后將自動定位到屏幕中心顯示 HUD 檢色器。\n\n注意：\n因為數位板使用屏幕絕對定位，所以使用此選項時應抬起數位筆。
+HT_Check8,,选中后启用前景色拾色器快捷键功能。\n注意：\n此按键可在选择版本号之后同时可实现打开/保存拾色器，即一键操作。\nCS4 及以前版本（最低至 6）在使用此功能时可能需满足以下条件：\n\t* 前景色处于可点击状态（非全屏模式）\n\t* 使用画笔工具或铅笔工具\n\t* 使用系统默认主题,選中后啟用前景色檢色器快速鍵功能。\n注意：\n此按鍵可在選擇版本號之后同時可實現打開/存儲檢色器，即一鍵操作。\nCS4 及以前版本（最低至 6）在使用此功能時可能需滿足以下條件：\n\t* 前景色處于可點擊狀態（非全屏模式）\n\t* 使用畫筆工具或鉛筆工具\n\t* 使用系統默認主題
+HT_FCPk,,为前景色拾色器设置一个快捷键。,為前景色檢色器設置一個快速鍵。
+HT_Check11,,仅用于 CS4 及以上版本，将 Alt+右键 合并以达到模拟3D软件相关功能的效果。,僅用于 CS4 及以上版本，將 Alt+右鍵 合并以達到模擬3D軟體相關功能的效果。
+HT_ModifyBrushKey,,为修改笔刷范围功能设置一个快捷键。,為修改筆刷范圍功能設置一個快速鍵。
+HT_Check6,,一键创建新图层（Alt+Shift+Ctrl+N）而无需确认。,一鍵創建新圖層（Alt+Shift+Ctrl+N）而無需確認。
+HT_QCLayer,,为快速创建新图层功能设置一个快捷键。,為快速創建新圖層功能設置一個快速鍵。
+HT_Tiptext,,选填，内容将显示于弹出信息内。,選填，內容將顯示于彈出信息內。
+HT_Check10,,选中后防止单击 Alt 触发菜单。,選中后防止單擊 Alt 觸發菜單。
+HT_CSave,,保存并退出设置界面。,存儲并關閉設置窗口。
+HT_CCancel,,取消保存并退出设置界面。,取消存儲并關閉設置窗口。
+HT_Check14,After exiting Apssistant automatically try to clean up the temporary files left behind due to Photoshop illegal closure.,选中后可在退出本程序时自动尝试清理因 Photoshop 非法关闭而残留的临时文件。,選中后可在退出本程序時自動嘗試清理因 Photoshop 非法關閉而殘留的臨時文件。
+HT_SHLayer,,为显示或隐藏当前图层功能设置一个快捷键。,為顯示或隱藏當前圖層功能設置一個快速鍵。
+On,On,启用,啟用
+Off,Off,禁用,禁用

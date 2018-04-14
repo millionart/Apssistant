@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="Resource-type" content="Document" />
+
+	<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="css/layui.css" />
+	<link rel="stylesheet" type="text/css" href="css/config.css" />
+	<link rel="stylesheet" type="text/css" href="css/chooselang.css" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/scrolloverflow.js"></script>
+	<script type="text/javascript" src="js/jquery.fullPage.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#fullpage').fullpage({
+				anchors: ['general', 'colorPicker', 'hotkeys', 'autosave', 'advanced', 'support'],
+				sectionsColor: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'],
+				menu: '#menu'
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<ul id="menu">
+		<li data-menuanchor="general">
+			<a href="#general" name="i18n" lang="General">general</a>
+		</li>
+		<li data-menuanchor="colorPicker">
+			<a href="#colorPicker" name="i18n" lang="ColorPicker">colorPicker</a>
+		</li>
+		<li data-menuanchor="hotkeys">
+			<a href="#hotkeys" name="i18n" lang="Hotkey">hotkeys</a>
+		</li>
+		<li data-menuanchor="autosave">
+			<a href="#autosave" name="i18n" lang="Autosave">autosave</a>
+		</li>
+		<li data-menuanchor="advanced">
+			<a href="#advanced" name="i18n" lang="PSUserConfig">advanced</a>
+		</li>
+		<li data-menuanchor="support">
+			<a href="#support" name="i18n" lang="Support">Support</a>
+		</li>
+	</ul>
+	<div id="fullpage">
+		<div class="section active" id="section0">
+			<div class="page">
+				<fieldset>
+					<legend name="i18n" lang="Your_language">Your_language</legend>
+					<ul id="langChoose">
+						<li class="langLi"></li>
+					</ul>
+				</fieldset>
+				<fieldset class="layui-form">
+					<legend name="i18n" lang="Your_Photoshop_version">正在使用的 Photoshop 版本</legend>
+					<select name="PhotoshopVer" lay-search>
+						<option disabled selected name="i18n" lang="HT_PsCSver">请选择 Photoshop 版本</option>
+						<optgroup label="Photoshop CC">
+							<option value="19">CC 2018</option>
+							<option value="18">CC 2017</option>
+							<option value="17">CC 2015.5</option>
+							<option value="16">CC 2015</option>
+							<option value="15">CC 2014</option>
+							<option value="14">CC</option>
+						</optgroup>
+						<optgroup label="Photoshop CS">
+							<option value="13">CS 6</option>
+							<option value="12">CS 5</option>
+							<option value="11">CS 4</option>
+							<option value="10">CS 3</option>
+							<option value="9">CS 2</option>
+							<option value="8">CS</option>
+						</optgroup>
+						<optgroup label="Photoshop">
+							<option value="7">7.0</option>
+							<option value="6">6.0</option>
+						</optgroup>
+					</select>
+				</fieldset>
+				<fieldset class="layui-form">
+					<ul class="checkText" style="margin-top:10px;">
+						<input type="checkbox" name="autoLaunchPs" lay-skin="switch" checked />
+						<li name="i18n" lang="Off">关闭</li>
+						<li name="i18n" lang="On">开启</li>
+					</ul>
+					<legend name="i18n" lang="P_I_LaunchPs">自动启动 Photoshop</legend>
+
+					<input type="button" style="width: 100%;">
+				</fieldset>
+			</div>
+		</div>
+		<div class="section" id="section1">
+			<div class="page">
+				<fieldset>
+					<legend>前景色拾色器快捷键增强</legend>
+					<input type="button" value="F" class="hotkey">
+				</fieldset>
+				<fieldset class="layui-form">
+					<legend>HUD 拾色器快捷键</legend>
+					<input type="button" value="`" class="hotkey">
+					<ul class="optionList">
+						<li>
+							<ul class="checkText">
+								<input type="checkbox" name="pickerMode" lay-skin="switch" checked />
+								<li>滑动</li>
+								<li>精确</li>
+							</ul>
+							取色模式
+						</li>
+						<li>
+							<ul class="checkText">
+								<input type="checkbox" name="displayPosition" lay-skin="switch" checked />
+								<li>中心</li>
+								<li>跟随</li>
+							</ul>
+							显示位置</li>
+						<li>
+							<ul class="checkText">
+								<input type="checkbox" name="runMode" lay-skin="switch" checked />
+								<li>快速</li>
+								<li>稳定</li>
+							</ul>
+							运行模式</li>
+					</ul>
+				</fieldset>
+			</div>
+		</div>
+		<div class="section" id="section2">
+			<div class="page">
+
+				<fieldset>
+					<legend>快速创建新图层</legend>
+					<input type="button" value="F1" class="hotkey">
+				</fieldset>
+				<fieldset>
+					<legend>隐藏 / 显示图层</legend>
+					<input type="button" value="H" class="hotkey">
+				</fieldset>
+				<fieldset>
+					<legend>修改笔刷范围</legend>
+					<input type="button" value="F2" class="hotkey">
+				</fieldset>
+				<fieldset class="layui-form undoredoMode">
+					<ul class="checkText" style="margin-top:10px;">
+						<input type="checkbox" name="undoredoMode" lay-skin="switch" checked />
+						<li>默认</li>
+						<li>系统</li>
+					</ul>
+					<legend>撤销 / 恢复 快捷键风格</legend>
+					<ul class="optionList">
+						<li class="lightLine">
+							<kbd>Ctrl</kbd> +
+							<kbd>Z</kbd>
+						</li>
+						<li>
+							<kbd>Shift</kbd> +
+							<kbd>Ctrl</kbd> +
+							<kbd>Z</kbd>
+						</li>
+						<li class="lightLine">
+							<kbd>Ctrl</kbd> +
+							<kbd>Y</kbd>
+						</li>
+						<li>
+							<kbd>Alt</kbd> +
+							<kbd>Ctrl</kbd> +
+							<kbd>Z</kbd>
+						</li>
+					</ul>
+				</fieldset>
+			</div>
+		</div>
+		<div class="section" id="section3">
+			<div class="page">
+				<fieldset class="layui-form">
+					<legend>自动保存</legend>
+					<ul class="checkText">
+						<input type="checkbox" name="autosaveswitch" lay-skin="switch" checked />
+						<li name="i18n" lang="Off">关闭</li>
+						<li name="i18n" lang="On">开启</li>
+					</ul>
+
+					<ul class="optionList">
+						<li>
+							间隔时间
+							<input type="button" value="F" class="hotkey" />
+						</li>
+						<li>
+							<ul class="checkText">
+								<input type="checkbox" name="tipText" lay-skin="switch" checked />
+								<li name="i18n" lang="Off">关闭</li>
+								<li name="i18n" lang="On">开启</li>
+							</ul>
+							提示内容
+						</li>
+					</ul>
+					<input type="button" style="width: 100%;" />
+				</fieldset>
+			</div>
+		</div>
+		<div class="section" id="section4">
+			<div class="page">
+				<fieldset class="layui-form">
+					<ul class="checkText" style="margin-top:10px;">
+						<input type="checkbox" name="undoredoMode" lay-skin="switch" lay-text="默认|系统" checked />
+						<li>默认</li>
+						<li>系统</li>
+					</ul>
+					<legend>撤销 / 恢复 快捷键风格</legend>
+				</fieldset>
+			</div>
+		</div>
+		<div class="section" id="section5">
+			<div class="page">
+				<p name="i18n" lang="Support_text">
+					感谢使用 APssistant！
+					<br>此软件自 2010 年诞生至今，
+					<br>已经为全世界无数的 Photoshop 用户提供了帮助。
+					<br>如果你也是其中之一，可以选择：
+				</p>
+
+				<fieldset style="padding-bottom: 10px;">
+					<legend name="i18n" lang="Support_Share">分享到社交网站</legend>
+					<div id="shareButton">
+						<img src="Images/weibo.svg" width="60px" onclick="AHK('Run','weibo')">
+					</div>
+				</fieldset>
+
+				<fieldset style="padding-bottom: 10px;">
+					<legend name="i18n" lang="Support_Github">在 Github 右上方收藏</legend>
+					<div id="githubButton" onclick="AHK('Run','github')">
+						<svg version="1.1" width="14" height="16" viewBox="0 0 14 16" id="githubStar" aria-hidden="true">
+							<path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"></path>
+						</svg>
+						<span>Star</span>
+					</div>
+				</fieldset>
+				<fieldset style="padding-bottom: 10px;">
+					<legend name="i18n" lang="Support_Donate">请作者喝杯咖啡</legend>
+					<div id="donate">
+						<img class="qrcode" src="images/wechatzan.svg" />
+						<img class="qrcode" src="images/alipay.svg" />
+					</div>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+	<div id="exitApp">
+		<a href="app://exit">×</a>
+	</div>
+
+	<script type="text/javascript" src="js/layui.js"></script>
+
+	<script>
+		layui.use(['layer', 'form'], function () {
+			var layer = layui.layer,
+				form = layui.form;
+		});
+	</script>
+
+</body>
+
+</html>
