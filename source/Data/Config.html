@@ -27,6 +27,9 @@
 </head>
 
 <body>
+	<!--[if lt IE 9]>
+do something
+	<![endif]-->
 	<ul id="menu">
 		<li data-menuanchor="general">
 			<a href="#general" name="i18n" lang="General">general</a>
@@ -98,11 +101,11 @@
 			<div class="page">
 				<fieldset>
 					<legend>前景色拾色器快捷键增强</legend>
-					<input type="button" value="F" class="hotkey">
+					<div id="foregroundColorPickerKey" class="hotkey" onclick="AHK('SetHotkey','foregroundColorPickerKey')"></div>
 				</fieldset>
 				<fieldset class="layui-form">
 					<legend>HUD 拾色器快捷键</legend>
-					<input type="button" value="`" class="hotkey">
+					<div id="hudColorPickerKey" class="hotkey" onclick="AHK('SetHotkey','hudColorPickerKey')"></div>
 					<ul class="optionList">
 						<li>
 							<ul class="checkText">
@@ -135,15 +138,15 @@
 
 				<fieldset>
 					<legend>快速创建新图层</legend>
-					<input type="button" value="F1" class="hotkey">
+					<div id="quicklyNewLayerKey" class="hotkey" onclick="AHK('SetHotkey','quicklyNewLayerKey')"></div>
 				</fieldset>
 				<fieldset>
 					<legend>隐藏 / 显示图层</legend>
-					<input type="button" value="H" class="hotkey">
+					<div id="showHideLayerKey" class="hotkey" onclick="AHK('SetHotkey','showHideLayerKey')"></div>
 				</fieldset>
 				<fieldset>
 					<legend>修改笔刷范围</legend>
-					<input type="button" value="F2" class="hotkey">
+					<div id="brushRangeKey" class="hotkey" onclick="AHK('SetHotkey','brushRangeKey')"></div>
 				</fieldset>
 				<fieldset class="layui-form undoredoMode">
 					<ul class="checkText" style="margin-top:10px;">
@@ -187,8 +190,9 @@
 
 					<ul class="optionList">
 						<li>
-							间隔时间
-							<input type="button" value="F" class="hotkey" />
+							<span>间隔时间</span>
+							<input type="number" min="3" max="60" maxlength="2" id="intervals" />
+							<span name="i18n" lang="Min." id="min">分钟</span>
 						</li>
 						<li>
 							<ul class="checkText">
@@ -196,10 +200,13 @@
 								<li name="i18n" lang="Off">关闭</li>
 								<li name="i18n" lang="On">开启</li>
 							</ul>
-							提示内容
+							<span>提示内容</span>
+						</li>
+						<li>
+							<input type="text" style="width: 100%;" />
 						</li>
 					</ul>
-					<input type="button" style="width: 100%;" />
+
 				</fieldset>
 			</div>
 		</div>
@@ -207,7 +214,7 @@
 			<div class="page">
 				<fieldset class="layui-form">
 					<ul class="checkText" style="margin-top:10px;">
-						<input type="checkbox" name="undoredoMode" lay-skin="switch" lay-text="默认|系统" checked />
+						<input type="checkbox" name="undoredoMode" lay-skin="switch" checked />
 						<li>默认</li>
 						<li>系统</li>
 					</ul>
@@ -223,30 +230,33 @@
 					<br>已经为全世界无数的 Photoshop 用户提供了帮助。
 					<br>如果你也是其中之一，可以选择：
 				</p>
+				<ul id="supportList">
+					<li id="githubButton" onclick="AHK('Run','github')">
+						<img src="Images/github.svg">
+						<h3 name="i18n" lang="Support_Github">在 Github 右上方收藏</h3>
+						<div>
+							<svg version="1.1" width="14" height="16" viewBox="0 0 14 16" id="githubStar" aria-hidden="true">
+								<path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"></path>
+							</svg>
+							<span>Star</span>
+						</div>
 
-				<fieldset style="padding-bottom: 10px;">
-					<legend name="i18n" lang="Support_Share">分享到社交网站</legend>
-					<div id="shareButton">
-						<img src="Images/weibo.svg" width="60px" onclick="AHK('Run','weibo')">
-					</div>
-				</fieldset>
+					</li>
+					<li id="shareButton" onclick="AHK('Run','weibo')">
+						<img src="Images/weibo.svg">
+						<h3 name="i18n" lang="Support_Share">分享到新浪微博</h3>
 
-				<fieldset style="padding-bottom: 10px;">
-					<legend name="i18n" lang="Support_Github">在 Github 右上方收藏</legend>
-					<div id="githubButton" onclick="AHK('Run','github')">
-						<svg version="1.1" width="14" height="16" viewBox="0 0 14 16" id="githubStar" aria-hidden="true">
-							<path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"></path>
-						</svg>
-						<span>Star</span>
-					</div>
-				</fieldset>
-				<fieldset style="padding-bottom: 10px;">
-					<legend name="i18n" lang="Support_Donate">请作者喝杯咖啡</legend>
-					<div id="donate">
-						<img class="qrcode" src="images/wechatzan.svg" />
-						<img class="qrcode" src="images/alipay.svg" />
-					</div>
-				</fieldset>
+					</li>
+
+					<li id="donate">
+						<img src="Images/coffee.svg">
+						<h3 name="i18n" lang="Support_Donate">请作者喝杯咖啡</h3>
+						<div id="qrcode">
+							<img src="images/wechatzan.svg" />
+							<img src="images/alipay.svg" />
+						</div>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>

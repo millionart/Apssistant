@@ -18,7 +18,7 @@ iWebCtrl := getDOM()
 setAppName("APssistant")
 
 ; cut auto run main thread.
-OnMessage(0x201, "WM_LBUTTONDOWN")
+;OnMessage(0x201, "WM_LBUTTONDOWN")
 
 Return
 
@@ -29,11 +29,13 @@ WM_LBUTTONDOWN()
 
 ; Webapp.ahk-only Sensitive hotkeys
 #IfWinActive, ahk_group __Webapp_windows
-
+Tab::
+Return
+/*
 LButton Up::
 Click
 Return
-
+*/
 !Enter::
 	;!toggle
 	setFullscreen(!__Webapp_FullScreen)
@@ -68,11 +70,11 @@ disp_info() {
 Run(t) {
 	global
 	If (t="paypal")
-		Run, https://www.paypal.me/millionart
+		t:="https://www.paypal.me/millionart"
 
 
 	If (t="twitter")
-		Run, https://twitter.com/intent/tweet?text=%Lang_shareText%&url=%DeviantArt%&hashtags=Photoshop
+		t:="https://twitter.com/intent/tweet?text=%Lang_shareText%&url=%DeviantArt%&hashtags=Photoshop"
 
 
 	If (t="facebook")
@@ -80,11 +82,11 @@ Run(t) {
 
 
 	If (t="reddit")
-		Run, https://www.reddit.com/submit?url=%DeviantArt%&title=%Lang_shareText%&text=%Lang_shareText%
+		t:="https://www.reddit.com/submit?url=%DeviantArt%&title=%Lang_shareText%&text=%Lang_shareText%"
 
 
 	If (t="github")
-		Run, https://github.com/millionart/Apssistant
+		t:="https://github.com/millionart/Apssistant"
 
 	If (t="weibo")
 	{
@@ -95,11 +97,13 @@ Run(t) {
 		Else
 			langTag:="zh_tw"
 
-		Run, https://service.weibo.com/share/share.php?url=%url%&language=%langTag%&title=%Lang_shareText%
+		t:="https://service.weibo.com/share/share.php?url=" . url . "&language=" . langTag . "&title=" . Lang_shareText
 	}
-	else
+
 		Run, %t%
 }
+
+
 
 Initialization(){
 	global
@@ -182,8 +186,6 @@ I18n(langTag,initialization:=1){
 	}
 
 	StringCol:=CSV_SearchRow(CSV_Identifier, langTag, 1, 1)
-	Lang_shareTextRow:=CSV_SearchColumn(CSV_Identifier, "shareText", 1, 1)
-	Lang_shareText:=CSV_ReadCell(CSV_Identifier, Lang_shareTextRow, StringCol)
 
     Loop, %TotalRows%
     {
@@ -216,6 +218,60 @@ I18n(langTag,initialization:=1){
 			}
 		}
     }
+
+	Lang_shareTextRow:=CSV_SearchColumn(CSV_Identifier, "shareText", 1, 1)
+	Lang_shareText:=CSV_ReadCell(CSV_Identifier, Lang_shareTextRow, StringCol)
+
+}
+
+
+SetHotkey(elementId)
+{
+	global
+	wb := getDOM()
+	element := wb.document.getElementById(elementId)
+	
+	element.innerHTML:="请按下任意键"
+
+	endKeys={Esc}{LControl}{Tab}{RControl}{LAlt}{RAlt}{LShift}{RShift}{LWin}{RWin}{AppsKey}{F1}{F2}{F3}{F4}{F5}{F6}{F7}{F8}{F9}{F10}{F11}{F12}{Left}{Right}{Up}{Down}{Home}{End}{PgUp}{PgDn}{Del}{Ins}{BS}{CapsLock}{NumLock}{PrintScreen}{Pause}{Space}
+	;matchKeys=
+	Input, hotKey, B I L1 E,%endKeys%
+
+	If (ErrorLevel = "EndKey:Escape") || (ErrorLevel = "EndKey:BackSpace") || (ErrorLevel = "EndKey:Del") || (ErrorLevel = "EndKey:Space")
+		hotKey:="NULL"
+	Else
+	{
+		If (ErrorLevel = "EndKey:F1")
+			hotKey:="F1"
+		If (ErrorLevel = "EndKey:F2")
+			hotKey:="F2"
+		If (ErrorLevel = "EndKey:F3")
+			hotKey:="F3"
+		If (ErrorLevel = "EndKey:F4")
+			hotKey:="F4"
+		If (ErrorLevel = "EndKey:F5")
+			hotKey:="F5"
+		If (ErrorLevel = "EndKey:F6")
+			hotKey:="F6"
+		If (ErrorLevel = "EndKey:F7")
+			hotKey:="F7"
+		If (ErrorLevel = "EndKey:F8")
+			hotKey:="F8"
+		If (ErrorLevel = "EndKey:F9")
+			hotKey:="F9"
+		If (ErrorLevel = "EndKey:F10")
+			hotKey:="F10"
+		If (ErrorLevel = "EndKey:F11")
+			hotKey:="F11"
+		If (ErrorLevel = "EndKey:F12")
+			hotKey:="F12"
+
+	hotkey:=Format("{:T}", hotkey)
+	element.innerHTML:="<kbd>" . hotKey . "</kbd>"
+
+	Input
+	}
+
 }
 
 GetAHK_EnvInfo(){

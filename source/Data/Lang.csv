@@ -73,9 +73,9 @@ FullPreviewMaxSize,Unlimited Preview Size,无限制的预览大小,Unlimited Pre
 HT_FullPreviewMaxSize,"If you have the Full Size option for Image Previews turned on in the Saving Files preferences, Photoshop limits the size of the preview to 512 x 512 pixels. Unlimited Preview Size removes the 512 x 512–pixel limit on file previews.",如果在 “存储文件” 首选项中为 “图像预览” 打开了 “全大小” 选项，则 Photoshop 会将预览的大小限制为 512 x 512 像素。\n“无限制的预览大小”可消除对文件预览的 512 x 512 像素限制。,"If you have the Full Size option for Image Previews turned on in the Saving Files preferences, Photoshop limits the size of the preview to 512 x 512 pixels. Unlimited Preview Size removes the 512 x 512–pixel limit on file previews."
 NeedRestartTip,* Need to restart Photoshop.,* 需要重启 Photoshop 以生效。,* 需要重啟 Photoshop 以生效。
 Support,Support Me,支持作者,支援作者
-Support_text,"Thank you for using Apssistant!\nThis software has helped countless Photoshop users around the world since 2010.\nIf this software used to be helpful to you, please",感谢使用 APssistant！\n此软件自 2010 年诞生至今，\n已经为全世界无数的 Photoshop 用户提供了帮助。\n如果你也是其中之一，可以选择： ,感謝使用 Apssistant！\n此軟體自 2010 年誕生以來，已經為全世界無數的 Photoshop 使用者提供了幫助。\n如果這款軟體曾經對您有幫助，可以
+Support_text,"Thank you for using Apssistant!\nThis software has helped countless Photoshop users around the world since 2010.\nIf you want to express thanks, please",感谢使用 APssistant！\n此软件自 2010 年诞生至今，\n已经为全世界无数的 Photoshop 用户提供了帮助。\n如果你想表示感谢，可以选择： ,感謝使用 Apssistant！\n此軟體自 2010 年誕生以來，已經為全世界無數的 Photoshop 使用者提供了幫助。\n如果您想表示感謝，可以選擇：
 Support_Share,share it to more people,分享到社交网站,分享到社交網路
-Support_Github,Give me a star on Github,在 Github 右上方点收藏,於 Github 右上方点收藏
+Support_Github,"Give me a star on Github, by clicking",在 Github 右上方点,於 Github 右上方点
 Support_Donate,treat me to have a cup of coffee,请作者喝杯咖啡,請作者喝杯咖啡
 shareText,Here is a free software can disable Alt menu in Photoshop.,发现一个免费的#Photoshop#小插件，可以禁用 Alt 菜单键和自动保存，很方便！作者是@杰克-弗罗斯特,發現一個免費的#Photoshop#小外掛，可以禁用 Alt 菜單鍵和自動存儲，很便捷！作者是@杰克-弗罗斯特
 Other_3DsMaxSync,3ds Max Texture Sync,3ds Max 贴图同步,3ds Max 貼圖同步

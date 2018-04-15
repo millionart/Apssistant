@@ -1,0 +1,605 @@
+$defaultFont: "微软雅黑 Light",
+"Segoe UI",
+Tahoma,
+Geneva,
+Verdana,
+sans-serif;
+$white: #FFF;
+$black: #000;
+$borderColor: #E6E6E6;
+$blue: #6CF;
+$blueShadow: rgba(102, 204, 255, 0.4);
+$red: #E81123;
+$fontColor: #D7D7D7;
+$rounded: 4px;
+$fakeBlurColor: rgba(0, 0, 0, 0.05);
+$oneLineControlsHeight: 40px;
+$ControlsWidth: 200px;
+@mixin borderNormal {
+	border: {
+		width: 1px;
+		style: solid;
+		color: $borderColor;
+		radius: $rounded;
+	}
+}
+
+@import url(chooselang.scss);
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+	padding: 0;
+	margin: 0;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 1.8em;
+	font-weight: 200;
+	height: 60px;
+	line-height: 60px;
+}
+
+h3 {
+	font-size: 1.4em;
+}
+
+a {
+	text-decoration: none;
+}
+
+table {
+	border-spacing: 0;
+}
+
+fieldset,
+img {
+	border: 0;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+	font: {
+		weight: normal;
+		style: normal;
+	}
+}
+
+strong {
+	font-weight: bold;
+}
+
+ol,
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+caption,
+th {
+	text-align: left;
+}
+
+q:before,
+q:after {
+	content: "";
+}
+
+abbr,
+acronym {
+	border: 0;
+}
+
+/* Custom CSS
+ * --------------------------------------- */
+
+body {
+	font: {
+		family: $defaultFont;
+		size: 20px;
+	}
+	background-color: $white;
+	color: #5E5E5E;
+}
+
+.wrap {
+	margin: {
+		left: auto;
+		right: auto;
+	}
+	width: 960px;
+	position: relative;
+}
+
+h1 {
+	font-size: 6em;
+}
+
+p {
+	font-size: 1em;
+	padding-bottom: 10px;
+}
+
+kbd {
+	position: relative;
+	top: -4px;
+	font-size: 0.8em;
+	font-family: $defaultFont;
+	box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #666;
+	border-radius: 3px;
+	margin: 0 3px 0 3px;
+	padding: 1px 5px;
+	cursor: default;
+}
+
+.intro p {
+	width: 50%;
+	margin: 0 auto;
+	font-size: 1.5em;
+}
+
+#menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	z-index: 70;
+	width: 260px;
+	padding-top: 40px;
+	margin: 0;
+	background: $fakeBlurColor;
+	text-shadow: 0 0 100px 2px $black;
+	overflow: hidden;
+	li {
+		margin: 0;
+		height: 60px;
+		width: 260px;
+		font-weight: 100;
+		line-height: 60px;
+		&.active {
+			a {
+				font-weight: 400;
+				color: $blue;
+				font-size: 1.4em;
+				text-shadow: 0 0 40px 4px $blueShadow;
+				cursor: default;
+				&:hover {
+					box-shadow: none;
+					background: transparent;
+				}
+			}
+		}
+		a {
+			padding-left: 80px;
+			display: block;
+			height: 100%;
+			text-decoration: none;
+			color: rgba(0, 0, 0, 0.4);
+			white-space: nowrap;
+			&:hover {
+				background: $white;
+				box-shadow: 0 0 40px $white;
+				color: $blue;
+			}
+		}
+	}
+}
+
+#exitApp {
+	font-size: 1.2em;
+	font-weight: 100;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: $oneLineControlsHeight;
+	height: $oneLineControlsHeight;
+	line-height: $oneLineControlsHeight;
+	text-align: center;
+	padding: 0;
+	a {
+		display: block;
+		height: 100%;
+		color: #5E5E5E;
+		&:hover {
+			text-shadow: 0 0 100px 30px $red;
+			color: $red;
+		}
+	}
+}
+
+#fullpage {
+	padding: {
+		top: 0;
+		right: 0;
+		left: 260px;
+		bottom: 0;
+	}
+}
+
+fieldset {
+	padding: {
+		top: 0;
+		right: 40px;
+		bottom: 0;
+		left: 40px;
+	}
+	margin: {
+		right: -40px;
+		bottom: 10px;
+		left: -40px;
+	}
+	&:hover {
+		background-color: $fakeBlurColor;
+	}
+	legend {
+		font-size: 1.4em;
+		font-weight: 200;
+		line-height: 60px;
+		cursor: default;
+		float: left;
+	}
+	div {
+		clear: both;
+	}
+}
+
+input {
+	@include borderNormal;
+	height: $oneLineControlsHeight;
+	line-height: $oneLineControlsHeight;
+	margin-bottom: 10px;
+	font-size: 1em;
+	background-color: transparent;
+	box-sizing: border-box;
+	&:hover {
+		background-color: $white;
+	}
+	&[type=text] {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	&[type=number] {
+		text-align: center;
+		-moz-appearance: textfield;
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+	}
+}
+
+.page {
+	cursor: default;
+	padding: 40px 40px 0 40px;
+}
+
+div.hotkey {
+	@include borderNormal;
+	height: $oneLineControlsHeight;
+	margin-bottom: 10px;
+	font-size: 1em;
+	background-color: transparent;
+	line-height: $oneLineControlsHeight;
+	box-sizing: border-box;
+	float: right;
+	clear: none;
+	margin-top: 10px;
+	width: $ControlsWidth;
+	cursor: pointer;
+	text-align: center;
+	&:hover {
+		background-color: $white;
+	}
+}
+
+#intervals {
+	position: relative;
+	z-index: 1;
+	float: right;
+	width: $ControlsWidth;
+	padding-left: 0;
+	padding-right: $ControlsWidth/2;
+	background-color: transparent;
+	&:hover+#min {
+		background-color: $white;
+	}
+}
+
+#min {
+	border-radius: $rounded;
+	float: right;
+	position: relative;
+	left: $ControlsWidth;
+	width: $ControlsWidth/2;
+	padding-left: $ControlsWidth/2;
+	text-align: center;
+}
+
+#langChoose {
+	clear: both;
+}
+
+.optionList {
+	margin-top: 10px;
+	display: block;
+	clear: both;
+	.checkText,
+	.hotkey {
+		margin-top: 0;
+	}
+	&>li {
+		margin-bottom: 10px;
+		padding-left: 10px;
+		height: $oneLineControlsHeight;
+		line-height: $oneLineControlsHeight;
+		cursor: default;
+	}
+}
+
+.undoredoMode {
+	kbd {
+		box-shadow: none;
+	}
+	li.lightLine {
+		border-radius: $rounded;
+	}
+	&:hover kbd {
+		box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #666;
+	}
+	&>.optionList {
+		opacity: 0;
+	}
+	&:hover>.optionList {
+		opacity: 1;
+		transition: opacity 1s ease;
+	}
+	&:hover li.lightLine {
+		background-color: $white;
+	}
+}
+
+.layui-form-select {
+	dt {
+		display: block;
+		width: 90%;
+	}
+	dl {
+		dd {
+			margin: {
+				left: 10px;
+				bottom: 10px;
+			}
+			padding: {
+				left: 20px;
+				right: 20px;
+			}
+			border: {
+				width: 1px;
+				style: solid;
+				color: $borderColor;
+				radius: $rounded;
+			}
+			float: left;
+			box-sizing: border-box;
+			background-color: transparent;
+		}
+		&>dd.layui-disabled {
+			border-width: 0;
+			padding: 0;
+			margin-bottom: 0;
+		}
+	}
+}
+
+.layui-form-switch {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: $oneLineControlsHeight;
+	line-height: $oneLineControlsHeight;
+	width: $ControlsWidth;
+	padding: 0;
+	margin: 0;
+	border-width: 0;
+	cursor: pointer;
+	background-color: transparent;
+	transition: 0.1s linear;
+	em {
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: $ControlsWidth/2;
+		padding: 0;
+	}
+	i {
+		@include borderNormal;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: $ControlsWidth/2;
+		height: $oneLineControlsHeight;
+		background-color: transparent;
+		transition: 0.1s linear;
+		box-sizing: border-box;
+	}
+	&~li:nth-of-type(1) {
+		/*! display: none */
+		float: left;
+		color: #5E5E5E;
+	}
+	&~li:nth-of-type(2) {
+		display: block;
+		float: right;
+		color: #E5E5E5;
+	}
+}
+
+.layui-form-onswitch {
+	em {
+		left: 0;
+	}
+	i {
+		left: $ControlsWidth/2;
+		background-color: transparent;
+	}
+	&~li:nth-of-type(1) {
+		float: left;
+		color: $fontColor;
+	}
+	&~li:nth-of-type(2) {
+		display: block;
+		float: right;
+		color: #5E5E5E;
+	}
+}
+
+.layui-input::-ms-clear {
+	display: none;
+}
+
+.checkText {
+	position: absolute;
+	right: $oneLineControlsHeight;
+	width: $ControlsWidth;
+	height: $oneLineControlsHeight;
+	margin-top: 10px;
+	li {
+		font-size: 1em;
+		width: $ControlsWidth/2;
+		height: $oneLineControlsHeight;
+		line-height: $oneLineControlsHeight;
+		text-align: center;
+	}
+}
+
+ul#supportList {
+	li {
+		padding: {
+			top: 10px;
+			right: 40px;
+			bottom: 10px;
+			left: 40px;
+		}
+		margin: {
+			right: -40px;
+			bottom: 10px;
+			left: -40px;
+		}
+		cursor: pointer;
+		clear: both;
+		display: block;
+		height: $oneLineControlsHeight;
+		line-height: $oneLineControlsHeight;
+		&:hover {
+			background-color: $fakeBlurColor;
+		}
+		img {
+			float: left;
+			width: $oneLineControlsHeight;
+			max-width: $oneLineControlsHeight;
+			max-height: $oneLineControlsHeight;
+		}
+		h3 {
+			float: left;
+			margin-left: 10px;
+		}
+		&#donate {
+			height: auto;
+			cursor: default;
+			#qrcode {
+				display: block;
+				position: static;
+				clear: both;
+				img {
+					width: $ControlsWidth;
+					max-width: $ControlsWidth;
+					max-height: $ControlsWidth;
+					margin: {
+						top: $oneLineControlsHeight;
+						left: $oneLineControlsHeight;
+						right: $oneLineControlsHeight;
+						bottom: 10px;
+					}
+					float: none;
+				}
+			}
+		}
+		&#githubButton {
+			div {
+				@include borderNormal;
+				font: {
+					size: 12px;
+					weight: 600;
+				}
+				background: {
+					image: linear-gradient(to bottom, #FAFBFC, #E4EBF0);
+					repeat: repeat-x;
+					size: 110% 110%;
+					color: #EFF3F6;
+				}
+				margin-left: 1em;
+				color: #24292E;
+				text-decoration: none;
+				outline: 0;
+				vertical-align: middle;
+				width: $oneLineControlsHeight;
+				height: 26px;
+				line-height: 26px;
+				padding: 0 10px;
+				display: inline-block;
+				svg {
+					fill: #24292E;
+					height: 16px;
+					position: relative;
+					top: 4px;
+				}
+			}
+		}
+	}
+}
+
+.layui-form-select dl dd.layui-this {
+	background-color: $blue;
+	border-width: 0;
+}
+
+.layui-form-checkbox,
+.layui-form-select dl dd.layui-disabled {
+	background-color: transparent;
+}
+
+.layui-form-select dl {
+	max-height: 350px;
+}
