@@ -6,7 +6,6 @@
 	<meta name="Resource-type" content="Document" />
 
 	<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
-	<link rel="stylesheet" type="text/css" href="css/layui.css" />
 	<link rel="stylesheet" type="text/css" href="css/config.css" />
 	<link rel="stylesheet" type="text/css" href="css/chooselang.css" />
 
@@ -56,38 +55,40 @@ do something
 				<fieldset>
 					<legend name="i18n" lang="Your_language">Your_language</legend>
 					<ul id="langChoose">
-						<li class="langLi"></li>
+						<li class="langList"></li>
 					</ul>
 				</fieldset>
-				<fieldset class="layui-form">
+				<fieldset>
 					<legend name="i18n" lang="Your_Photoshop_version">正在使用的 Photoshop 版本</legend>
-					<select name="PhotoshopVer" lay-search>
-						<option disabled selected name="i18n" lang="HT_PsCSver">请选择 Photoshop 版本</option>
-						<optgroup label="Photoshop CC">
-							<option value="19">CC 2018</option>
-							<option value="18">CC 2017</option>
-							<option value="17">CC 2015.5</option>
-							<option value="16">CC 2015</option>
-							<option value="15">CC 2014</option>
-							<option value="14">CC</option>
-						</optgroup>
-						<optgroup label="Photoshop CS">
-							<option value="13">CS 6</option>
-							<option value="12">CS 5</option>
-							<option value="11">CS 4</option>
-							<option value="10">CS 3</option>
-							<option value="9">CS 2</option>
-							<option value="8">CS</option>
-						</optgroup>
-						<optgroup label="Photoshop">
-							<option value="7">7.0</option>
-							<option value="6">6.0</option>
-						</optgroup>
-					</select>
+					<input type="checkbox" class="select" id="psVerCheck" text="test">
+					<label for="psVerCheck">请选择 Photoshop 版本</label>
+					<div>
+						<dt class="">
+							<h3>请选择 Photoshop 版本</h3>
+						</dt>
+						<h4>Photoshop CC <span>系列</span></h4>
+						<label for="psVerCheck" class="">2018</label>
+						<label for="psVerCheck" class="">2017</label>
+						<label for="" id="curPsVer">2015.5</label>
+						<label for="psVerCheck" class="">2015</label>
+						<label for="psVerCheck" class="">2014</label>
+						<label for="psVerCheck" class="">CC</label>
+						<h4>Photoshop CS <span>系列</span></h4>
+						<label for="psVerCheck" class="">6</label>
+						<label for="psVerCheck" class="">5</label>
+						<label for="psVerCheck" class="">4</label>
+						<label for="psVerCheck" class="">3</label>
+						<label for="psVerCheck" class="">2</label>
+						<label for="psVerCheck" class="">CS</label>
+						<h4>Photoshop <span>系列</span></h4>
+						<label for="psVerCheck" class="">7.0</label>
+						<label for="psVerCheck" class="">6.0</label>
+					</div>
 				</fieldset>
-				<fieldset class="layui-form">
-					<ul class="checkText" style="margin-top:10px;">
-						<input type="checkbox" name="autoLaunchPs" lay-skin="switch" checked />
+				<fieldset>
+					<ul class="checkBox">
+						<input id="autoLaunchPs" type="checkbox" class="switch" checked>
+						<label for="autoLaunchPs"></label>
 						<li name="i18n" lang="Off">关闭</li>
 						<li name="i18n" lang="On">开启</li>
 					</ul>
@@ -103,28 +104,31 @@ do something
 					<legend>前景色拾色器快捷键增强</legend>
 					<div id="foregroundColorPickerKey" class="hotkey" onclick="AHK('SetHotkey','foregroundColorPickerKey')"></div>
 				</fieldset>
-				<fieldset class="layui-form">
+				<fieldset>
 					<legend>HUD 拾色器快捷键</legend>
 					<div id="hudColorPickerKey" class="hotkey" onclick="AHK('SetHotkey','hudColorPickerKey')"></div>
 					<ul class="optionList">
 						<li>
-							<ul class="checkText">
-								<input type="checkbox" name="pickerMode" lay-skin="switch" checked />
+							<ul class="checkBox">
+								<input id="pickerMode" type="checkbox" class="switch" checked>
+								<label for="pickerMode"></label>
 								<li>滑动</li>
 								<li>精确</li>
 							</ul>
 							取色模式
 						</li>
 						<li>
-							<ul class="checkText">
-								<input type="checkbox" name="displayPosition" lay-skin="switch" checked />
+							<ul class="checkBox">
+								<input id="displayPosition" type="checkbox" class="switch" checked>
+								<label for="displayPosition"></label>
 								<li>中心</li>
 								<li>跟随</li>
 							</ul>
 							显示位置</li>
 						<li>
-							<ul class="checkText">
-								<input type="checkbox" name="runMode" lay-skin="switch" checked />
+							<ul class="checkBox">
+								<input id="runMode" type="checkbox" class="switch" checked>
+								<label for="runMode"></label>
 								<li>快速</li>
 								<li>稳定</li>
 							</ul>
@@ -148,9 +152,10 @@ do something
 					<legend>修改笔刷范围</legend>
 					<div id="brushRangeKey" class="hotkey" onclick="AHK('SetHotkey','brushRangeKey')"></div>
 				</fieldset>
-				<fieldset class="layui-form undoredoMode">
-					<ul class="checkText" style="margin-top:10px;">
-						<input type="checkbox" name="undoredoMode" lay-skin="switch" checked />
+				<fieldset class="undoredoMode">
+					<ul class="checkBox">
+						<input id="undoredoMode" type="checkbox" class="switch" checked>
+						<label for="undoredoMode"></label>
 						<li>默认</li>
 						<li>系统</li>
 					</ul>
@@ -180,10 +185,11 @@ do something
 		</div>
 		<div class="section" id="section3">
 			<div class="page">
-				<fieldset class="layui-form">
+				<fieldset>
 					<legend>自动保存</legend>
-					<ul class="checkText">
-						<input type="checkbox" name="autosaveswitch" lay-skin="switch" checked />
+					<ul class="checkBox">
+						<input id="autosaveswitch" type="checkbox" class="switch" checked>
+						<label for="autosaveswitch"></label>
 						<li name="i18n" lang="Off">关闭</li>
 						<li name="i18n" lang="On">开启</li>
 					</ul>
@@ -195,8 +201,9 @@ do something
 							<span name="i18n" lang="Min." id="min">分钟</span>
 						</li>
 						<li>
-							<ul class="checkText">
-								<input type="checkbox" name="tipText" lay-skin="switch" checked />
+							<ul class="checkBox">
+								<input id="tipText" type="checkbox" class="switch" checked>
+								<label for="tipText"></label>
 								<li name="i18n" lang="Off">关闭</li>
 								<li name="i18n" lang="On">开启</li>
 							</ul>
@@ -212,9 +219,10 @@ do something
 		</div>
 		<div class="section" id="section4">
 			<div class="page">
-				<fieldset class="layui-form">
-					<ul class="checkText" style="margin-top:10px;">
-						<input type="checkbox" name="undoredoMode" lay-skin="switch" checked />
+				<fieldset>
+					<ul class="checkBox">
+						<input id="temp" type="checkbox" class="switch" checked>
+						<label for="temp"></label>
 						<li>默认</li>
 						<li>系统</li>
 					</ul>
@@ -263,16 +271,6 @@ do something
 	<div id="exitApp">
 		<a href="app://exit">×</a>
 	</div>
-
-	<script type="text/javascript" src="js/layui.js"></script>
-
-	<script>
-		layui.use(['layer', 'form'], function () {
-			var layer = layui.layer,
-				form = layui.form;
-		});
-	</script>
-
 </body>
 
 </html>

@@ -1,5 +1,5 @@
-$defaultFont: "微软雅黑 Light",
-"Segoe UI",
+$defaultFont: '微软雅黑 Light',
+'Segoe UI',
 Tahoma,
 Geneva,
 Verdana,
@@ -10,11 +10,13 @@ $borderColor: #E6E6E6;
 $blue: #6CF;
 $blueShadow: rgba(102, 204, 255, 0.4);
 $red: #E81123;
-$fontColor: #D7D7D7;
+$fontColor: #5E5E5E;
+$fontLightColor: #D7D7D7;
 $rounded: 4px;
 $fakeBlurColor: rgba(0, 0, 0, 0.05);
 $oneLineControlsHeight: 40px;
 $ControlsWidth: 200px;
+$leftMenuWidth: 260px;
 @mixin borderNormal {
 	border: {
 		width: 1px;
@@ -22,6 +24,18 @@ $ControlsWidth: 200px;
 		color: $borderColor;
 		radius: $rounded;
 	}
+}
+
+@mixin prefix($property, $value, $prefixes: ()) {
+	@each $prefix in $prefixes {
+		#{$prefix}#{$property}: $value;
+	}
+	#{$property}: $value;
+}
+
+@mixin oneLineControlsHeight ($height) {
+	height: $height;
+	line-height: $height;
 }
 
 @import url(chooselang.scss);
@@ -53,7 +67,7 @@ td {
 }
 
 h1 {
-	font-size: 2em;
+	font-size: 2.2em;
 }
 
 h2 {
@@ -113,7 +127,7 @@ th {
 
 q:before,
 q:after {
-	content: "";
+	content: '';
 }
 
 abbr,
@@ -163,10 +177,12 @@ kbd {
 	cursor: default;
 }
 
-.intro p {
-	width: 50%;
-	margin: 0 auto;
-	font-size: 1.5em;
+.intro {
+	p {
+		width: 50%;
+		margin: 0 auto;
+		font-size: 1.5em;
+	}
 }
 
 #menu {
@@ -175,18 +191,17 @@ kbd {
 	left: 0;
 	height: 100%;
 	z-index: 70;
-	width: 260px;
+	width: $leftMenuWidth;
 	padding-top: 40px;
 	margin: 0;
 	background: $fakeBlurColor;
 	text-shadow: 0 0 100px 2px $black;
 	overflow: hidden;
 	li {
+		@include oneLineControlsHeight (60px);
 		margin: 0;
-		height: 60px;
-		width: 260px;
+		width: $leftMenuWidth;
 		font-weight: 100;
-		line-height: 60px;
 		&.active {
 			a {
 				font-weight: 400;
@@ -217,16 +232,16 @@ kbd {
 }
 
 #exitApp {
+	@include oneLineControlsHeight ($oneLineControlsHeight);
 	font-size: 1.2em;
 	font-weight: 100;
 	position: absolute;
 	right: 0;
 	top: 0;
 	width: $oneLineControlsHeight;
-	height: $oneLineControlsHeight;
-	line-height: $oneLineControlsHeight;
 	text-align: center;
 	padding: 0;
+	z-index: 99;
 	a {
 		display: block;
 		height: 100%;
@@ -242,7 +257,7 @@ kbd {
 	padding: {
 		top: 0;
 		right: 0;
-		left: 260px;
+		left: $leftMenuWidth;
 		bottom: 0;
 	}
 }
@@ -263,9 +278,9 @@ fieldset {
 		background-color: $fakeBlurColor;
 	}
 	legend {
+		@include oneLineControlsHeight (60px);
 		font-size: 1.4em;
 		font-weight: 200;
-		line-height: 60px;
 		cursor: default;
 		float: left;
 	}
@@ -274,49 +289,27 @@ fieldset {
 	}
 }
 
-input {
-	@include borderNormal;
-	height: $oneLineControlsHeight;
-	line-height: $oneLineControlsHeight;
-	margin-bottom: 10px;
-	font-size: 1em;
-	background-color: transparent;
-	box-sizing: border-box;
-	&:hover {
-		background-color: $white;
-	}
-	&[type=text] {
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-	&[type=number] {
-		text-align: center;
-		-moz-appearance: textfield;
-		&::-webkit-outer-spin-button,
-		&::-webkit-inner-spin-button {
-			-webkit-appearance: none;
-			margin: 0;
-		}
-	}
-}
-
 .page {
 	cursor: default;
-	padding: 40px 40px 0 40px;
+	padding: {
+		top: 40px;
+		right: 40px;
+		bottom: 0;
+		left: 40px;
+	}
 }
 
 div.hotkey {
 	@include borderNormal;
-	height: $oneLineControlsHeight;
-	margin-bottom: 10px;
+	@include oneLineControlsHeight ($oneLineControlsHeight);
+	width: $ControlsWidth;
 	font-size: 1em;
 	background-color: transparent;
-	line-height: $oneLineControlsHeight;
 	box-sizing: border-box;
 	float: right;
 	clear: none;
 	margin-top: 10px;
-	width: $ControlsWidth;
+	margin-bottom: 10px;
 	cursor: pointer;
 	text-align: center;
 	&:hover {
@@ -351,23 +344,6 @@ div.hotkey {
 	clear: both;
 }
 
-.optionList {
-	margin-top: 10px;
-	display: block;
-	clear: both;
-	.checkText,
-	.hotkey {
-		margin-top: 0;
-	}
-	&>li {
-		margin-bottom: 10px;
-		padding-left: 10px;
-		height: $oneLineControlsHeight;
-		line-height: $oneLineControlsHeight;
-		cursor: default;
-	}
-}
-
 .undoredoMode {
 	kbd {
 		box-shadow: none;
@@ -385,127 +361,32 @@ div.hotkey {
 		opacity: 1;
 		transition: opacity 1s ease;
 	}
-	&:hover li.lightLine {
-		background-color: $white;
-	}
-}
-
-.layui-form-select {
-	dt {
-		display: block;
-		width: 90%;
-	}
-	dl {
-		dd {
-			margin: {
-				left: 10px;
-				bottom: 10px;
-			}
-			padding: {
-				left: 20px;
-				right: 20px;
-			}
-			border: {
-				width: 1px;
-				style: solid;
-				color: $borderColor;
-				radius: $rounded;
-			}
-			float: left;
-			box-sizing: border-box;
-			background-color: transparent;
-		}
-		&>dd.layui-disabled {
-			border-width: 0;
-			padding: 0;
-			margin-bottom: 0;
+	&:hover {
+		li.lightLine {
+			background-color: $white;
 		}
 	}
 }
 
-.layui-form-switch {
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: $oneLineControlsHeight;
-	line-height: $oneLineControlsHeight;
-	width: $ControlsWidth;
-	padding: 0;
-	margin: 0;
-	border-width: 0;
-	cursor: pointer;
-	background-color: transparent;
-	transition: 0.1s linear;
-	em {
-		position: absolute;
-		right: 0;
-		top: 0;
-		width: $ControlsWidth/2;
-		padding: 0;
-	}
-	i {
-		@include borderNormal;
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: $ControlsWidth/2;
-		height: $oneLineControlsHeight;
-		background-color: transparent;
-		transition: 0.1s linear;
-		box-sizing: border-box;
-	}
-	&~li:nth-of-type(1) {
-		/*! display: none */
-		float: left;
-		color: #5E5E5E;
-	}
-	&~li:nth-of-type(2) {
-		display: block;
-		float: right;
-		color: #E5E5E5;
-	}
-}
-
-.layui-form-onswitch {
-	em {
-		left: 0;
-	}
-	i {
-		left: $ControlsWidth/2;
-		background-color: transparent;
-	}
-	&~li:nth-of-type(1) {
-		float: left;
-		color: $fontColor;
-	}
-	&~li:nth-of-type(2) {
-		display: block;
-		float: right;
-		color: #5E5E5E;
-	}
-}
-
-.layui-input::-ms-clear {
-	display: none;
-}
-
-.checkText {
-	position: absolute;
-	right: $oneLineControlsHeight;
-	width: $ControlsWidth;
-	height: $oneLineControlsHeight;
+.optionList {
 	margin-top: 10px;
-	li {
-		font-size: 1em;
-		width: $ControlsWidth/2;
-		height: $oneLineControlsHeight;
-		line-height: $oneLineControlsHeight;
-		text-align: center;
+	display: block;
+	clear: both;
+	.checkText,
+	.hotkey {
+		margin-top: 0;
+	}
+	&>li {
+		@include oneLineControlsHeight ($oneLineControlsHeight);
+		margin-bottom: 10px;
+		padding-left: 10px;
+		cursor: default;
 	}
 }
 
 ul#supportList {
 	li {
+		@include oneLineControlsHeight ($oneLineControlsHeight);
 		padding: {
 			top: 10px;
 			right: 40px;
@@ -520,8 +401,6 @@ ul#supportList {
 		cursor: pointer;
 		clear: both;
 		display: block;
-		height: $oneLineControlsHeight;
-		line-height: $oneLineControlsHeight;
 		&:hover {
 			background-color: $fakeBlurColor;
 		}
@@ -559,6 +438,7 @@ ul#supportList {
 		&#githubButton {
 			div {
 				@include borderNormal;
+				@include oneLineControlsHeight (26px);
 				font: {
 					size: 12px;
 					weight: 600;
@@ -575,8 +455,6 @@ ul#supportList {
 				outline: 0;
 				vertical-align: middle;
 				width: $oneLineControlsHeight;
-				height: 26px;
-				line-height: 26px;
 				padding: 0 10px;
 				display: inline-block;
 				svg {
@@ -590,16 +468,188 @@ ul#supportList {
 	}
 }
 
-.layui-form-select dl dd.layui-this {
-	background-color: $blue;
-	border-width: 0;
+.checkBox {
+	position: absolute;
+	right: $oneLineControlsHeight;
+	width: $ControlsWidth;
+	height: $oneLineControlsHeight;
+	margin-top: 10px;
+	li {
+		@include oneLineControlsHeight ($oneLineControlsHeight);
+		background-color: transparent;
+		display: block;
+		float: left;
+		width: $ControlsWidth/2;
+		box-sizing: border-box;
+		text-align: center;
+	}
 }
 
-.layui-form-checkbox,
-.layui-form-select dl dd.layui-disabled {
+input {
+	@include borderNormal;
+	@include oneLineControlsHeight ($oneLineControlsHeight);
+	margin-bottom: 10px;
+	font-size: 1em;
 	background-color: transparent;
+	box-sizing: border-box;
+	&:hover {
+		background-color: $white;
+	}
+	&[type=text] {
+		padding: {
+			left: 10px;
+			right: 10px;
+		}
+	}
+	&[type=number] {
+		text-align: center;
+		-moz-appearance: textfield;
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+	}
 }
 
-.layui-form-select dl {
-	max-height: 350px;
+legend+input[type=checkbox].select {
+	&+label {
+		margin-top: 60px;
+	}
+}
+
+input[type=checkbox].select {
+	position: absolute;
+	left: -9999px;
+	&+label {
+		@extend input;
+		display: block;
+		text-align: center;
+		cursor: pointer;
+		&+div {
+			height: 0;
+			overflow: hidden;
+			
+		}
+	}
+	&:checked {
+		&+label {
+			cursor: default;
+			font-size: 0;
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 40px;
+			z-index: 1;
+			border-width: 0;
+			border-radius: 0;
+			background-color: rgba(255, 255, 255, 0.8);
+			transition: background 1s ease;
+			&+div {
+				-webkit-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
+				-moz-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
+				box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
+				position: absolute;
+				z-index: 2;
+				display: block;
+				background-color: #ffffff;
+				padding: 20px;
+				width: calc(100% - 120px);
+				height: 410px;
+				overflow: hidden;
+				transition: height 0.3s ease;
+				h4 {
+					display: block;
+					clear: both;
+					margin: {
+						top: 10px;
+						bottom: 10px;
+					}
+				}
+				label {
+					@include borderNormal;
+					@include oneLineControlsHeight(40px);
+					min-width: 80px;
+					text-align: center;
+					margin: {
+						right: 10px;
+						bottom: 10px;
+					}
+					padding: {
+						left: 10px;
+						right: 10px;
+					}
+					float: left;
+					cursor: pointer;
+					&#curPsVer {
+						background-color: $blue;
+						border-width: 0;
+						color: $white;
+						cursor: default;
+					}
+				}
+			}
+		}
+	}
+}
+
+input[type='checkbox'].switch {
+	position: absolute;
+	left: -9999px;
+	&+label {
+		@include oneLineControlsHeight ($oneLineControlsHeight);
+		position: absolute;
+		right: 0;
+		width: $ControlsWidth;
+		padding: 0;
+		margin: 0;
+		border-width: 0;
+		cursor: pointer;
+		background-color: transparent;
+		&::before {
+			@include borderNormal;
+			@include prefix(transition-property, left, ('-webkit-'));
+			@include prefix(transition-duration, 0.5s, ('-webkit-'));
+			@include prefix(transition-timing-function, ease, ('-webkit-'));
+			content: '';
+			position: absolute;
+			display: block;
+			top: 0;
+			bottom: 10px;
+			width: $ControlsWidth/2;
+			height: $oneLineControlsHeight;
+			box-sizing: border-box;
+			left: 0;
+		}
+	}
+	&~li:nth-of-type(1) {
+		float: left;
+		color: $fontColor;
+	}
+	&~li:nth-of-type(2) {
+		display: block;
+		float: right;
+		color: $fontLightColor;
+	}
+	&:checked {
+		&~li:nth-of-type(1) {
+			float: left;
+			color: $fontLightColor;
+		}
+		&~li:nth-of-type(2) {
+			display: block;
+			float: right;
+			color: $fontColor;
+		}
+		&+label::before {
+			@include prefix(transition-property, left, ('-webkit-'));
+			@include prefix(transition-duration, 0.5s, ('-webkit-'));
+			@include prefix(transition-timing-function, ease, ('-webkit-'));
+			left: $ControlsWidth/2;
+		}
+	}
 }

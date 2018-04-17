@@ -15,6 +15,7 @@ $rounded: 4px;
 $fakeBlurColor: rgba(0, 0, 0, 0.05);
 $oneLineControlsHeight: 40px;
 $ControlsWidth: 200px;
+$leftMenuWidth: 260px;
 @mixin borderNormal {
 	border: {
 		width: 1px;
@@ -24,10 +25,14 @@ $ControlsWidth: 200px;
 	}
 }
 
-li.langLi {
+@mixin oneLineControlsHeight ($height) {
+	height: $height;
+	line-height: $height;
+}
+
+li.langList {
+	@include oneLineControlsHeight ($oneLineControlsHeight);
 	display: block;
-	height: $oneLineControlsHeight;
-	line-height: $oneLineControlsHeight;
 	text-align: center;
 	min-width: 140px;
 	float: left;

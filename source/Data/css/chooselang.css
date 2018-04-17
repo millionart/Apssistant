@@ -1,7 +1,7 @@
-li.langLi {
-  display: block;
+li.langList {
   height: 40px;
   line-height: 40px;
+  display: block;
   text-align: center;
   min-width: 140px;
   float: left;
@@ -9,17 +9,17 @@ li.langLi {
   margin-bottom: 10px;
 }
 
-li.langLi:hover {
-  background: #FFFFFF;
+li.langList:hover {
+  background: #FFF;
   border-radius: 4px;
 }
 
-li.langLi:active {
+li.langList:active {
   background-color: transparent;
   border-radius: 4px;
 }
 
-li.langLi a {
+li.langList a {
   display: block;
   width: 100%;
   height: 100%;
@@ -27,8 +27,8 @@ li.langLi a {
   color: #D7D7D7;
 }
 
-li.langLi a:hover, li.langLi a:active {
-  color: #66ccff;
+li.langList a:hover, li.langList a:active {
+  color: #6CF;
   font-weight: 400;
 }
 

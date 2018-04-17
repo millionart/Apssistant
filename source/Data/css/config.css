@@ -18,6 +18,7 @@ pre,
 form,
 fieldset,
 input,
+input[type=checkbox].select + label,
 textarea,
 p,
 blockquote,
@@ -28,7 +29,7 @@ td {
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 2.2em;
 }
 
 h2 {
@@ -124,7 +125,7 @@ kbd {
   top: -4px;
   font-size: 0.8em;
   font-family: "微软雅黑 Light", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  box-shadow: 1px 0 1px 0 #eee, 0 2px 0 2px #ccc, 0 2px 0 3px #666;
+  box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #666;
   border-radius: 3px;
   margin: 0 3px 0 3px;
   padding: 1px 5px;
@@ -152,16 +153,16 @@ kbd {
 }
 
 #menu li {
-  margin: 0;
   height: 60px;
+  line-height: 60px;
+  margin: 0;
   width: 260px;
   font-weight: 100;
-  line-height: 60px;
 }
 
 #menu li.active a {
   font-weight: 400;
-  color: #66ccff;
+  color: #6CF;
   font-size: 1.4em;
   text-shadow: 0 0 40px 4px rgba(102, 204, 255, 0.4);
   cursor: default;
@@ -184,20 +185,21 @@ kbd {
 #menu li a:hover {
   background: #FFF;
   box-shadow: 0 0 40px #FFF;
-  color: #66ccff;
+  color: #6CF;
 }
 
 #exitApp {
+  height: 40px;
+  line-height: 40px;
   font-size: 1.2em;
   font-weight: 100;
   position: absolute;
   right: 0;
   top: 0;
   width: 40px;
-  height: 40px;
-  line-height: 40px;
   text-align: center;
   padding: 0;
+  z-index: 99;
 }
 
 #exitApp a {
@@ -233,9 +235,10 @@ fieldset:hover {
 }
 
 fieldset legend {
+  height: 60px;
+  line-height: 60px;
   font-size: 1.4em;
   font-weight: 200;
-  line-height: 60px;
   cursor: default;
   float: left;
 }
@@ -244,41 +247,12 @@ fieldset div {
   clear: both;
 }
 
-input {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #E6E6E6;
-  border-radius: 4px;
-  height: 40px;
-  line-height: 40px;
-  margin-bottom: 10px;
-  font-size: 1em;
-  background-color: transparent;
-  box-sizing: border-box;
-}
-
-input:hover {
-  background-color: #FFF;
-}
-
-input[type=text] {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-input[type=number] {
-  text-align: center;
-  -moz-appearance: textfield;
-}
-
-input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
 .page {
   cursor: default;
-  padding: 40px 40px 0 40px;
+  padding-top: 40px;
+  padding-right: 40px;
+  padding-bottom: 0;
+  padding-left: 40px;
 }
 
 div.hotkey {
@@ -287,15 +261,15 @@ div.hotkey {
   border-color: #E6E6E6;
   border-radius: 4px;
   height: 40px;
-  margin-bottom: 10px;
+  line-height: 40px;
+  width: 200px;
   font-size: 1em;
   background-color: transparent;
-  line-height: 40px;
   box-sizing: border-box;
   float: right;
   clear: none;
   margin-top: 10px;
-  width: 200px;
+  margin-bottom: 10px;
   cursor: pointer;
   text-align: center;
 }
@@ -332,25 +306,6 @@ div.hotkey:hover {
   clear: both;
 }
 
-.optionList {
-  margin-top: 10px;
-  display: block;
-  clear: both;
-}
-
-.optionList .checkText,
-.optionList .hotkey {
-  margin-top: 0;
-}
-
-.optionList > li {
-  margin-bottom: 10px;
-  padding-left: 10px;
-  height: 40px;
-  line-height: 40px;
-  cursor: default;
-}
-
 .undoredoMode kbd {
   box-shadow: none;
 }
@@ -360,7 +315,7 @@ div.hotkey:hover {
 }
 
 .undoredoMode:hover kbd {
-  box-shadow: 1px 0 1px 0 #eee, 0 2px 0 2px #ccc, 0 2px 0 3px #666;
+  box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #666;
 }
 
 .undoredoMode > .optionList {
@@ -376,122 +331,28 @@ div.hotkey:hover {
   background-color: #FFF;
 }
 
-.layui-form-select dt {
-  display: block;
-  width: 90%;
-}
-
-.layui-form-select dl dd {
-  margin-left: 10px;
-  margin-bottom: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #E6E6E6;
-  border-radius: 4px;
-  float: left;
-  box-sizing: border-box;
-  background-color: transparent;
-}
-
-.layui-form-select dl > dd.layui-disabled {
-  border-width: 0;
-  padding: 0;
-  margin-bottom: 0;
-}
-
-.layui-form-switch {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 40px;
-  line-height: 40px;
-  width: 200px;
-  padding: 0;
-  margin: 0;
-  border-width: 0;
-  cursor: pointer;
-  background-color: transparent;
-  transition: .1s linear;
-}
-
-.layui-form-switch em {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100px;
-  padding: 0;
-}
-
-.layui-form-switch i {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #E6E6E6;
-  border-radius: 4px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100px;
-  height: 40px;
-  background-color: transparent;
-  transition: .1s linear;
-  box-sizing: border-box;
-}
-
-.layui-form-switch ~ li:nth-of-type(1) {
-  /*! display: none */
-  float: left;
-  color: #5E5E5E;
-}
-
-.layui-form-switch ~ li:nth-of-type(2) {
-  display: block;
-  float: right;
-  color: #E5E5E5;
-}
-
-.layui-form-onswitch em {
-  left: 0;
-}
-
-.layui-form-onswitch i {
-  left: 100px;
-  background-color: transparent;
-}
-
-.layui-form-onswitch ~ li:nth-of-type(1) {
-  float: left;
-  color: #D7D7D7;
-}
-
-.layui-form-onswitch ~ li:nth-of-type(2) {
-  display: block;
-  float: right;
-  color: #5E5E5E;
-}
-
-.layui-input::-ms-clear {
-  display: none;
-}
-
-.checkText {
-  position: absolute;
-  right: 40px;
-  width: 200px;
-  height: 40px;
+.optionList {
   margin-top: 10px;
+  display: block;
+  clear: both;
 }
 
-.checkText li {
-  font-size: 1em;
-  width: 100px;
+.optionList .checkText,
+.optionList .hotkey {
+  margin-top: 0;
+}
+
+.optionList > li {
   height: 40px;
   line-height: 40px;
-  text-align: center;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  cursor: default;
 }
 
 ul#supportList li {
+  height: 40px;
+  line-height: 40px;
   padding-top: 10px;
   padding-right: 40px;
   padding-bottom: 10px;
@@ -502,8 +363,6 @@ ul#supportList li {
   cursor: pointer;
   clear: both;
   display: block;
-  height: 40px;
-  line-height: 40px;
 }
 
 ul#supportList li:hover {
@@ -549,41 +408,236 @@ ul#supportList li#githubButton div {
   border-style: solid;
   border-color: #E6E6E6;
   border-radius: 4px;
+  height: 26px;
+  line-height: 26px;
   font-size: 12px;
   font-weight: 600;
-  background-image: linear-gradient(to bottom, #fafbfc, #e4ebf0);
+  background-image: linear-gradient(to bottom, #FAFBFC, #E4EBF0);
   background-repeat: repeat-x;
   background-size: 110% 110%;
-  background-color: #eff3f6;
+  background-color: #EFF3F6;
   margin-left: 1em;
-  color: #24292e;
+  color: #24292E;
   text-decoration: none;
   outline: 0;
   vertical-align: middle;
   width: 40px;
-  height: 26px;
-  line-height: 26px;
   padding: 0 10px;
   display: inline-block;
 }
 
 ul#supportList li#githubButton div svg {
-  fill: #24292e;
+  fill: #24292E;
   height: 16px;
   position: relative;
   top: 4px;
 }
 
-.layui-form-select dl dd.layui-this {
-  background-color: #66ccff;
-  border-width: 0;
+.checkBox {
+  position: absolute;
+  right: 40px;
+  width: 200px;
+  height: 40px;
+  margin-top: 10px;
 }
 
-.layui-form-checkbox,
-.layui-form-select dl dd.layui-disabled {
+.checkBox li {
+  height: 40px;
+  line-height: 40px;
+  background-color: transparent;
+  display: block;
+  float: left;
+  width: 100px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+
+input,
+input[type=checkbox].select + label {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #E6E6E6;
+  border-radius: 4px;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 10px;
+  font-size: 1em;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+input:hover, input[type=checkbox].select + label:hover {
+  background-color: #FFF;
+}
+
+input[type=text], input[type=checkbox].select + label[type=text] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+input[type=number], input[type=checkbox].select + label[type=number] {
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+input[type=number]::-webkit-outer-spin-button, input[type=checkbox].select + label[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button, input[type=checkbox].select + label[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+legend + input[type=checkbox].select + label {
+  margin-top: 60px;
+}
+
+input[type=checkbox].select, input[type=checkbox].select + label[type=checkbox].select {
+  position: absolute;
+  left: -9999px;
+}
+
+input[type=checkbox].select + label, input[type=checkbox].select + label[type=checkbox].select + label {
+  display: block;
+  text-align: center;
+  cursor: pointer;
+}
+
+input[type=checkbox].select + label + div, input[type=checkbox].select + label[type=checkbox].select + label + div {
+  height: 0;
+  overflow: hidden;
+}
+
+input[type=checkbox].select:checked + label, input[type=checkbox].select + label[type=checkbox].select:checked + label {
+  cursor: default;
+  font-size: 0;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 40px;
+  z-index: 1;
+  border-width: 0;
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: background 1s ease;
+}
+
+input[type=checkbox].select:checked + label + div, input[type=checkbox].select + label[type=checkbox].select:checked + label + div {
+  -webkit-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
+  position: absolute;
+  z-index: 2;
+  display: block;
+  background-color: #ffffff;
+  padding: 20px;
+  width: calc(100% - 120px);
+  height: 410px;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+input[type=checkbox].select:checked + label + div h4, input[type=checkbox].select + label[type=checkbox].select:checked + label + div h4 {
+  display: block;
+  clear: both;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input[type=checkbox].select:checked + label + div label, input[type=checkbox].select + label[type=checkbox].select:checked + label + div label {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #E6E6E6;
+  border-radius: 4px;
+  height: 40px;
+  line-height: 40px;
+  min-width: 80px;
+  text-align: center;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  float: left;
+  cursor: pointer;
+}
+
+input[type=checkbox].select:checked + label + div label#curPsVer, input[type=checkbox].select + label[type=checkbox].select:checked + label + div label#curPsVer {
+  background-color: #6CF;
+  border-width: 0;
+  color: #FFF;
+  cursor: default;
+}
+
+input[type='checkbox'].switch, input[type=checkbox].select + label[type='checkbox'].switch {
+  position: absolute;
+  left: -9999px;
+}
+
+input[type='checkbox'].switch + label, input[type=checkbox].select + label[type='checkbox'].switch + label {
+  height: 40px;
+  line-height: 40px;
+  position: absolute;
+  right: 0;
+  width: 200px;
+  padding: 0;
+  margin: 0;
+  border-width: 0;
+  cursor: pointer;
   background-color: transparent;
 }
 
-.layui-form-select dl {
-  max-height: 350px;
+input[type='checkbox'].switch + label::before, input[type=checkbox].select + label[type='checkbox'].switch + label::before {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #E6E6E6;
+  border-radius: 4px;
+  -webkit-transition-property: left;
+  transition-property: left;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+  content: '';
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 10px;
+  width: 100px;
+  height: 40px;
+  box-sizing: border-box;
+  left: 0;
+}
+
+input[type='checkbox'].switch ~ li:nth-of-type(1), input[type=checkbox].select + label[type='checkbox'].switch ~ li:nth-of-type(1) {
+  float: left;
+  color: #5E5E5E;
+}
+
+input[type='checkbox'].switch ~ li:nth-of-type(2), input[type=checkbox].select + label[type='checkbox'].switch ~ li:nth-of-type(2) {
+  display: block;
+  float: right;
+  color: #D7D7D7;
+}
+
+input[type='checkbox'].switch:checked ~ li:nth-of-type(1), input[type=checkbox].select + label[type='checkbox'].switch:checked ~ li:nth-of-type(1) {
+  float: left;
+  color: #D7D7D7;
+}
+
+input[type='checkbox'].switch:checked ~ li:nth-of-type(2), input[type=checkbox].select + label[type='checkbox'].switch:checked ~ li:nth-of-type(2) {
+  display: block;
+  float: right;
+  color: #5E5E5E;
+}
+
+input[type='checkbox'].switch:checked + label::before, input[type=checkbox].select + label[type='checkbox'].switch:checked + label::before {
+  -webkit-transition-property: left;
+  transition-property: left;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+  left: 100px;
 }

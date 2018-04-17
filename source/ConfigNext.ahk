@@ -8,12 +8,20 @@ SendMode Input
 #Include Lib\Webapp.ahk
 __Webapp_AppStart:
 ;<< Header End >>
+
 Initialization()
 I18n(G_Language,0)
 
 ;Get our HTML DOM object
 iWebCtrl := getDOM()
 
+Try {
+    ; thanks to https://autohotkey.com/boards/viewtopic.php?t=23167
+    OLECMDID_OPTICAL_ZOOM        :=63
+    OLECMDEXECOPT_DONTPROMPTUSER :=2
+    wepDPIScale :=Round(A_ScreenDPI/96*100*(iWebCtrl.document.frames.screen.systemXDPI/96))
+    iWebCtrl.ExecWB(OLECMDID_OPTICAL_ZOOM,OLECMDEXECOPT_DONTPROMPTUSER,wepDPIScale)
+}
 ;Change App name on run-time
 setAppName("APssistant")
 
@@ -128,9 +136,9 @@ Initialization(){
 		LangName:=CSV_ReadCell(CSV_Identifier, 1, A_Index+1)
 
 		If (G_Language=LangName)
-			activeClass:=" class=""langLi curLang"""
+			activeClass:=" class=""langList curLang"""
 		Else
-			activeClass:=" class=""langLi"""
+			activeClass:=" class=""langList"""
 
 		langList.="<li" . activeClass . "><a href=""#"" onclick=""AHK('I18n','" . LangName . "');"">" . LangName . "</a></li>"
 
@@ -169,9 +177,9 @@ I18n(langTag,initialization:=1){
 			LangName:=CSV_ReadCell(CSV_Identifier, 1, A_Index+1)
 
 			If (langTag=LangName)
-				activeClass:=" class=""langLi curLang"""
+				activeClass:=" class=""langList curLang"""
 			Else
-				activeClass:=" class=""langLi"""
+				activeClass:=" class=""langList"""
 
 			langList.="<li" . activeClass . "><a href=""#"" onclick=""AHK('I18n','" . LangName . "');"">" . LangName . "</a></li>"
 		}
