@@ -48,6 +48,9 @@ do something
 		<li data-menuanchor="support">
 			<a href="#support" name="i18n" lang="Support">Support</a>
 		</li>
+		<li data-menuanchor="test">
+			<a href="http://127.0.0.1:5500/Data/Config.html" name="i18n" lang="test">test</a>
+		</li>
 	</ul>
 	<div id="fullpage">
 		<div class="section active" id="section0">
@@ -60,30 +63,32 @@ do something
 				</fieldset>
 				<fieldset>
 					<legend name="i18n" lang="Your_Photoshop_version">正在使用的 Photoshop 版本</legend>
-					<input type="checkbox" class="select" id="psVerCheck" text="test">
-					<label for="psVerCheck">请选择 Photoshop 版本</label>
+					<input type="checkbox" class="select" id="psVerCheck">
+					<label for="psVerCheck" onclick="AHK('ShowPsList')" name="i18n" lang="chooseYourPhotoshopVersion" id="choosePsVerButton">请选择 Photoshop 版本</label>
 					<div>
-						<dt class="">
+						<dt>
 							<h3>请选择 Photoshop 版本</h3>
 						</dt>
-						<h4>Photoshop CC <span>系列</span></h4>
-						<label for="psVerCheck" class="">2018</label>
-						<label for="psVerCheck" class="">2017</label>
-						<label for="" id="curPsVer">2015.5</label>
-						<label for="psVerCheck" class="">2015</label>
-						<label for="psVerCheck" class="">2014</label>
-						<label for="psVerCheck" class="">CC</label>
-						<h4>Photoshop CS <span>系列</span></h4>
-						<label for="psVerCheck" class="">6</label>
-						<label for="psVerCheck" class="">5</label>
-						<label for="psVerCheck" class="">4</label>
-						<label for="psVerCheck" class="">3</label>
-						<label for="psVerCheck" class="">2</label>
-						<label for="psVerCheck" class="">CS</label>
-						<h4>Photoshop <span>系列</span></h4>
-						<label for="psVerCheck" class="">7.0</label>
-						<label for="psVerCheck" class="">6.0</label>
+						<h4>Photoshop CC
+							<span>系列</span>
+						</h4>
+						<div id="psCCList">
+							<!-- psCCList -->
+						</div>
+						<h4>Photoshop CS
+							<span>系列</span>
+						</h4>
+						<div id="psCSList">
+							<!-- psCSList -->
+						</div>
+						<h4>Photoshop
+							<span>系列</span>
+						</h4>
+						<div id="psOLDList">
+							<!-- psOLDList -->
+						</div>
 					</div>
+					<input type="button" style="width: 100%;" value="请选择安装位置">
 				</fieldset>
 				<fieldset>
 					<ul class="checkBox">
@@ -94,7 +99,7 @@ do something
 					</ul>
 					<legend name="i18n" lang="P_I_LaunchPs">自动启动 Photoshop</legend>
 
-					<input type="button" style="width: 100%;">
+
 				</fieldset>
 			</div>
 		</div>
@@ -268,8 +273,8 @@ do something
 			</div>
 		</div>
 	</div>
-	<div id="exitApp">
-		<a href="app://exit">×</a>
+	<div id="exitApp" onclick="AHK('SaveAndExit');">
+		<a href="">×</a>
 	</div>
 </body>
 

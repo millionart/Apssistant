@@ -13,14 +13,14 @@ Initialization()
 I18n(G_Language,0)
 
 ;Get our HTML DOM object
-iWebCtrl := getDOM()
+appWeb := getDOM()
 
 Try {
     ; thanks to https://autohotkey.com/boards/viewtopic.php?t=23167
     OLECMDID_OPTICAL_ZOOM        :=63
     OLECMDEXECOPT_DONTPROMPTUSER :=2
-    wepDPIScale :=Round(A_ScreenDPI/96*100*(iWebCtrl.document.frames.screen.systemXDPI/96))
-    iWebCtrl.ExecWB(OLECMDID_OPTICAL_ZOOM,OLECMDEXECOPT_DONTPROMPTUSER,wepDPIScale)
+    wepDPIScale :=Round(A_ScreenDPI/96*100*(appWeb.document.frames.screen.systemXDPI/96))
+    appWeb.ExecWB(OLECMDID_OPTICAL_ZOOM,OLECMDEXECOPT_DONTPROMPTUSER,wepDPIScale)
 }
 ;Change App name on run-time
 setAppName("APssistant")
@@ -58,10 +58,13 @@ app_call(args) {
 		SoundPlay, %A_WinDir%\Media\ding.wav
 }
 
+SaveAndExit() {
+	ExitApp
+}
 
 ; function to run when page is loaded
 app_page(NewURL) {
-	wb := getDOM()
+	appWeb := getDOM()
 	
 	if InStr(NewURL,"Config.html") {
 		disp_info()
@@ -69,9 +72,9 @@ app_page(NewURL) {
 }
 
 disp_info() {
-	wb := getDOM()
+	appWeb := getDOM()
 	Sleep, 10
-	x := wb.document.getElementById("ahk_info")
+	x := appWeb.document.getElementById("ahk_info")
 	x.innerHTML := "<i>Webapp.ahk is currently running on " . GetAHK_EnvInfo() . ".</i>"
 }
 
@@ -116,10 +119,16 @@ Run(t) {
 Initialization(){
 	global
 	local wp,langId
-	Github:="https://github.com/millionart/Apssistant"
-	DeviantArt:="https://www.deviantart.com/deviation/160950828"
 
 	IniRead, G_Language, %A_scriptdir%\Data\Config.ini, Setting, lang, English
+	IniRead, psPublicVer, %A_scriptdir%\Data\Config.ini, Setting, Psver, %psMaxVer%
+
+	Github:="https://github.com/millionart/Apssistant"
+	DeviantArt:="https://www.deviantart.com/deviation/160950828"
+	psMaxVer:="CC 2018"
+	maxVerNum:=PsVerToNum(psMaxVer)
+	ShowPsVer()
+
 
 	FileRemoveDir,%A_ScriptDir%\Data\Locales,1 ;Remove old language file.
 	CSV_Load(A_ScriptDir . "\Data\Lang.csv")
@@ -128,8 +137,8 @@ Initialization(){
 	LangTotal:=TotalCols-1
 
 	langArray:=[]
-	wb := getDOM()
-	langId := wb.document.getElementById("langChoose")
+	appWeb := getDOM()
+	langId := appWeb.document.getElementById("langChoose")
 
 	loop,%LangTotal%
 	{
@@ -164,13 +173,13 @@ I18n(langTag,initialization:=1){
 	global
 	local wp,i18nTag, langText, Name, String
 
-	wb := getDOM()
+	appWeb := getDOM()
 
-	i18nTag := wb.document.getElementsByName("i18n")
+	i18nTag := appWeb.document.getElementsByName("i18n")
 
 	If (initialization>0)
 	{
-		langId := wb.document.getElementById("langChoose")
+		langId := appWeb.document.getElementById("langChoose")
 		langList:=""
 		loop,%LangTotal%
 		{
@@ -194,6 +203,8 @@ I18n(langTag,initialization:=1){
 	}
 
 	StringCol:=CSV_SearchRow(CSV_Identifier, langTag, 1, 1)
+	If (StringCol=0)
+		StringCol:=2 ; 找不到语言字符串或语言文件出错
 
     Loop, %TotalRows%
     {
@@ -229,15 +240,168 @@ I18n(langTag,initialization:=1){
 
 	Lang_shareTextRow:=CSV_SearchColumn(CSV_Identifier, "shareText", 1, 1)
 	Lang_shareText:=CSV_ReadCell(CSV_Identifier, Lang_shareTextRow, StringCol)
+	ShowPsVer()
+}
+
+PsNumToVer(n){
+	global maxVerNum
+	If (n<6) || (n>maxVerNum)
+		n:=maxVerNum
+
+	If n>14
+	{
+		v:=n-1
+		v:="CC 20" . v
+	}
+	If n=14
+		v:="CC"
+
+	If n=17
+		v:="CC 2015.5"
+
+	If (n>8) && (n<14)
+	{
+		v:=n-7
+		v:="CS" . v
+	}
+
+	If n=8
+		v:="CS"
+
+	If n<8
+		v:=% n . ".0"
+
+	Return v
+}
+
+PsVerToNum(v){
+	v:=StrReplace(v, " ", "")
+	v:=StrReplace(v, ".", "")
+
+	ccOrCs:=SubStr(v, 1 , 2)
+
+	If (ccOrCs="CC")
+	{
+		n:=StrReplace(v, "CC20", "")
+		n:=n+1
+		;Regver:=(n-7)*10
+	}
+	If (ccOrCs="CS")
+	{
+		n:=StrReplace(v, "CS", "")
+		n:=n+7
+		;Regver:=n
+	}
+
+	If v<8
+	{
+		n:=v
+	}
+	If v=CS
+	{
+		n:=8
+	}
+	/*
+	If v=CS6
+	{
+		Regver:=60
+	}
+	*/
+	If v=CC
+	{
+		n:=14
+	}
+	If v=CC20155
+	{
+		n:=17
+	}
+
+	return n
+}
+
+ShowPsList()
+{
+	global
+	IniRead, psPublicVer, %A_scriptdir%\Data\Config.ini, Setting, Psver, %psMaxVer%
+	n:=PsVerToNum(psPublicVer)
+	appWeb := getDOM()
+
+	psCCList:= appWeb.document.getElementById("psCCList")
+	psCCListHTML:=""
+	ccNum:=maxVerNum-13
+	loop,%ccNum%
+	{
+		psNum:=abs(a_index-maxVerNum-1)
+		psVer:=% PsNumToVer(psNum)
+		psVerCut:=StrReplace(psVer, "CC ", "")
+		If (psVerCut="")
+			psVerCut:="CC"
+
+		If (psVer=psPublicVer)
+			psCCListHTML.="<label for=""psVerCheck"" onclick=""AHK('SetPsVer','" . psNum . "')"" class=""curPsVer"">" . psVerCut . "</label>"
+		Else
+			psCCListHTML.="<label for=""psVerCheck"" onclick=""AHK('SetPsVer','" . psNum . "')"">" . psVerCut . "</label>"
+	}
+
+	psCCList.innerHTML:=psCCListHTML
+
+	psCSList:= appWeb.document.getElementById("psCSList")
+	psCSListHTML:=""
+	Loop, 6
+	{
+		psNum:=abs(a_index-14)
+		psVer:=% PsNumToVer(psNum)
+		psVerCut:=StrReplace(psVer, "CS", "")
+		If (psVerCut="")
+			psVerCut:="CS"
+
+		If (psVer=psPublicVer)
+			psCSListHTML.="<label for=""psVerCheck"" onclick=""AHK('SetPsVer','" . psNum . "')"" class=""curPsVer"">" . psVerCut . "</label>"
+		Else
+			psCSListHTML.="<label for=""psVerCheck"" onclick=""AHK('SetPsVer','" . psNum . "')"">" . psVerCut . "</label>"
+	}
+	
+	psCSList.innerHTML:=psCSListHTML
+
+	psOLDList:= appWeb.document.getElementById("psOLDList")
+	psOLDListHTML:=""
+	loop,2
+	{
+		psNum:=abs(a_index-8)
+		psVer:=% PsNumToVer(psNum)
+		If (psVer=psPublicVer)
+			psOLDListHTML.="<label for=""psVerCheck"" onclick=""AHK('SetPsVer','" . psNum . "')"" class=""curPsVer"">" . psVer . "</label>"
+		Else
+			psOLDListHTML.="<label for=""psVerCheck"" onclick=""AHK('SetPsVer','" . psNum . "')"">" . psVer . "</label>"
+	}
+	psOLDList.innerHTML:=psOLDListHTML
 
 }
 
+SetPsVer(n)
+{
+	global
+	psVer:=PsNumToVer(n)
+	psPublicVer:=psVer
+	IniWrite, %psVer%, %A_scriptdir%\Data\Config.ini, Setting, Psver
+	ShowPsVer()
+}
+
+ShowPsVer()
+{
+	global
+	local element
+	; psVer:=psPublicVer
+	appWeb := getDOM()
+	element := appWeb.document.getElementById("choosePsVerButton")
+	element.innerText:="Photoshop " . psPublicVer
+}
 
 SetHotkey(elementId)
 {
 	global
-	wb := getDOM()
-	element := wb.document.getElementById(elementId)
+	appWeb := getDOM()
+	element := appWeb.document.getElementById(elementId)
 	
 	element.innerHTML:="请按下任意键"
 
@@ -290,15 +454,16 @@ Multiply(a,b) {
 	return a * b
 }
 MyButton1() {
-	wb := getDOM()
-	MsgBox % wb.Document.getElementById("MyTextBox").Value
+	appWeb := getDOM()
+	MsgBox % appWeb.document.getElementById("MyTextBox").Value
 }
 MyButton2() {
-	wb := getDOM()
+	appWeb := getDOM()
 	FormatTime, TimeString, %A_Now%, dddd MMMM d, yyyy HH:mm:ss
     Random, x, %min%, %max%
 	data := "AHK Version " A_AhkVersion " - " (A_IsUnicode ? "Unicode" : "Ansi") " " (A_PtrSize == 4 ? "32" : "64") "bit`nCurrent time: " TimeString "`nRandom number: " x
-	wb.Document.getElementById("MyTextBox").value := data
+	appWeb.document.getElementById("MyTextBox").value := data
 }
 
+#include %A_scriptdir%\inc\Function.ahk
 #include %A_scriptdir%\inc\Handle.ahk

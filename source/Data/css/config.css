@@ -148,7 +148,6 @@ kbd {
   padding-top: 40px;
   margin: 0;
   background: rgba(0, 0, 0, 0.05);
-  text-shadow: 0 0 100px 2px #000;
   overflow: hidden;
 }
 
@@ -158,13 +157,14 @@ kbd {
   margin: 0;
   width: 260px;
   font-weight: 100;
+  text-shadow: 0 0 40px #000, 0 0 80px #000;
 }
 
 #menu li.active a {
-  font-weight: 400;
+  font-weight: 600;
   color: #6CF;
   font-size: 1.4em;
-  text-shadow: 0 0 40px 4px rgba(102, 204, 255, 0.4);
+  text-shadow: 0 0 30px #6CF, 0 0 80px #6CF;
   cursor: default;
 }
 
@@ -191,26 +191,29 @@ kbd {
 #exitApp {
   height: 40px;
   line-height: 40px;
+  width: 40px;
   font-size: 1.2em;
   font-weight: 100;
   position: absolute;
   right: 0;
   top: 0;
-  width: 40px;
   text-align: center;
   padding: 0;
   z-index: 99;
 }
 
-#exitApp a {
-  display: block;
-  height: 100%;
-  color: #5E5E5E;
+#exitApp:hover a {
+  color: #E81123;
+  background-color: rgba(232, 17, 35, 0.19);
+  border-radius: 20px;
+  box-shadow: 0 0 160px 0 #E81123, 0 0 100px 0 #E81123;
 }
 
-#exitApp a:hover {
-  text-shadow: 0 0 100px 30px #E81123;
-  color: #E81123;
+#exitApp a {
+  position: relative;
+  display: block;
+  height: 40px;
+  color: #5E5E5E;
 }
 
 #fullpage {
@@ -506,6 +509,41 @@ input[type=checkbox].select + label + div, input[type=checkbox].select + label[t
   overflow: hidden;
 }
 
+input[type=checkbox].select + label + div h4, input[type=checkbox].select + label[type=checkbox].select + label + div h4 {
+  display: block;
+  clear: both;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input[type=checkbox].select + label + div #psCCList label, input[type=checkbox].select + label[type=checkbox].select + label + div #psCCList label,
+input[type=checkbox].select + label + div #psCSList label, input[type=checkbox].select + label[type=checkbox].select + label + div #psCSList label,
+input[type=checkbox].select + label + div #psOLDList label, input[type=checkbox].select + label[type=checkbox].select + label + div #psOLDList label {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #E6E6E6;
+  border-radius: 4px;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  min-width: 80px;
+  text-align: center;
+  float: left;
+  cursor: pointer;
+}
+
+input[type=checkbox].select + label + div #psCCList label.curPsVer, input[type=checkbox].select + label[type=checkbox].select + label + div #psCCList label.curPsVer,
+input[type=checkbox].select + label + div #psCSList label.curPsVer, input[type=checkbox].select + label[type=checkbox].select + label + div #psCSList label.curPsVer,
+input[type=checkbox].select + label + div #psOLDList label.curPsVer, input[type=checkbox].select + label[type=checkbox].select + label + div #psOLDList label.curPsVer {
+  background-color: #6CF;
+  border-width: 0;
+  color: #FFF;
+  cursor: default;
+}
+
 input[type=checkbox].select:checked + label, input[type=checkbox].select + label[type=checkbox].select:checked + label {
   cursor: default;
   font-size: 0;
@@ -537,37 +575,6 @@ input[type=checkbox].select:checked + label + div, input[type=checkbox].select +
   height: 410px;
   overflow: hidden;
   transition: height 0.3s ease;
-}
-
-input[type=checkbox].select:checked + label + div h4, input[type=checkbox].select + label[type=checkbox].select:checked + label + div h4 {
-  display: block;
-  clear: both;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-input[type=checkbox].select:checked + label + div label, input[type=checkbox].select + label[type=checkbox].select:checked + label + div label {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #E6E6E6;
-  border-radius: 4px;
-  height: 40px;
-  line-height: 40px;
-  min-width: 80px;
-  text-align: center;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  float: left;
-  cursor: pointer;
-}
-
-input[type=checkbox].select:checked + label + div label#curPsVer, input[type=checkbox].select + label[type=checkbox].select:checked + label + div label#curPsVer {
-  background-color: #6CF;
-  border-width: 0;
-  color: #FFF;
-  cursor: default;
 }
 
 input[type='checkbox'].switch, input[type=checkbox].select + label[type='checkbox'].switch {

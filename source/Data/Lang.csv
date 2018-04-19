@@ -3,6 +3,7 @@ General,General,常规,常規
 Your_language,Language:,语言：,語言：
 HT_G_Language,Change the interface of this software to the language you are using.\n\n Language file are located at:\n\tData\Language.csv\n\n You can add your language or edit this file with Excel or any other csv editor.\n\n Please mail your new file to millionart gmail.com,将本软件的界面改为你所使用的语种。\n\n 语言文件位于：\n\tData\Language.csv\n\n 你可以使用 Excel 或任意 csv 编辑器添加或修改语言文件。\n\n 请将修改过的语言文件发送至 millionart gmail.com,將本軟體的界面改為你所使用的語種。\n\n語言文件位于：\n\tData\Language.csv\n\n 您可以使用 Excel 或任意 csv 編輯器添加或編輯語言文件。\n\n請將修改后的語言文件發送至 millionart gmail.com
 Your_Photoshop_version,The Photoshop version being used:,正在使用的 Photoshop 版本：,正在使用的 Photoshop 版本：
+chooseYourPhotoshopVersion,Click here to choose your Photoshop version,点击这里以选择你的 Photoshop 版本,
 HT_PsCSver,,正确选择你正在使用的 Photoshop 版本。\n\n此选项将影响本软件使用效果。,正確選擇你正在使用的 Photoshop 版本。\n\n此選項將影響本軟體使用效果。
 Autosave,Autosave,自动保存,自動存儲
 Disabled,Disabled,禁用,禁用
