@@ -3,17 +3,15 @@
 #NoTrayIcon
 SendMode Input
 
-
-
 #Include Lib\Webapp.ahk
 __Webapp_AppStart:
 ;<< Header End >>
 
-Initialization()
-I18n(G_Language,0)
-
 ;Get our HTML DOM object
 appWeb := getDOM()
+
+Initialization()
+I18n(G_Language,0)
 
 Try {
     ; thanks to https://autohotkey.com/boards/viewtopic.php?t=23167
@@ -65,36 +63,24 @@ SaveAndExit() {
 ; function to run when page is loaded
 app_page(NewURL) {
 	appWeb := getDOM()
-	
 	if InStr(NewURL,"Config.html") {
-		disp_info()
+		;disp_info()
 	}
 }
 
-disp_info() {
-	appWeb := getDOM()
-	Sleep, 10
-	x := appWeb.document.getElementById("ahk_info")
-	x.innerHTML := "<i>Webapp.ahk is currently running on " . GetAHK_EnvInfo() . ".</i>"
-}
-
-Run(t) {
+Run(ByRef t) {
 	global
 	If (t="paypal")
 		t:="https://www.paypal.me/millionart"
 
-
 	If (t="twitter")
-		t:="https://twitter.com/intent/tweet?text=%Lang_shareText%&url=%DeviantArt%&hashtags=Photoshop"
-
+		t:="https://twitter.com/intent/tweet?text=" . Lang_shareText . "&url=" . DeviantArt . "&hashtags=Photoshop"
 
 	If (t="facebook")
-		Run, https://www.facebook.com/sharer/sharer.php?u=%DeviantArt%
-
+		t:="https://www.facebook.com/sharer/sharer.php?u=" . DeviantArt
 
 	If (t="reddit")
-		t:="https://www.reddit.com/submit?url=%DeviantArt%&title=%Lang_shareText%&text=%Lang_shareText%"
-
+		t:="https://www.reddit.com/submit?url=" . DeviantArt . "&title=" . Lang_shareText . "&text=" . Lang_shareText
 
 	If (t="github")
 		t:="https://github.com/millionart/Apssistant"
@@ -102,7 +88,8 @@ Run(t) {
 	If (t="weibo")
 	{
 		url=%Github%/releases/latest
-		Lang_shareText:=StrReplace(Lang_shareText, "#", "%23")		
+		Lang_shareText:=StrReplace(Lang_shareText, "#", "%23")
+
 		If (G_Language = "简体中文")
 			langTag:="zh_cn"
 		Else
@@ -111,10 +98,8 @@ Run(t) {
 		t:="https://service.weibo.com/share/share.php?url=" . url . "&language=" . langTag . "&title=" . Lang_shareText
 	}
 
-		Run, %t%
+	Run, %t%
 }
-
-
 
 Initialization(){
 	global
@@ -129,7 +114,6 @@ Initialization(){
 	maxVerNum:=PsVerToNum(psMaxVer)
 	ShowPsVer()
 
-
 	FileRemoveDir,%A_ScriptDir%\Data\Locales,1 ;Remove old language file.
 	CSV_Load(A_ScriptDir . "\Data\Lang.csv")
 	TotalCols:=CSV_TotalCols(CSV_Identifier)
@@ -137,7 +121,6 @@ Initialization(){
 	LangTotal:=TotalCols-1
 
 	langArray:=[]
-	appWeb := getDOM()
 	langId := appWeb.document.getElementById("langChoose")
 
 	loop,%LangTotal%
@@ -172,8 +155,6 @@ Initialization(){
 I18n(langTag,initialization:=1){
 	global
 	local wp,i18nTag, langText, Name, String
-
-	appWeb := getDOM()
 
 	i18nTag := appWeb.document.getElementsByName("i18n")
 
@@ -210,8 +191,7 @@ I18n(langTag,initialization:=1){
     {
         Name:=CSV_ReadCell(CSV_Identifier, A_Index+1, 1)
         String:=CSV_ReadCell(CSV_Identifier, A_Index+1, StringCol)
-		
-		String:=StrReplace(String, "\n", "`n")
+			String:=StrReplace(String, "\n", "`n")
 		String:=StrReplace(String, "\t", "	")
 
 		Try
@@ -243,7 +223,7 @@ I18n(langTag,initialization:=1){
 	ShowPsVer()
 }
 
-PsNumToVer(n){
+PsNumToVer(ByRef n){
 	global maxVerNum
 	If (n<6) || (n>maxVerNum)
 		n:=maxVerNum
@@ -253,6 +233,7 @@ PsNumToVer(n){
 		v:=n-1
 		v:="CC 20" . v
 	}
+
 	If n=14
 		v:="CC"
 
@@ -286,6 +267,7 @@ PsVerToNum(v){
 		n:=n+1
 		;Regver:=(n-7)*10
 	}
+
 	If (ccOrCs="CS")
 	{
 		n:=StrReplace(v, "CS", "")
@@ -297,6 +279,7 @@ PsVerToNum(v){
 	{
 		n:=v
 	}
+
 	If v=CS
 	{
 		n:=8
@@ -311,6 +294,7 @@ PsVerToNum(v){
 	{
 		n:=14
 	}
+
 	If v=CC20155
 	{
 		n:=17
@@ -324,7 +308,6 @@ ShowPsList()
 	global
 	IniRead, psPublicVer, %A_scriptdir%\Data\Config.ini, Setting, Psver, %psMaxVer%
 	n:=PsVerToNum(psPublicVer)
-	appWeb := getDOM()
 
 	psCCList:= appWeb.document.getElementById("psCCList")
 	psCCListHTML:=""
@@ -338,11 +321,10 @@ ShowPsList()
 			psVerCut:="CC"
 
 		If (psVer=psPublicVer)
-			psCCListHTML.="<label for=""psVerCheck"" onclick=""AHK('SetPsVer','" . psNum . "')"" class=""curPsVer"">" . psVerCut . "</label>"
+			psCCListHTML.="<label class=""curPsVer"">" . psVerCut . "</label>"
 		Else
 			psCCListHTML.="<label for=""psVerCheck"" onclick=""AHK('SetPsVer','" . psNum . "')"">" . psVerCut . "</label>"
 	}
-
 	psCCList.innerHTML:=psCCListHTML
 
 	psCSList:= appWeb.document.getElementById("psCSList")
@@ -356,11 +338,10 @@ ShowPsList()
 			psVerCut:="CS"
 
 		If (psVer=psPublicVer)
-			psCSListHTML.="<label for=""psVerCheck"" onclick=""AHK('SetPsVer','" . psNum . "')"" class=""curPsVer"">" . psVerCut . "</label>"
+			psCSListHTML.="<label class=""curPsVer"">" . psVerCut . "</label>"
 		Else
 			psCSListHTML.="<label for=""psVerCheck"" onclick=""AHK('SetPsVer','" . psNum . "')"">" . psVerCut . "</label>"
 	}
-	
 	psCSList.innerHTML:=psCSListHTML
 
 	psOLDList:= appWeb.document.getElementById("psOLDList")
@@ -369,13 +350,13 @@ ShowPsList()
 	{
 		psNum:=abs(a_index-8)
 		psVer:=% PsNumToVer(psNum)
+
 		If (psVer=psPublicVer)
-			psOLDListHTML.="<label for=""psVerCheck"" onclick=""AHK('SetPsVer','" . psNum . "')"" class=""curPsVer"">" . psVer . "</label>"
+			psOLDListHTML.="<label class=""curPsVer"">" . psVer . "</label>"
 		Else
 			psOLDListHTML.="<label for=""psVerCheck"" onclick=""AHK('SetPsVer','" . psNum . "')"">" . psVer . "</label>"
 	}
 	psOLDList.innerHTML:=psOLDListHTML
-
 }
 
 SetPsVer(n)
@@ -392,7 +373,6 @@ ShowPsVer()
 	global
 	local element
 	; psVer:=psPublicVer
-	appWeb := getDOM()
 	element := appWeb.document.getElementById("choosePsVerButton")
 	element.innerText:="Photoshop " . psPublicVer
 }
@@ -400,69 +380,41 @@ ShowPsVer()
 SetHotkey(elementId)
 {
 	global
-	appWeb := getDOM()
-	element := appWeb.document.getElementById(elementId)
-	
-	element.innerHTML:="请按下任意键"
-
-	endKeys={Esc}{LControl}{Tab}{RControl}{LAlt}{RAlt}{LShift}{RShift}{LWin}{RWin}{AppsKey}{F1}{F2}{F3}{F4}{F5}{F6}{F7}{F8}{F9}{F10}{F11}{F12}{Left}{Right}{Up}{Down}{Home}{End}{PgUp}{PgDn}{Del}{Ins}{BS}{CapsLock}{NumLock}{PrintScreen}{Pause}{Space}
-	;matchKeys=
-	Input, hotKey, B I L1 E,%endKeys%
-
-	If (ErrorLevel = "EndKey:Escape") || (ErrorLevel = "EndKey:BackSpace") || (ErrorLevel = "EndKey:Del") || (ErrorLevel = "EndKey:Space")
-		hotKey:="NULL"
-	Else
+	if (A_PriorHotkey <> "~LButton" or A_TimeSincePriorHotkey > 1000)
 	{
-		If (ErrorLevel = "EndKey:F1")
-			hotKey:="F1"
-		If (ErrorLevel = "EndKey:F2")
-			hotKey:="F2"
-		If (ErrorLevel = "EndKey:F3")
-			hotKey:="F3"
-		If (ErrorLevel = "EndKey:F4")
-			hotKey:="F4"
-		If (ErrorLevel = "EndKey:F5")
-			hotKey:="F5"
-		If (ErrorLevel = "EndKey:F6")
-			hotKey:="F6"
-		If (ErrorLevel = "EndKey:F7")
-			hotKey:="F7"
-		If (ErrorLevel = "EndKey:F8")
-			hotKey:="F8"
-		If (ErrorLevel = "EndKey:F9")
-			hotKey:="F9"
-		If (ErrorLevel = "EndKey:F10")
-			hotKey:="F10"
-		If (ErrorLevel = "EndKey:F11")
-			hotKey:="F11"
-		If (ErrorLevel = "EndKey:F12")
-			hotKey:="F12"
+		element := appWeb.document.getElementById(elementId)
+		element.innerHTML:="请按下任意键"
 
-	hotkey:=Format("{:T}", hotkey)
-	element.innerHTML:="<kbd>" . hotKey . "</kbd>"
+		endKeys={Esc}{Enter}{LControl}{Tab}{RControl}{LAlt}{RAlt}{LShift}{RShift}{LWin}{RWin}{AppsKey}{F1}{F2}{F3}{F4}{F5}{F6}{F7}{F8}{F9}{F10}{F11}{F12}{Left}{Right}{Up}{Down}{Home}{End}{PgUp}{PgDn}{Del}{Ins}{BS}{CapsLock}{NumLock}{PrintScreen}{Pause}{Space}
+		;matchKeys=
+		start:
+		Input, hotKey, B I L1 E,%endKeys%
 
-	Input
+		If (InStr(ErrorLevel, "EndKey:")) && (WinActive("ahk_group __Webapp_windows"))
+		{
+			errorKeys:=StrReplace(ErrorLevel, "EndKey:", "")
+
+			If (errorKeys = "Escape") 
+				hotKey:="NULL"
+						
+			If errorKeys in Space,BackSpace,Del,CapsLock,Enter,LAlt,RAlt,LShift,RShift,LWin,RWin,LControl,RControl
+			{
+				Gosub, start
+			}
+
+			If errorKeys in F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12
+				hotkey:=errorKeys
+		}
+
+		hotkey:=Format("{:T}", hotkey)
+		If (hotkey="Null")
+			element.innerHTML:="Null"
+		Else
+			element.innerHTML:="<kbd>" . hotKey . "</kbd>"
+
+		Input
+		Return
 	}
-
-}
-
-GetAHK_EnvInfo(){
-	return "AutoHotkey v" . A_AhkVersion . " " . (A_IsUnicode?"Unicode":"ANSI") . " " . (A_PtrSize*8) . "-bit"
-}
-Multiply(a,b) {
-	;MsgBox % a " * " b " = " a*b
-	return a * b
-}
-MyButton1() {
-	appWeb := getDOM()
-	MsgBox % appWeb.document.getElementById("MyTextBox").Value
-}
-MyButton2() {
-	appWeb := getDOM()
-	FormatTime, TimeString, %A_Now%, dddd MMMM d, yyyy HH:mm:ss
-    Random, x, %min%, %max%
-	data := "AHK Version " A_AhkVersion " - " (A_IsUnicode ? "Unicode" : "Ansi") " " (A_PtrSize == 4 ? "32" : "64") "bit`nCurrent time: " TimeString "`nRandom number: " x
-	appWeb.document.getElementById("MyTextBox").value := data
 }
 
 #include %A_scriptdir%\inc\Function.ahk

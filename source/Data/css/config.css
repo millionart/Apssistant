@@ -18,7 +18,6 @@ pre,
 form,
 fieldset,
 input,
-input[type=checkbox].select + label,
 textarea,
 p,
 blockquote,
@@ -353,7 +352,7 @@ div.hotkey:hover {
   cursor: default;
 }
 
-ul#supportList li {
+#supportList > li {
   height: 40px;
   line-height: 40px;
   padding-top: 10px;
@@ -368,34 +367,34 @@ ul#supportList li {
   display: block;
 }
 
-ul#supportList li:hover {
+#supportList > li:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-ul#supportList li img {
+#supportList > li > img {
   float: left;
   width: 40px;
   max-width: 40px;
   max-height: 40px;
 }
 
-ul#supportList li h3 {
+#supportList > li > h3 {
   float: left;
   margin-left: 10px;
 }
 
-ul#supportList li#donate {
+#donate {
   height: auto;
   cursor: default;
 }
 
-ul#supportList li#donate #qrcode {
+#qrcode {
   display: block;
   position: static;
   clear: both;
 }
 
-ul#supportList li#donate #qrcode img {
+#qrcode img {
   width: 200px;
   max-width: 200px;
   max-height: 200px;
@@ -406,7 +405,7 @@ ul#supportList li#donate #qrcode img {
   float: none;
 }
 
-ul#supportList li#githubButton div {
+#githubButton div {
   border-width: 1px;
   border-style: solid;
   border-color: #E6E6E6;
@@ -429,7 +428,7 @@ ul#supportList li#githubButton div {
   display: inline-block;
 }
 
-ul#supportList li#githubButton div svg {
+#githubButton svg {
   fill: #24292E;
   height: 16px;
   position: relative;
@@ -455,9 +454,7 @@ ul#supportList li#githubButton div svg {
   text-align: center;
 }
 
-
-input,
-input[type=checkbox].select + label {
+input {
   border-width: 1px;
   border-style: solid;
   border-color: #E6E6E6;
@@ -470,21 +467,21 @@ input[type=checkbox].select + label {
   box-sizing: border-box;
 }
 
-input:hover, input[type=checkbox].select + label:hover {
+input:hover {
   background-color: #FFF;
 }
 
-input[type=text], input[type=checkbox].select + label[type=text] {
+input[type=text] {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-input[type=number], input[type=checkbox].select + label[type=number] {
+input[type=number] {
   text-align: center;
   -moz-appearance: textfield;
 }
 
-input[type=number]::-webkit-outer-spin-button, input[type=checkbox].select + label[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button, input[type=checkbox].select + label[type=number]::-webkit-inner-spin-button {
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -493,32 +490,75 @@ legend + input[type=checkbox].select + label {
   margin-top: 60px;
 }
 
-input[type=checkbox].select, input[type=checkbox].select + label[type=checkbox].select {
+input[type=checkbox].select {
   position: absolute;
   left: -9999px;
 }
 
-input[type=checkbox].select + label, input[type=checkbox].select + label[type=checkbox].select + label {
+input[type=checkbox].select + label {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #E6E6E6;
+  border-radius: 4px;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 10px;
+  font-size: 1em;
+  box-sizing: border-box;
   display: block;
   text-align: center;
   cursor: pointer;
+  background-color: transparent;
 }
 
-input[type=checkbox].select + label + div, input[type=checkbox].select + label[type=checkbox].select + label + div {
+input[type=checkbox].select + label + div {
   height: 0;
   overflow: hidden;
 }
 
-input[type=checkbox].select + label + div h4, input[type=checkbox].select + label[type=checkbox].select + label + div h4 {
+input[type=checkbox].select + label + div h4 {
   display: block;
   clear: both;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-input[type=checkbox].select + label + div #psCCList label, input[type=checkbox].select + label[type=checkbox].select + label + div #psCCList label,
-input[type=checkbox].select + label + div #psCSList label, input[type=checkbox].select + label[type=checkbox].select + label + div #psCSList label,
-input[type=checkbox].select + label + div #psOLDList label, input[type=checkbox].select + label[type=checkbox].select + label + div #psOLDList label {
+input[type=checkbox].select:checked + label {
+  cursor: default;
+  font-size: 0;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 40px;
+  z-index: 1;
+  border-width: 0;
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  transition: background-color 1s ease;
+}
+
+input[type=checkbox].select:checked + label + div {
+  -webkit-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
+  position: absolute;
+  z-index: 2;
+  display: block;
+  background-color: #ffffff;
+  padding: 20px;
+  width: calc(100% - 120px);
+  height: 410px;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+#psCCList label,
+#psCSList label,
+#psOLDList label {
   border-width: 1px;
   border-style: solid;
   border-color: #E6E6E6;
@@ -535,54 +575,34 @@ input[type=checkbox].select + label + div #psOLDList label, input[type=checkbox]
   cursor: pointer;
 }
 
-input[type=checkbox].select + label + div #psCCList label.curPsVer, input[type=checkbox].select + label[type=checkbox].select + label + div #psCCList label.curPsVer,
-input[type=checkbox].select + label + div #psCSList label.curPsVer, input[type=checkbox].select + label[type=checkbox].select + label + div #psCSList label.curPsVer,
-input[type=checkbox].select + label + div #psOLDList label.curPsVer, input[type=checkbox].select + label[type=checkbox].select + label + div #psOLDList label.curPsVer {
+#psCCList label:hover,
+#psCSList label:hover,
+#psOLDList label:hover {
+  border-color: #6CF;
+  color: #6CF;
+}
+
+#psCCList label.curPsVer,
+#psCSList label.curPsVer,
+#psOLDList label.curPsVer {
   background-color: #6CF;
   border-width: 0;
   color: #FFF;
   cursor: default;
 }
 
-input[type=checkbox].select:checked + label, input[type=checkbox].select + label[type=checkbox].select:checked + label {
-  cursor: default;
-  font-size: 0;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 40px;
-  z-index: 1;
-  border-width: 0;
-  border-radius: 0;
-  background-color: rgba(255, 255, 255, 0.8);
-  transition: background 1s ease;
+#psCCList label.curPsVer:hover,
+#psCSList label.curPsVer:hover,
+#psOLDList label.curPsVer:hover {
+  color: #FFF;
 }
 
-input[type=checkbox].select:checked + label + div, input[type=checkbox].select + label[type=checkbox].select:checked + label + div {
-  -webkit-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
-  position: absolute;
-  z-index: 2;
-  display: block;
-  background-color: #ffffff;
-  padding: 20px;
-  width: calc(100% - 120px);
-  height: 410px;
-  overflow: hidden;
-  transition: height 0.3s ease;
-}
-
-input[type='checkbox'].switch, input[type=checkbox].select + label[type='checkbox'].switch {
+input[type='checkbox'].switch {
   position: absolute;
   left: -9999px;
 }
 
-input[type='checkbox'].switch + label, input[type=checkbox].select + label[type='checkbox'].switch + label {
+input[type='checkbox'].switch + label {
   height: 40px;
   line-height: 40px;
   position: absolute;
@@ -595,7 +615,7 @@ input[type='checkbox'].switch + label, input[type=checkbox].select + label[type=
   background-color: transparent;
 }
 
-input[type='checkbox'].switch + label::before, input[type=checkbox].select + label[type='checkbox'].switch + label::before {
+input[type='checkbox'].switch + label::before {
   border-width: 1px;
   border-style: solid;
   border-color: #E6E6E6;
@@ -617,29 +637,29 @@ input[type='checkbox'].switch + label::before, input[type=checkbox].select + lab
   left: 0;
 }
 
-input[type='checkbox'].switch ~ li:nth-of-type(1), input[type=checkbox].select + label[type='checkbox'].switch ~ li:nth-of-type(1) {
+input[type='checkbox'].switch ~ li:nth-of-type(1) {
   float: left;
   color: #5E5E5E;
 }
 
-input[type='checkbox'].switch ~ li:nth-of-type(2), input[type=checkbox].select + label[type='checkbox'].switch ~ li:nth-of-type(2) {
+input[type='checkbox'].switch ~ li:nth-of-type(2) {
   display: block;
   float: right;
   color: #D7D7D7;
 }
 
-input[type='checkbox'].switch:checked ~ li:nth-of-type(1), input[type=checkbox].select + label[type='checkbox'].switch:checked ~ li:nth-of-type(1) {
+input[type='checkbox'].switch:checked ~ li:nth-of-type(1) {
   float: left;
   color: #D7D7D7;
 }
 
-input[type='checkbox'].switch:checked ~ li:nth-of-type(2), input[type=checkbox].select + label[type='checkbox'].switch:checked ~ li:nth-of-type(2) {
+input[type='checkbox'].switch:checked ~ li:nth-of-type(2) {
   display: block;
   float: right;
   color: #5E5E5E;
 }
 
-input[type='checkbox'].switch:checked + label::before, input[type=checkbox].select + label[type='checkbox'].switch:checked + label::before {
+input[type='checkbox'].switch:checked + label::before {
   -webkit-transition-property: left;
   transition-property: left;
   -webkit-transition-duration: 0.5s;
