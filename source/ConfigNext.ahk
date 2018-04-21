@@ -103,7 +103,7 @@ Run(ByRef t) {
 
 Initialization(){
 	global
-	local wp,langId
+	local wp,langId,elementId
 	IniRead, G_Language, %A_scriptdir%\Data\Config.ini, Setting, lang, English
 	IniRead, psPublicVer, %A_scriptdir%\Data\Config.ini, Setting, Psver, %psMaxVer%	
 	Gosub, ConfigRead
@@ -113,6 +113,36 @@ Initialization(){
 	psMaxVer:="CC 2018"
 	maxVerNum:=PsVerToNum(psMaxVer)
 	ShowPsVer()
+
+	hotkeysIDList:="foregroundColorPickerKey|hudColorPickerKey|showHideLayerKey|quicklyNewLayerKey|brushRangeKey"
+	hotkeysIDListArray:=StrSplit(hotkeysIDList, "|")
+
+	Loop, % hotkeysIDListArray.MaxIndex()
+	{
+		hotkeyID:=hotkeysIDListArray[a_index]
+		If (hotkeyID="foregroundColorPickerKey")
+		{
+			hotKey:=FCPk
+		}
+		If (hotkeyID="hudColorPickerKey")
+		{
+			hotKey:=HUDCP
+		}
+		If (hotkeyID="showHideLayerKey")
+		{
+			hotKey:=SHLayer
+		}
+		If (hotkeyID="quicklyNewLayerKey")
+		{
+			hotKey:=QCLayer
+		}
+		If (hotkeyID="brushRangeKey")
+		{
+			hotKey:=ModifyBrushKey
+		}
+		element := appWeb.document.getElementById(hotkeyID)
+		element.innerHTML:="<kbd>" . hotKey . "</kbd>"		
+	}
 
 	FileRemoveDir,%A_ScriptDir%\Data\Locales,1 ;Remove old language file.
 	CSV_Load(A_ScriptDir . "\Data\Lang.csv")
@@ -388,6 +418,7 @@ SetHotkey(elementId)
 		element := appWeb.document.getElementById(elementId)
 		element.innerHTML:="请按下任意键"
 
+		IniRead, hotKey, %A_scriptdir%\Data\Config.ini, Hotkeys, %elementId%
 		endKeys={Esc}{Enter}{LControl}{Tab}{RControl}{LAlt}{RAlt}{LShift}{RShift}{LWin}{RWin}{AppsKey}{F1}{F2}{F3}{F4}{F5}{F6}{F7}{F8}{F9}{F10}{F11}{F12}{Left}{Right}{Up}{Down}{Home}{End}{PgUp}{PgDn}{Del}{Ins}{BS}{CapsLock}{NumLock}{PrintScreen}{Pause}{Space}
 		;matchKeys=
 		start:
@@ -411,7 +442,32 @@ SetHotkey(elementId)
 
 		hotkey:=Format("{:T}", hotkey)
 
-		If (hotkey="Null")
+		If (elementId="foregroundColorPickerKey")
+		{
+			perHotkey:=FCPk
+		}
+		If (elementId="hudColorPickerKey")
+		{
+			perHotkey:=HUDCP
+		}
+		If (elementId="showHideLayerKey")
+		{
+			perHotkey:=SHLayer
+		}
+		If (elementId="quicklyNewLayerKey")
+		{
+			perHotkey:=QCLayer
+		}
+		If (elementId="brushRangeKey")
+		{
+			perHotkey:=ModifyBrushKey
+		}
+
+		If (hotkey=perHotkey)
+		{
+			element.innerHTML:="<kbd>" . hotKey . "</kbd>"
+		}
+		Else If (hotkey="Null")
 			element.innerHTML:="Null"
 		Else If hotkey in %FCPk%,%HUDCP%,%SHLayer%,%QCLayer%,%ModifyBrushKey%
 		{
@@ -425,29 +481,24 @@ SetHotkey(elementId)
 			If (elementId="foregroundColorPickerKey")
 			{
 				FCPk:=hotKey
-				elementIdParameter:="FCPk"
 			}
 			If (elementId="hudColorPickerKey")
 			{
 				HUDCP:=hotKey
-				elementIdParameter:="HUDCP"
 			}
 			If (elementId="showHideLayerKey")
 			{
 				SHLayer:=hotKey
-				elementIdParameter:="SHLayer"
 			}
 			If (elementId="quicklyNewLayerKey")
 			{
 				QCLayer:=hotKey
-				elementIdParameter:="QCLayer"
 			}
 			If (elementId="brushRangeKey")
 			{
 				ModifyBrushKey:=hotKey
-				elementIdParameter:="ModifyBrushKey"
 			}
-			IniWrite, %elementIdParameter%, %A_scriptdir%\Data\Config.ini, Hotkeys, %elementId%
+			IniWrite, %hotKey%, %A_scriptdir%\Data\Config.ini, Hotkeys, %elementId%
 		}
 		Input
 		Return
