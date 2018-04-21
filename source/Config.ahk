@@ -797,8 +797,7 @@ ConfigSave:
 			FCPkText.save(keyboardShortcutsFile)
 		}
 	}
-	IniWrite, %HUDCP%, %A_scriptdir%\Data\Config.ini, Setting, hudcp
-	IniWrite, %FCPk%, %A_scriptdir%\Data\Config.ini, Setting, fcp
+
 	IniWrite, %Check1%, %A_scriptdir%\Data\Config.ini, Setting, undo
 	IniWrite, %Autosave%, %A_scriptdir%\Data\Config.ini, Setting, autosave
 	If (Savesleep<2)
@@ -819,11 +818,16 @@ ConfigSave:
 	IniWrite, %hotkeyMode%, %A_scriptdir%\Data\Config.ini, Setting, hotkeyMode
 	IniWrite, %Check13%, %A_scriptdir%\Data\Config.ini, Setting, SHLayerToggle
 	IniWrite, %Check14%, %A_scriptdir%\Data\Config.ini, Setting, CleanUpTempFiles
-	IniWrite, %SHLayer%, %A_scriptdir%\Data\Config.ini, Setting, SHLayer
-	IniWrite, %QCLayer%, %A_scriptdir%\Data\Config.ini, Setting, QCLayer
-	IniWrite, %ModifyBrushKey%, %A_scriptdir%\Data\Config.ini, Setting, ModifyBrushRadius
+
 	IniWrite, %MapAlt%, %A_scriptdir%\Data\Config.ini, Setting, mapalt
 	IniWrite, %Check15%, %A_scriptdir%\Data\Config.ini, Setting, 3dsMaxSync
+
+	IniWrite, %FCPk%, %A_scriptdir%\Data\Config.ini, Hotkeys, foregroundColorPickerKey
+	IniWrite, %HUDCP%, %A_scriptdir%\Data\Config.ini, Hotkeys, hudColorPickerKey
+	IniWrite, %SHLayer%, %A_scriptdir%\Data\Config.ini, Hotkeys, showHideLayerKey
+	IniWrite, %QCLayer%, %A_scriptdir%\Data\Config.ini, Hotkeys, quicklyNewLayerKey
+	IniWrite, %ModifyBrushKey%, %A_scriptdir%\Data\Config.ini, Hotkeys, brushRangeKey
+
 	If A_IsCompiled
 	{
 		run %A_scriptdir%\Apssistant.exe

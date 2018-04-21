@@ -21,9 +21,6 @@ CleanUpTempFiles:
 
 ; 读取配置信息
 ConfigRead:
-	IniRead, HUDCP, %A_scriptdir%\Data\Config.ini, Setting, hudcp, ``
-	IniRead, FCPk, %A_scriptdir%\Data\Config.ini, Setting, fcp, N
-	
 	Try
 	{
 		Loop, Files, %A_AppData%\Adobe\Adobe Photoshop *, D
@@ -58,19 +55,38 @@ ConfigRead:
 	IniRead, Check9, %A_scriptdir%\Data\Config.ini, Setting, Centerhudcp, 0
 	IniRead, Check10, %A_scriptdir%\Data\Config.ini, Setting, DisableAltMenu, 1
 	IniRead, Check11, %A_scriptdir%\Data\Config.ini, Setting, enableModifyBrushRadius, 0
-	IniRead, hotkeyMode, %A_scriptdir%\Data\Config.ini, Setting, CPThudcp, 1
-		IniRead, hotkeyMode, %A_scriptdir%\Data\Config.ini, Setting, hotkeyMode, %hotkeyMode%
-		IniDelete, %A_scriptdir%\Data\Config.ini, Setting, CPThudcp
 	IniRead, Check13, %A_scriptdir%\Data\Config.ini, Setting, SHLayerToggle, 0
 	IniRead, Check14, %A_scriptdir%\Data\Config.ini, Setting, CleanUpTempFiles, 1
-	IniRead, SHLayer, %A_scriptdir%\Data\Config.ini, Setting, SHLayer, H
-	IniRead, QCLayer, %A_scriptdir%\Data\Config.ini, Setting, QCLayer, F1
-	IniRead, ModifyBrushKey, %A_scriptdir%\Data\Config.ini, Setting, ModifyBrushRadius, F2
 	IniRead, MapAltmode, %A_scriptdir%\Data\Config.ini, Setting, mapalt, 1
 	IniRead, PsPath, %A_scriptdir%\Data\Config.ini, Setting, PsPath, NULL
 	IniRead, Check15, %A_scriptdir%\Data\Config.ini, Setting, 3dsMaxSync, 0
 	IniRead, Tiptext, %A_scriptdir%\Data\Config.ini, Setting, tiptext, %Lang_tiptext%
 	IniRead, fontname, %A_scriptdir%\Data\Config.ini, General, fontname, Segoe UI
+
+	; Old
+	IniRead, FCPk, %A_scriptdir%\Data\Config.ini, Setting, fcp, N
+	IniRead, HUDCP, %A_scriptdir%\Data\Config.ini, Setting, hudcp, ``
+	IniRead, SHLayer, %A_scriptdir%\Data\Config.ini, Setting, SHLayer, H
+	IniRead, QCLayer, %A_scriptdir%\Data\Config.ini, Setting, QCLayer, F1
+	IniRead, ModifyBrushKey, %A_scriptdir%\Data\Config.ini, Setting, ModifyBrushRadius, F2
+	IniRead, hotkeyMode, %A_scriptdir%\Data\Config.ini, Setting, CPThudcp, 1
+
+	; Del Old
+	IniDelete, %A_scriptdir%\Data\Config.ini, Setting ,fcp
+	IniDelete, %A_scriptdir%\Data\Config.ini, Setting ,hudcp
+	IniDelete, %A_scriptdir%\Data\Config.ini, Setting ,SHLayer
+	IniDelete, %A_scriptdir%\Data\Config.ini, Setting ,QCLayer
+	IniDelete, %A_scriptdir%\Data\Config.ini, Setting ,ModifyBrushRadius
+	IniDelete, %A_scriptdir%\Data\Config.ini, Setting, CPThudcp
+
+	; New
+	IniRead, hotkeyMode, %A_scriptdir%\Data\Config.ini, Setting, hotkeyMode, %hotkeyMode%
+	IniRead, FCPk, %A_scriptdir%\Data\Config.ini, Hotkeys, foregroundColorPickerKey, %FCPk%
+	IniRead, HUDCP, %A_scriptdir%\Data\Config.ini, Hotkeys, hudColorPickerKey, %HUDCP%
+	IniRead, SHLayer, %A_scriptdir%\Data\Config.ini, Hotkeys, showHideLayerKey, %SHLayer%
+	IniRead, QCLayer, %A_scriptdir%\Data\Config.ini, Hotkeys, quicklyNewLayerKey, %QCLayer%
+	IniRead, ModifyBrushKey, %A_scriptdir%\Data\Config.ini, Hotkeys, brushRangeKey, %ModifyBrushKey%
+
 	stringreplace, Tiptext, Tiptext, \n, `n, All
 	stringreplace, Tiptext, Tiptext, \r, `r, All
 	Return

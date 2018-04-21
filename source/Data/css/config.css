@@ -190,15 +190,15 @@ kbd {
 #exitApp {
   height: 40px;
   line-height: 40px;
+  position: absolute;
+  z-index: 99;
+  right: 0;
+  top: 0;
   width: 40px;
   font-size: 1.2em;
   font-weight: 100;
-  position: absolute;
-  right: 0;
-  top: 0;
   text-align: center;
   padding: 0;
-  z-index: 99;
 }
 
 #exitApp:hover a {
@@ -239,9 +239,9 @@ fieldset:hover {
 fieldset legend {
   height: 60px;
   line-height: 60px;
+  cursor: default;
   font-size: 1.4em;
   font-weight: 200;
-  cursor: default;
   float: left;
 }
 
@@ -264,6 +264,7 @@ div.hotkey {
   border-radius: 4px;
   height: 40px;
   line-height: 40px;
+  cursor: pointer;
   width: 200px;
   font-size: 1em;
   background-color: transparent;
@@ -272,7 +273,6 @@ div.hotkey {
   clear: none;
   margin-top: 10px;
   margin-bottom: 10px;
-  cursor: pointer;
   text-align: center;
 }
 
@@ -295,9 +295,9 @@ div.hotkey:hover {
 }
 
 #min {
+  position: relative;
   border-radius: 4px;
   float: right;
-  position: relative;
   left: 200px;
   width: 100px;
   padding-left: 100px;
@@ -347,9 +347,9 @@ div.hotkey:hover {
 .optionList > li {
   height: 40px;
   line-height: 40px;
+  cursor: default;
   margin-bottom: 10px;
   padding-left: 10px;
-  cursor: default;
 }
 
 #supportList > li {
@@ -384,8 +384,8 @@ div.hotkey:hover {
 }
 
 #donate {
-  height: auto;
   cursor: default;
+  height: auto;
 }
 
 #qrcode {
@@ -512,8 +512,14 @@ input[type=checkbox].select + label {
 }
 
 input[type=checkbox].select + label + div {
-  height: 0;
   overflow: hidden;
+  position: absolute;
+  z-index: 2;
+  width: calc(100% - 120px);
+  display: block;
+  background-color: #ffffff;
+  height: 0;
+  transition: height 0.3s ease;
 }
 
 input[type=checkbox].select + label + div h4 {
@@ -539,20 +545,15 @@ input[type=checkbox].select:checked + label {
   border-radius: 0;
   background-color: rgba(255, 255, 255, 0.9);
   transition: background-color 1s ease;
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
 }
 
 input[type=checkbox].select:checked + label + div {
   -webkit-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
-  position: absolute;
-  z-index: 2;
-  display: block;
-  background-color: #ffffff;
   padding: 20px;
-  width: calc(100% - 120px);
   height: 410px;
-  overflow: hidden;
   transition: height 0.3s ease;
 }
 
@@ -569,10 +570,10 @@ input[type=checkbox].select:checked + label + div {
   margin-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  cursor: pointer;
   min-width: 80px;
   text-align: center;
   float: left;
-  cursor: pointer;
 }
 
 #psCCList label:hover,
@@ -585,10 +586,10 @@ input[type=checkbox].select:checked + label + div {
 #psCCList label.curPsVer,
 #psCSList label.curPsVer,
 #psOLDList label.curPsVer {
+  cursor: default;
   background-color: #6CF;
   border-width: 0;
   color: #FFF;
-  cursor: default;
 }
 
 #psCCList label.curPsVer:hover,
@@ -605,14 +606,15 @@ input[type='checkbox'].switch {
 input[type='checkbox'].switch + label {
   height: 40px;
   line-height: 40px;
+  cursor: pointer;
   position: absolute;
   right: 0;
   width: 200px;
   padding: 0;
   margin: 0;
   border-width: 0;
-  cursor: pointer;
   background-color: transparent;
+  transition: background-color 1s ease;
 }
 
 input[type='checkbox'].switch + label::before {

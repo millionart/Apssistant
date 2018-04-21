@@ -233,15 +233,15 @@ kbd {
 
 #exitApp {
 	@include oneLineControlsHeight (40px);
+	position: absolute;
+	z-index: 99;
+	right: 0;
+	top: 0;
 	width: 40px;
 	font-size: 1.2em;
 	font-weight: 100;
-	position: absolute;
-	right: 0;
-	top: 0;
 	text-align: center;
 	padding: 0;
-	z-index: 99;
 	&:hover {
 		a {
 			color: $red;
@@ -284,9 +284,9 @@ fieldset {
 	}
 	legend {
 		@include oneLineControlsHeight (60px);
+		cursor: default;
 		font-size: 1.4em;
 		font-weight: 200;
-		cursor: default;
 		float: left;
 	}
 	div {
@@ -307,6 +307,7 @@ fieldset {
 div.hotkey {
 	@include borderNormal;
 	@include oneLineControlsHeight ($oneLineControlsHeight);
+	cursor: pointer;
 	width: $ControlsWidth;
 	font-size: 1em;
 	background-color: transparent;
@@ -315,7 +316,6 @@ div.hotkey {
 	clear: none;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	cursor: pointer;
 	text-align: center;
 	&:hover {
 		background-color: $white;
@@ -336,9 +336,9 @@ div.hotkey {
 }
 
 #min {
+	position: relative;
 	border-radius: $rounded;
 	float: right;
-	position: relative;
 	left: $ControlsWidth;
 	width: $ControlsWidth/2;
 	padding-left: $ControlsWidth/2;
@@ -383,9 +383,9 @@ div.hotkey {
 	}
 	&>li {
 		@include oneLineControlsHeight ($oneLineControlsHeight);
+		cursor: default;
 		margin-bottom: 10px;
 		padding-left: 10px;
-		cursor: default;
 	}
 }
 
@@ -423,8 +423,8 @@ div.hotkey {
 }
 
 #donate {
-	height: auto;
 	cursor: default;
+	height: auto;
 }
 
 #qrcode {
@@ -540,8 +540,14 @@ input[type=checkbox].select {
 		cursor: pointer;
 		background-color: transparent;
 		&+div {
-			height: 0;
 			overflow: hidden;
+			position: absolute;
+			z-index: 2;
+			width: calc(100% - 120px);
+			display: block;
+			background-color: #ffffff;
+			height: 0;
+			transition: height 0.3s ease;
 			h4 {
 				display: block;
 				clear: both;
@@ -569,18 +575,11 @@ input[type=checkbox].select {
 			border-radius: 0;
 			background-color: rgba(255, 255, 255, 0.9);
 			transition: background-color 1s ease;
+			@include prefix(backdrop-filter, blur(30px), ('-webkit-'));
 			&+div {
-				-webkit-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
-				-moz-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
-				box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
-				position: absolute;
-				z-index: 2;
-				display: block;
-				background-color: #ffffff;
+				@include prefix(box-shadow, 0 0 40px 0 rgba(0, 0, 0, 0.3), ('-webkit-'));
 				padding: 20px;
-				width: calc(100% - 120px);
 				height: 410px;
-				overflow: hidden;
 				transition: height 0.3s ease;
 			}
 		}
@@ -601,19 +600,19 @@ input[type=checkbox].select {
 			left: 10px;
 			right: 10px;
 		}
+		cursor: pointer;
 		min-width: 80px;
 		text-align: center;
 		float: left;
-		cursor: pointer;
 		&:hover {
 			border-color: $blue;
 			color: $blue;
 		}
 		&.curPsVer {
+			cursor: default;
 			background-color: $blue;
 			border-width: 0;
 			color: $white;
-			cursor: default;
 			&:hover {
 				color: $white;
 			}
@@ -626,14 +625,15 @@ input[type='checkbox'].switch {
 	left: -9999px;
 	&+label {
 		@include oneLineControlsHeight ($oneLineControlsHeight);
+		cursor: pointer;
 		position: absolute;
 		right: 0;
 		width: $ControlsWidth;
 		padding: 0;
 		margin: 0;
 		border-width: 0;
-		cursor: pointer;
 		background-color: transparent;
+		transition: background-color 1s ease;
 		&::before {
 			@include borderNormal;
 			@include prefix(transition-property, left, ('-webkit-'));

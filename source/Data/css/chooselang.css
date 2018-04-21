@@ -5,18 +5,17 @@ li.langList {
   text-align: center;
   min-width: 140px;
   float: left;
+  border-radius: 4px;
   margin-right: 10px;
   margin-bottom: 10px;
 }
 
 li.langList:hover {
-  background: #FFF;
-  border-radius: 4px;
+  background-color: #FFF;
 }
 
 li.langList:active {
   background-color: transparent;
-  border-radius: 4px;
 }
 
 li.langList a {

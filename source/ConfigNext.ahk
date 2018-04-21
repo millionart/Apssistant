@@ -104,9 +104,9 @@ Run(ByRef t) {
 Initialization(){
 	global
 	local wp,langId
-
 	IniRead, G_Language, %A_scriptdir%\Data\Config.ini, Setting, lang, English
-	IniRead, psPublicVer, %A_scriptdir%\Data\Config.ini, Setting, Psver, %psMaxVer%
+	IniRead, psPublicVer, %A_scriptdir%\Data\Config.ini, Setting, Psver, %psMaxVer%	
+	Gosub, ConfigRead
 
 	Github:="https://github.com/millionart/Apssistant"
 	DeviantArt:="https://www.deviantart.com/deviation/160950828"
@@ -380,6 +380,9 @@ ShowPsVer()
 SetHotkey(elementId)
 {
 	global
+	;IniRead, hotkeysData, %A_scriptdir%\Data\Config.ini, Hotkeys
+	;msgbox,%hotkeysData%
+
 	if (A_PriorHotkey <> "~LButton" or A_TimeSincePriorHotkey > 1000)
 	{
 		element := appWeb.document.getElementById(elementId)
@@ -407,11 +410,45 @@ SetHotkey(elementId)
 		}
 
 		hotkey:=Format("{:T}", hotkey)
+
 		If (hotkey="Null")
 			element.innerHTML:="Null"
+		Else If hotkey in %FCPk%,%HUDCP%,%SHLayer%,%QCLayer%,%ModifyBrushKey%
+		{
+			msgbox,error
+			Gosub, start
+		}
 		Else
+		{
 			element.innerHTML:="<kbd>" . hotKey . "</kbd>"
 
+			If (elementId="foregroundColorPickerKey")
+			{
+				FCPk:=hotKey
+				elementIdParameter:="FCPk"
+			}
+			If (elementId="hudColorPickerKey")
+			{
+				HUDCP:=hotKey
+				elementIdParameter:="HUDCP"
+			}
+			If (elementId="showHideLayerKey")
+			{
+				SHLayer:=hotKey
+				elementIdParameter:="SHLayer"
+			}
+			If (elementId="quicklyNewLayerKey")
+			{
+				QCLayer:=hotKey
+				elementIdParameter:="QCLayer"
+			}
+			If (elementId="brushRangeKey")
+			{
+				ModifyBrushKey:=hotKey
+				elementIdParameter:="ModifyBrushKey"
+			}
+			IniWrite, %elementIdParameter%, %A_scriptdir%\Data\Config.ini, Hotkeys, %elementId%
+		}
 		Input
 		Return
 	}

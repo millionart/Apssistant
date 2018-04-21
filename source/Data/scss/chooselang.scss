@@ -36,17 +36,16 @@ li.langList {
 	text-align: center;
 	min-width: 140px;
 	float: left;
+	border-radius: $rounded;
 	margin: {
 		right: 10px;
 		bottom: 10px;
 	}
 	&:hover {
-		background: #FFF;
-		border-radius: $rounded;
+		background-color: #FFF;
 	}
 	&:active {
 		background-color: transparent;
-		border-radius: $rounded;
 	}
 	a {
 		display: block;
