@@ -111,8 +111,11 @@ Initialization(){
 	Github:="https://github.com/millionart/Apssistant"
 	DeviantArt:="https://www.deviantart.com/deviation/160950828"
 	psMaxVer:="CC 2018"
-	maxVerNum:=PsVerToNum(psMaxVer)
+	maxVerNum:=PsVerConvert(psMaxVer)
 	ShowPsVer()
+
+	psPathID := appWeb.document.getElementById("photoshopPath")
+	psPathID.innerText:=psPath
 
 	hotkeysIDList:="foregroundColorPickerKey|hudColorPickerKey|showHideLayerKey|quicklyNewLayerKey|brushRangeKey"
 	hotkeysIDListArray:=StrSplit(hotkeysIDList, "|")
@@ -269,7 +272,7 @@ PsNumToVer(ByRef n){
 	Return v
 }
 
-PsVerToNum(v){
+PsVerConvert(v,r:="n"){
 	v:=StrReplace(v, " ", "")
 	v:=StrReplace(v, ".", "")
 
@@ -279,14 +282,14 @@ PsVerToNum(v){
 	{
 		n:=StrReplace(v, "CC20", "")
 		n:=n+1
-		;Regver:=(n-7)*10
+		regVer:=(n-7)*10
 	}
 
 	If (ccOrCs="CS")
 	{
 		n:=StrReplace(v, "CS", "")
 		n:=n+7
-		;Regver:=n
+		regVer:=n
 	}
 
 	If v<8
@@ -298,12 +301,12 @@ PsVerToNum(v){
 	{
 		n:=8
 	}
-	/*
+
 	If v=CS6
 	{
-		Regver:=60
+		regVer:=60
 	}
-	*/
+
 	If v=CC
 	{
 		n:=14
@@ -314,14 +317,18 @@ PsVerToNum(v){
 		n:=17
 	}
 
-	return n
+	If (r="r")
+		result:=regVer
+	else
+		result:=n
+	return result
 }
 
 ShowPsList()
 {
 	global
 	IniRead, psPublicVer, %A_scriptdir%\Data\Config.ini, Setting, Psver, %psMaxVer%
-	n:=PsVerToNum(psPublicVer)
+	n:=PsVerConvert(psPublicVer)
 
 	psCCList:= appWeb.document.getElementById("psCCList")
 	psCCListHTML:=""
@@ -448,6 +455,33 @@ SetHotkey(elementId)
 		}
 		Input
 		Return
+	}
+}
+
+FindPhotoshopPath()
+{
+	global
+	regVer:=PsVerConvert(psPublicVer,"r")
+	RegRead, psDir, HKLM, SOFTWARE\Adobe\Photoshop\%regVer%.0 , ApplicationPath
+
+	fileSelectFile:=1
+	If FileExist(psPath)
+		psDir:=StrReplace(psPath, "Photoshop.exe" , "")
+	Else If FileExist(psDir . "Photoshop.exe")
+	{
+		psPath:=psDir . "Photoshop.exe"
+		fileSelectFile:=0
+	}
+	Else
+		psDir:=A_ProgramFiles
+
+	If (fileSelectFile=1)
+		FileSelectFile, psPath, 1, %psDir%\Photoshop.exe, %Lang_PsDir%, Photoshop.exe	
+
+	If (psPath!="")
+	{
+		psPathID.innerText:=psPath
+		IniWrite, %psPath%, %A_scriptdir%\Data\Config.ini, Setting, PsPath		
 	}
 }
 

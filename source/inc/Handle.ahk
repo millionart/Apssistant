@@ -58,7 +58,7 @@ ConfigRead:
 	IniRead, Check13, %A_scriptdir%\Data\Config.ini, Setting, SHLayerToggle, 0
 	IniRead, Check14, %A_scriptdir%\Data\Config.ini, Setting, CleanUpTempFiles, 1
 	IniRead, MapAltmode, %A_scriptdir%\Data\Config.ini, Setting, mapalt, 1
-	IniRead, PsPath, %A_scriptdir%\Data\Config.ini, Setting, PsPath, NULL
+	IniRead, psPath, %A_scriptdir%\Data\Config.ini, Setting, PsPath, NULL
 	IniRead, Check15, %A_scriptdir%\Data\Config.ini, Setting, 3dsMaxSync, 0
 	IniRead, Tiptext, %A_scriptdir%\Data\Config.ini, Setting, tiptext, %Lang_tiptext%
 	IniRead, fontname, %A_scriptdir%\Data\Config.ini, General, fontname, Segoe UI

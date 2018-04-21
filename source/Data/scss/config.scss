@@ -476,22 +476,6 @@ div.hotkey {
 	}
 }
 
-.checkBox {
-	position: absolute;
-	right: $oneLineControlsHeight;
-	width: $ControlsWidth;
-	height: $oneLineControlsHeight;
-	margin-top: 10px;
-	li {
-		@include oneLineControlsHeight ($oneLineControlsHeight);
-		background-color: transparent;
-		display: block;
-		float: left;
-		width: $ControlsWidth/2;
-		box-sizing: border-box;
-		text-align: center;
-	}
-}
 
 input {
 	@include borderNormal;
@@ -526,19 +510,31 @@ legend+input[type=checkbox].select {
 	}
 }
 
+div.button {
+	@include borderNormal;
+	@include oneLineControlsHeight ($oneLineControlsHeight);
+	margin-bottom: 10px;
+	font-size: 1em;
+	box-sizing: border-box;
+	display: block;
+	text-align: center;
+	cursor: pointer;
+	background-color: transparent;
+	&:hover {
+		border-color: $blue;
+		color: $blue;
+	}
+}
+
+#photoshopPath {
+	font-size: 0.8em;
+}
+
 input[type=checkbox].select {
 	position: absolute;
 	left: -9999px;
 	&+label {
-		@include borderNormal;
-		@include oneLineControlsHeight ($oneLineControlsHeight);
-		margin-bottom: 10px;
-		font-size: 1em;
-		box-sizing: border-box;
-		display: block;
-		text-align: center;
-		cursor: pointer;
-		background-color: transparent;
+		@extend div.button;
 		&+div {
 			overflow: hidden;
 			position: absolute;
@@ -586,6 +582,13 @@ input[type=checkbox].select {
 	}
 }
 
+
+#autosaveswitch {
+	&:checked {
+		& {}
+	}
+}
+
 #psCCList,
 #psCSList,
 #psOLDList {
@@ -620,6 +623,15 @@ input[type=checkbox].select {
 	}
 }
 
+fieldset {
+	>input[type='checkbox'].switch+label {
+		margin-top: 10px;
+	}
+	>.hotkey {
+		margin-top: 10px;
+	}
+}
+
 input[type='checkbox'].switch {
 	position: absolute;
 	left: -9999px;
@@ -627,7 +639,7 @@ input[type='checkbox'].switch {
 		@include oneLineControlsHeight ($oneLineControlsHeight);
 		cursor: pointer;
 		position: absolute;
-		right: 0;
+		right: $oneLineControlsHeight;
 		width: $ControlsWidth;
 		padding: 0;
 		margin: 0;
@@ -649,31 +661,50 @@ input[type='checkbox'].switch {
 			box-sizing: border-box;
 			left: 0;
 		}
-	}
-	&~li:nth-of-type(1) {
-		float: left;
-		color: $fontColor;
-	}
-	&~li:nth-of-type(2) {
-		display: block;
-		float: right;
-		color: $fontLightColor;
+		&>ul {
+			position: absolute;
+			right: 0;
+			width: $ControlsWidth;
+			height: $oneLineControlsHeight;
+			li {
+				@include oneLineControlsHeight ($oneLineControlsHeight);
+				background-color: transparent;
+				display: block;
+				float: left;
+				width: $ControlsWidth/2;
+				box-sizing: border-box;
+				text-align: center;
+			}
+			li:nth-child(1) {
+				float: left;
+				color: $fontColor; 
+			}
+			li:nth-child(2) {
+				display: block;
+				float: right;
+				color: $fontLightColor;
+			}
+		}
 	}
 	&:checked {
-		&~li:nth-of-type(1) {
-			float: left;
-			color: $fontLightColor;
-		}
-		&~li:nth-of-type(2) {
-			display: block;
-			float: right;
-			color: $fontColor;
-		}
-		&+label::before {
-			@include prefix(transition-property, left, ('-webkit-'));
-			@include prefix(transition-duration, 0.5s, ('-webkit-'));
-			@include prefix(transition-timing-function, ease, ('-webkit-'));
-			left: $ControlsWidth/2;
+		&+label {
+			&>ul {
+				li:nth-child(1) {
+					float: left;
+					color: $fontLightColor;
+				}
+				li:nth-child(2) {
+					display: block;
+					float: right;
+					color: $fontColor;
+				}
+			}
+			&::before {
+				@include prefix(transition-property, left, ('-webkit-'));
+				@include prefix(transition-duration, 0.5s, ('-webkit-'));
+				@include prefix(transition-timing-function, ease, ('-webkit-'));
+				left: $ControlsWidth/2;
+			}
 		}
 	}
 }

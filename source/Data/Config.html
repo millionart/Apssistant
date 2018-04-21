@@ -88,18 +88,17 @@ do something
 							<!-- psOLDList -->
 						</div>
 					</div>
-					<input type="button" style="width: 100%;" value="请选择安装位置">
+					<div onclick="AHK('FindPhotoshopPath')" name="i18n" lang="Lang_Browse" id="photoshopPath" class="button">Lang_Browse</div>
 				</fieldset>
 				<fieldset>
-					<ul class="checkBox">
-						<input id="autoLaunchPs" type="checkbox" class="switch" checked>
-						<label for="autoLaunchPs"></label>
-						<li name="i18n" lang="Off">关闭</li>
-						<li name="i18n" lang="On">开启</li>
-					</ul>
+					<input id="autoLaunchPs" type="checkbox" class="switch">
+					<label for="autoLaunchPs">
+						<ul>
+							<li name="i18n" lang="Off">关闭</li>
+							<li name="i18n" lang="On">开启</li>
+						</ul>
+					</label>
 					<legend name="i18n" lang="P_I_LaunchPs">自动启动 Photoshop</legend>
-
-
 				</fieldset>
 			</div>
 		</div>
@@ -114,29 +113,32 @@ do something
 					<div id="hudColorPickerKey" class="hotkey" onclick="AHK('SetHotkey','hudColorPickerKey')"></div>
 					<ul class="optionList">
 						<li>
-							<ul class="checkBox">
-								<input id="pickerMode" type="checkbox" class="switch" checked>
-								<label for="pickerMode"></label>
-								<li>滑动</li>
-								<li>精确</li>
-							</ul>
+							<input id="pickerMode" type="checkbox" class="switch">
+							<label for="pickerMode">
+								<ul>
+									<li>滑动</li>
+									<li>精确</li>
+								</ul>
+							</label>
 							取色模式
 						</li>
 						<li>
-							<ul class="checkBox">
-								<input id="displayPosition" type="checkbox" class="switch" checked>
-								<label for="displayPosition"></label>
-								<li>中心</li>
-								<li>跟随</li>
-							</ul>
+							<input id="displayPosition" type="checkbox" class="switch">
+							<label for="displayPosition">
+								<ul>
+									<li>中心</li>
+									<li>跟随</li>
+								</ul>
+							</label>
 							显示位置</li>
 						<li>
-							<ul class="checkBox">
-								<input id="runMode" type="checkbox" class="switch" checked>
-								<label for="runMode"></label>
-								<li>快速</li>
-								<li>稳定</li>
-							</ul>
+							<input id="runMode" type="checkbox" class="switch">
+							<label for="runMode">
+								<ul>
+									<li>快速</li>
+									<li>稳定</li>
+								</ul>
+							</label>
 							运行模式</li>
 					</ul>
 				</fieldset>
@@ -158,12 +160,13 @@ do something
 					<div id="brushRangeKey" class="hotkey" onclick="AHK('SetHotkey','brushRangeKey')"></div>
 				</fieldset>
 				<fieldset class="undoredoMode">
-					<ul class="checkBox">
-						<input id="undoredoMode" type="checkbox" class="switch" checked>
-						<label for="undoredoMode"></label>
-						<li>默认</li>
-						<li>系统</li>
-					</ul>
+					<input id="undoredoMode" type="checkbox" class="switch">
+					<label for="undoredoMode">
+						<ul>
+							<li>默认</li>
+							<li>系统</li>
+						</ul>
+					</label>
 					<legend>撤销 / 恢复 快捷键风格</legend>
 					<ul class="optionList">
 						<li class="lightLine">
@@ -192,12 +195,13 @@ do something
 			<div class="page">
 				<fieldset>
 					<legend>自动保存</legend>
-					<ul class="checkBox">
-						<input id="autosaveswitch" type="checkbox" class="switch" checked>
-						<label for="autosaveswitch"></label>
-						<li name="i18n" lang="Off">关闭</li>
-						<li name="i18n" lang="On">开启</li>
-					</ul>
+					<input id="autosaveswitch" type="checkbox" class="switch">
+					<label for="autosaveswitch">
+						<ul>
+							<li name="i18n" lang="Off">关闭</li>
+							<li name="i18n" lang="On">开启</li>
+						</ul>
+					</label>
 
 					<ul class="optionList">
 						<li>
@@ -206,31 +210,32 @@ do something
 							<span name="i18n" lang="Min." id="min">分钟</span>
 						</li>
 						<li>
-							<ul class="checkBox">
-								<input id="tipText" type="checkbox" class="switch" checked>
-								<label for="tipText"></label>
-								<li name="i18n" lang="Off">关闭</li>
-								<li name="i18n" lang="On">开启</li>
-							</ul>
+							<input id="tipText" type="checkbox" class="switch">
+							<label for="tipText">
+								<ul>
+									<li name="i18n" lang="Off">关闭</li>
+									<li name="i18n" lang="On">开启</li>
+								</ul>
+							</label>
 							<span>提示内容</span>
 						</li>
 						<li>
 							<input type="text" style="width: 100%;" />
 						</li>
 					</ul>
-
 				</fieldset>
 			</div>
 		</div>
 		<div class="section" id="section4">
 			<div class="page">
 				<fieldset>
-					<ul class="checkBox">
-						<input id="temp" type="checkbox" class="switch" checked>
-						<label for="temp"></label>
-						<li>默认</li>
-						<li>系统</li>
-					</ul>
+					<input id="temp" type="checkbox" class="switch">
+					<label for="temp">
+						<ul>
+							<li>默认</li>
+							<li>系统</li>
+						</ul>
+					</label>
 					<legend>撤销 / 恢复 快捷键风格</legend>
 				</fieldset>
 			</div>
