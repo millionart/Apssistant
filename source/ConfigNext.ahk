@@ -116,30 +116,14 @@ Initialization(){
 
 	hotkeysIDList:="foregroundColorPickerKey|hudColorPickerKey|showHideLayerKey|quicklyNewLayerKey|brushRangeKey"
 	hotkeysIDListArray:=StrSplit(hotkeysIDList, "|")
-
+	hotkeysStringList:="FCPk|HUDCP|SHLayer|QCLayer|ModifyBrushKey"
+	hotkeysStringListArray:=StrSplit(hotkeysStringList, "|")
+	
 	Loop, % hotkeysIDListArray.MaxIndex()
 	{
 		hotkeyID:=hotkeysIDListArray[a_index]
-		If (hotkeyID="foregroundColorPickerKey")
-		{
-			hotKey:=FCPk
-		}
-		If (hotkeyID="hudColorPickerKey")
-		{
-			hotKey:=HUDCP
-		}
-		If (hotkeyID="showHideLayerKey")
-		{
-			hotKey:=SHLayer
-		}
-		If (hotkeyID="quicklyNewLayerKey")
-		{
-			hotKey:=QCLayer
-		}
-		If (hotkeyID="brushRangeKey")
-		{
-			hotKey:=ModifyBrushKey
-		}
+		hotKeyParameter:=hotkeysStringListArray[a_index]
+		hotKey:=%hotKeyParameter%
 		element := appWeb.document.getElementById(hotkeyID)
 		element.innerHTML:="<kbd>" . hotKey . "</kbd>"		
 	}
@@ -413,7 +397,7 @@ SetHotkey(elementId)
 	;IniRead, hotkeysData, %A_scriptdir%\Data\Config.ini, Hotkeys
 	;msgbox,%hotkeysData%
 
-	if (A_PriorHotkey <> "~LButton" or A_TimeSincePriorHotkey > 1000)
+	if (A_PriorHotkey <> "~LButton" or A_TimeSincePriorHotkey > 800)
 	{
 		element := appWeb.document.getElementById(elementId)
 		element.innerHTML:="请按下任意键"
@@ -428,13 +412,8 @@ SetHotkey(elementId)
 		{
 			errorKeys:=StrReplace(ErrorLevel, "EndKey:", "")
 
-			If (errorKeys = "Escape") 
-				hotKey:="NULL"
-						
-			If errorKeys in Space,BackSpace,Del,CapsLock,Enter,LAlt,RAlt,LShift,RShift,LWin,RWin,LControl,RControl
-			{
+			If errorKeys in Space,Del,CapsLock,Enter,LAlt,RAlt,LShift,RShift,LWin,RWin,LControl,RControl
 				Gosub, start
-			}
 
 			If errorKeys in F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12
 				hotkey:=errorKeys
@@ -442,34 +421,22 @@ SetHotkey(elementId)
 
 		hotkey:=Format("{:T}", hotkey)
 
-		If (elementId="foregroundColorPickerKey")
+		Loop, % hotkeysIDListArray.MaxIndex()
 		{
-			perHotkey:=FCPk
-		}
-		If (elementId="hudColorPickerKey")
-		{
-			perHotkey:=HUDCP
-		}
-		If (elementId="showHideLayerKey")
-		{
-			perHotkey:=SHLayer
-		}
-		If (elementId="quicklyNewLayerKey")
-		{
-			perHotkey:=QCLayer
-		}
-		If (elementId="brushRangeKey")
-		{
-			perHotkey:=ModifyBrushKey
+			If (elementId=hotkeysIDListArray[a_index])
+			{
+				hotKeyParameter:=hotkeysStringListArray[a_index]
+				perHotkey:=%hotKeyParameter%
+			}
 		}
 
-		If (hotkey=perHotkey)
+		If (hotkey=perHotkey) || (errorKeys = "Escape")
 		{
-			element.innerHTML:="<kbd>" . hotKey . "</kbd>"
+			element.innerHTML:="<kbd>" . perHotkey . "</kbd>"
 		}
-		Else If (hotkey="Null")
+		Else If (errorKeys = "BackSpace")
 			element.innerHTML:="Null"
-		Else If hotkey in %FCPk%,%HUDCP%,%SHLayer%,%QCLayer%,%ModifyBrushKey%
+		Else If hotkey in %FCPk%,%HUDCP%,%SHLayer%,%QCLayer%,%ModifyBrushKey% or hotkey=""
 		{
 			msgbox,error
 			Gosub, start
@@ -477,27 +444,6 @@ SetHotkey(elementId)
 		Else
 		{
 			element.innerHTML:="<kbd>" . hotKey . "</kbd>"
-
-			If (elementId="foregroundColorPickerKey")
-			{
-				FCPk:=hotKey
-			}
-			If (elementId="hudColorPickerKey")
-			{
-				HUDCP:=hotKey
-			}
-			If (elementId="showHideLayerKey")
-			{
-				SHLayer:=hotKey
-			}
-			If (elementId="quicklyNewLayerKey")
-			{
-				QCLayer:=hotKey
-			}
-			If (elementId="brushRangeKey")
-			{
-				ModifyBrushKey:=hotKey
-			}
 			IniWrite, %hotKey%, %A_scriptdir%\Data\Config.ini, Hotkeys, %elementId%
 		}
 		Input
