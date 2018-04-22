@@ -128,6 +128,7 @@ kbd {
   border-radius: 3px;
   margin: 0 3px 0 3px;
   padding: 1px 5px;
+  text-transform: capitalize;
   cursor: default;
 }
 

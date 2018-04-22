@@ -406,54 +406,67 @@ SetHotkey(elementId)
 
 	if (A_PriorHotkey <> "~LButton" or A_TimeSincePriorHotkey > 800)
 	{
+		; 获得当前设置按键
+		IniRead, FCPk, %A_scriptdir%\Data\Config.ini, Hotkeys, foregroundColorPickerKey
+		IniRead, HUDCP, %A_scriptdir%\Data\Config.ini, Hotkeys, hudColorPickerKey
+		IniRead, SHLayer, %A_scriptdir%\Data\Config.ini, Hotkeys, showHideLayerKey
+		IniRead, QCLayer, %A_scriptdir%\Data\Config.ini, Hotkeys, quicklyNewLayerKey
+		IniRead, ModifyBrushKey, %A_scriptdir%\Data\Config.ini, Hotkeys, brushRangeKey
+
+		IniRead, perHotkey, %A_scriptdir%\Data\Config.ini, Hotkeys, %elementId%
+		; 显示设置按键提示文字
 		element := appWeb.document.getElementById(elementId)
 		element.innerHTML:="请按下任意键"
 
-		IniRead, hotKey, %A_scriptdir%\Data\Config.ini, Hotkeys, %elementId%
-		endKeys={Esc}{Enter}{LControl}{Tab}{RControl}{LAlt}{RAlt}{LShift}{RShift}{LWin}{RWin}{AppsKey}{F1}{F2}{F3}{F4}{F5}{F6}{F7}{F8}{F9}{F10}{F11}{F12}{Left}{Right}{Up}{Down}{Home}{End}{PgUp}{PgDn}{Del}{Ins}{BS}{CapsLock}{NumLock}{PrintScreen}{Pause}{Space}
+
+		endKeys={Escape}{Enter}{LControl}{Tab}{RControl}{LAlt}{RAlt}{LShift}{RShift}{LWin}{RWin}{AppsKey}{F1}{F2}{F3}{F4}{F5}{F6}{F7}{F8}{F9}{F10}{F11}{F12}{Left}{Right}{Up}{Down}{Home}{End}{PgUp}{PgDn}{Del}{Ins}{BS}{CapsLock}{NumLock}{PrintScreen}{Pause}{Space}
 		;matchKeys=
 		start:
+		; 等待按下任意键
 		Input, hotKey, B I L1 E,%endKeys%
 
 		If (InStr(ErrorLevel, "EndKey:")) && (WinActive("ahk_group __Webapp_windows"))
 		{
 			errorKeys:=StrReplace(ErrorLevel, "EndKey:", "")
-
+			; msgbox, %errorKeys%
+			; 如果按键是辅助键，忽略
+			;msgbox,%errorKeys%
 			If errorKeys in Space,Del,CapsLock,Enter,LAlt,RAlt,LShift,RShift,LWin,RWin,LControl,RControl
 				Gosub, start
 
 			If errorKeys in F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12
 				hotkey:=errorKeys
+
+			If (errorKeys = "BackSpace")
+				element.innerHTML:="Null"
+
+			If (errorKeys = "Escape")
+				hotkey:=perHotkey
 		}
 
-		hotkey:=Format("{:T}", hotkey)
-
-		Loop, % hotkeysIDListArray.MaxIndex()
+		If hotkey in %FCPk%,%HUDCP%,%SHLayer%,%QCLayer%,%ModifyBrushKey%
 		{
-			If (elementId=hotkeysIDListArray[a_index])
+			; msgbox,%hotkey% || %FCPk% | %HUDCP% | %SHLayer% | %QCLayer% | %ModifyBrushKey%
+			Loop, % hotkeysIDListArray.MaxIndex()
 			{
-				hotKeyParameter:=hotkeysStringListArray[a_index]
-				perHotkey:=%hotKeyParameter%
+				perHotkeyParameter:=hotkeysStringListArray[a_index]
+			}Until elementId=hotkeysIDListArray[a_index]
+			
+			If (hotKey=%perHotkeyParameter%)
+			{
+				element.innerHTML:="<kbd>" . perHotkey . "</kbd>"						
 			}
-		}
-
-		If (hotkey=perHotkey) || (errorKeys = "Escape")
-		{
-			element.innerHTML:="<kbd>" . perHotkey . "</kbd>"
-		}
-		Else If (errorKeys = "BackSpace")
-			element.innerHTML:="Null"
-		Else If hotkey in %FCPk%,%HUDCP%,%SHLayer%,%QCLayer%,%ModifyBrushKey% or hotkey=""
-		{
-			msgbox,error
-			Gosub, start
+			else
+			{
+				msgbox,error
+				Gosub, start
+			}
 		}
 		Else
 		{
 			element.innerHTML:="<kbd>" . hotKey . "</kbd>"
 			IniWrite, %hotKey%, %A_scriptdir%\Data\Config.ini, Hotkeys, %elementId%
 		}
-		Input
 		Return
 	}
 }
