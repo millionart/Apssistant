@@ -16,7 +16,7 @@
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$('#fullpage').fullpage({
-				anchors: ['general', 'colorPicker', 'hotkeys', 'autosave', 'advanced', 'support'],
+				anchors: ['general', 'hotkeys', 'autosave', 'advanced', 'extension', 'support'],
 				sectionsColor: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'],
 				menu: '#menu'
 			});
@@ -32,9 +32,6 @@ do something
 		<li data-menuanchor="general">
 			<a href="#general" name="i18n" lang="General">general</a>
 		</li>
-		<li data-menuanchor="colorPicker">
-			<a href="#colorPicker" name="i18n" lang="ColorPicker">colorPicker</a>
-		</li>
 		<li data-menuanchor="hotkeys">
 			<a href="#hotkeys" name="i18n" lang="Hotkey">hotkeys</a>
 		</li>
@@ -43,6 +40,9 @@ do something
 		</li>
 		<li data-menuanchor="advanced">
 			<a href="#advanced" name="i18n" lang="PSUserConfig">advanced</a>
+		</li>
+		<li data-menuanchor="extension">
+			<a href="#extension" name="i18n" lang="Extension">extension</a>
 		</li>
 		<li data-menuanchor="support">
 			<a href="#support" name="i18n" lang="Support">Support</a>
@@ -141,11 +141,6 @@ do something
 							运行模式</li>
 					</ul>
 				</fieldset>
-			</div>
-		</div>
-		<div class="section" id="section2">
-			<div class="page">
-
 				<fieldset>
 					<legend>快速创建新图层</legend>
 					<div id="quicklyNewLayerKey" class="hotkey" onclick="AHK('SetHotkey','quicklyNewLayerKey')"></div>
@@ -190,7 +185,7 @@ do something
 				</fieldset>
 			</div>
 		</div>
-		<div class="section" id="section3">
+		<div class="section" id="section2">
 			<div class="page">
 				<fieldset>
 					<legend>自动保存</legend>
@@ -225,7 +220,7 @@ do something
 				</fieldset>
 			</div>
 		</div>
-		<div class="section" id="section4">
+		<div class="section" id="section3">
 			<div class="page">
 				<fieldset>
 					<input id="temp" type="checkbox" class="switch">
@@ -237,6 +232,11 @@ do something
 					</label>
 					<legend>撤销 / 恢复 快捷键风格</legend>
 				</fieldset>
+			</div>
+		</div>
+		<div class="section" id="section4">
+			<div class="page">
+
 			</div>
 		</div>
 		<div class="section" id="section5">

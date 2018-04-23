@@ -174,7 +174,7 @@ kbd {
 	border-radius: 3px;
 	margin: 0 3px 0 3px;
 	padding: 1px 5px;
-	text-transform:capitalize;
+	text-transform: capitalize;
 	cursor: default;
 }
 
@@ -277,7 +277,7 @@ fieldset {
 	}
 	margin: {
 		right: -40px;
-		bottom: 10px;
+		bottom: 0;
 		left: -40px;
 	}
 	&:hover {
@@ -323,29 +323,6 @@ div.hotkey {
 	}
 }
 
-#intervals {
-	position: relative;
-	z-index: 1;
-	float: right;
-	width: $ControlsWidth;
-	padding-left: 0;
-	padding-right: $ControlsWidth/2;
-	background-color: transparent;
-	&:hover+#min {
-		background-color: $white;
-	}
-}
-
-#min {
-	position: relative;
-	border-radius: $rounded;
-	float: right;
-	left: $ControlsWidth;
-	width: $ControlsWidth/2;
-	padding-left: $ControlsWidth/2;
-	text-align: center;
-}
-
 #langChoose {
 	clear: both;
 }
@@ -370,6 +347,10 @@ div.hotkey {
 	&:hover {
 		li.lightLine {
 			background-color: $white;
+			padding: {
+				top: 4px;
+				bottom: 4px;
+			}
 		}
 	}
 }
@@ -383,10 +364,11 @@ div.hotkey {
 		margin-top: 0;
 	}
 	&>li {
-		@include oneLineControlsHeight ($oneLineControlsHeight);
+		@include oneLineControlsHeight ($oneLineControlsHeight - 10);
 		cursor: default;
 		margin-bottom: 10px;
-		padding-left: 10px;
+		margin-left: $oneLineControlsHeight - 5;
+		padding-left: 6px;
 	}
 }
 
@@ -477,12 +459,11 @@ div.hotkey {
 	}
 }
 
-
 input {
 	@include borderNormal;
-	@include oneLineControlsHeight ($oneLineControlsHeight);
+	@include oneLineControlsHeight ($oneLineControlsHeight - 10);
 	margin-bottom: 10px;
-	font-size: 1em;
+	font-size: 0.8em;
 	background-color: transparent;
 	box-sizing: border-box;
 	&:hover {
@@ -503,6 +484,30 @@ input {
 			margin: 0;
 		}
 	}
+}
+
+#intervals {
+	position: relative;
+	z-index: 1;
+	float: right;
+	width: $ControlsWidth;
+	padding-left: 0;
+	padding-right: $ControlsWidth/2;
+	background-color: transparent;
+	&:hover+#min {
+		background-color: $white;
+	}
+}
+
+#min {
+	position: relative;
+	border-radius: $rounded;
+	float: right;
+	left: $ControlsWidth;
+	width: $ControlsWidth/2;
+	padding-left: $ControlsWidth/2;
+	text-align: center;
+	font-size: 0.8em;
 }
 
 legend+input[type=checkbox].select {
@@ -583,7 +588,6 @@ input[type=checkbox].select {
 	}
 }
 
-
 #autosaveswitch {
 	&:checked {
 		& {}
@@ -627,6 +631,17 @@ input[type=checkbox].select {
 fieldset {
 	>input[type='checkbox'].switch+label {
 		margin-top: 10px;
+		@include oneLineControlsHeight ($oneLineControlsHeight);
+		&::before {
+			@include oneLineControlsHeight ($oneLineControlsHeight);
+		}
+		&>ul {
+			height: $oneLineControlsHeight;
+			li {
+				@include oneLineControlsHeight ($oneLineControlsHeight);
+				font-size: 1em;
+			}
+		}
 	}
 	>.hotkey {
 		margin-top: 10px;
@@ -637,7 +652,7 @@ input[type='checkbox'].switch {
 	position: absolute;
 	left: -9999px;
 	&+label {
-		@include oneLineControlsHeight ($oneLineControlsHeight);
+		@include oneLineControlsHeight ($oneLineControlsHeight - 10);
 		cursor: pointer;
 		position: absolute;
 		right: $oneLineControlsHeight;
@@ -658,7 +673,7 @@ input[type='checkbox'].switch {
 			top: 0;
 			bottom: 10px;
 			width: $ControlsWidth/2;
-			height: $oneLineControlsHeight;
+			height: $oneLineControlsHeight - 10;
 			box-sizing: border-box;
 			left: 0;
 		}
@@ -666,19 +681,20 @@ input[type='checkbox'].switch {
 			position: absolute;
 			right: 0;
 			width: $ControlsWidth;
-			height: $oneLineControlsHeight;
+			height: $oneLineControlsHeight - 10;
 			li {
-				@include oneLineControlsHeight ($oneLineControlsHeight);
+				@include oneLineControlsHeight ($oneLineControlsHeight - 10);
 				background-color: transparent;
 				display: block;
 				float: left;
 				width: $ControlsWidth/2;
 				box-sizing: border-box;
 				text-align: center;
+				font-size: 0.8em;
 			}
 			li:nth-child(1) {
 				float: left;
-				color: $fontColor; 
+				color: $fontColor;
 			}
 			li:nth-child(2) {
 				display: block;

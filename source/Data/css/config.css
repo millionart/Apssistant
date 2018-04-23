@@ -229,7 +229,7 @@ fieldset {
   padding-bottom: 0;
   padding-left: 40px;
   margin-right: -40px;
-  margin-bottom: 10px;
+  margin-bottom: 0;
   margin-left: -40px;
 }
 
@@ -281,30 +281,6 @@ div.hotkey:hover {
   background-color: #FFF;
 }
 
-#intervals {
-  position: relative;
-  z-index: 1;
-  float: right;
-  width: 200px;
-  padding-left: 0;
-  padding-right: 100px;
-  background-color: transparent;
-}
-
-#intervals:hover + #min {
-  background-color: #FFF;
-}
-
-#min {
-  position: relative;
-  border-radius: 4px;
-  float: right;
-  left: 200px;
-  width: 100px;
-  padding-left: 100px;
-  text-align: center;
-}
-
 #langChoose {
   clear: both;
 }
@@ -332,6 +308,8 @@ div.hotkey:hover {
 
 .undoredoMode:hover li.lightLine {
   background-color: #FFF;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .optionList {
@@ -346,11 +324,12 @@ div.hotkey:hover {
 }
 
 .optionList > li {
-  height: 40px;
-  line-height: 40px;
+  height: 30px;
+  line-height: 30px;
   cursor: default;
   margin-bottom: 10px;
-  padding-left: 10px;
+  margin-left: 35px;
+  padding-left: 6px;
 }
 
 #supportList > li {
@@ -441,10 +420,10 @@ input {
   border-style: solid;
   border-color: #E6E6E6;
   border-radius: 4px;
-  height: 40px;
-  line-height: 40px;
+  height: 30px;
+  line-height: 30px;
   margin-bottom: 10px;
-  font-size: 1em;
+  font-size: 0.8em;
   background-color: transparent;
   box-sizing: border-box;
 }
@@ -466,6 +445,31 @@ input[type=number] {
 input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+#intervals {
+  position: relative;
+  z-index: 1;
+  float: right;
+  width: 200px;
+  padding-left: 0;
+  padding-right: 100px;
+  background-color: transparent;
+}
+
+#intervals:hover + #min {
+  background-color: #FFF;
+}
+
+#min {
+  position: relative;
+  border-radius: 4px;
+  float: right;
+  left: 200px;
+  width: 100px;
+  padding-left: 100px;
+  text-align: center;
+  font-size: 0.8em;
 }
 
 legend + input[type=checkbox].select + label {
@@ -591,6 +595,23 @@ input[type=checkbox].select:checked + label + div {
 
 fieldset > input[type='checkbox'].switch + label {
   margin-top: 10px;
+  height: 40px;
+  line-height: 40px;
+}
+
+fieldset > input[type='checkbox'].switch + label::before {
+  height: 40px;
+  line-height: 40px;
+}
+
+fieldset > input[type='checkbox'].switch + label > ul {
+  height: 40px;
+}
+
+fieldset > input[type='checkbox'].switch + label > ul li {
+  height: 40px;
+  line-height: 40px;
+  font-size: 1em;
 }
 
 fieldset > .hotkey {
@@ -603,8 +624,8 @@ input[type='checkbox'].switch {
 }
 
 input[type='checkbox'].switch + label {
-  height: 40px;
-  line-height: 40px;
+  height: 30px;
+  line-height: 30px;
   cursor: pointer;
   position: absolute;
   right: 40px;
@@ -633,7 +654,7 @@ input[type='checkbox'].switch + label::before {
   top: 0;
   bottom: 10px;
   width: 100px;
-  height: 40px;
+  height: 30px;
   box-sizing: border-box;
   left: 0;
 }
@@ -642,18 +663,19 @@ input[type='checkbox'].switch + label > ul {
   position: absolute;
   right: 0;
   width: 200px;
-  height: 40px;
+  height: 30px;
 }
 
 input[type='checkbox'].switch + label > ul li {
-  height: 40px;
-  line-height: 40px;
+  height: 30px;
+  line-height: 30px;
   background-color: transparent;
   display: block;
   float: left;
   width: 100px;
   box-sizing: border-box;
   text-align: center;
+  font-size: 0.8em;
 }
 
 input[type='checkbox'].switch + label > ul li:nth-child(1) {
