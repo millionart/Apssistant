@@ -1,4 +1,5 @@
-$defaultFont: '微软雅黑 Light',
+$defaultFont: SourceHanSans,
+'微软雅黑 Light',
 'Segoe UI',
 Tahoma,
 Geneva,
@@ -38,7 +39,13 @@ $leftMenuWidth: 260px;
 	line-height: $height;
 }
 
-@import url(chooselang.scss);
+@import url(chooselang.css);
+@font-face {
+	font-family: SourceHanSans;
+	src: url('../fonts/SourceHanSans.ttc'), url('../fonts/SourceHanSans.eot');
+	/* IE9+ */
+}
+
 body,
 div,
 dl,
@@ -66,19 +73,17 @@ td {
 	margin: 0;
 }
 
-h1 {
-	font-size: 2.2em;
-}
-
-h2 {
-	font-size: 1.8em;
-	font-weight: 200;
-	height: 60px;
-	line-height: 60px;
-}
-
-h3 {
-	font-size: 1.4em;
+$h: 1,
+2,
+3,
+4;
+@for $c from 1 through length($h) {
+	h#{nth($h,$c)} {
+		font-size: 2.2em - ($c - 1) * 0.4;
+		font-weight: 700 + (1 - $c) * 100;
+		height: 2.4em - ($c - 1) * 0.4;
+		line-height: 2.4em - ($c - 1) * 0.4;
+	}
 }
 
 a {
@@ -130,11 +135,6 @@ q:after {
 	content: '';
 }
 
-abbr,
-acronym {
-	border: 0;
-}
-
 /* Custom CSS
  * --------------------------------------- */
 
@@ -156,13 +156,15 @@ body {
 	position: relative;
 }
 
-h1 {
-	font-size: 6em;
-}
-
 p {
 	font-size: 1em;
 	padding-bottom: 10px;
+}
+
+hr {
+	border: 0;
+	height: 1px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
 }
 
 kbd {
@@ -286,8 +288,8 @@ fieldset {
 	legend {
 		@include oneLineControlsHeight (60px);
 		cursor: default;
-		font-size: 1.4em;
-		font-weight: 200;
+		font-size: 1.2em;
+		font-weight: 700;
 		float: left;
 	}
 	div {
@@ -346,7 +348,7 @@ div.hotkey {
 	}
 	&:hover {
 		li.lightLine {
-			background-color: $white;
+			background-color: rgba(255, 255, 255, 0.6);
 			padding: {
 				top: 4px;
 				bottom: 4px;
@@ -363,12 +365,24 @@ div.hotkey {
 	.hotkey {
 		margin-top: 0;
 	}
-	&>li {
+	>li {
+		/*
 		@include oneLineControlsHeight ($oneLineControlsHeight - 10);
+		*/
 		cursor: default;
 		margin-bottom: 10px;
 		margin-left: $oneLineControlsHeight - 5;
 		padding-left: 6px;
+		font-weight: 100;
+	}
+	.shortcutsList {
+		width: 8em;
+		text-align: right;
+		kbd {
+			font-size: 0.6em;
+			box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #CCC;
+
+		}
 	}
 }
 
@@ -500,6 +514,7 @@ input {
 }
 
 #min {
+	@include oneLineControlsHeight ($oneLineControlsHeight - 10);
 	position: relative;
 	border-radius: $rounded;
 	float: right;
@@ -518,8 +533,10 @@ legend+input[type=checkbox].select {
 
 div.button {
 	@include borderNormal;
+	/* 
 	@include oneLineControlsHeight ($oneLineControlsHeight);
 	margin-bottom: 10px;
+	*/
 	font-size: 1em;
 	box-sizing: border-box;
 	display: block;
@@ -533,7 +550,8 @@ div.button {
 }
 
 #photoshopPath {
-	font-size: 0.8em;
+	@include oneLineControlsHeight ($oneLineControlsHeight - 10);
+	font-size: 0.6em;
 }
 
 input[type=checkbox].select {
@@ -545,9 +563,10 @@ input[type=checkbox].select {
 			overflow: hidden;
 			position: absolute;
 			z-index: 2;
-			width: calc(100% - 120px);
+			width: calc(100% - 160px);
 			display: block;
 			background-color: #ffffff;
+			left: $oneLineControlsHeight * 2;
 			height: 0;
 			transition: height 0.3s ease;
 			h4 {
@@ -577,9 +596,16 @@ input[type=checkbox].select {
 			border-radius: 0;
 			background-color: rgba(255, 255, 255, 0.9);
 			transition: background-color 1s ease;
-			@include prefix(backdrop-filter, blur(30px), ('-webkit-'));
+			@include prefix(backdrop-filter,
+			blur(30px),
+			('-webkit-'));
 			&+div {
-				@include prefix(box-shadow, 0 0 40px 0 rgba(0, 0, 0, 0.3), ('-webkit-'));
+				@include prefix(box-shadow,
+				0 0 40px 0 rgba(0,
+				0,
+				0,
+				0.3),
+				('-webkit-'));
 				padding: 20px;
 				height: 410px;
 				transition: height 0.3s ease;
@@ -609,7 +635,7 @@ input[type=checkbox].select {
 			right: 10px;
 		}
 		cursor: pointer;
-		min-width: 80px;
+		width: calc((100% - 20px * 2) / 5 - 24px);
 		text-align: center;
 		float: left;
 		&:hover {
@@ -652,7 +678,9 @@ input[type='checkbox'].switch {
 	position: absolute;
 	left: -9999px;
 	&+label {
+		/*
 		@include oneLineControlsHeight ($oneLineControlsHeight - 10);
+		*/
 		cursor: pointer;
 		position: absolute;
 		right: $oneLineControlsHeight;
@@ -664,9 +692,15 @@ input[type='checkbox'].switch {
 		transition: background-color 1s ease;
 		&::before {
 			@include borderNormal;
-			@include prefix(transition-property, left, ('-webkit-'));
-			@include prefix(transition-duration, 0.5s, ('-webkit-'));
-			@include prefix(transition-timing-function, ease, ('-webkit-'));
+			@include prefix(transition-property,
+			left,
+			('-webkit-'));
+			@include prefix(transition-duration,
+			0.5s,
+			('-webkit-'));
+			@include prefix(transition-timing-function,
+			ease,
+			('-webkit-'));
 			content: '';
 			position: absolute;
 			display: block;
@@ -717,9 +751,15 @@ input[type='checkbox'].switch {
 				}
 			}
 			&::before {
-				@include prefix(transition-property, left, ('-webkit-'));
-				@include prefix(transition-duration, 0.5s, ('-webkit-'));
-				@include prefix(transition-timing-function, ease, ('-webkit-'));
+				@include prefix(transition-property,
+				left,
+				('-webkit-'));
+				@include prefix(transition-duration,
+				0.5s,
+				('-webkit-'));
+				@include prefix(transition-timing-function,
+				ease,
+				('-webkit-'));
 				left: $ControlsWidth/2;
 			}
 		}

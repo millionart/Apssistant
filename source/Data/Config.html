@@ -16,7 +16,7 @@
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$('#fullpage').fullpage({
-				anchors: ['general', 'hotkeys', 'autosave', 'advanced', 'extension', 'support'],
+				anchors: ['general', 'hotkeys', 'advanced', 'extension', 'support'],
 				sectionsColor: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'],
 				menu: '#menu'
 			});
@@ -34,9 +34,6 @@ do something
 		</li>
 		<li data-menuanchor="hotkeys">
 			<a href="#hotkeys" name="i18n" lang="Hotkey">hotkeys</a>
-		</li>
-		<li data-menuanchor="autosave">
-			<a href="#autosave" name="i18n" lang="Autosave">autosave</a>
 		</li>
 		<li data-menuanchor="advanced">
 			<a href="#advanced" name="i18n" lang="PSUserConfig">advanced</a>
@@ -60,133 +57,51 @@ do something
 						<li class="langList"></li>
 					</ul>
 				</fieldset>
+				<hr>
 				<fieldset>
 					<legend name="i18n" lang="Your_Photoshop_version">正在使用的 Photoshop 版本</legend>
-					<input type="checkbox" class="select" id="psVerCheck">
-					<label for="psVerCheck" onclick="AHK('ShowPsList')" name="i18n" lang="chooseYourPhotoshopVersion" id="choosePsVerButton">请选择 Photoshop 版本</label>
-					<div>
-						<dt>
-							<h3>请选择 Photoshop 版本</h3>
-						</dt>
-						<h4>Photoshop CC
-							<span>系列</span>
-						</h4>
-						<div id="psCCList">
-							<!-- psCCList -->
-						</div>
-						<h4>Photoshop CS
-							<span>系列</span>
-						</h4>
-						<div id="psCSList">
-							<!-- psCSList -->
-						</div>
-						<h4>Photoshop
-							<span>系列</span>
-						</h4>
-						<div id="psOLDList">
-							<!-- psOLDList -->
-						</div>
-					</div>
-					<div onclick="AHK('FindPhotoshopPath')" name="i18n" lang="Lang_Browse" id="photoshopPath" class="button">Lang_Browse</div>
-				</fieldset>
-				<fieldset>
-					<input id="autoLaunchPs" type="checkbox" class="switch">
-					<label for="autoLaunchPs">
-						<ul>
-							<li name="i18n" lang="Off">关闭</li>
-							<li name="i18n" lang="On">开启</li>
-						</ul>
-					</label>
-					<legend name="i18n" lang="P_I_LaunchPs">自动启动 Photoshop</legend>
-				</fieldset>
-			</div>
-		</div>
-		<div class="section" id="section1">
-			<div class="page">
-				<fieldset>
-					<legend>前景色拾色器快捷键增强</legend>
-					<div id="foregroundColorPickerKey" class="hotkey" onclick="AHK('SetHotkey','foregroundColorPickerKey')"></div>
-				</fieldset>
-				<fieldset>
-					<legend>HUD 拾色器快捷键</legend>
-					<div id="hudColorPickerKey" class="hotkey" onclick="AHK('SetHotkey','hudColorPickerKey')"></div>
 					<ul class="optionList">
 						<li>
-							<input id="pickerMode" type="checkbox" class="switch">
-							<label for="pickerMode">
+							<input type="checkbox" class="select" id="psVerCheck">
+							<label for="psVerCheck" onclick="AHK('ShowPsList')" name="i18n" lang="chooseYourPhotoshopVersion" id="choosePsVerButton">请选择 Photoshop 版本</label>
+							<div>
+								<h3>请选择 Photoshop 版本</h3>
+								<h4>Photoshop CC
+									<span>系列</span>
+								</h4>
+								<div id="psCCList">
+									<!-- psCCList -->
+								</div>
+								<h4>Photoshop CS
+									<span>系列</span>
+								</h4>
+								<div id="psCSList">
+									<!-- psCSList -->
+								</div>
+								<h4>Photoshop
+									<span>系列</span>
+								</h4>
+								<div id="psOLDList">
+									<!-- psOLDList -->
+								</div>
+							</div>
+						</li>
+						<li>
+							<div onclick="AHK('FindPhotoshopPath')" name="i18n" lang="Lang_Browse" id="photoshopPath" class="button">Lang_Browse</div>
+						</li>
+						<li>
+							<span name="i18n" lang="P_I_LaunchPs">自动启动 Photoshop</span>
+							<input id="autoLaunchPs" type="checkbox" class="switch">
+							<label for="autoLaunchPs">
 								<ul>
-									<li>滑动</li>
-									<li>精确</li>
+									<li name="i18n" lang="Off">关闭</li>
+									<li name="i18n" lang="On">开启</li>
 								</ul>
 							</label>
-							取色模式
-						</li>
-						<li>
-							<input id="displayPosition" type="checkbox" class="switch">
-							<label for="displayPosition">
-								<ul>
-									<li>中心</li>
-									<li>跟随</li>
-								</ul>
-							</label>
-							显示位置</li>
-						<li>
-							<input id="runMode" type="checkbox" class="switch">
-							<label for="runMode">
-								<ul>
-									<li>快速</li>
-									<li>稳定</li>
-								</ul>
-							</label>
-							运行模式</li>
-					</ul>
-				</fieldset>
-				<fieldset>
-					<legend>快速创建新图层</legend>
-					<div id="quicklyNewLayerKey" class="hotkey" onclick="AHK('SetHotkey','quicklyNewLayerKey')"></div>
-				</fieldset>
-				<fieldset>
-					<legend>隐藏 / 显示图层</legend>
-					<div id="showHideLayerKey" class="hotkey" onclick="AHK('SetHotkey','showHideLayerKey')"></div>
-				</fieldset>
-				<fieldset>
-					<legend>修改笔刷范围</legend>
-					<div id="brushRangeKey" class="hotkey" onclick="AHK('SetHotkey','brushRangeKey')"></div>
-				</fieldset>
-				<fieldset class="undoredoMode">
-					<input id="undoredoMode" type="checkbox" class="switch">
-					<label for="undoredoMode">
-						<ul>
-							<li>默认</li>
-							<li>系统</li>
-						</ul>
-					</label>
-					<legend>撤销 / 恢复 快捷键风格</legend>
-					<ul class="optionList">
-						<li class="lightLine">
-							<kbd>Ctrl</kbd> +
-							<kbd>Z</kbd>
-						</li>
-						<li>
-							<kbd>Shift</kbd> +
-							<kbd>Ctrl</kbd> +
-							<kbd>Z</kbd>
-						</li>
-						<li class="lightLine">
-							<kbd>Ctrl</kbd> +
-							<kbd>Y</kbd>
-						</li>
-						<li>
-							<kbd>Alt</kbd> +
-							<kbd>Ctrl</kbd> +
-							<kbd>Z</kbd>
 						</li>
 					</ul>
 				</fieldset>
-			</div>
-		</div>
-		<div class="section" id="section2">
-			<div class="page">
+				<hr>
 				<fieldset>
 					<legend>自动保存</legend>
 					<input id="autosaveswitch" type="checkbox" class="switch">
@@ -220,9 +135,103 @@ do something
 				</fieldset>
 			</div>
 		</div>
-		<div class="section" id="section3">
+		<div class="section" id="section1">
 			<div class="page">
 				<fieldset>
+					<legend>前景色拾色器快捷键增强</legend>
+					<div id="foregroundColorPickerKey" class="hotkey" onclick="AHK('SetHotkey','foregroundColorPickerKey')"></div>
+				</fieldset>
+				<fieldset>
+					<legend>HUD 拾色器快捷键</legend>
+					<div id="hudColorPickerKey" class="hotkey" onclick="AHK('SetHotkey','hudColorPickerKey')"></div>
+					<ul class="optionList">
+						<li>取色模式
+							<input id="pickerMode" type="checkbox" class="switch">
+							<label for="pickerMode">
+								<ul>
+									<li>滑动</li>
+									<li>精确</li>
+								</ul>
+							</label>
+
+						</li>
+						<li>显示位置
+							<input id="displayPosition" type="checkbox" class="switch">
+							<label for="displayPosition">
+								<ul>
+									<li>中心</li>
+									<li>跟随</li>
+								</ul>
+							</label>
+						</li>
+						<li>运行模式
+							<input id="runMode" type="checkbox" class="switch">
+							<label for="runMode">
+								<ul>
+									<li>快速</li>
+									<li>稳定</li>
+								</ul>
+							</label>
+						</li>
+					</ul>
+				</fieldset>
+				<hr>
+				<fieldset>
+					<legend>快速创建新图层</legend>
+					<div id="quicklyNewLayerKey" class="hotkey" onclick="AHK('SetHotkey','quicklyNewLayerKey')"></div>
+				</fieldset>
+				<fieldset>
+					<legend>隐藏 / 显示图层</legend>
+					<div id="showHideLayerKey" class="hotkey" onclick="AHK('SetHotkey','showHideLayerKey')"></div>
+				</fieldset>
+				<fieldset>
+					<legend>修改笔刷范围</legend>
+					<div id="brushRangeKey" class="hotkey" onclick="AHK('SetHotkey','brushRangeKey')"></div>
+				</fieldset>
+				<fieldset class="undoredoMode">
+					<input id="undoredoMode" type="checkbox" class="switch">
+					<label for="undoredoMode">
+						<ul>
+							<li>默认</li>
+							<li>系统</li>
+						</ul>
+					</label>
+					<legend>撤销 / 恢复 快捷键风格</legend>
+					<ul class="optionList">
+						<li class="lightLine">
+							<div class="shortcutsList">
+								<kbd>Ctrl</kbd> +
+								<kbd>Z</kbd>
+							</div>
+						</li>
+						<li>
+							<div class="shortcutsList">
+								<kbd>Shift</kbd> +
+								<kbd>Ctrl</kbd> +
+								<kbd>Z</kbd>
+							</div>
+						</li>
+						<li class="lightLine">
+							<div class="shortcutsList">
+								<kbd>Ctrl</kbd> +
+								<kbd>Y</kbd>
+							</div>
+						</li>
+						<li>
+							<div class="shortcutsList">
+								<kbd>Alt</kbd> +
+								<kbd>Ctrl</kbd> +
+								<kbd>Z</kbd>
+							</div>
+						</li>
+					</ul>
+				</fieldset>
+			</div>
+		</div>
+		<div class="section" id="section2">
+			<div class="page">
+				<fieldset>
+					<legend>撤销 / 恢复 快捷键风格</legend>
 					<input id="temp" type="checkbox" class="switch">
 					<label for="temp">
 						<ul>
@@ -230,16 +239,16 @@ do something
 							<li>系统</li>
 						</ul>
 					</label>
-					<legend>撤销 / 恢复 快捷键风格</legend>
+
 				</fieldset>
 			</div>
 		</div>
-		<div class="section" id="section4">
+		<div class="section" id="section3">
 			<div class="page">
 
 			</div>
 		</div>
-		<div class="section" id="section5">
+		<div class="section" id="section4">
 			<div class="page">
 				<p name="i18n" lang="Support_text">
 					感谢使用 APssistant！

@@ -1,5 +1,11 @@
 @charset "UTF-8";
-@import url(chooselang.scss);
+@import url(chooselang.css);
+@font-face {
+  font-family: SourceHanSans;
+  src: url("../fonts/SourceHanSans.ttc"), url("../fonts/SourceHanSans.eot");
+  /* IE9+ */
+}
+
 body,
 div,
 dl,
@@ -29,17 +35,30 @@ td {
 
 h1 {
   font-size: 2.2em;
+  font-weight: 700;
+  height: 2.4em;
+  line-height: 2.4em;
 }
 
 h2 {
   font-size: 1.8em;
-  font-weight: 200;
-  height: 60px;
-  line-height: 60px;
+  font-weight: 600;
+  height: 2em;
+  line-height: 2em;
 }
 
 h3 {
   font-size: 1.4em;
+  font-weight: 500;
+  height: 1.6em;
+  line-height: 1.6em;
+}
+
+h4 {
+  font-size: 1em;
+  font-weight: 400;
+  height: 1.2em;
+  line-height: 1.2em;
 }
 
 a {
@@ -89,15 +108,10 @@ q:after {
   content: '';
 }
 
-abbr,
-acronym {
-  border: 0;
-}
-
 /* Custom CSS
  * --------------------------------------- */
 body {
-  font-family: "微软雅黑 Light", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: SourceHanSans, "微软雅黑 Light", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
   background-color: #FFF;
   color: #5E5E5E;
@@ -110,20 +124,22 @@ body {
   position: relative;
 }
 
-h1 {
-  font-size: 6em;
-}
-
 p {
   font-size: 1em;
   padding-bottom: 10px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1), transparent);
 }
 
 kbd {
   position: relative;
   top: -4px;
   font-size: 0.8em;
-  font-family: "微软雅黑 Light", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: SourceHanSans, "微软雅黑 Light", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #666;
   border-radius: 3px;
   margin: 0 3px 0 3px;
@@ -241,8 +257,8 @@ fieldset legend {
   height: 60px;
   line-height: 60px;
   cursor: default;
-  font-size: 1.4em;
-  font-weight: 200;
+  font-size: 1.2em;
+  font-weight: 700;
   float: left;
 }
 
@@ -307,7 +323,7 @@ div.hotkey:hover {
 }
 
 .undoredoMode:hover li.lightLine {
-  background-color: #FFF;
+  background-color: rgba(255, 255, 255, 0.6);
   padding-top: 4px;
   padding-bottom: 4px;
 }
@@ -324,12 +340,24 @@ div.hotkey:hover {
 }
 
 .optionList > li {
-  height: 30px;
-  line-height: 30px;
+  /*
+		@include oneLineControlsHeight ($oneLineControlsHeight - 10);
+		*/
   cursor: default;
   margin-bottom: 10px;
   margin-left: 35px;
   padding-left: 6px;
+  font-weight: 100;
+}
+
+.optionList .shortcutsList {
+  width: 8em;
+  text-align: right;
+}
+
+.optionList .shortcutsList kbd {
+  font-size: 0.6em;
+  box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #CCC;
 }
 
 #supportList > li {
@@ -462,6 +490,8 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 }
 
 #min {
+  height: 30px;
+  line-height: 30px;
   position: relative;
   border-radius: 4px;
   float: right;
@@ -481,9 +511,10 @@ div.button, input[type=checkbox].select + label {
   border-style: solid;
   border-color: #E6E6E6;
   border-radius: 4px;
-  height: 40px;
-  line-height: 40px;
-  margin-bottom: 10px;
+  /* 
+	@include oneLineControlsHeight ($oneLineControlsHeight);
+	margin-bottom: 10px;
+	*/
   font-size: 1em;
   box-sizing: border-box;
   display: block;
@@ -498,7 +529,9 @@ div.button:hover, input[type=checkbox].select + label:hover {
 }
 
 #photoshopPath {
-  font-size: 0.8em;
+  height: 30px;
+  line-height: 30px;
+  font-size: 0.6em;
 }
 
 input[type=checkbox].select {
@@ -510,9 +543,10 @@ input[type=checkbox].select + label + div {
   overflow: hidden;
   position: absolute;
   z-index: 2;
-  width: calc(100% - 120px);
+  width: calc(100% - 160px);
   display: block;
   background-color: #ffffff;
+  left: 80px;
   height: 0;
   transition: height 0.3s ease;
 }
@@ -566,7 +600,7 @@ input[type=checkbox].select:checked + label + div {
   padding-left: 10px;
   padding-right: 10px;
   cursor: pointer;
-  min-width: 80px;
+  width: calc((100% - 20px * 2) / 5 - 24px);
   text-align: center;
   float: left;
 }
@@ -624,8 +658,9 @@ input[type='checkbox'].switch {
 }
 
 input[type='checkbox'].switch + label {
-  height: 30px;
-  line-height: 30px;
+  /*
+		@include oneLineControlsHeight ($oneLineControlsHeight - 10);
+		*/
   cursor: pointer;
   position: absolute;
   right: 40px;
