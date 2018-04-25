@@ -91,11 +91,11 @@ do something
 						</li>
 						<li>
 							<span name="i18n" lang="P_I_LaunchPs">自动启动 Photoshop</span>
-							<input id="autoLaunchPs" type="checkbox" class="switch">
-							<label for="autoLaunchPs">
+							<input id="autoLaunchPs" name="launchPs" type="checkbox" class="switch">
+							<label for="autoLaunchPs" onclick="AHK('Switch','autoLaunchPs')">
 								<ul>
-									<li name="i18n" lang="Off">关闭</li>
 									<li name="i18n" lang="On">开启</li>
+									<li name="i18n" lang="Off">关闭</li>
 								</ul>
 							</label>
 						</li>
@@ -104,11 +104,11 @@ do something
 				<hr>
 				<fieldset>
 					<legend>自动保存</legend>
-					<input id="autosaveswitch" type="checkbox" class="switch">
-					<label for="autosaveswitch">
+					<input id="autoSaveSwitch" name="autosave" type="checkbox" class="switch">
+					<label for="autoSaveSwitch" onclick="AHK('Switch','autoSaveSwitch')">
 						<ul>
-							<li name="i18n" lang="Off">关闭</li>
 							<li name="i18n" lang="On">开启</li>
+							<li name="i18n" lang="Off">关闭</li>
 						</ul>
 					</label>
 
@@ -119,11 +119,11 @@ do something
 							<span name="i18n" lang="Min." id="min">分钟</span>
 						</li>
 						<li>
-							<input id="tipText" type="checkbox" class="switch">
-							<label for="tipText">
+							<input id="tipTextSwitch" name="tipSave" type="checkbox" class="switch">
+							<label for="tipTextSwitch" onclick="AHK('Switch','tipTextSwitch')">
 								<ul>
-									<li name="i18n" lang="Off">关闭</li>
 									<li name="i18n" lang="On">开启</li>
+									<li name="i18n" lang="Off">关闭</li>
 								</ul>
 							</label>
 							<span>提示内容</span>
@@ -146,18 +146,17 @@ do something
 					<div id="hudColorPickerKey" class="hotkey" onclick="AHK('SetHotkey','hudColorPickerKey')"></div>
 					<ul class="optionList">
 						<li>取色模式
-							<input id="pickerMode" type="checkbox" class="switch">
-							<label for="pickerMode">
+							<input id="pickerMode" name="preciseHudcp" type="checkbox" class="switch">
+							<label for="pickerMode" onclick="AHK('Switch','pickerMode')">
 								<ul>
-									<li>滑动</li>
 									<li>精确</li>
+									<li>滑动</li>
 								</ul>
 							</label>
-
 						</li>
 						<li>显示位置
-							<input id="displayPosition" type="checkbox" class="switch">
-							<label for="displayPosition">
+							<input id="displayPosition" name="centerHudcp" type="checkbox" class="switch">
+							<label for="displayPosition" onclick="AHK('Switch','displayPosition')">
 								<ul>
 									<li>中心</li>
 									<li>跟随</li>
@@ -165,11 +164,11 @@ do something
 							</label>
 						</li>
 						<li>运行模式
-							<input id="runMode" type="checkbox" class="switch">
-							<label for="runMode">
+							<input id="runMode" name="hotkeyMode" type="checkbox" class="switch">
+							<label for="runMode" onclick="AHK('Switch','runMode')">
 								<ul>
-									<li>快速</li>
 									<li>稳定</li>
+									<li>快速</li>
 								</ul>
 							</label>
 						</li>
@@ -189,11 +188,11 @@ do something
 					<div id="brushRangeKey" class="hotkey" onclick="AHK('SetHotkey','brushRangeKey')"></div>
 				</fieldset>
 				<fieldset class="undoredoMode">
-					<input id="undoredoMode" type="checkbox" class="switch">
-					<label for="undoredoMode">
+					<input id="undoredoMode" name="undo" type="checkbox" class="switch">
+					<label for="undoredoMode" onclick="AHK('Switch','undoredoMode')">
 						<ul>
-							<li>默认</li>
 							<li>系统</li>
+							<li>默认</li>
 						</ul>
 					</label>
 					<legend>撤销 / 恢复 快捷键风格</legend>

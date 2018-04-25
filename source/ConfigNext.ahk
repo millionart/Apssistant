@@ -121,7 +121,39 @@ Initialization(){
 	hotkeysIDListArray:=StrSplit(hotkeysIDList, "|")
 	hotkeysStringList:="FCPk|HUDCP|SHLayer|QCLayer|ModifyBrushKey"
 	hotkeysStringListArray:=StrSplit(hotkeysStringList, "|")
-	
+
+	inputListArray:=appWeb.document.getElementsByTagName("input")
+
+; 开关控件状态
+	Loop, % inputListArray.length
+	{
+		Try
+		{
+			type:=inputListArray[a_index].type
+			If(type="checkbox")
+			switchList.=inputListArray[a_index].id . "|"
+		}
+	}
+	switchList := RTrim(switchList, OmitChars := "|")
+	switchListArray :=StrSplit(switchList, "|")
+	Loop, % switchListArray.MaxIndex()
+	{
+		switchId:=switchListArray[a_index]
+		switchControls:=appWeb.document.getElementByID(switchId)
+		switchName:=switchControls.name
+
+		IniRead, switchState, %A_scriptdir%\Data\Config.ini, Setting, %switchName%, 0
+
+		If (switchId="runMode")
+			switchState:=--switchState
+
+		If (switchState=1)
+			switchControls.checked:=0
+		else
+			switchControls.checked:=-1
+	}
+
+; 快捷键读取
 	Loop, % hotkeysIDListArray.MaxIndex()
 	{
 		hotkeyID:=hotkeysIDListArray[a_index]
@@ -396,6 +428,19 @@ ShowPsVer()
 	; psVer:=psPublicVer
 	element := appWeb.document.getElementById("choosePsVerButton")
 	element.innerText:="Photoshop " . psPublicVer
+}
+
+Switch(id)
+{
+	global
+	local controls,status,name
+	controls:=appWeb.document.getElementById(id)
+	status:=abs(controls.checked)
+	name:=controls.name
+	;msgbox,%status%
+	If (id="runMode")
+		status:=++status
+	IniWrite, %status%, %A_scriptdir%\Data\Config.ini, Setting, %name%
 }
 
 SetHotkey(elementId)
