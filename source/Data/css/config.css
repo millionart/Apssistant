@@ -111,6 +111,10 @@ q:after {
 /* Custom CSS
  * --------------------------------------- */
 body {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #E6E6E6;
+  box-sizing: border-box;
   font-family: SourceHanSans, "微软雅黑 Light", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
   background-color: #FFF;
@@ -275,14 +279,10 @@ fieldset div {
 }
 
 div.hotkey {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #E6E6E6;
-  border-radius: 4px;
   height: 40px;
   line-height: 40px;
   cursor: pointer;
-  width: 200px;
+  width: 140px;
   font-size: 1em;
   background-color: transparent;
   box-sizing: border-box;
@@ -291,9 +291,14 @@ div.hotkey {
   margin-top: 10px;
   margin-bottom: 10px;
   text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 4px;
 }
 
 div.hotkey:hover {
+  border-color: #6CF;
   background-color: #FFF;
 }
 
@@ -403,9 +408,9 @@ div.hotkey:hover {
 }
 
 #qrcode img {
-  width: 200px;
-  max-width: 200px;
-  max-height: 200px;
+  width: 140px;
+  max-width: 140px;
+  max-height: 140px;
   margin-top: 40px;
   margin-left: 40px;
   margin-right: 40px;
@@ -418,6 +423,7 @@ div.hotkey:hover {
   border-style: solid;
   border-color: #E6E6E6;
   border-radius: 4px;
+  box-sizing: border-box;
   height: 26px;
   line-height: 26px;
   font-size: 12px;
@@ -448,15 +454,29 @@ input {
   border-style: solid;
   border-color: #E6E6E6;
   border-radius: 4px;
+  box-sizing: border-box;
   height: 30px;
   line-height: 30px;
   margin-bottom: 10px;
   font-size: 0.8em;
   background-color: transparent;
   box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 4px;
 }
 
-input:hover {
+input:-ms-input-placeholder {
+  color: #D7D7D7;
+}
+
+input::placeholder {
+  color: #D7D7D7;
+}
+
+input:hover, input:focus {
+  border-color: #6CF;
   background-color: #FFF;
 }
 
@@ -479,9 +499,9 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   position: relative;
   z-index: 1;
   float: right;
-  width: 200px;
+  width: 140px;
   padding-left: 0;
-  padding-right: 100px;
+  padding-right: 70px;
   background-color: transparent;
 }
 
@@ -495,15 +515,11 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   position: relative;
   border-radius: 4px;
   float: right;
-  left: 200px;
-  width: 100px;
-  padding-left: 100px;
+  left: 140px;
+  width: 70px;
+  padding-left: 70px;
   text-align: center;
   font-size: 0.8em;
-}
-
-legend + input[type=checkbox].select + label {
-  margin-top: 60px;
 }
 
 div.button, input[type=checkbox].select + label {
@@ -511,6 +527,7 @@ div.button, input[type=checkbox].select + label {
   border-style: solid;
   border-color: #E6E6E6;
   border-radius: 4px;
+  box-sizing: border-box;
   /* 
 	@include oneLineControlsHeight ($oneLineControlsHeight);
 	margin-bottom: 10px;
@@ -537,6 +554,10 @@ div.button:hover, input[type=checkbox].select + label:hover {
 input[type=checkbox].select {
   position: absolute;
   left: -9999px;
+}
+
+input[type=checkbox].select + label {
+  margin-top: 60px;
 }
 
 input[type=checkbox].select + label + div {
@@ -593,6 +614,7 @@ input[type=checkbox].select:checked + label + div {
   border-style: solid;
   border-color: #E6E6E6;
   border-radius: 4px;
+  box-sizing: border-box;
   height: 40px;
   line-height: 40px;
   margin-right: 10px;
@@ -664,7 +686,7 @@ input[type='checkbox'].switch + label {
   cursor: pointer;
   position: absolute;
   right: 40px;
-  width: 200px;
+  width: 140px;
   padding: 0;
   margin: 0;
   border-width: 0;
@@ -677,6 +699,7 @@ input[type='checkbox'].switch + label::before {
   border-style: solid;
   border-color: #E6E6E6;
   border-radius: 4px;
+  box-sizing: border-box;
   -webkit-transition-property: left;
   transition-property: left;
   -webkit-transition-duration: 0.5s;
@@ -688,7 +711,7 @@ input[type='checkbox'].switch + label::before {
   display: block;
   top: 0;
   bottom: 10px;
-  width: 100px;
+  width: 70px;
   height: 30px;
   box-sizing: border-box;
   left: 0;
@@ -697,7 +720,7 @@ input[type='checkbox'].switch + label::before {
 input[type='checkbox'].switch + label > ul {
   position: absolute;
   right: 0;
-  width: 200px;
+  width: 140px;
   height: 30px;
 }
 
@@ -707,7 +730,7 @@ input[type='checkbox'].switch + label > ul li {
   background-color: transparent;
   display: block;
   float: left;
-  width: 100px;
+  width: 70px;
   box-sizing: border-box;
   text-align: center;
   font-size: 0.8em;
@@ -742,5 +765,27 @@ input[type='checkbox'].switch:checked + label::before {
   transition-duration: 0.5s;
   -webkit-transition-timing-function: ease;
   transition-timing-function: ease;
-  left: 100px;
+  left: 70px;
+}
+
+#autoSaveSwitch:checked + label + ul.optionList {
+  display: block;
+}
+
+#autoSaveSwitch + label + ul.optionList {
+  display: none;
+}
+
+fieldset:hover input[type='text'] {
+  border-color: #E6E6E6;
+}
+
+#tipText #tipTextSwitch:checked + label + input[type='text'] {
+  display: block;
+}
+
+#tipText input[type='text'] {
+  width: 100%;
+  margin-top: 10px;
+  display: none;
 }

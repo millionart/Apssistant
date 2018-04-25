@@ -16,7 +16,7 @@ $fontLightColor: #D7D7D7;
 $rounded: 4px;
 $fakeBlurColor: rgba(0, 0, 0, 0.05);
 $oneLineControlsHeight: 40px;
-$ControlsWidth: 200px;
+$ControlsWidth: 140px;
 $leftMenuWidth: 260px;
 @mixin borderNormal {
 	border: {
@@ -25,6 +25,7 @@ $leftMenuWidth: 260px;
 		color: $borderColor;
 		radius: $rounded;
 	}
+	box-sizing: border-box;
 }
 
 @mixin prefix($property, $value, $prefixes: ()) {
@@ -139,6 +140,12 @@ q:after {
  * --------------------------------------- */
 
 body {
+	border: {
+		width: 1px;
+		style: solid;
+		color: $borderColor;
+	}
+	box-sizing: border-box;
 	font: {
 		family: $defaultFont;
 		size: 20px;
@@ -308,7 +315,6 @@ fieldset {
 }
 
 div.hotkey {
-	@include borderNormal;
 	@include oneLineControlsHeight ($oneLineControlsHeight);
 	cursor: pointer;
 	width: $ControlsWidth;
@@ -320,7 +326,16 @@ div.hotkey {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	text-align: center;
+	border: {
+		width: 1px;
+		style: solid;
+		color: transparent;
+		radius: $rounded;
+	}
 	&:hover {
+		border: {
+			color: $blue;
+		}
 		background-color: $white;
 	}
 }
@@ -381,7 +396,6 @@ div.hotkey {
 		kbd {
 			font-size: 0.6em;
 			box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #CCC;
-
 		}
 	}
 }
@@ -480,7 +494,23 @@ input {
 	font-size: 0.8em;
 	background-color: transparent;
 	box-sizing: border-box;
-	&:hover {
+	border: {
+		width: 1px;
+		style: solid;
+		color: transparent;
+		radius: $rounded;
+	}
+	&:-ms-input-placeholder {
+		color: $fontLightColor;
+	}
+	&::placeholder {
+		color: $fontLightColor;
+	}
+	&:hover,
+	&:focus {
+		border: {
+			color: $blue;
+		}
 		background-color: $white;
 	}
 	&[type=text] {
@@ -525,12 +555,6 @@ input {
 	font-size: 0.8em;
 }
 
-legend+input[type=checkbox].select {
-	&+label {
-		margin-top: 60px;
-	}
-}
-
 div.button {
 	@include borderNormal;
 	/* 
@@ -559,6 +583,7 @@ input[type=checkbox].select {
 	left: -9999px;
 	&+label {
 		@extend div.button;
+		margin-top: 60px;
 		&+div {
 			overflow: hidden;
 			position: absolute;
@@ -611,12 +636,6 @@ input[type=checkbox].select {
 				transition: height 0.3s ease;
 			}
 		}
-	}
-}
-
-#autosaveswitch {
-	&:checked {
-		& {}
 	}
 }
 
@@ -763,5 +782,32 @@ input[type='checkbox'].switch {
 				left: $ControlsWidth/2;
 			}
 		}
+	}
+}
+
+#autoSaveSwitch {
+	&:checked+label+ul.optionList {
+		display: block;
+	}
+	&+label+ul.optionList {
+		display: none;
+	}
+}
+fieldset:hover {
+	input[type='text'] {
+		border-color: $borderColor;
+	}
+}
+
+#tipText {
+	#tipTextSwitch:checked {
+		&+label+input[type='text'] {
+			display: block;
+		}
+	}
+	input[type='text'] {
+		width: 100%;
+		margin-top: 10px;
+		display: none;
 	}
 }

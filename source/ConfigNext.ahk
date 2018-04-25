@@ -435,7 +435,7 @@ Switch(id)
 	global
 	local controls,status,name
 	controls:=appWeb.document.getElementById(id)
-	status:=abs(controls.checked)
+	status:=controls.checked + 1
 	name:=controls.name
 	;msgbox,%status%
 	If (id="runMode")

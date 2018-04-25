@@ -94,8 +94,8 @@ do something
 							<input id="autoLaunchPs" name="launchPs" type="checkbox" class="switch">
 							<label for="autoLaunchPs" onclick="AHK('Switch','autoLaunchPs')">
 								<ul>
-									<li name="i18n" lang="On">开启</li>
 									<li name="i18n" lang="Off">关闭</li>
+									<li name="i18n" lang="On">开启</li>
 								</ul>
 							</label>
 						</li>
@@ -107,8 +107,8 @@ do something
 					<input id="autoSaveSwitch" name="autosave" type="checkbox" class="switch">
 					<label for="autoSaveSwitch" onclick="AHK('Switch','autoSaveSwitch')">
 						<ul>
-							<li name="i18n" lang="On">开启</li>
 							<li name="i18n" lang="Off">关闭</li>
+							<li name="i18n" lang="On">开启</li>
 						</ul>
 					</label>
 
@@ -118,18 +118,16 @@ do something
 							<input type="number" min="3" max="60" maxlength="2" id="intervals" />
 							<span name="i18n" lang="Min." id="min">分钟</span>
 						</li>
-						<li>
+						<li id="tipText">
+							<span>提示内容</span>
 							<input id="tipTextSwitch" name="tipSave" type="checkbox" class="switch">
 							<label for="tipTextSwitch" onclick="AHK('Switch','tipTextSwitch')">
 								<ul>
-									<li name="i18n" lang="On">开启</li>
 									<li name="i18n" lang="Off">关闭</li>
+									<li name="i18n" lang="On">开启</li>
 								</ul>
 							</label>
-							<span>提示内容</span>
-						</li>
-						<li>
-							<input type="text" style="width: 100%;" />
+							<input type="text" maxlength="32" placeholder="請填入關鍵字" />
 						</li>
 					</ul>
 				</fieldset>
@@ -149,8 +147,8 @@ do something
 							<input id="pickerMode" name="preciseHudcp" type="checkbox" class="switch">
 							<label for="pickerMode" onclick="AHK('Switch','pickerMode')">
 								<ul>
-									<li>精确</li>
 									<li>滑动</li>
+									<li>精确</li>
 								</ul>
 							</label>
 						</li>
@@ -158,8 +156,8 @@ do something
 							<input id="displayPosition" name="centerHudcp" type="checkbox" class="switch">
 							<label for="displayPosition" onclick="AHK('Switch','displayPosition')">
 								<ul>
-									<li>中心</li>
 									<li>跟随</li>
+									<li>中心</li>
 								</ul>
 							</label>
 						</li>
@@ -167,8 +165,8 @@ do something
 							<input id="runMode" name="hotkeyMode" type="checkbox" class="switch">
 							<label for="runMode" onclick="AHK('Switch','runMode')">
 								<ul>
-									<li>稳定</li>
 									<li>快速</li>
+									<li>稳定</li>
 								</ul>
 							</label>
 						</li>
@@ -191,8 +189,8 @@ do something
 					<input id="undoredoMode" name="undo" type="checkbox" class="switch">
 					<label for="undoredoMode" onclick="AHK('Switch','undoredoMode')">
 						<ul>
-							<li>系统</li>
 							<li>默认</li>
+							<li>系统</li>
 						</ul>
 					</label>
 					<legend>撤销 / 恢复 快捷键风格</legend>
