@@ -32,7 +32,7 @@
 
 1. 运行 Apssistant.exe
 2. 选择 Photoshop.exe 位置
-3. 右键点击 <img src="https://raw.githubusercontent.com/millionart/Apssistant/master/source/Data/tray.ico" width="22px" height="22px" />，选择 Preferences
+3. 右键点击 <img src="https://raw.githubusercontent.com/millionart/Apssistant/master/source/inc/Apssistant.svg" width="22px" height="22px" />，选择 Preferences
 4. （可选）选择界面语言
 5. **正确选择当前使用的 Photoshop 版本**
 6. （可选）更改其他设置（详见 [详细说明](#详细说明)）
