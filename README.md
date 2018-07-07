@@ -21,6 +21,25 @@
 
 ----------
 
+## 下载
+
+1. [最新版本](https://github.com/millionart/Apssistant/releases/latest)（根据系统选择 x32 或 x64）
+2. 解压缩 zip 到任意位置
+
+----------
+
+## 使用说明
+
+1. 运行 Apssistant.exe
+2. 选择 Photoshop.exe 位置
+3. 右键点击 <img src="https://raw.githubusercontent.com/millionart/Apssistant/master/source/Data/tray.ico" width="22px" height="22px" />，选择 Preferences
+4. （可选）选择界面语言
+5. **正确选择当前使用的 Photoshop 版本**
+6. （可选）更改其他设置（详见 [详细说明](#详细说明)）
+7. 保存
+
+----------
+
 ## 详细说明
 
 *_以下全部功能需要在 **常规** 界面正确选择 Photoshop 版本号_
