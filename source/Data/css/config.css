@@ -114,7 +114,8 @@ body {
   border-width: 1px;
   border-style: solid;
   border-color: #E6E6E6;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   font-family: SourceHanSans, "微软雅黑 Light", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
   background-color: #FFF;
@@ -136,7 +137,8 @@ p {
 hr {
   border: 0;
   height: 1px;
-  background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1), transparent);
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), color-stop(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0)));
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
 }
 
 kbd {
@@ -144,7 +146,8 @@ kbd {
   top: -4px;
   font-size: 0.8em;
   font-family: SourceHanSans, "微软雅黑 Light", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #666;
+  -webkit-box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #666;
+          box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #666;
   border-radius: 3px;
   margin: 0 3px 0 3px;
   padding: 1px 5px;
@@ -189,7 +192,8 @@ kbd {
 }
 
 #menu li.active a:hover {
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   background: transparent;
 }
 
@@ -204,35 +208,38 @@ kbd {
 
 #menu li a:hover {
   background: #FFF;
-  box-shadow: 0 0 40px #FFF;
+  -webkit-box-shadow: 0 0 40px #FFF;
+          box-shadow: 0 0 40px #FFF;
   color: #6CF;
 }
 
 #exitApp {
-  height: 40px;
-  line-height: 40px;
   position: absolute;
   z-index: 99;
-  right: 0;
-  top: 0;
-  width: 40px;
+  right: -80px;
+  top: -80px;
+  width: 200px;
+  height: 200px;
   font-size: 1.2em;
   font-weight: 100;
   text-align: center;
   padding: 0;
+  border-radius: 50px;
+}
+
+#exitApp:hover {
+  background: radial-gradient(rgba(255, 0, 0, 0.2), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
 }
 
 #exitApp:hover a {
   color: #E81123;
-  background-color: rgba(232, 17, 35, 0.19);
-  border-radius: 20px;
-  box-shadow: 0 0 160px 0 #E81123, 0 0 100px 0 #E81123;
 }
 
 #exitApp a {
-  position: relative;
   display: block;
+  width: 40px;
   height: 40px;
+  margin: 80px;
   color: #5E5E5E;
 }
 
@@ -285,7 +292,8 @@ div.hotkey {
   width: 140px;
   font-size: 1em;
   background-color: transparent;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   float: right;
   clear: none;
   margin-top: 10px;
@@ -307,7 +315,8 @@ div.hotkey:hover {
 }
 
 .undoredoMode kbd {
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .undoredoMode li.lightLine {
@@ -315,7 +324,8 @@ div.hotkey:hover {
 }
 
 .undoredoMode:hover kbd {
-  box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #666;
+  -webkit-box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #666;
+          box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #666;
 }
 
 .undoredoMode > .optionList {
@@ -324,6 +334,7 @@ div.hotkey:hover {
 
 .undoredoMode:hover > .optionList {
   opacity: 1;
+  -webkit-transition: opacity 1s ease;
   transition: opacity 1s ease;
 }
 
@@ -362,7 +373,8 @@ div.hotkey:hover {
 
 .optionList .shortcutsList kbd {
   font-size: 0.6em;
-  box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #CCC;
+  -webkit-box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #CCC;
+          box-shadow: 1px 0 1px 0 #EEE, 0 2px 0 2px #CCC, 0 2px 0 3px #CCC;
 }
 
 #supportList > li {
@@ -423,11 +435,13 @@ div.hotkey:hover {
   border-style: solid;
   border-color: #E6E6E6;
   border-radius: 4px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   height: 26px;
   line-height: 26px;
   font-size: 12px;
   font-weight: 600;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#FAFBFC), to(#E4EBF0));
   background-image: linear-gradient(to bottom, #FAFBFC, #E4EBF0);
   background-repeat: repeat-x;
   background-size: 110% 110%;
@@ -454,7 +468,8 @@ input {
   border-style: solid;
   border-color: #E6E6E6;
   border-radius: 4px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   height: 30px;
   line-height: 30px;
   margin-bottom: 10px;
@@ -468,6 +483,14 @@ input {
 }
 
 input:-ms-input-placeholder {
+  color: #D7D7D7;
+}
+
+input::-webkit-input-placeholder {
+  color: #D7D7D7;
+}
+
+input::-ms-input-placeholder {
   color: #D7D7D7;
 }
 
@@ -527,7 +550,8 @@ div.button, input[type=checkbox].select + label {
   border-style: solid;
   border-color: #E6E6E6;
   border-radius: 4px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   /* 
 	@include oneLineControlsHeight ($oneLineControlsHeight);
 	margin-bottom: 10px;
@@ -569,6 +593,7 @@ input[type=checkbox].select + label + div {
   background-color: #ffffff;
   left: 80px;
   height: 0;
+  -webkit-transition: height 0.3s ease;
   transition: height 0.3s ease;
 }
 
@@ -594,6 +619,7 @@ input[type=checkbox].select:checked + label {
   border-width: 0;
   border-radius: 0;
   background-color: rgba(255, 255, 255, 0.9);
+  -webkit-transition: background-color 1s ease;
   transition: background-color 1s ease;
   -webkit-backdrop-filter: blur(30px);
   backdrop-filter: blur(30px);
@@ -604,6 +630,7 @@ input[type=checkbox].select:checked + label + div {
   box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.3);
   padding: 20px;
   height: 410px;
+  -webkit-transition: height 0.3s ease;
   transition: height 0.3s ease;
 }
 
@@ -614,7 +641,8 @@ input[type=checkbox].select:checked + label + div {
   border-style: solid;
   border-color: #E6E6E6;
   border-radius: 4px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   height: 40px;
   line-height: 40px;
   margin-right: 10px;
@@ -691,6 +719,7 @@ input[type='checkbox'].switch + label {
   margin: 0;
   border-width: 0;
   background-color: transparent;
+  -webkit-transition: background-color 1s ease;
   transition: background-color 1s ease;
 }
 
@@ -699,7 +728,8 @@ input[type='checkbox'].switch + label::before {
   border-style: solid;
   border-color: #E6E6E6;
   border-radius: 4px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   -webkit-transition-property: left;
   transition-property: left;
   -webkit-transition-duration: 0.5s;
@@ -731,7 +761,8 @@ input[type='checkbox'].switch + label > ul li {
   display: block;
   float: left;
   width: 70px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   text-align: center;
   font-size: 0.8em;
 }
