@@ -2,7 +2,7 @@
 V_CurrentVer()
 {
 	Global f_CurrentVer
-	f_CurrentVer = 0.9.3.0
+	f_CurrentVer = 0.9.3.1
 	IniDelete, %A_scriptdir%\Data\Config.ini,Setting,Apssistantver
 	;IniWrite, %f_CurrentVer%, %A_scriptdir%\Data\Config.ini, Setting, Apssistantver
 }
@@ -29,7 +29,7 @@ V_Trans()
 	6			6.0
 	*/
 	Global
-	PSCSverList:="CC 2018|CC 2017|CC 2015.5|CC 2015|CC 2014|CC|CS6|CS5|CS4|CS3|CS2|CS|7|6"
+	PSCSverList:="CC 2019|CC 2018|CC 2017|CC 2015.5|CC 2015|CC 2014|CC|CS6|CS5|CS4|CS3|CS2|CS|7|6"
 	psVerArray:=StrSplit(PSCSverList, "|")
 
 	IniRead, PsCSver, %A_scriptdir%\Data\Config.ini, Setting, Psver, % psVerArray[1]
