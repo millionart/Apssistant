@@ -9,9 +9,8 @@ IfExist %A_scriptdir%\APssistant.com
 	FileDelete, %A_scriptdir%\APssistant.exe
 	FileMove, %A_scriptdir%\APssistant.com, %A_scriptdir%\APssistant.exe
 }
-
 G_ReadLanguage()
-Downloadtimes=0
+Downloadtimes:=0
 
 if A_Is64bitOS=1
 	OSbit=64
@@ -45,7 +44,7 @@ IniRead, UpdatefileMD5, %VerFileName%, %WinBit%, MD5, 0
 If UpdatefileMD5=% File_Hash(UpdateFileName, "MD5")
 {
 	IniRead, LatestVer, %VerFileName%, %WinBit%, Version,0
-	NewVerAvailable:=StrReplace(lang_NewVerAvailable, "`%LatestVer`%", "%LatestVer%")
+	NewVerAvailable:=StrReplace(lang_NewVerAvailable, "`%LatestVer`%", LatestVer)
 	
 	OnMessage(0x44, "OnMsgBox")
 	MsgBox 0x184, %lang_NewVer%, %NewVerAvailable%
@@ -88,16 +87,15 @@ f_CheckVersion()
 {
 	Global
 	If (A_IsCompiled)
-	{
+	{ 
 		FileDelete, %VerFileName%
 		UrlDownloadToFile, https://github.com/millionart/Apssistant/raw/master/bin/x%OSbit%/Update.ini, %VerFileName%
 		IniRead, LatestVer, %VerFileName%, %WinBit%, Version,CannotConnect
-		FileDelete, %VerFileName%
 	}
 	else
 	{
 		WinBit=Win32
-		;UrlDownloadToFile, https://github.com/millionart/Apssistant/raw/master/bin/test/Update.ini, %VerFileName%
+		UrlDownloadToFile, https://github.com/millionart/Apssistant/raw/master/bin/test/Update.ini, %VerFileName%
 		IniRead, LatestVer, %VerFileName%, %WinBit%, Version,CannotConnect
 	}
 	
@@ -122,6 +120,7 @@ f_CheckVersion()
 		else
 			MsgBox, 64, Apssistant, %lang_NewVerNotAvailable%, 30
 	}
+	FileDelete, %VerFileName%
 }
 
 ;Thanks to 彪悍的小玄
