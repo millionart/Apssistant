@@ -11,7 +11,7 @@ Process,Close,Update.exe
 
 V_CurrentVer()
 
-Compiler=C:\Program Files\AutoHotkey\Compiler\
+Compiler=D:\Program Files\AutoHotkey\Compiler\
 ;source=%~dp0
 
 FileAppend,
