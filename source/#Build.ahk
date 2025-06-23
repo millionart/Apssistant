@@ -11,7 +11,7 @@ Process,Close,Update.exe
 
 V_CurrentVer()
 
-Compiler=D:\Program Files\AutoHotkey\Compiler\
+Compiler=C:\Program Files\AutoHotkey\Compiler\
 ;source=%~dp0
 
 FileAppend,
@@ -35,48 +35,20 @@ FileAppend,
 (
 @echo on
 
-
-::====32-bit====
-cd "%Compiler%"
-copy /y "Unicode 32-bit.bin" AutoHotkeySC.bin
-Ahk2exe.exe /in "%A_ScriptDir%\APssistant.ahk" /icon "%A_ScriptDir%\Data\tray.ico"
-Ahk2exe.exe /in "%A_ScriptDir%\Config.ahk" /out "%A_ScriptDir%\Config.com" /icon "%A_ScriptDir%\inc\Config.ico"
-Ahk2exe.exe /in "%A_ScriptDir%\Update.ahk" /out "%A_ScriptDir%\Update.com" /icon "%A_ScriptDir%\inc\Update.ico"
-copy /y "Unicode 64-bit.bin" AutoHotkeySC.bin
-
-cd "%A_ScriptDir%\"
-del Data\Update\APssistant.7z
-del Data\Update\Setup.exe
-del ..\bin\x32\APssistant.7z
-del ..\bin\x32\Setup.exe
-del ..\bin\x64\APssistant.7z
-del ..\bin\x64\Setup.exe
-
-..\tools\7za.exe a -t7z ..\bin\x32\APssistant.7z @listfile.txt -mx=9 -x!Data\Config.ini -xr!*\.SVN\  -xr!*\_SVN\ -xr!*\inc\ -xr!*\Readme\
-copy /b ..\tools\7zsd_LZMA2.sfx + bin.txt + ..\bin\x32\APssistant.7z ..\bin\x32\Setup.exe
-move /y ..\bin\x32\APssistant.7z Data\Update\APssistant.7z
-
-md Apssistant
-move /y Data Apssistant\Data
-move /y APssistant.exe Apssistant\APssistant.exe
-move /y Update.com Apssistant\Update.com
-move /y Config.com Apssistant\Config.com
-del ..\bin\%f_CurrentVer%x32.zip
-..\tools\7za.exe a -tzip ..\bin\%f_CurrentVer%x32.zip Apssistant\ -mx=9 -x!APssistant\Data\Config.ini -x!APssistant\Data\Update\APssistant.7z -xr!*\.SVN\  -xr!*\_SVN\ -xr!*\inc\ -xr!*\Readme\
-move /y Apssistant\Data Data
-
-
 ::====64-bit====
-cd "%Compiler%"
+cd /d "%Compiler%"
 Ahk2exe.exe /in "%A_ScriptDir%\APssistant.ahk" /icon "%A_ScriptDir%\Data\tray.ico"
-Ahk2exe.exe /in "%A_ScriptDir%\Config.ahk" /out "%A_ScriptDir%\Config.com" /icon "%A_ScriptDir%\inc\Config.ico"
-Ahk2exe.exe /in "%A_ScriptDir%\Update.ahk" /out "%A_ScriptDir%\Update.com" /icon "%A_ScriptDir%\inc\Update.ico"
+Ahk2exe.exe /in "%A_ScriptDir%\Config.ahk" /icon "%A_ScriptDir%\inc\Config.ico"
+Ahk2exe.exe /in "%A_ScriptDir%\Update.ahk" /icon "%A_ScriptDir%\inc\Update.ico"
 
-cd "%A_ScriptDir%\"
+cd /d "%A_ScriptDir%\"
+move Update.exe Update.com
+move Config.exe Config.com
 ..\tools\7za.exe a -t7z ..\bin\x64\APssistant.7z @listfile.txt -mx=9 -x!Data\Config.ini -xr!*\.SVN\  -xr!*\_SVN\ -xr!*\inc\ -xr!*\Readme\
 copy /b ..\tools\7zsd_LZMA2_x64.sfx + bin.txt + ..\bin\x64\APssistant.7z ..\bin\x64\Setup.exe
 del ..\bin\x64\APssistant.7z
 
+mkdir Apssistant
 move /y Data Apssistant\Data
 move /y APssistant.exe Apssistant\APssistant.exe
 move /y Update.com Apssistant\Update.com

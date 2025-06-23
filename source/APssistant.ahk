@@ -468,8 +468,11 @@ LButtondown1:
 	Return
 
 LaunchPs:
-	If FileExist(PsPath) && !WinExist("ahk_class Photoshop")
+	If FileExist(PsPath) && !WinExist("ahk_class Photoshop") {
+		If (Check3=1)
+			DllCall("SendMessage", UInt, WinActive("A"), UInt, 80, UInt, 1, UInt, DllCall("LoadKeyboardLayout", Str, "00000409", UInt, 257))
 		Run, % PsPath
+	}
 
 	WinwaitActive, ahk_class Photoshop
 Return
@@ -477,11 +480,12 @@ Return
 LaunchPsAuto:
 	If FileExist(PsPath) && !WinExist("ahk_class Photoshop")
 	{
+		If (Check3=1)
+			DllCall("SendMessage", UInt, WinActive("A"), UInt, 80, UInt, 1, UInt, DllCall("LoadKeyboardLayout", Str, "00000409", UInt, 257))
 		Run, % PsPath
 		WinwaitActive, ahk_class Photoshop
 		Reload
 	}
-	
 	If !FileExist(PsPath)
 		gosub Config
 	return
