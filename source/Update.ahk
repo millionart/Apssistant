@@ -99,27 +99,30 @@ f_CheckVersion()
 		IniRead, LatestVer, %VerFileName%, %WinBit%, Version,CannotConnect
 	}
 	
-	Process, Exist, Apssistant.exe
-	if (ErrorLevel = 0) ;如果找不到 Apssistant 进程
+	If (LatestVer = "CannotConnect")
 	{
-		If (LatestVer = "CannotConnect")
-		{
+		Process, Exist, Apssistant.exe
+		if (ErrorLevel = 0) ;如果找不到 Apssistant 进程
 			MsgBox, 16, %lang_Error%, %lang_CannotConnect%
-			ExitApp
-		}
-		
-		if VerToNum("" . f_CurrentVer . "") < VerToNum("" . LatestVer . "")
-		{
-			If FileExist(UpdateFileName)  ;存在升级文件
-				gosub UpdateStart
-			else
-				gosub DownloadUpdateStart
-			
-			MsgBox, 64, Apssistant, %lang_UpdateSuccessful%, 30
-		}
-		else
-			MsgBox, 64, Apssistant, %lang_NewVerNotAvailable%, 30
+		ExitApp
 	}
+	
+	if VerToNum("" . f_CurrentVer . "") < VerToNum("" . LatestVer . "")
+	{
+		If FileExist(UpdateFileName)  ;存在升级文件
+			gosub UpdateStart
+		else
+			gosub DownloadUpdateStart
+		
+		MsgBox, 64, Apssistant, %lang_UpdateSuccessful%
+	}
+	else
+	{
+		Process, Exist, Apssistant.exe
+		if (ErrorLevel = 0) ;如果找不到 Apssistant 进程
+			MsgBox, 64, Apssistant, %lang_NewVerNotAvailable%
+	}
+
 	FileDelete, %VerFileName%
 }
 
