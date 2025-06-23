@@ -84,7 +84,7 @@ IniWrite, %f_CurrentVer%, %A_scriptdir%\..\bin\x32\Update.ini, Win32, Version
 IniWrite, %binexex32hash%, %A_scriptdir%\..\bin\x32\Update.ini, Win32, MD5
 IniWrite, %f_CurrentVer%, %A_scriptdir%\..\bin\x64\Update.ini, Win64, Version
 IniWrite, %binexex64hash%, %A_scriptdir%\..\bin\x64\Update.ini, Win64, MD5
-IniWrite, https://github.com/millionart/Apssistant/raw/master/bin/x32/Setup.exe, %A_scriptdir%\..\bin\x32\Update.ini, Win32, Url
+IniWrite, https://github.com/millionart/Apssistant/raw/master/bin/x64/Setup.exe, %A_scriptdir%\..\bin\x32\Update.ini, Win32, Url
 IniWrite, https://github.com/millionart/Apssistant/raw/master/bin/x64/Setup.exe, %A_scriptdir%\..\bin\x64\Update.ini, Win64, Url
 
 IniRead, testMD5, %A_scriptdir%\..\bin\x32\Update.ini, Win32, MD5
