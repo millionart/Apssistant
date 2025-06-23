@@ -75,8 +75,8 @@ FileDelete, %A_ScriptDir%\listfile.txt
 binexex32=%A_scriptdir%\..\bin\x32\Setup.exe
 binexex64=%A_scriptdir%\..\bin\x64\Setup.exe
 
-bin7zx32hash=% File_Hash(bin7zx32, "MD5")
-binexex32hash=% File_Hash(binexex32, "MD5")
+bin7zx32hash=% File_Hash(bin7zx64, "MD5")
+binexex32hash=% File_Hash(binexex64, "MD5")
 bin7zx64hash=% File_Hash(bin7zx64, "MD5")
 binexex64hash=% File_Hash(binexex64, "MD5")
 
