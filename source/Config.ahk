@@ -201,7 +201,9 @@ else
 }
 
 If curPsver>=14
-	PSUserConfig=%A_AppData%\Adobe\Adobe Photoshop %GuiGetPsver%\Adobe Photoshop %GuiGetPsver% Settings\PSUserConfig.txt
+	PSUserConfig=%A_AppData%\Adobe\Adobe Photoshop %psSettingsFolderName%\Adobe Photoshop %psSettingsFolderName% Settings\PSUserConfig.txt
+
+; MsgBox, %PSUserConfig%
 
 ReadPSUserConfig()
 
@@ -839,6 +841,8 @@ ApplyPSUserConfig:
 
 	Gosub, AdvanceCheckTransform
 
+	FileEncoding, UTF-8-RAW ; <--- 添加此行：临时切换到无BOM的UTF-8编码
+
 	If (AllowAsyncIO=0)
 		FileAppend, AllowAsyncIO %AllowAsyncIO%`n, %PSUserConfig%
 	If (ReduceUXFriction=0)
@@ -858,6 +862,9 @@ ApplyPSUserConfig:
 		FileAppend, RecentFilesSlowTimeout %RecentFilesSlowTimeoutEdit%`n, %PSUserConfig%
 	If (FullPreviewMaxSize=1) && (FullPreviewMaxSizeEdit>=0)
 		FileAppend, FullPreviewMaxSize %FullPreviewMaxSizeEdit%`n, %PSUserConfig%
+
+	FileEncoding, UTF-8 ; <--- 添加此行：恢复脚本默认的编码设置
+	
 	If WinExist("ahk_group Photoshop")
 		GuiFlash("GuiText4",3,100)
 	return
