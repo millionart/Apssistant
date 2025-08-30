@@ -41,6 +41,9 @@ Ahk2exe.exe /in "%A_ScriptDir%\APssistant.ahk" /icon "%A_ScriptDir%\Data\tray.ic
 Ahk2exe.exe /in "%A_ScriptDir%\Config.ahk" /icon "%A_ScriptDir%\inc\Config.ico"
 Ahk2exe.exe /in "%A_ScriptDir%\Update.ahk" /icon "%A_ScriptDir%\inc\Update.ico"
 
+:: [新增] 添加短暂延迟，等待编译器释放文件句柄
+timeout /t 1 /nobreak >nul
+
 cd /d "%A_ScriptDir%\"
 move Update.exe Update.com
 move Config.exe Config.com
